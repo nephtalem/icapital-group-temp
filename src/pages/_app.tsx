@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import type { AppProps } from "next/app";
 import { Mulish } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import { Layout } from "@/components/shared/Layout";
 
 const mulish = Mulish({ subsets: ["latin"] });
 
@@ -15,7 +16,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         }
       `}</style>
       <ToastContainer />
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 };

@@ -1,4 +1,13 @@
+import { Home } from "@/components/home/Home";
+import { Title } from "@/components/shared/Title";
 
-export default function Home() {
-  return <></>;
-}
+const HomePage = () => {
+  return (
+    <>
+      <Title title={"Home"} />
+      <Home />
+    </>
+  );
+};
+
+export default HomePage;
