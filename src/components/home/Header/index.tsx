@@ -48,16 +48,7 @@ export const Header = () => {
   return (
     <>
       <StyledHeader>
-        <StyledSocials>
-          {socials.map((social, index) => (
-            <Social
-              key={index}
-              to={social.to}
-              title={social.title}
-              icon={social.icon}
-            />
-          ))}
-        </StyledSocials>
+        <Socials />
         <StyledMenu>
           <h3>Get acquainted</h3>
           <button
@@ -70,7 +61,7 @@ export const Header = () => {
         </StyledMenu>
       </StyledHeader>
       <StyledDrawerWrapper
-        ref={drawer}    
+        ref={drawer}
         onMouseLeave={() => {
           gsap.to(drawer.current, { right: "-50rem" });
         }}
@@ -78,6 +69,21 @@ export const Header = () => {
         <Drawer />
       </StyledDrawerWrapper>
     </>
+  );
+};
+
+export const Socials = () => {
+  return (
+    <StyledSocials>
+      {socials.map((social, index) => (
+        <Social
+          key={index}
+          to={social.to}
+          title={social.title}
+          icon={social.icon}
+        />
+      ))}
+    </StyledSocials>
   );
 };
 

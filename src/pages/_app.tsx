@@ -14,7 +14,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <style jsx global>{`
-        html {
+        * {
           font-family: ${mulish.style.fontFamily};
         }
       `}</style>

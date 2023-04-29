@@ -1,13 +1,14 @@
 import { Home } from "@/components/home/Home";
+import { Content } from "@/components/knowledge-sharing/Content";
 import { Title } from "@/components/shared/Title";
 
-const KnowledgeSharingPage = () => {
+const EACMSPage = () => {
   return (
     <>
       <Title title={"Knowledge Sharing"} />
-      <Home />
+      <Content></Content>
     </>
   );
 };
 
-export default KnowledgeSharingPage;
+export default EACMSPage;
