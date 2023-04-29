@@ -54,6 +54,33 @@ export const Home = () => {
             }}
           />
         </SwiperSlide>
+
+        <SwiperSlide>
+          <Slide
+            title={"Learning Solutions"}
+            description={
+              "Our Learning Solutions are Human Capital Development programs that come in standard packages, tailored packages, and certification programs offered as skill seminars and training, customized to meet the unique needs through co-creation and partnerships with companies, and institutions."
+            }
+            image={"/images/ls.png"}
+            link={{
+              to: "/as",
+              label: "Visit Learning Solutions",
+            }}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Slide
+            title={"Cross Border Solutions"}
+            description={
+              "Our Cross Border Solutions offers individuals and organizations programs that develop skills and competencies through exposure to global best practices and experiences, including international certifications, exposure-based learning, education programs, and advisory services in collaboration with international partners."
+            }
+            image={"/images/cbs.png"}
+            link={{
+              to: "/as",
+              label: "Visit Cross Border Solutions",
+            }}
+          />
+        </SwiperSlide>
       </Swiper>
     </StyledHome>
   );

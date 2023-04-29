@@ -41,7 +41,8 @@ export const StyledContent = styled.div`
   p {
     text-align: center;
     font-size: 2.4rem;
-    font-weight: 500;
+    line-height: 3.2rem;
+    font-weight: 400;
     color: white;
     margin-top: 4rem;
   }

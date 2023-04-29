@@ -22,6 +22,7 @@ export const Landing = () => {
           src={"/images/home.bg.png"}
           alt={"background"}
           fill={true}
+          quality={100}
           priority
         />
       </StyledImage>

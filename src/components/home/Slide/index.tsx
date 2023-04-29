@@ -27,7 +27,7 @@ export const Slide = ({
   return (
     <StyledSlide>
       <StyledBackground>
-        <Image src={image} alt={title} fill={true} />
+        <Image src={image} alt={title} fill={true} quality={100} priority />
       </StyledBackground>
       <StyledCover />
       <StyledContent>
