@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const StyledPlatforms = styled.div`
   display: grid;
   padding: 5rem;
+  margin-bottom: 20rem;
 `;
 
 export const StyledPlatformsTitle = styled.div`
@@ -70,5 +71,37 @@ export const StyledBanner = styled.div`
   overflow: hidden;
   img {
     object-fit: cover;
+  }
+`;
+
+export const StyledCollaborations = styled.div`
+  display: grid;
+  justify-items: center;
+  max-width: 80%;
+  text-align: center;
+  justify-self: center;
+  p {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 2.5rem;
+  }
+`;
+
+export const StyledContact = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 4.8rem;
+  gap: 1rem;
+  h6 {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    color: #000000;
+  }
+  a {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    color: #f58016;
   }
 `;

@@ -5,10 +5,13 @@ import {
   StyledAction,
   StyledActions,
   StyledBanner,
+  StyledCollaborations,
+  StyledContact,
   StyledPlatforms,
   StyledPlatformsItem,
   StyledPlatformsTitle,
 } from "./styles";
+import Link from "next/link";
 
 export const Platforms = () => {
   return (
@@ -48,6 +51,23 @@ export const Platforms = () => {
         toSponsor={""}
         theme={"#3F60B8"}
       />
+
+      <StyledCollaborations>
+        <StyledPlatformsTitle>
+          <MainText title={"Open to Collaboration"} />
+        </StyledPlatformsTitle>
+        <p>
+          The platform for sharing knowledge is constantly open to collaboration
+          and aims to create avenues for hosting summits and conferences to
+          drive policy changes and foster innovation.
+        </p>
+        <StyledContact>
+          <h6>Contact us at: </h6>
+          <Link href={"mailto:info@icapitalafrica.org"}>
+            info@icapitalafrica.org
+          </Link>
+        </StyledContact>
+      </StyledCollaborations>
     </StyledPlatforms>
   );
 };

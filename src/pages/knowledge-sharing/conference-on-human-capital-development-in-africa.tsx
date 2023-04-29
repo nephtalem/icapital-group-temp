@@ -5,7 +5,9 @@ const CHCDAPage = () => {
   return (
     <>
       <Title title={"Knowledge Sharing"} />
-      <Content></Content>
+      <Content>
+        <span />
+      </Content>
     </>
   );
 };
