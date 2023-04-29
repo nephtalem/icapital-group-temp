@@ -1,5 +1,6 @@
 import lodash from "lodash";
 import { StyledNav, StyledNavItem, StyledNavWrapper } from "./styles";
+import { useEffect } from "react";
 
 export const Nav = ({
   length,
@@ -10,6 +11,8 @@ export const Nav = ({
   active: number;
   onClick: (index: number) => void;
 }) => {
+  useEffect(() => {}, [active]);
+
   return (
     <StyledNavWrapper>
       <StyledNav>

@@ -1,4 +1,4 @@
-import { Keyboard, Mousewheel } from "swiper";
+import { Keyboard, Navigation, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
@@ -24,7 +24,7 @@ export const Home = () => {
         speed={600}
         modules={[Mousewheel, Keyboard]}
         onSlideChange={(s) => {
-          setSlide(s.activeIndex);
+          setSlide(s.realIndex);
         }}
         onSwiper={(s) => {
           swiper.current = s;
@@ -97,7 +97,7 @@ export const Home = () => {
       </Swiper>
       <Nav
         length={5}
-        active={slide}
+        active={swiper.current?.activeIndex ?? 0}
         onClick={(index): void => {
           swiper.current.slideTo(index);
         }}
