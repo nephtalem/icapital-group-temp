@@ -41,3 +41,36 @@ a {
     bottom: 5rem;
   }
 }
+
+#nprogress .bar {
+  background: #f58016 !important;
+}
+
+#nprogress .spinner-icon {
+  display: none;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #f58016, 0 0 5px #f58016;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f58016;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f58016;
+}
