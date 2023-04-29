@@ -70,7 +70,7 @@ export const Header = () => {
         </StyledMenu>
       </StyledHeader>
       <StyledDrawerWrapper
-        ref={drawer}
+        ref={drawer}    
         onMouseLeave={() => {
           gsap.to(drawer.current, { right: "-50rem" });
         }}
