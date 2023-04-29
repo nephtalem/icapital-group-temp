@@ -13,4 +13,4 @@ NEXT_PUBLIC_NODE_ENV=production
 
 ' >.env
 yarn build
-pm2 start yarn --name icapital -- start
+pm2 start yarn --interpreter bash --name icapital -- start
