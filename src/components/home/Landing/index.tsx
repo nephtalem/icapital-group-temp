@@ -1,5 +1,7 @@
+import ArrowDownIcon from "@/assets/icons/arrow.down.svg";
 import localFont from "next/font/local";
 import Image from "next/image";
+import { useSwiper } from "swiper/react";
 import {
   StyledContent,
   StyledCover,
@@ -8,13 +10,12 @@ import {
   StyledLogo,
   StyledScrollDown,
 } from "./styles";
-import ArrowDownIcon from "@/assets/icons/arrow.down.svg";
-import { SwiperSlide } from "swiper/react";
 const nanumBrushScript = localFont({
   src: "../../../fonts/brush_script_mt_kursiv.woff2",
 });
 
-export const Landing = ({ onClick }: { onClick: () => void }) => {
+export const Landing = () => {
+  const swiper = useSwiper();
   return (
     <StyledLanding>
       <StyledImage>
@@ -41,7 +42,7 @@ export const Landing = ({ onClick }: { onClick: () => void }) => {
           ...in the business of transforming people...
         </h1>
       </StyledContent>
-      <StyledScrollDown onClick={onClick}>
+      <StyledScrollDown onClick={() => swiper.slideTo(1)}>
         <ArrowDownIcon />
       </StyledScrollDown>
     </StyledLanding>

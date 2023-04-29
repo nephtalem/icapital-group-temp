@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  StyledDrawerWrapper,
   StyledHeader,
   StyledMenu,
   StyledSocial,
@@ -11,6 +12,10 @@ import TwitterIcon from "@/assets/icons/twitter.w.svg";
 import TelegramIcon from "@/assets/icons/telegram.w.svg";
 import YoutubeIcon from "@/assets/icons/youtube.w.svg";
 import MenuIcon from "@/assets/icons/menu.svg";
+import { Drawer } from "../Drawer";
+import { useRef } from "react";
+import gsap from "gsap";
+
 const socials = [
   {
     title: "Linkedin",
@@ -39,25 +44,40 @@ const socials = [
   },
 ];
 export const Header = () => {
+  const drawer = useRef(null);
   return (
-    <StyledHeader>
-      <StyledSocials>
-        {socials.map((social, index) => (
-          <Social
-            key={index}
-            to={social.to}
-            title={social.title}
-            icon={social.icon}
-          />
-        ))}
-      </StyledSocials>
-      <StyledMenu>
-        <h3>Get acquainted</h3>
-        <button>
-          <MenuIcon />
-        </button>
-      </StyledMenu>
-    </StyledHeader>
+    <>
+      <StyledHeader>
+        <StyledSocials>
+          {socials.map((social, index) => (
+            <Social
+              key={index}
+              to={social.to}
+              title={social.title}
+              icon={social.icon}
+            />
+          ))}
+        </StyledSocials>
+        <StyledMenu>
+          <h3>Get acquainted</h3>
+          <button
+            onMouseOver={() => {
+              gsap.to(drawer.current, { right: 0 });
+            }}
+          >
+            <MenuIcon />
+          </button>
+        </StyledMenu>
+      </StyledHeader>
+      <StyledDrawerWrapper
+        ref={drawer}
+        onMouseLeave={() => {
+          gsap.to(drawer.current, { right: "-50rem" });
+        }}
+      >
+        <Drawer />
+      </StyledDrawerWrapper>
+    </>
   );
 };
 

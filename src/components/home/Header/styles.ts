@@ -12,6 +12,16 @@ export const StyledHeader = styled.header`
   padding: 4rem;
 `;
 
+export const StyledDrawerWrapper = styled.header`
+  height: 100vh;
+  width: 50rem;
+  position: fixed;
+  top: 0;
+  right: -50rem;
+  z-index: 100;
+  
+`;
+
 export const StyledSocials = styled.header`
   display: flex;
   gap: 3.2rem;

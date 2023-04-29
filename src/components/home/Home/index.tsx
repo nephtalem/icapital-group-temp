@@ -1,16 +1,14 @@
-import { Keyboard, Navigation, Mousewheel } from "swiper";
+import { useRef } from "react";
+import { Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
 import { Landing } from "../Landing";
+import { Nav } from "../Nav";
 import { Slide } from "../Slide";
 import { StyledHome } from "./styles";
-import { Nav } from "../Nav";
-import { useRef, useState } from "react";
 
 export const Home = () => {
-  const [slide, setSlide] = useState(0);
-  const swiper = useRef<any>(null);
   return (
     <StyledHome>
       <Header />
@@ -20,22 +18,16 @@ export const Home = () => {
         keyboard={{
           enabled: true,
         }}
-        mousewheel={true}
+        mousewheel={{
+          sensitivity: 0.1,
+        }}
         speed={600}
         modules={[Mousewheel, Keyboard]}
-        onSlideChange={(s) => {
-          setSlide(s.realIndex);
-        }}
-        onSwiper={(s) => {
-          swiper.current = s;
-        }}
+        onSlideChange={(s) => {}}
+        onSwiper={(s) => {}}
       >
         <SwiperSlide>
-          <Landing
-            onClick={(): void => {
-              swiper.current.slideTo(1);
-            }}
-          />
+          <Landing />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
@@ -45,7 +37,7 @@ export const Home = () => {
             }
             image={"/images/ksp.png"}
             link={{
-              to: "/ksp",
+              to: "/knowledge-sharing",
               label: "Visit Our Knowledge Sharing Platforms",
             }}
           />
@@ -59,7 +51,7 @@ export const Home = () => {
             }
             image={"/images/as.png"}
             link={{
-              to: "/as",
+              to: "/advisory-solutions",
               label: "Visit Advisory Solutions",
             }}
           />
@@ -73,7 +65,7 @@ export const Home = () => {
             }
             image={"/images/ls.png"}
             link={{
-              to: "/as",
+              to: "/learning-solutions",
               label: "Visit Learning Solutions",
             }}
           />
@@ -86,7 +78,7 @@ export const Home = () => {
             }
             image={"/images/cbs.png"}
             link={{
-              to: "/as",
+              to: "/cross-border-solutions",
               label: "Visit Cross Border Solutions",
             }}
           />
@@ -94,14 +86,8 @@ export const Home = () => {
         <SwiperSlide>
           <Footer />
         </SwiperSlide>
+        <Nav length={5} />
       </Swiper>
-      <Nav
-        length={5}
-        active={swiper.current?.activeIndex ?? 0}
-        onClick={(index): void => {
-          swiper.current.slideTo(index);
-        }}
-      />
     </StyledHome>
   );
 };

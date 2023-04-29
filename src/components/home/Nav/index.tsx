@@ -1,17 +1,18 @@
 import lodash from "lodash";
+import { useSwiper } from "swiper/react";
 import { StyledNav, StyledNavItem, StyledNavWrapper } from "./styles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-export const Nav = ({
-  length,
-  active,
-  onClick,
-}: {
-  length: number;
-  active: number;
-  onClick: (index: number) => void;
-}) => {
-  useEffect(() => {}, [active]);
+export const Nav = ({ length }: { length: number }) => {
+  const swiper = useSwiper();
+  const router = useRouter();
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    swiper.onAny(() => {
+      setActive(swiper.activeIndex);
+    });
+  }, [swiper]);
 
   return (
     <StyledNavWrapper>
@@ -20,7 +21,7 @@ export const Nav = ({
           <StyledNavItem
             key={value}
             active={active == value}
-            onClick={() => onClick(value)}
+            onClick={() => swiper.slideTo(value)}
           >
             <span />
           </StyledNavItem>
