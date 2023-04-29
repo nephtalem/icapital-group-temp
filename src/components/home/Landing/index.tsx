@@ -14,7 +14,7 @@ const nanumBrushScript = localFont({
   src: "../../../fonts/brush_script_mt_kursiv.woff2",
 });
 
-export const Landing = () => {
+export const Landing = ({ onClick }: { onClick: () => void }) => {
   return (
     <StyledLanding>
       <StyledImage>
@@ -41,7 +41,7 @@ export const Landing = () => {
           ...in the business of transforming people...
         </h1>
       </StyledContent>
-      <StyledScrollDown>
+      <StyledScrollDown onClick={onClick}>
         <ArrowDownIcon />
       </StyledScrollDown>
     </StyledLanding>

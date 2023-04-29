@@ -6,3 +6,10 @@ export const StyledHome = styled.div`
   position: relative;
   background-color: #1e2e43;
 `;
+
+export const StyledHomeWrapper = styled.div`
+  position: relative;
+  height: calc(100vh + 12rem);
+
+
+`

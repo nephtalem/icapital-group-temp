@@ -1,31 +1,41 @@
+import { Keyboard, Mousewheel } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Footer } from "../Footer";
 import { Header } from "../Header";
 import { Landing } from "../Landing";
 import { Slide } from "../Slide";
 import { StyledHome } from "./styles";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel, EffectCube, Pagination, Keyboard } from "swiper";
+import { Nav } from "../Nav";
+import { useRef, useState } from "react";
 
 export const Home = () => {
+  const [slide, setSlide] = useState(0);
+  const swiper = useRef<any>(null);
   return (
     <StyledHome>
       <Header />
       <Swiper
         direction={"vertical"}
-        slidesPerView={1}
-        spaceBetween={0}
+        slidesPerView={"auto"}
         keyboard={{
           enabled: true,
         }}
         mousewheel={true}
-        speed={800}
-        pagination={{
-          clickable: true,
+        speed={600}
+        modules={[Mousewheel, Keyboard]}
+        onSlideChange={(s) => {
+          setSlide(s.activeIndex);
         }}
-        navigation={true}
-        modules={[Mousewheel, Keyboard, Pagination]}
+        onSwiper={(s) => {
+          swiper.current = s;
+        }}
       >
         <SwiperSlide>
-          <Landing />
+          <Landing
+            onClick={(): void => {
+              swiper.current.slideTo(1);
+            }}
+          />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
@@ -81,7 +91,17 @@ export const Home = () => {
             }}
           />
         </SwiperSlide>
+        <SwiperSlide>
+          <Footer />
+        </SwiperSlide>
       </Swiper>
+      <Nav
+        length={5}
+        active={slide}
+        onClick={(index): void => {
+          swiper.current.slideTo(index);
+        }}
+      />
     </StyledHome>
   );
 };
