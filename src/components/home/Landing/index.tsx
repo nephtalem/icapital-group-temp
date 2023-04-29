@@ -9,6 +9,7 @@ import {
   StyledScrollDown,
 } from "./styles";
 import ArrowDownIcon from "@/assets/icons/arrow.down.svg";
+import { SwiperSlide } from "swiper/react";
 const nanumBrushScript = localFont({
   src: "../../../fonts/brush_script_mt_kursiv.woff2",
 });

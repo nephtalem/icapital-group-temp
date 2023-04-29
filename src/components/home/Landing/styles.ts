@@ -45,9 +45,14 @@ export const StyledLogo = styled.div`
 
 export const StyledScrollDown = styled.div`
   position: absolute;
-  bottom: 4rem;
+  bottom: 5rem;
   justify-self: center;
   cursor: pointer;
+  animation-name: scrollDown;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
   svg {
     height: 4rem;
   }
