@@ -1,4 +1,4 @@
-import { Collaboration } from "@/components/knowledge-sharing/Collaboration";
+import { Platforms } from "@/components/knowledge-sharing/Platforms";
 import { Content } from "@/components/knowledge-sharing/Content";
 import { Landing } from "@/components/knowledge-sharing/Landing";
 import { Title } from "@/components/shared/Title";
@@ -9,7 +9,7 @@ const KnowledgeSharingPage = () => {
       <Title title={"Knowledge Sharing"} />
       <Content>
         <Landing />
-        <Collaboration />
+        <Platforms />
       </Content>
     </>
   );

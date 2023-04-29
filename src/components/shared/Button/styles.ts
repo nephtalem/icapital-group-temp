@@ -13,3 +13,28 @@ export const StyledButton = styled.button`
   padding: 1.6rem 4rem;
   cursor: pointer;
 `;
+
+export const StyledActionButton = styled.button<{
+  color: string;
+  border: string;
+}>`
+  border: none;
+  outline: none;
+  background: ${({ color }) => color};
+  border-bottom: 4px solid ${({ border }) => border};
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 3rem;
+  color: #ffffff;
+  padding: 1.6rem 4rem;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  svg {
+    height: 1.6rem;
+  }
+`;

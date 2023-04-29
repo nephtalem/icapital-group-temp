@@ -4,7 +4,7 @@ export const StyledLanding = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding: 5rem;
-  grid-column-gap: 18rem;
+  grid-column-gap: 14rem;
 `;
 export const StyledContent = styled.div`
   display: grid;
@@ -69,7 +69,8 @@ export const StyledLogo = styled.div`
   display: grid;
   position: relative;
   height: 40rem;
-  width: 40rem;
+  width: 100%;
+  align-self: center;
 
   img {
     object-fit: contain;
