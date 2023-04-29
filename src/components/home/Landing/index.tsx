@@ -31,6 +31,7 @@ export const Landing = () => {
             src={"/images/white.logo.png"}
             alt={"background"}
             fill={true}
+            quality={100}
             priority
           />
         </StyledLogo>

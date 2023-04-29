@@ -35,11 +35,11 @@ export const StyledContent = styled.div`
 
 export const StyledLogo = styled.div`
   display: grid;
-  height: 38rem;
+  height: 40rem;
   width: 100%;
   position: relative;
   img {
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 
