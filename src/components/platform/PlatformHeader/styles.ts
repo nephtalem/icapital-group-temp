@@ -11,6 +11,7 @@ export const StyledPlatformHeader = styled.div`
   align-items: center;
   position: sticky;
   top: 0;
+  z-index: 100;
 `;
 
 export const StyledLogo = styled.div`

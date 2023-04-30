@@ -4,6 +4,7 @@ export const StyledMainText = styled.div`
   display: grid;
   justify-items: center;
   justify-self: center;
+  grid-row-gap: 1.6rem;
   h1 {
     font-weight: 700;
     font-size: 6.4rem;
