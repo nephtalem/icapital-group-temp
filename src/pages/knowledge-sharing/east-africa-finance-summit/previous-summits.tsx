@@ -1,14 +1,15 @@
-import { Home } from "@/components/home/Home";
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
+import { PreviousSummits } from "@/components/platform/PreviousSummits";
 import { Title } from "@/components/shared/Title";
 
 const PreviousSummitsEAFSPage = () => {
   return (
     <>
-      <Title title={"THE 6TH ANNUAL EAST AFRICA FINANCE SUMMIT"} />
+      <Title title={"Previous Summits"} />
       <Content>
         <PlatformHeader />
+        <PreviousSummits />
       </Content>
     </>
   );
