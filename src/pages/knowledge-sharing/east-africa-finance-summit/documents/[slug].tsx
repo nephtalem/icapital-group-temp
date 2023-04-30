@@ -1,18 +1,18 @@
 import { Content } from "@/components/knowledge-sharing/Content";
+import { DocumentsDetail } from "@/components/platform/DocumentsDetail";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
-import { SummitDocuments } from "@/components/platform/SummitDocuments";
 import { Title } from "@/components/shared/Title";
 
-const SummitDocumentsEAFSPage = () => {
+const EAFSPage = () => {
   return (
     <>
-      <Title title={"THE 6TH ANNUAL EAST AFRICA FINANCE SUMMIT"} />
+      <Title title={"Knowledge Sharing"} />
       <Content>
         <PlatformHeader />
-        <SummitDocuments/>
+        <DocumentsDetail />
       </Content>
     </>
   );
 };
 
-export default SummitDocumentsEAFSPage;
+export default EAFSPage;

@@ -27,11 +27,7 @@ export const PreviousSummits = () => {
 
 const PreviousSummit = () => {
   return (
-    <Link
-      href={
-        "http://localhost:3000/knowledge-sharing/east-africa-finance-summit/123"
-      }
-    >
+    <Link href={"/knowledge-sharing/east-africa-finance-summit/summit/123"}>
       <StyledPreviousSummit>
         <StyledBackground>
           <Image src={"/images/summit.png"} alt={""} fill={true} />
