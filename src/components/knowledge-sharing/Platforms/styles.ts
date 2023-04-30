@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const StyledPlatforms = styled.div`
   display: grid;
-  padding: 5rem;
+  padding: 5rem 16rem;
   margin-bottom: 20rem;
 `;
 
@@ -65,12 +65,12 @@ export const StyledAction = styled.div`
 export const StyledBanner = styled.div`
   display: grid;
   position: relative;
-  height: 56rem;
+  height: 52rem;
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
   img {
-    object-fit: cover;
+    object-fit:cover;
   }
 `;
 

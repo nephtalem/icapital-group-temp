@@ -39,6 +39,12 @@ export const Upcoming = () => {
       <Banner />
       <Organizers />
       <Sponsors />
+      <StyledSponsorApply>
+        <h2>SPONSORSHIP AND EXHIBITION</h2>
+        <StyledApply>
+          <div>APPLY HERE</div>
+        </StyledApply>
+      </StyledSponsorApply>
       <VideoContainer />
       <Connect />
     </StyledUpcoming>
@@ -110,7 +116,7 @@ const Banner = () => {
   );
 };
 
-const Organizers = () => {
+export const Organizers = () => {
   return (
     <StyledOrganizers>
       <StyledOrganizersTitle>
@@ -140,7 +146,7 @@ const Organizer = ({ image }: { image: string }) => {
   );
 };
 
-const Sponsors = () => {
+export const Sponsors = () => {
   return (
     <StyledSponsors>
       <StyledSponsorsTitle>
@@ -156,12 +162,6 @@ const Sponsors = () => {
         <Sponsor image={"/images/sponsor.2.png"} />
         <Sponsor image={"/images/sponsor.3.png"} />
       </StyledSponsorsList>
-      <StyledSponsorApply>
-        <h2>SPONSORSHIP AND EXHIBITION</h2>
-        <StyledApply>
-          <div>APPLY HERE</div>
-        </StyledApply>
-      </StyledSponsorApply>
     </StyledSponsors>
   );
 };
