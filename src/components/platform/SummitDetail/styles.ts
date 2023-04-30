@@ -88,6 +88,71 @@ export const StyledIntroContent = styled.div`
 
 export const StyledIntroVideo = styled.div`
   display: grid;
-  width: 100%; 
+  width: 100%;
   height: 100%;
+`;
+
+export const StyledRemark = styled.div`
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  padding: 8rem;
+  grid-column-gap: 6rem;
+`;
+
+export const StyledRemarkContent = styled.div`
+  display: grid;
+  h2 {
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 4rem;
+    color: #000000;
+  }
+  p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    text-align: justify;
+    color: #000000;
+    margin-top: 2.8rem;
+    margin-bottom: 2rem;
+  }
+`;
+
+export const StyledRemarkActions = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 4rem;
+  margin-top: 5rem;
+`;
+
+export const StyledRemarkPerson = styled.div`
+  display: grid;
+  grid-auto-rows: max-content;
+  justify-items: center;
+
+  h3 {
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3rem;
+    color: #000000;
+    margin-top: 3.2rem;
+  }
+  p {
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    color: #000000;
+    margin-top: 2rem;
+  }
+`;
+
+export const StyledRemarkPersonImage = styled.div`
+  display: grid;
+  position: relative;
+  height: 57rem;
+  width: 100%;
+  img {
+    object-fit: cover;
+  }
 `;

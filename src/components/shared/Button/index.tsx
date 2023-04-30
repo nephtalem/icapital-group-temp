@@ -11,11 +11,13 @@ export const Button = ({
 };
 export const ActionButton = ({
   label,
+  icon,
   color,
   border,
   onClick,
 }: {
   label: string;
+  icon?: JSX.Element;
   color: string;
   border: string;
   onClick: () => void;
@@ -23,7 +25,7 @@ export const ActionButton = ({
   return (
     <StyledActionButton color={color} border={border} onClick={onClick}>
       {label}
-      <OpenIcon />
+      {icon || <OpenIcon />}
     </StyledActionButton>
   );
 };

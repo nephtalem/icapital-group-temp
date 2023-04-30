@@ -27,14 +27,15 @@ export const StyledActionButton = styled.button<{
   font-size: 2rem;
   line-height: 3rem;
   color: #ffffff;
-  padding: 1.6rem 4rem;
+  padding: 1.6rem 3rem;
   cursor: pointer;
-
+  justify-items: center;
+justify-content: center;
   display: flex;
   align-items: center;
   gap: 2rem;
 
   svg {
-    height: 1.6rem;
+    height: 2rem;
   }
 `;

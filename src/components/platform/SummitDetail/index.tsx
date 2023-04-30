@@ -6,10 +6,17 @@ import {
   StyledIntroVideo,
   StyledLanding,
   StyledLandingContent,
+  StyledRemark,
+  StyledRemarkActions,
+  StyledRemarkContent,
+  StyledRemarkPerson,
+  StyledRemarkPersonImage,
   StyledSummitDetail,
 } from "./styles";
-import { Button } from "@/components/shared/Button";
+import { ActionButton, Button } from "@/components/shared/Button";
 import dynamic from "next/dynamic";
+import DownloadIcon from "@/assets/icons/download.svg";
+import WatchIcon from "@/assets/icons/watch.svg";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
@@ -18,6 +25,7 @@ export const SummitDetail = () => {
     <StyledSummitDetail>
       <Landing />
       <Intro />
+      <Remark />
       <Organizers />
       <Sponsors />
     </StyledSummitDetail>
@@ -73,5 +81,72 @@ const Intro = () => {
         />
       </StyledIntroVideo>
     </StyledIntro>
+  );
+};
+
+const Remark = () => {
+  return (
+    <StyledRemark>
+      <StyledRemarkContent>
+        <h2>Opening Remark</h2>
+        <p>
+          Dr Eyob Tekalign, State Minister of Ministry of Finance, delivered the
+          Opening Remark at the 4th Annual East Africa Finance Summit.
+        </p>
+
+        <p>
+          The state minister, noted, &quot;a three-year Home-grown Economic
+          Reform agenda has been launched to sustain the nation&apos;s rapid
+          growth and attain a &apos;middle-income&apos; status economy&quot;,
+          and this agenda serves as a blueprint for the immediate reform
+          measures that must be taken to address new growth opportunities.
+        </p>
+        <p>
+          With regards to the finance sector, he underlined the need to bring
+          the sector up to par. &quot;In the next three years, the government
+          will focus on strengthening the regulatory environment and putting in
+          place a domestic system that is able to compete on international
+          standards.&quot; He stressed that the financial sector reform will be
+          at the backbone of the economic reform agenda and to meet the
+          country&apos;s aspirations.
+        </p>
+        <p>
+          Having outlined the existing capacity and regulatory drawbacks and the
+          steps to be taken to rectify them, the state minister distinguished
+          strides made. Furthermore, he stated the sector should also work to
+          backstop the national development aspirations fully which primarily
+          entails improving access to finance.
+        </p>
+        <p>
+          In closing, he remarked on the government&quot;s keenness to work with
+          all actors to deliver on shared development aspirations for a
+          prosperous and inclusive Ethiopia and acknowledged the summit for
+          facilitating the engagement.
+        </p>
+        <StyledRemarkActions>
+          <ActionButton
+            label={"Download Full Speech"}
+            color={"#F07709"}
+            border={"#9F4E03"}
+            icon={<DownloadIcon />}
+            onClick={(): void => {}}
+          />
+          <ActionButton
+            label={"Watch the Video"}
+            color={"#243B7E"}
+            border={"#0D2056"}
+            icon={<WatchIcon />}
+            onClick={(): void => {}}
+          />
+        </StyledRemarkActions>
+      </StyledRemarkContent>
+      <StyledRemarkPerson>
+        <StyledRemarkPersonImage>
+          <Image src={"/images/Eyob-Tekalign.png"} alt={""} fill={true} />
+        </StyledRemarkPersonImage>
+        <h3>H.E. Eyob Tekalign, PhD</h3>
+        <p>State Minister Ministry of Finance</p>
+      </StyledRemarkPerson>
+    </StyledRemark>
   );
 };
