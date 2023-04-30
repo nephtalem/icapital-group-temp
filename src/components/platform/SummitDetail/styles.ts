@@ -156,3 +156,70 @@ export const StyledRemarkPersonImage = styled.div`
     object-fit: cover;
   }
 `;
+
+export const StyledSummits = styled.div`
+  display: grid;
+  margin-top: 20rem;
+  padding: 7rem;
+`;
+
+export const StyledSession = styled.div`
+  display: grid;
+`;
+
+export const StyledSessionIntro = styled.div`
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-column-gap: 6rem;
+  margin-top: 10rem;
+  h3 {
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 4rem;
+
+    color: #000000;
+  }
+  p {
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 3.2rem;
+
+    color: #000000;
+  }
+`;
+
+export const StyledSessionList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  margin-top: 6rem;
+`;
+
+export const StyledSessionItem = styled.div`
+  display: grid;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 1rem;
+  padding: 2.4rem;
+
+  h4 {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 3.2rem;
+    color: #000000;
+    margin-top: 2.8rem;
+  }
+  p {
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #000000;
+    margin-top: 1.6rem;
+  }
+`;
+
+export const StyledSessionVideo = styled.div`
+  display: grid;
+  width: 100%;
+  height: 24rem;
+`;

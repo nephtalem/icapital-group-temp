@@ -11,12 +11,19 @@ import {
   StyledRemarkContent,
   StyledRemarkPerson,
   StyledRemarkPersonImage,
+  StyledSession,
+  StyledSessionIntro,
+  StyledSessionItem,
+  StyledSessionList,
+  StyledSessionVideo,
   StyledSummitDetail,
+  StyledSummits,
 } from "./styles";
 import { ActionButton, Button } from "@/components/shared/Button";
 import dynamic from "next/dynamic";
 import DownloadIcon from "@/assets/icons/download.svg";
 import WatchIcon from "@/assets/icons/watch.svg";
+import { MainText } from "@/components/shared/MainText";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
@@ -26,6 +33,7 @@ export const SummitDetail = () => {
       <Landing />
       <Intro />
       <Remark />
+      <Summits />
       <Organizers />
       <Sponsors />
     </StyledSummitDetail>
@@ -148,5 +156,63 @@ const Remark = () => {
         <p>State Minister Ministry of Finance</p>
       </StyledRemarkPerson>
     </StyledRemark>
+  );
+};
+
+const Summits = () => {
+  return (
+    <StyledSummits>
+      <MainText title={"Proceedings of the Summit"} />
+      <Session />
+      <Session />
+      <Session />
+      <Session />
+    </StyledSummits>
+  );
+};
+
+const Session = () => {
+  return (
+    <StyledSession>
+      <StyledSessionIntro>
+        <h3>Opening Session</h3>
+        <p>
+          The welcoming speech was delivered by Gemechu Waktola (PhD), CEO of
+          the i-Capital Africa Institute. Introductory Remarks were given by
+          representatives of the summit co-organizers; Kenenisa Lemi, Jimma
+          University; Yared Molla, Association of Ethiopian Insurers and Yodit
+          Kassa, Association of Chartered Certified Accountants (ACCA). The
+          summit was, then, officially opened by H.E. Ahmed Shide, Ministry of
+          Finance.
+        </p>
+      </StyledSessionIntro>
+      <StyledSessionList>
+        <SessionItem />
+        <SessionItem />
+        <SessionItem />
+      </StyledSessionList>
+    </StyledSession>
+  );
+};
+
+const SessionItem = () => {
+  return (
+    <StyledSessionItem>
+      <StyledSessionVideo>
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=JqcncLPi9zw"
+          width="100%"
+          height="100%"
+          controls={true}
+        />
+      </StyledSessionVideo>
+      <h4>Optional vide title: Welcoming Speech</h4>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit veritatis,
+        odio sint incidunt maxime amet commodi consequuntur voluptatibus illo
+        quaerat recusandae explicabo distinctio quos earum dignissimos dolorem
+        veniam quod sit?
+      </p>
+    </StyledSessionItem>
   );
 };
