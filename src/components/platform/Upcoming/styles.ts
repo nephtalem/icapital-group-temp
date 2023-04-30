@@ -208,3 +208,73 @@ export const StyledApply = styled.div`
     color: white;
   }
 `;
+
+export const StyledVideoContainer = styled.div`
+  display: grid;
+  height: 85rem;
+  width: 100vw;
+  background-color: #01102f;
+  justify-items: center;
+  align-items: center;
+  padding: 10rem 20rem;
+`;
+
+export const StyledConnect = styled.div`
+  display: grid;
+  width: 100vw;
+  height: 78rem;
+  position: relative;
+`;
+export const StyledConnectContent = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  position: absolute;
+  align-self: center;
+  grid-column-gap: 7rem;
+  padding: 0 8rem;
+`;
+
+export const StyledConnectLogo = styled.div`
+  display: grid;
+  position: relative;
+  height: 42rem;
+  width: 40rem;
+  opacity: 0.3;
+  img {
+    object-fit: contain;
+  }
+`;
+
+export const StyledConnectLinks = styled.div`
+  display: grid;
+  justify-items: center;
+  h1 {
+    font-weight: 800;
+    font-size: 9.6rem;
+    line-height: 12rem;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+  }
+`;
+export const StyledSocials = styled.header`
+  display: flex;
+  gap: 3.2rem;
+
+  svg {
+    height: 7rem;
+    path {
+      fill: #f27724;
+    }
+  }
+`;
+
+export const StyledConnectBackground = styled.div`
+  display: grid;
+  height: 80rem;
+  width: 100vw;
+  position: relative;
+  img {
+    object-fit: cover;
+  }
+`;

@@ -16,7 +16,7 @@ import { Drawer } from "../Drawer";
 import { useRef } from "react";
 import gsap from "gsap";
 
-const socials = [
+export const socials = [
   {
     title: "Linkedin",
     to: "https://et.linkedin.com/company/icapitalafrica",
@@ -87,7 +87,7 @@ export const Socials = () => {
   );
 };
 
-const Social = ({
+export const Social = ({
   to,
   title,
   icon,

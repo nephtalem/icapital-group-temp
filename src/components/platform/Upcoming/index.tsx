@@ -3,6 +3,11 @@ import {
   StyledApply,
   StyledBanner,
   StyledBannerImage,
+  StyledConnect,
+  StyledConnectBackground,
+  StyledConnectContent,
+  StyledConnectLinks,
+  StyledConnectLogo,
   StyledLanding,
   StyledLandingBackground,
   StyledLandingContent,
@@ -12,14 +17,20 @@ import {
   StyledOrganizers,
   StyledOrganizersTitle,
   StyledRegister,
+  StyledSocials,
   StyledSponsorApply,
   StyledSponsors,
   StyledSponsorsList,
   StyledSponsorsTitle,
   StyledUpcoming,
+  StyledVideoContainer,
 } from "./styles";
 import { MainText } from "@/components/shared/MainText";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import { Social, socials } from "@/components/home/Header";
+
+const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 export const Upcoming = () => {
   return (
@@ -28,6 +39,8 @@ export const Upcoming = () => {
       <Banner />
       <Organizers />
       <Sponsors />
+      <VideoContainer />
+      <Connect />
     </StyledUpcoming>
   );
 };
@@ -160,5 +173,58 @@ const Sponsor = ({ image }: { image: string }) => {
         <Image src={image} alt={""} fill={true} />
       </StyledOrganizer>
     </Link>
+  );
+};
+
+const VideoContainer = () => {
+  return (
+    <StyledVideoContainer>
+      <ReactPlayer
+        url="https://www.youtube.com/watch?v=JqcncLPi9zw"
+        width="100%"
+        height="100%"
+        playing={true}
+        muted={true}
+        controls={true}
+      />
+    </StyledVideoContainer>
+  );
+};
+
+const Connect = () => {
+  return (
+    <StyledConnect>
+      <StyledConnectBackground>
+        <Image
+          src={"/images/upcoming.background.png"}
+          alt={""}
+          quality={100}
+          fill={true}
+        />
+      </StyledConnectBackground>
+      <StyledConnectContent>
+        <StyledConnectLogo>
+          <Image
+            src={"/images/upcoming.logo.png"}
+            alt={""}
+            quality={100}
+            fill={true}
+          />
+        </StyledConnectLogo>
+        <StyledConnectLinks>
+          <h1>Connect with us</h1>
+          <StyledSocials>
+            {socials.map((social, index) => (
+              <Social
+                key={index}
+                to={social.to}
+                title={social.title}
+                icon={social.icon}
+              />
+            ))}
+          </StyledSocials>
+        </StyledConnectLinks>
+      </StyledConnectContent>
+    </StyledConnect>
   );
 };
