@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const StyledMainText = styled.h1`
+export const StyledMainText = styled.div`
   display: grid;
   justify-items: center;
   justify-self: center;

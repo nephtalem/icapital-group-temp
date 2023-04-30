@@ -7,7 +7,7 @@ const KnowledgeSharingPage = () => {
   return (
     <>
       <Title title={"Knowledge Sharing"} />
-      <Content>
+      <Content scrollable={false}>
         <Landing />
         <Platforms />
       </Content>

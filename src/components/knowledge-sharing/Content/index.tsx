@@ -3,12 +3,14 @@ import { StyledContent } from "./styles";
 import { Footer } from "@/components/shared/Footer";
 
 export const Content = ({
+  scrollable = true,
   children,
 }: {
+  scrollable?: boolean;
   children: JSX.Element[] | JSX.Element;
 }) => {
   return (
-    <StyledContent>
+    <StyledContent scrollable={scrollable}>
       <Header
         options={[
           {

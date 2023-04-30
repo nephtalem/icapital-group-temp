@@ -1,24 +1,23 @@
 import styled from "@emotion/styled";
 
-export const StyledHeader = styled.header`
+export const StyledPlatformHeader = styled.div`
   display: grid;
+  grid-template-columns: max-content 1fr;
+  background: #ffffff;
+  border-bottom: 10px solid #f58016;
+  width: 100vw;
   height: 12rem;
-  border-bottom: 1px solid #eee;
-  grid-template-columns: max-content 1fr max-content;
+  padding: 0 7rem;
   align-items: center;
-  padding: 0 5rem;
   position: sticky;
   top: 0;
-  background: white;
-  z-index: 100;
 `;
 
 export const StyledLogo = styled.div`
-  display: grid;
   position: relative;
-  width: 16rem;
   height: 8rem;
-  cursor: pointer;
+  width: 22rem;
+
   img {
     object-fit: contain;
   }
@@ -26,20 +25,23 @@ export const StyledLogo = styled.div`
 
 export const StyledOptions = styled.div`
   display: flex;
-  justify-self: center;
-  gap: 4rem;
+  justify-self: right;
 `;
 
 export const StyledOption = styled.div<{
   active: boolean;
 }>`
   display: grid;
-
+  font-weight: 600;
   font-size: 2rem;
   line-height: 3rem;
-  font-weight: 600;
-  padding: 0.4rem 2.4rem;
-  border-radius: 0.8rem;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 1.2rem 7rem;
+  border-radius: 3rem;
   color: ${({ active }) => (active ? "#f58016" : "black")};
-  border: 2px solid ${({ active }) => (active ? "#f58016" : "transparent")};
+  background-color: ${({ active }) =>
+    active ? "rgba(245, 128, 22, 0.1)" : "white"};
 `;
