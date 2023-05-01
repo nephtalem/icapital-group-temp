@@ -34,6 +34,7 @@ export const getStaticProps: GetStaticProps = async () => {
       props: {
         upcomingEafs,
       },
+      revalidate: 10, // In seconds
     };
   } else {
     return {
