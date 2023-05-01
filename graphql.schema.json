@@ -10602,6 +10602,18 @@
         "description": null,
         "fields": [
           {
+            "name": "background",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UploadFileEntityResponse",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "createdAt",
             "description": null,
             "args": [],
@@ -10628,56 +10640,11 @@
           {
             "name": "intro",
             "description": null,
-            "args": [
-              {
-                "name": "filters",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ComponentSummitIntroSummitIntroFiltersInput",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "pagination",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "PaginationArg",
-                  "ofType": null
-                },
-                "defaultValue": "{}",
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "sort",
-                "description": null,
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "[]",
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
+            "args": [],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ComponentSummitIntroSummitIntro",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "ComponentSummitIntroSummitIntro",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10697,56 +10664,11 @@
           {
             "name": "openingRemark",
             "description": null,
-            "args": [
-              {
-                "name": "filters",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ComponentOpeningRemarkOpeningRemarkFiltersInput",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "pagination",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "PaginationArg",
-                  "ofType": null
-                },
-                "defaultValue": "{}",
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "sort",
-                "description": null,
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "[]",
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
+            "args": [],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ComponentOpeningRemarkOpeningRemark",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "ComponentOpeningRemarkOpeningRemark",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10822,6 +10744,18 @@
           },
           {
             "name": "slogan",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slug",
             "description": null,
             "args": [],
             "type": {
@@ -11142,6 +11076,18 @@
             "deprecationReason": null
           },
           {
+            "name": "slug",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "status",
             "description": null,
             "type": {
@@ -11189,6 +11135,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "background",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "date",
             "description": null,
             "type": {
@@ -11204,13 +11162,9 @@
             "name": "intro",
             "description": null,
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "ComponentSummitIntroSummitIntroInput",
-                "ofType": null
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "ComponentSummitIntroSummitIntroInput",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -11232,13 +11186,9 @@
             "name": "openingRemark",
             "description": null,
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "ComponentOpeningRemarkOpeningRemarkInput",
-                "ofType": null
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "ComponentOpeningRemarkOpeningRemarkInput",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -11274,6 +11224,18 @@
           },
           {
             "name": "slogan",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slug",
             "description": null,
             "type": {
               "kind": "SCALAR",

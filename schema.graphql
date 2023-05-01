@@ -235,10 +235,10 @@ type ComponentFileFile {
 }
 
 input ComponentOpeningRemarkOpeningRemarkFiltersInput {
-  remark: StringFilterInput
   name: StringFilterInput
   position: StringFilterInput
   youtubeUrl: StringFilterInput
+  remark: StringFilterInput
   and: [ComponentOpeningRemarkOpeningRemarkFiltersInput]
   or: [ComponentOpeningRemarkOpeningRemarkFiltersInput]
   not: ComponentOpeningRemarkOpeningRemarkFiltersInput
@@ -246,22 +246,22 @@ input ComponentOpeningRemarkOpeningRemarkFiltersInput {
 
 input ComponentOpeningRemarkOpeningRemarkInput {
   id: ID
-  remark: String
   picture: ID
   name: String
   position: String
   speechFile: ID
   youtubeUrl: String
+  remark: String
 }
 
 type ComponentOpeningRemarkOpeningRemark {
   id: ID!
-  remark: String
   picture: UploadFileEntityResponse
   name: String
   position: String
   speechFile: UploadFileEntityResponse
   youtubeUrl: String
+  remark: String
 }
 
 input ComponentOrganizerOrganizerFiltersInput {
@@ -420,8 +420,8 @@ type ComponentSponsorSponsor {
 input ComponentSummitIntroSummitIntroFiltersInput {
   title: StringFilterInput
   shortDescription: StringFilterInput
-  fullDescription: StringFilterInput
   youtubeUrl: StringFilterInput
+  fullDescription: StringFilterInput
   and: [ComponentSummitIntroSummitIntroFiltersInput]
   or: [ComponentSummitIntroSummitIntroFiltersInput]
   not: ComponentSummitIntroSummitIntroFiltersInput
@@ -431,16 +431,16 @@ input ComponentSummitIntroSummitIntroInput {
   id: ID
   title: String
   shortDescription: String
-  fullDescription: String
   youtubeUrl: String
+  fullDescription: String
 }
 
 type ComponentSummitIntroSummitIntro {
   id: ID!
   title: String
   shortDescription: String
-  fullDescription: String
   youtubeUrl: String
+  fullDescription: String
 }
 
 type ComponentSummitSummit {
@@ -1031,6 +1031,7 @@ input SummitFiltersInput {
   openingRemark: ComponentOpeningRemarkOpeningRemarkFiltersInput
   session: ComponentSessionSessionFiltersInput
   type: StringFilterInput
+  slug: StringFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -1044,10 +1045,12 @@ input SummitInput {
   date: String
   slogan: String
   status: String
-  intro: [ComponentSummitIntroSummitIntroInput]
-  openingRemark: [ComponentOpeningRemarkOpeningRemarkInput]
+  intro: ComponentSummitIntroSummitIntroInput
+  openingRemark: ComponentOpeningRemarkOpeningRemarkInput
   session: [ComponentSessionSessionInput]
   type: ENUM_SUMMIT_TYPE
+  background: ID
+  slug: String
   publishedAt: DateTime
 }
 
@@ -1056,10 +1059,12 @@ type Summit {
   date: String
   slogan: String
   status: String
-  intro(filters: ComponentSummitIntroSummitIntroFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSummitIntroSummitIntro]
-  openingRemark(filters: ComponentOpeningRemarkOpeningRemarkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOpeningRemarkOpeningRemark]
+  intro: ComponentSummitIntroSummitIntro
+  openingRemark: ComponentOpeningRemarkOpeningRemark
   session(filters: ComponentSessionSessionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSessionSession]
   type: ENUM_SUMMIT_TYPE
+  background: UploadFileEntityResponse
+  slug: String
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime

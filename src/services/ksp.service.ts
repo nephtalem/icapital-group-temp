@@ -1,6 +1,7 @@
 import { KNOWLEDGE_SHARING } from "@/graphql/knowledge-sharing/knowledgeSharing";
 import client from "../utils/apollo.client";
 import { UPCOMING_EAFS } from "@/graphql/knowledge-sharing/upcomingEafs";
+import { SUMMITS } from "@/graphql/knowledge-sharing/summits";
 
 class KSPService {
   static ksp = async () => {
@@ -19,6 +20,21 @@ class KSPService {
         variables: {},
       });
       return upcomingEafsResult.data.upcomingEafs.data;
+    } catch (e) {}
+  };
+  static summits = async (type: string) => {
+    try {
+      const summitsResult = await client.query({
+        query: SUMMITS,
+        variables: {
+          filters: {
+            type: {
+              eq: type,
+            },
+          },
+        },
+      });
+      return summitsResult.data.summits.data;
     } catch (e) {}
   };
 }
