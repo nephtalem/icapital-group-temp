@@ -12,45 +12,29 @@ import {
   StyledPlatformsTitle,
 } from "./styles";
 import Link from "next/link";
+import { KnowledgeSharingEntity } from "@/gql/graphql";
 
-export const Platforms = () => {
+export const Platforms = ({
+  knowledgeSharing,
+}: {
+  knowledgeSharing: KnowledgeSharingEntity;
+}) => {
   return (
     <StyledPlatforms>
       <StyledPlatformsTitle>
         <MainText title={"Platforms"} />
       </StyledPlatformsTitle>
-      <PlatformsItem
-        banner={"/images/eafs.png"}
-        title={"East Africa Finance Summit"}
-        description={
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ullamcorper mauris vitae ornare ullamcorper. Vivamus vel ex eu dui aliquet commodo vitae vitae tortor. Morbi vitae risus sit amet magna efficitur posuere at sollicitudin elit. Donec gravida justo non ornare blandit. Mauris feugiat blandit quam, sed sagittis quam auctor egestas. Fusce luctus risus commodo lorem rutrum, vel pretium purus interdum. Lorem ipsum dolor sit amet, "
-        }
-        toParticipate={"/"}
-        toSponsor={"/"}
-        theme={"#F27623"}
-      />
-
-      <PlatformsItem
-        banner={"/images/eacms.png"}
-        title={"East Africa Finance Summit"}
-        description={
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ullamcorper mauris vitae ornare ullamcorper. Vivamus vel ex eu dui aliquet commodo vitae vitae tortor. Morbi vitae risus sit amet magna efficitur posuere at sollicitudin elit. Donec gravida justo non ornare blandit. Mauris feugiat blandit quam, sed sagittis quam auctor egestas. Fusce luctus risus commodo lorem rutrum, vel pretium purus interdum. Lorem ipsum dolor sit amet, "
-        }
-        toParticipate={""}
-        toSponsor={""}
-        theme={"#00B823"}
-      />
-
-      <PlatformsItem
-        banner={"/images/chcda.png"}
-        title={"East Africa Finance Summit"}
-        description={
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ullamcorper mauris vitae ornare ullamcorper. Vivamus vel ex eu dui aliquet commodo vitae vitae tortor. Morbi vitae risus sit amet magna efficitur posuere at sollicitudin elit. Donec gravida justo non ornare blandit. Mauris feugiat blandit quam, sed sagittis quam auctor egestas. Fusce luctus risus commodo lorem rutrum, vel pretium purus interdum. Lorem ipsum dolor sit amet, "
-        }
-        toParticipate={""}
-        toSponsor={""}
-        theme={"#3F60B8"}
-      />
+      {knowledgeSharing.attributes?.platform?.map((platform, index) => (
+        <PlatformsItem
+          key={index}
+          banner={platform!.banner!.data!.attributes!.url}
+          title={platform!.title!}
+          description={platform!.description!}
+          toParticipate={platform!.enableRegistration!}
+          toSponsor={platform!.enableApplication!}
+          theme={platform!.themeColor!}
+        />
+      ))}
 
       <StyledCollaborations>
         <StyledPlatformsTitle>
@@ -83,19 +67,24 @@ const PlatformsItem = ({
   banner: string;
   title: string;
   description: string;
-  toParticipate: string;
-  toSponsor: string;
+  toParticipate: boolean;
+  toSponsor: boolean;
   theme: string;
 }) => {
   return (
     <StyledPlatformsItem color={theme}>
       <StyledBanner>
-        <Image src={banner} alt={""} fill={true} quality={100} />
+        <Image
+          src={`${process.env.NEXT_PUBLIC_DATA}${banner}`}
+          alt={""}
+          fill={true}
+          quality={100}
+        />
       </StyledBanner>
       <h2>{title}</h2>
       <h5>{description}</h5>
-      {toParticipate !== "" && toSponsor !== "" ? (
-        <StyledActions>
+      <StyledActions>
+        {toParticipate ? (
           <StyledAction>
             <h6>To Participate</h6>
             <ActionButton
@@ -105,6 +94,10 @@ const PlatformsItem = ({
               border={"#9F4E03"}
             />
           </StyledAction>
+        ) : (
+          <></>
+        )}
+        {toSponsor ? (
           <StyledAction>
             <h6>To Sponsor</h6>
             <ActionButton
@@ -114,10 +107,10 @@ const PlatformsItem = ({
               onClick={(): void => {}}
             />
           </StyledAction>
-        </StyledActions>
-      ) : (
-        <></>
-      )}
+        ) : (
+          <></>
+        )}
+      </StyledActions>
     </StyledPlatformsItem>
   );
 };

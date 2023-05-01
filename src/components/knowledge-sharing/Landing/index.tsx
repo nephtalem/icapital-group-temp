@@ -5,28 +5,23 @@ import {
   StyledLogo,
   StyledQuote,
 } from "./styles";
+import { KnowledgeSharingEntity } from "@/gql/graphql";
 
-export const Landing = () => {
+export const Landing = ({
+  knowledgeSharing,
+}: {
+  knowledgeSharing: KnowledgeSharingEntity;
+}) => {
   return (
     <StyledLanding>
       <StyledContent>
         <h1>Knowledge</h1>
         <h2>sharing platform</h2>
-        <p>
-          Our Knowledge Sharing Platforms are designed to provide opportunities
-          for local, regional and global key players of selected industries of
-          various scopes to come together and discuss challenges, share
-          experiences, network and match make for sustainable business
-          relationships. The platforms are usually organized in the form of
-          summits, conferences, forums and other forms at national, regional and
-          continental levels.
-        </p>
+        <p>{knowledgeSharing.attributes?.intro}</p>
         <StyledQuote>
           <span />
-          <h3>
-            “If you have knowledge, let others light their candles in it.“
-          </h3>
-          <h5>Margaret Fuller</h5>
+          <h3>“{knowledgeSharing.attributes?.quote}“</h3>
+          <h5>{knowledgeSharing.attributes?.quoteAuthor}</h5>
         </StyledQuote>
       </StyledContent>
       <StyledLogo>

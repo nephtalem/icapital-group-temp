@@ -162,6 +162,200 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type ComponentCategoryCategory = {
+  __typename?: 'ComponentCategoryCategory';
+  file?: Maybe<Array<Maybe<ComponentFileFile>>>;
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
+
+export type ComponentCategoryCategoryFileArgs = {
+  filters?: InputMaybe<ComponentFileFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentCategoryCategoryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentCategoryCategoryFiltersInput>>>;
+  file?: InputMaybe<ComponentFileFileFiltersInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentCategoryCategoryFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentCategoryCategoryFiltersInput>>>;
+};
+
+export type ComponentCategoryCategoryInput = {
+  file?: InputMaybe<Array<InputMaybe<ComponentFileFileInput>>>;
+  id?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentFileFile = {
+  __typename?: 'ComponentFileFile';
+  content?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
+export type ComponentFileFileFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentFileFileFiltersInput>>>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentFileFileFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentFileFileFiltersInput>>>;
+};
+
+export type ComponentFileFileInput = {
+  content?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentOpeningRemarkOpeningRemark = {
+  __typename?: 'ComponentOpeningRemarkOpeningRemark';
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+  picture?: Maybe<UploadFileEntityResponse>;
+  position?: Maybe<Scalars['String']>;
+  remark?: Maybe<Scalars['String']>;
+  speechFile?: Maybe<UploadFileEntityResponse>;
+  youtubeUrl?: Maybe<Scalars['String']>;
+};
+
+export type ComponentOpeningRemarkOpeningRemarkFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentOpeningRemarkOpeningRemarkFiltersInput>>>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentOpeningRemarkOpeningRemarkFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentOpeningRemarkOpeningRemarkFiltersInput>>>;
+  position?: InputMaybe<StringFilterInput>;
+  remark?: InputMaybe<StringFilterInput>;
+  youtubeUrl?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentOpeningRemarkOpeningRemarkInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  picture?: InputMaybe<Scalars['ID']>;
+  position?: InputMaybe<Scalars['String']>;
+  remark?: InputMaybe<Scalars['String']>;
+  speechFile?: InputMaybe<Scalars['ID']>;
+  youtubeUrl?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentOrganizerOrganizer = {
+  __typename?: 'ComponentOrganizerOrganizer';
+  id: Scalars['ID'];
+  logo?: Maybe<UploadFileEntityResponse>;
+  name?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type ComponentOrganizerOrganizerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentOrganizerOrganizerFiltersInput>>>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentOrganizerOrganizerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentOrganizerOrganizerFiltersInput>>>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentOrganizerOrganizerInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  logo?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentOrganizerSponsor = {
+  __typename?: 'ComponentOrganizerSponsor';
+  id: Scalars['ID'];
+};
+
+export type ComponentPlatformPlatform = {
+  __typename?: 'ComponentPlatformPlatform';
+  banner?: Maybe<UploadFileEntityResponse>;
+  description?: Maybe<Scalars['String']>;
+  enableApplication?: Maybe<Scalars['Boolean']>;
+  enableRegistration?: Maybe<Scalars['Boolean']>;
+  id: Scalars['ID'];
+  themeColor?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type ComponentPlatformPlatformFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentPlatformPlatformFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  enableApplication?: InputMaybe<BooleanFilterInput>;
+  enableRegistration?: InputMaybe<BooleanFilterInput>;
+  not?: InputMaybe<ComponentPlatformPlatformFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentPlatformPlatformFiltersInput>>>;
+  themeColor?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentPlatformPlatformInput = {
+  banner?: InputMaybe<Scalars['ID']>;
+  description?: InputMaybe<Scalars['String']>;
+  enableApplication?: InputMaybe<Scalars['Boolean']>;
+  enableRegistration?: InputMaybe<Scalars['Boolean']>;
+  id?: InputMaybe<Scalars['ID']>;
+  themeColor?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentSessionSession = {
+  __typename?: 'ComponentSessionSession';
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  sessionVideo?: Maybe<Array<Maybe<ComponentSessionVideoVideo>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+
+export type ComponentSessionSessionSessionVideoArgs = {
+  filters?: InputMaybe<ComponentSessionVideoVideoFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentSessionSessionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSessionSessionFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSessionSessionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSessionSessionFiltersInput>>>;
+  sessionVideo?: InputMaybe<ComponentSessionVideoVideoFiltersInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSessionSessionInput = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  sessionVideo?: InputMaybe<Array<InputMaybe<ComponentSessionVideoVideoInput>>>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentSessionVideoVideo = {
+  __typename?: 'ComponentSessionVideoVideo';
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  youtubeUrl?: Maybe<Scalars['String']>;
+};
+
+export type ComponentSessionVideoVideoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSessionVideoVideoFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSessionVideoVideoFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSessionVideoVideoFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+  youtubeUrl?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSessionVideoVideoInput = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
+  youtubeUrl?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentSlideSlide = {
   __typename?: 'ComponentSlideSlide';
   background?: Maybe<UploadFileEntityResponse>;
@@ -191,6 +385,122 @@ export type ComponentSlideSlideInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
+export type ComponentSponsorSponsor = {
+  __typename?: 'ComponentSponsorSponsor';
+  id: Scalars['ID'];
+  logo?: Maybe<UploadFileEntityResponse>;
+  name?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type ComponentSponsorSponsorFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSponsorSponsorFiltersInput>>>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSponsorSponsorFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSponsorSponsorFiltersInput>>>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSponsorSponsorInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  logo?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentSummitIntroSummitIntro = {
+  __typename?: 'ComponentSummitIntroSummitIntro';
+  fullDescription?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  shortDescription?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  youtubeUrl?: Maybe<Scalars['String']>;
+};
+
+export type ComponentSummitIntroSummitIntroFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSummitIntroSummitIntroFiltersInput>>>;
+  fullDescription?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSummitIntroSummitIntroFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSummitIntroSummitIntroFiltersInput>>>;
+  shortDescription?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  youtubeUrl?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSummitIntroSummitIntroInput = {
+  fullDescription?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  shortDescription?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  youtubeUrl?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentSummitSummit = {
+  __typename?: 'ComponentSummitSummit';
+  background?: Maybe<UploadFileEntityResponse>;
+  date?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+  openingRemark?: Maybe<ComponentOpeningRemarkOpeningRemark>;
+  slogan?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  summitIntro?: Maybe<ComponentSummitIntroSummitIntro>;
+};
+
+export type ComponentUpcomingUpcoming = {
+  __typename?: 'ComponentUpcomingUpcoming';
+  background?: Maybe<UploadFileEntityResponse>;
+  banner?: Maybe<UploadFileEntityResponse>;
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  intro?: Maybe<Scalars['String']>;
+  logo?: Maybe<UploadFileRelationResponseCollection>;
+  menuTitle?: Maybe<Scalars['String']>;
+  organizer?: Maybe<Array<Maybe<ComponentOrganizerOrganizer>>>;
+  organizerIntro?: Maybe<Scalars['String']>;
+  sponsor?: Maybe<Array<Maybe<ComponentSponsorSponsor>>>;
+  sponsorIntro?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  youtubeUrl?: Maybe<Scalars['String']>;
+};
+
+
+export type ComponentUpcomingUpcomingLogoArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type ComponentUpcomingUpcomingOrganizerArgs = {
+  filters?: InputMaybe<ComponentOrganizerOrganizerFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type ComponentUpcomingUpcomingSponsorArgs = {
+  filters?: InputMaybe<ComponentSponsorSponsorFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentUpcomingUpcomingInput = {
+  background?: InputMaybe<Scalars['ID']>;
+  banner?: InputMaybe<Scalars['ID']>;
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  intro?: InputMaybe<Scalars['String']>;
+  logo?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  menuTitle?: InputMaybe<Scalars['String']>;
+  organizer?: InputMaybe<Array<InputMaybe<ComponentOrganizerOrganizerInput>>>;
+  organizerIntro?: InputMaybe<Scalars['String']>;
+  sponsor?: InputMaybe<Array<InputMaybe<ComponentSponsorSponsorInput>>>;
+  sponsorIntro?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  youtubeUrl?: InputMaybe<Scalars['String']>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -214,6 +524,63 @@ export type DateTimeFilterInput = {
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
+
+export type Document = {
+  __typename?: 'Document';
+  category?: Maybe<Array<Maybe<ComponentCategoryCategory>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type DocumentCategoryArgs = {
+  filters?: InputMaybe<ComponentCategoryCategoryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type DocumentEntity = {
+  __typename?: 'DocumentEntity';
+  attributes?: Maybe<Document>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type DocumentEntityResponse = {
+  __typename?: 'DocumentEntityResponse';
+  data?: Maybe<DocumentEntity>;
+};
+
+export type DocumentEntityResponseCollection = {
+  __typename?: 'DocumentEntityResponseCollection';
+  data: Array<DocumentEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type DocumentFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<DocumentFiltersInput>>>;
+  category?: InputMaybe<ComponentCategoryCategoryFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<DocumentFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<DocumentFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type DocumentInput = {
+  category?: InputMaybe<Array<InputMaybe<ComponentCategoryCategoryInput>>>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export enum Enum_Summit_Type {
+  Chcda = 'CHCDA',
+  Eacms = 'EACMS',
+  Eafs = 'EAFS'
+}
 
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
@@ -245,7 +612,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Author | Blog | ComponentSlideSlide | Home | I18NLocale | Setting | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Author | Blog | ComponentCategoryCategory | ComponentFileFile | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPlatformPlatform | ComponentSessionSession | ComponentSessionVideoVideo | ComponentSlideSlide | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | Document | Home | I18NLocale | KnowledgeSharing | Setting | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Home = {
   __typename?: 'Home';
@@ -390,13 +757,52 @@ export type JsonFilterInput = {
   startsWith?: InputMaybe<Scalars['JSON']>;
 };
 
+export type KnowledgeSharing = {
+  __typename?: 'KnowledgeSharing';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  intro?: Maybe<Scalars['String']>;
+  platform?: Maybe<Array<Maybe<ComponentPlatformPlatform>>>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  quote?: Maybe<Scalars['String']>;
+  quoteAuthor?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type KnowledgeSharingPlatformArgs = {
+  filters?: InputMaybe<ComponentPlatformPlatformFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type KnowledgeSharingEntity = {
+  __typename?: 'KnowledgeSharingEntity';
+  attributes?: Maybe<KnowledgeSharing>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type KnowledgeSharingEntityResponse = {
+  __typename?: 'KnowledgeSharingEntityResponse';
+  data?: Maybe<KnowledgeSharingEntity>;
+};
+
+export type KnowledgeSharingInput = {
+  intro?: InputMaybe<Scalars['String']>;
+  platform?: InputMaybe<Array<InputMaybe<ComponentPlatformPlatformInput>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  quote?: InputMaybe<Scalars['String']>;
+  quoteAuthor?: InputMaybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAuthor?: Maybe<AuthorEntityResponse>;
   createBlog?: Maybe<BlogEntityResponse>;
+  createDocument?: Maybe<DocumentEntityResponse>;
   createSetting?: Maybe<SettingEntityResponse>;
+  createSummit?: Maybe<SummitEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -405,8 +811,14 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteAuthor?: Maybe<AuthorEntityResponse>;
   deleteBlog?: Maybe<BlogEntityResponse>;
+  deleteDocument?: Maybe<DocumentEntityResponse>;
   deleteHome?: Maybe<HomeEntityResponse>;
+  deleteKnowledgeSharing?: Maybe<KnowledgeSharingEntityResponse>;
   deleteSetting?: Maybe<SettingEntityResponse>;
+  deleteSummit?: Maybe<SummitEntityResponse>;
+  deleteUpcomingChcda?: Maybe<UpcomingChcdaEntityResponse>;
+  deleteUpcomingEacms?: Maybe<UpcomingEacmsEntityResponse>;
+  deleteUpcomingEafs?: Maybe<UpcomingEafsEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -426,9 +838,15 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateAuthor?: Maybe<AuthorEntityResponse>;
   updateBlog?: Maybe<BlogEntityResponse>;
+  updateDocument?: Maybe<DocumentEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateHome?: Maybe<HomeEntityResponse>;
+  updateKnowledgeSharing?: Maybe<KnowledgeSharingEntityResponse>;
   updateSetting?: Maybe<SettingEntityResponse>;
+  updateSummit?: Maybe<SummitEntityResponse>;
+  updateUpcomingChcda?: Maybe<UpcomingChcdaEntityResponse>;
+  updateUpcomingEacms?: Maybe<UpcomingEacmsEntityResponse>;
+  updateUpcomingEafs?: Maybe<UpcomingEafsEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -456,8 +874,18 @@ export type MutationCreateBlogArgs = {
 };
 
 
+export type MutationCreateDocumentArgs = {
+  data: DocumentInput;
+};
+
+
 export type MutationCreateSettingArgs = {
   data: SettingInput;
+};
+
+
+export type MutationCreateSummitArgs = {
+  data: SummitInput;
 };
 
 
@@ -491,7 +919,17 @@ export type MutationDeleteBlogArgs = {
 };
 
 
+export type MutationDeleteDocumentArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationDeleteSettingArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteSummitArgs = {
   id: Scalars['ID'];
 };
 
@@ -568,6 +1006,12 @@ export type MutationUpdateBlogArgs = {
 };
 
 
+export type MutationUpdateDocumentArgs = {
+  data: DocumentInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
@@ -579,9 +1023,35 @@ export type MutationUpdateHomeArgs = {
 };
 
 
+export type MutationUpdateKnowledgeSharingArgs = {
+  data: KnowledgeSharingInput;
+};
+
+
 export type MutationUpdateSettingArgs = {
   data: SettingInput;
   id: Scalars['ID'];
+};
+
+
+export type MutationUpdateSummitArgs = {
+  data: SummitInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateUpcomingChcdaArgs = {
+  data: UpcomingChcdaInput;
+};
+
+
+export type MutationUpdateUpcomingEacmsArgs = {
+  data: UpcomingEacmsInput;
+};
+
+
+export type MutationUpdateUpcomingEafsArgs = {
+  data: UpcomingEafsInput;
 };
 
 
@@ -643,12 +1113,20 @@ export type Query = {
   authors?: Maybe<AuthorEntityResponseCollection>;
   blog?: Maybe<BlogEntityResponse>;
   blogs?: Maybe<BlogEntityResponseCollection>;
+  document?: Maybe<DocumentEntityResponse>;
+  documents?: Maybe<DocumentEntityResponseCollection>;
   home?: Maybe<HomeEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
+  knowledgeSharing?: Maybe<KnowledgeSharingEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
   setting?: Maybe<SettingEntityResponse>;
   settings?: Maybe<SettingEntityResponseCollection>;
+  summit?: Maybe<SummitEntityResponse>;
+  summits?: Maybe<SummitEntityResponseCollection>;
+  upcomingChcda?: Maybe<UpcomingChcdaEntityResponse>;
+  upcomingEacms?: Maybe<UpcomingEacmsEntityResponse>;
+  upcomingEafs?: Maybe<UpcomingEafsEntityResponse>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -686,6 +1164,19 @@ export type QueryBlogsArgs = {
 };
 
 
+export type QueryDocumentArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryDocumentsArgs = {
+  filters?: InputMaybe<DocumentFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryHomeArgs = {
   publicationState?: InputMaybe<PublicationState>;
 };
@@ -703,6 +1194,11 @@ export type QueryI18NLocalesArgs = {
 };
 
 
+export type QueryKnowledgeSharingArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
 export type QuerySettingArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -713,6 +1209,34 @@ export type QuerySettingsArgs = {
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QuerySummitArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QuerySummitsArgs = {
+  filters?: InputMaybe<SummitFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryUpcomingChcdaArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type QueryUpcomingEacmsArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type QueryUpcomingEafsArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 
@@ -831,6 +1355,161 @@ export type StringFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type Summit = {
+  __typename?: 'Summit';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['String']>;
+  intro?: Maybe<Array<Maybe<ComponentSummitIntroSummitIntro>>>;
+  name?: Maybe<Scalars['String']>;
+  openingRemark?: Maybe<Array<Maybe<ComponentOpeningRemarkOpeningRemark>>>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  session?: Maybe<Array<Maybe<ComponentSessionSession>>>;
+  slogan?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  type?: Maybe<Enum_Summit_Type>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type SummitIntroArgs = {
+  filters?: InputMaybe<ComponentSummitIntroSummitIntroFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type SummitOpeningRemarkArgs = {
+  filters?: InputMaybe<ComponentOpeningRemarkOpeningRemarkFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type SummitSessionArgs = {
+  filters?: InputMaybe<ComponentSessionSessionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type SummitEntity = {
+  __typename?: 'SummitEntity';
+  attributes?: Maybe<Summit>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SummitEntityResponse = {
+  __typename?: 'SummitEntityResponse';
+  data?: Maybe<SummitEntity>;
+};
+
+export type SummitEntityResponseCollection = {
+  __typename?: 'SummitEntityResponseCollection';
+  data: Array<SummitEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SummitFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SummitFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  date?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  intro?: InputMaybe<ComponentSummitIntroSummitIntroFiltersInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<SummitFiltersInput>;
+  openingRemark?: InputMaybe<ComponentOpeningRemarkOpeningRemarkFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SummitFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  session?: InputMaybe<ComponentSessionSessionFiltersInput>;
+  slogan?: InputMaybe<StringFilterInput>;
+  status?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SummitInput = {
+  date?: InputMaybe<Scalars['String']>;
+  intro?: InputMaybe<Array<InputMaybe<ComponentSummitIntroSummitIntroInput>>>;
+  name?: InputMaybe<Scalars['String']>;
+  openingRemark?: InputMaybe<Array<InputMaybe<ComponentOpeningRemarkOpeningRemarkInput>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  session?: InputMaybe<Array<InputMaybe<ComponentSessionSessionInput>>>;
+  slogan?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Enum_Summit_Type>;
+};
+
+export type UpcomingChcda = {
+  __typename?: 'UpcomingChcda';
+  content?: Maybe<ComponentUpcomingUpcoming>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type UpcomingChcdaEntity = {
+  __typename?: 'UpcomingChcdaEntity';
+  attributes?: Maybe<UpcomingChcda>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type UpcomingChcdaEntityResponse = {
+  __typename?: 'UpcomingChcdaEntityResponse';
+  data?: Maybe<UpcomingChcdaEntity>;
+};
+
+export type UpcomingChcdaInput = {
+  content?: InputMaybe<ComponentUpcomingUpcomingInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type UpcomingEacms = {
+  __typename?: 'UpcomingEacms';
+  content?: Maybe<ComponentUpcomingUpcoming>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type UpcomingEacmsEntity = {
+  __typename?: 'UpcomingEacmsEntity';
+  attributes?: Maybe<UpcomingEacms>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type UpcomingEacmsEntityResponse = {
+  __typename?: 'UpcomingEacmsEntityResponse';
+  data?: Maybe<UpcomingEacmsEntity>;
+};
+
+export type UpcomingEacmsInput = {
+  content?: InputMaybe<ComponentUpcomingUpcomingInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type UpcomingEafs = {
+  __typename?: 'UpcomingEafs';
+  content?: Maybe<ComponentUpcomingUpcoming>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type UpcomingEafsEntity = {
+  __typename?: 'UpcomingEafsEntity';
+  attributes?: Maybe<UpcomingEafs>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type UpcomingEafsEntityResponse = {
+  __typename?: 'UpcomingEafsEntityResponse';
+  data?: Maybe<UpcomingEafsEntity>;
+};
+
+export type UpcomingEafsInput = {
+  content?: InputMaybe<ComponentUpcomingUpcomingInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type UploadFile = {
@@ -1211,5 +1890,11 @@ export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type HomeQuery = { __typename?: 'Query', home?: { __typename?: 'HomeEntityResponse', data?: { __typename?: 'HomeEntity', attributes?: { __typename?: 'Home', createdAt?: any | null, menu?: string | null, publishedAt?: any | null, slogan?: string | null, slides?: Array<{ __typename?: 'ComponentSlideSlide', cta?: string | null, ctaLink?: string | null, description?: string | null, title?: string | null, id: string, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null } | null } | null } | null };
 
+export type KnowledgeSharingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type KnowledgeSharingQuery = { __typename?: 'Query', knowledgeSharing?: { __typename?: 'KnowledgeSharingEntityResponse', data?: { __typename?: 'KnowledgeSharingEntity', attributes?: { __typename?: 'KnowledgeSharing', intro?: string | null } | null } | null } | null };
+
 
 export const HomeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"home"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"menu"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slides"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"background"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cta"}},{"kind":"Field","name":{"kind":"Name","value":"ctaLink"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slogan"}}]}}]}}]}}]}}]} as unknown as DocumentNode<HomeQuery, HomeQueryVariables>;
+export const KnowledgeSharingDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"knowledgeSharing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"knowledgeSharing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"intro"}}]}}]}}]}}]}}]} as unknown as DocumentNode<KnowledgeSharingQuery, KnowledgeSharingQueryVariables>;

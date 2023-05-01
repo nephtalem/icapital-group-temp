@@ -262,7 +262,7 @@ export const StyledSocials = styled.header`
   gap: 3.2rem;
 
   svg {
-    height: 7rem;
+    height: 7rem !important;
     path {
       fill: #f27724;
     }

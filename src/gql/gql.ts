@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query home {\n    home {\n      data {\n        attributes {\n          createdAt\n          menu\n          publishedAt\n          slides {\n            background {\n              data {\n                attributes {\n                  url\n                }\n              }\n            }\n            cta\n            ctaLink\n            description\n            title\n            id\n          }\n          slogan\n        }\n      }\n    }\n  }\n": types.HomeDocument,
+    "\nquery knowledgeSharing{\n    knowledgeSharing {\n        data {\n            attributes {\n                intro\n            }\n        }\n    }\n}\n": types.KnowledgeSharingDocument,
 };
 
 /**
@@ -34,6 +35,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query home {\n    home {\n      data {\n        attributes {\n          createdAt\n          menu\n          publishedAt\n          slides {\n            background {\n              data {\n                attributes {\n                  url\n                }\n              }\n            }\n            cta\n            ctaLink\n            description\n            title\n            id\n          }\n          slogan\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query home {\n    home {\n      data {\n        attributes {\n          createdAt\n          menu\n          publishedAt\n          slides {\n            background {\n              data {\n                attributes {\n                  url\n                }\n              }\n            }\n            cta\n            ctaLink\n            description\n            title\n            id\n          }\n          slogan\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\nquery knowledgeSharing{\n    knowledgeSharing {\n        data {\n            attributes {\n                intro\n            }\n        }\n    }\n}\n"): (typeof documents)["\nquery knowledgeSharing{\n    knowledgeSharing {\n        data {\n            attributes {\n                intro\n            }\n        }\n    }\n}\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
