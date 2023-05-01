@@ -7,9 +7,9 @@ const SummitDocumentsEAFSPage = () => {
   return (
     <>
       <Title title={"THE 6TH ANNUAL EAST AFRICA FINANCE SUMMIT"} />
-      <Content>
+      <Content upcomingEafs={false}>
         <PlatformHeader />
-        <SummitDocuments/>
+        <SummitDocuments />
       </Content>
     </>
   );
