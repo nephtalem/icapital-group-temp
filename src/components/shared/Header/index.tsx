@@ -15,6 +15,7 @@ export const Header = ({
   options: {
     label: string;
     to: string;
+    base: string;
   }[];
 }) => {
   return (
@@ -26,7 +27,12 @@ export const Header = ({
       </Link>
       <StyledOptions>
         {options.map((option, index) => (
-          <Option key={index} label={option.label} to={option.to} />
+          <Option
+            key={index}
+            label={option.label}
+            to={option.to}
+            base={option.base}
+          />
         ))}
       </StyledOptions>
       <Link href={"/contact-us"}>
@@ -36,11 +42,27 @@ export const Header = ({
   );
 };
 
-const Option = ({ label, to }: { label: string; to: string }) => {
+const Option = ({
+  label,
+  to,
+  base,
+}: {
+  label: string;
+  to: string;
+  base: string;
+}) => {
   const router = useRouter();
   return (
     <Link href={to}>
-      <StyledOption active={router.pathname === to}>{label}</StyledOption>
+      <StyledOption
+        active={
+          base === to
+            ? router.pathname == to
+            : router.pathname.search(base) !== -1
+        }
+      >
+        {label}
+      </StyledOption>
     </Link>
   );
 };

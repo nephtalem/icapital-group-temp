@@ -14,7 +14,9 @@ const UpcomingEAFSPage = ({
   return (
     <>
       <Title title={`${upcomingEafs.attributes?.content?.title}`} />
-      <Content upcomingEafs={!!upcomingEafs}>
+      <Content
+        upcomingEafs={!!(upcomingEafs && upcomingEafs?.attributes?.enabled)}
+      >
         <PlatformHeader upcomingEafs={upcomingEafs} />
         <Upcoming upcomingEafs={upcomingEafs} />
       </Content>

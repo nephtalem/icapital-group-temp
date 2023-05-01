@@ -14,7 +14,9 @@ const PreviousSummitsEAFSPage = ({
   return (
     <>
       <Title title={"Previous Summits"} />
-      <Content upcomingEafs={!!upcomingEafs}>
+      <Content
+        upcomingEafs={!!(upcomingEafs && upcomingEafs?.attributes?.enabled)}
+      >
         <PlatformHeader upcomingEafs={upcomingEafs} />
         <PreviousSummits />
       </Content>

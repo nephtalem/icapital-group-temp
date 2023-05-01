@@ -18,21 +18,25 @@ export const Content = ({
           {
             label: "Home",
             to: "/knowledge-sharing",
+            base: "/knowledge-sharing",
           },
           {
             label: "EAFS",
             to: `/knowledge-sharing/east-africa-finance-summit/${
               upcomingEafs ? "upcoming" : "previous-summits"
             }`,
+            base: "/knowledge-sharing/east-africa-finance-summit",
           },
 
           {
             label: "EACMS",
             to: "/knowledge-sharing/east-africa-cement-and-concrete-construction-summit",
+            base: "/knowledge-sharing/east-africa-cement-and-concrete-construction-summit",
           },
           {
             label: "CHCDA",
             to: "/knowledge-sharing/conference-on-human-capital-development-in-africa",
+            base: "/knowledge-sharing/conference-on-human-capital-development-in-africa",
           },
         ]}
       />

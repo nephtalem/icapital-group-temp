@@ -12,6 +12,15 @@ const nextConfig = {
 
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: "/knowledge-sharing/east-africa-finance-summit",
+        destination: "/knowledge-sharing/east-africa-finance-summit/upcoming",
+        permanent: true,
+      },
+    ];
+  },
   compiler: {
     emotion: true,
   },
