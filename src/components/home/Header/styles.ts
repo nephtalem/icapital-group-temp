@@ -12,7 +12,7 @@ export const StyledHeader = styled.header`
   padding: 4rem;
 `;
 
-export const StyledDrawerWrapper = styled.header`
+export const StyledDrawerWrapper = styled.div`
   height: 100vh;
   width: 50rem;
   position: fixed;
@@ -22,18 +22,18 @@ export const StyledDrawerWrapper = styled.header`
   
 `;
 
-export const StyledSocials = styled.header`
+export const StyledSocials = styled.div`
   display: flex;
   gap: 3.2rem;
 `;
 
-export const StyledSocial = styled.header`
+export const StyledSocial = styled.div`
   svg {
     height: 2rem;
   }
 `;
 
-export const StyledMenu = styled.header`
+export const StyledMenu = styled.div`
   display: flex;
   gap: 4rem;
   h3 {

@@ -8,11 +8,11 @@ export const Drawer = () => {
     <StyledDrawer>
       <h1>iCapital Institute</h1>
       <DrawerItem label={"Who we are"} to={"/about-us"} />
-      <DrawerItem label={"Knowledge Sharing Platform"} to={"/about-us"} />
-      <DrawerItem label={"Advisory Solutions"} to={"/about-us"} />
-      <DrawerItem label={"Learning Solutions"} to={"/about-us"} />
-      <DrawerItem label={"Cross Border Solutions"} to={"/about-us"} />
-      <DrawerItem label={"News & Blogs"} to={"/about-us"} />
+      <DrawerItem label={"Knowledge Sharing Platform"} to={"/knowledge-sharing"} />
+      <DrawerItem label={"Advisory Solutions"} to={"/advisory-solutions"} />
+      <DrawerItem label={"Learning Solutions"} to={"/learning-solutions"} />
+      <DrawerItem label={"Cross Border Solutions"} to={"/cross-border-solutions"} />
+      <DrawerItem label={"News & Blogs"} to={"/news-and-blogs"} />
     </StyledDrawer>
   );
 };

@@ -27,7 +27,13 @@ export const Slide = ({
   return (
     <StyledSlide>
       <StyledBackground>
-        <Image src={image} alt={title} fill={true} quality={100} priority />
+        <Image
+          src={`${process.env.NEXT_PUBLIC_DATA}${image}`}
+          alt={title}
+          fill={true}
+          quality={100}
+          priority
+        />
       </StyledBackground>
       <StyledCover />
       <StyledContent>

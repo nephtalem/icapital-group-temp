@@ -15,12 +15,11 @@ const httpLink = new HttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : "";
   return {
     headers: {
       ...headers,
-      authorization: token,
+      authorization:
+        "Bearer 598466adf5b16296d7a3876aea2a7dfbffa97373198989fbb6c356c516568a00142f6daed99e8e463ff5ae0c94bf21e891b75b42a8000894d961c35ebbc633ee538a9dcc1b2340ee2afd45c410a1f81cbcd0f530ffe901679b79b96f002ce4e67c3e9e823164967c2300a4cb474f205d7c3666d587021159f350958805011d47",
     },
   };
 });

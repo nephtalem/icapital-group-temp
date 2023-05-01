@@ -16,7 +16,7 @@ const nextConfig = {
     emotion: true,
   },
   images: {
-    domains: ["api.shewaber.com", "dev-api.shewaber.com"],
+    domains: ["icapital-cms.techawks.io"],
   },
 
   reactStrictMode: true,
