@@ -454,7 +454,7 @@ export type ComponentUpcomingUpcoming = {
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   intro?: Maybe<Scalars['String']>;
-  logo?: Maybe<UploadFileRelationResponseCollection>;
+  logo?: Maybe<UploadFileEntityResponse>;
   menuTitle?: Maybe<Scalars['String']>;
   organizer?: Maybe<Array<Maybe<ComponentOrganizerOrganizer>>>;
   organizerIntro?: Maybe<Scalars['String']>;
@@ -462,13 +462,6 @@ export type ComponentUpcomingUpcoming = {
   sponsorIntro?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   youtubeUrl?: Maybe<Scalars['String']>;
-};
-
-
-export type ComponentUpcomingUpcomingLogoArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -491,7 +484,7 @@ export type ComponentUpcomingUpcomingInput = {
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   intro?: InputMaybe<Scalars['String']>;
-  logo?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  logo?: InputMaybe<Scalars['ID']>;
   menuTitle?: InputMaybe<Scalars['String']>;
   organizer?: InputMaybe<Array<InputMaybe<ComponentOrganizerOrganizerInput>>>;
   organizerIntro?: InputMaybe<Scalars['String']>;
@@ -1492,6 +1485,7 @@ export type UpcomingEafs = {
   __typename?: 'UpcomingEafs';
   content?: Maybe<ComponentUpcomingUpcoming>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  enabled?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -1509,6 +1503,7 @@ export type UpcomingEafsEntityResponse = {
 
 export type UpcomingEafsInput = {
   content?: InputMaybe<ComponentUpcomingUpcomingInput>;
+  enabled?: InputMaybe<Scalars['Boolean']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1893,8 +1888,14 @@ export type HomeQuery = { __typename?: 'Query', home?: { __typename?: 'HomeEntit
 export type KnowledgeSharingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type KnowledgeSharingQuery = { __typename?: 'Query', knowledgeSharing?: { __typename?: 'KnowledgeSharingEntityResponse', data?: { __typename?: 'KnowledgeSharingEntity', attributes?: { __typename?: 'KnowledgeSharing', intro?: string | null } | null } | null } | null };
+export type KnowledgeSharingQuery = { __typename?: 'Query', knowledgeSharing?: { __typename?: 'KnowledgeSharingEntityResponse', data?: { __typename?: 'KnowledgeSharingEntity', attributes?: { __typename?: 'KnowledgeSharing', intro?: string | null, quote?: string | null, quoteAuthor?: string | null, platform?: Array<{ __typename?: 'ComponentPlatformPlatform', description?: string | null, enableApplication?: boolean | null, enableRegistration?: boolean | null, themeColor?: string | null, title?: string | null, banner?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null } | null } | null } | null };
+
+export type UpcomingEafsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UpcomingEafsQuery = { __typename?: 'Query', upcomingEafs?: { __typename?: 'UpcomingEafsEntityResponse', data?: { __typename?: 'UpcomingEafsEntity', attributes?: { __typename?: 'UpcomingEafs', enabled?: boolean | null, content?: { __typename?: 'ComponentUpcomingUpcoming', description?: string | null, intro?: string | null, menuTitle?: string | null, organizerIntro?: string | null, sponsorIntro?: string | null, title?: string | null, youtubeUrl?: string | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, banner?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, organizer?: Array<{ __typename?: 'ComponentOrganizerOrganizer', name?: string | null, url?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null, sponsor?: Array<{ __typename?: 'ComponentSponsorSponsor', logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null } | null } | null } | null } | null };
 
 
 export const HomeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"home"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"menu"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slides"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"background"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cta"}},{"kind":"Field","name":{"kind":"Name","value":"ctaLink"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slogan"}}]}}]}}]}}]}}]} as unknown as DocumentNode<HomeQuery, HomeQueryVariables>;
-export const KnowledgeSharingDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"knowledgeSharing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"knowledgeSharing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"intro"}}]}}]}}]}}]}}]} as unknown as DocumentNode<KnowledgeSharingQuery, KnowledgeSharingQueryVariables>;
+export const KnowledgeSharingDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"knowledgeSharing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"knowledgeSharing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"intro"}},{"kind":"Field","name":{"kind":"Name","value":"quote"}},{"kind":"Field","name":{"kind":"Name","value":"quoteAuthor"}},{"kind":"Field","name":{"kind":"Name","value":"platform"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"banner"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"enableApplication"}},{"kind":"Field","name":{"kind":"Name","value":"enableRegistration"}},{"kind":"Field","name":{"kind":"Name","value":"themeColor"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<KnowledgeSharingQuery, KnowledgeSharingQueryVariables>;
+export const UpcomingEafsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"upcomingEafs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"upcomingEafs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"background"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"banner"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"intro"}},{"kind":"Field","name":{"kind":"Name","value":"logo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"menuTitle"}},{"kind":"Field","name":{"kind":"Name","value":"organizer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"organizerIntro"}},{"kind":"Field","name":{"kind":"Name","value":"sponsor"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sponsorIntro"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"youtubeUrl"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpcomingEafsQuery, UpcomingEafsQueryVariables>;

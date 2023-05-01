@@ -11,11 +11,14 @@ import { ToastContainer } from "react-toastify";
 import { Layout } from "@/components/shared/Layout";
 import NProgress from "nprogress";
 import { Router } from "next/router";
+import { polyfill } from "interweave-ssr";
+
 const mulish = Mulish({ subsets: ["latin"] });
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
+polyfill();
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

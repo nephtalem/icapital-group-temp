@@ -457,33 +457,33 @@ type ComponentSummitSummit {
 input ComponentUpcomingUpcomingInput {
   id: ID
   background: ID
-  logo: [ID]
+  logo: ID
   menuTitle: String
   title: String
   intro: String
-  description: String
   banner: ID
   organizer: [ComponentOrganizerOrganizerInput]
   organizerIntro: String
   sponsorIntro: String
   sponsor: [ComponentSponsorSponsorInput]
   youtubeUrl: String
+  description: String
 }
 
 type ComponentUpcomingUpcoming {
   id: ID!
   background: UploadFileEntityResponse
-  logo(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
+  logo: UploadFileEntityResponse
   menuTitle: String
   title: String
   intro: String
-  description: String
   banner: UploadFileEntityResponse
   organizer(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   organizerIntro: String
   sponsorIntro: String
   sponsor(filters: ComponentSponsorSponsorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSponsorSponsor]
   youtubeUrl: String
+  description: String
 }
 
 input UploadFileFiltersInput {
@@ -1123,11 +1123,13 @@ type UpcomingEacmsEntityResponse {
 
 input UpcomingEafsInput {
   content: ComponentUpcomingUpcomingInput
+  enabled: Boolean
   publishedAt: DateTime
 }
 
 type UpcomingEafs {
   content: ComponentUpcomingUpcoming
+  enabled: Boolean
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime

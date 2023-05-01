@@ -21,6 +21,7 @@
     "eslint-config-next": "latest",
     "graphql": "^16.6.0",
     "gsap": "latest",
+    "interweave": "^13.1.0",
     "lodash": "latest",
     "moment": "latest",
     "next": "latest",
@@ -46,6 +47,7 @@
     "@types/node": "latest",
     "@types/nprogress": "latest",
     "@types/react": "latest",
-    "@types/react-dom": "latest"
+    "@types/react-dom": "latest",
+    "interweave-ssr": "^2.0.0"
   }
 }

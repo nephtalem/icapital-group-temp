@@ -7,18 +7,28 @@ import {
 } from "./styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { UpcomingEafsEntity } from "@/gql/graphql";
 
-export const PlatformHeader = () => {
+export const PlatformHeader = ({
+  upcomingEafs,
+}: {
+  upcomingEafs?: UpcomingEafsEntity;
+}) => {
   return (
     <StyledPlatformHeader>
       <StyledLogo>
         <Image src={"/images/eafs.logo.png"} alt={""} fill={true} />
       </StyledLogo>
       <StyledOptions>
-        <Option
-          label={"6th Summit"}
-          to={"/knowledge-sharing/east-africa-finance-summit/upcoming"}
-        />
+        {upcomingEafs?.attributes?.enabled ? (
+          <Option
+            label={`${upcomingEafs.attributes.content?.menuTitle}`}
+            to={"/knowledge-sharing/east-africa-finance-summit/upcoming"}
+          />
+        ) : (
+          <></>
+        )}
+
         <Option
           label={"Previous Summits"}
           to={"/knowledge-sharing/east-africa-finance-summit/previous-summits"}

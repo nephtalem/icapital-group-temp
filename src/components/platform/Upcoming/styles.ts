@@ -78,7 +78,7 @@ export const StyledBanner = styled.div`
   width: 100vw;
   background-color: #01102f;
   display: grid;
-  grid-template-columns: 1fr max-content;
+  grid-template-columns: 3fr 2fr;
   grid-column-gap: 10rem;
   padding: 15rem 7rem;
   p {

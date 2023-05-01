@@ -29,48 +29,56 @@ import { MainText } from "@/components/shared/MainText";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Social, socials } from "@/components/home/Header";
+import { UpcomingEafsEntity } from "@/gql/graphql";
+import { Interweave } from "interweave";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
-export const Upcoming = () => {
+export const Upcoming = ({
+  upcomingEafs,
+}: {
+  upcomingEafs: UpcomingEafsEntity;
+}) => {
   return (
     <StyledUpcoming>
-      <Landing />
-      <Banner />
-      <Organizers />
-      <Sponsors />
+      <Landing upcomingEafs={upcomingEafs} />
+      <Banner upcomingEafs={upcomingEafs} />
+      <Organizers upcomingEafs={upcomingEafs} />
+      <Sponsors upcomingEafs={upcomingEafs} />
       <StyledSponsorApply>
         <h2>SPONSORSHIP AND EXHIBITION</h2>
         <StyledApply>
           <div>APPLY HERE</div>
         </StyledApply>
       </StyledSponsorApply>
-      <VideoContainer />
-      <Connect />
+      <VideoContainer upcomingEafs={upcomingEafs} />
+      <Connect upcomingEafs={upcomingEafs} />
     </StyledUpcoming>
   );
 };
 
-const Landing = () => {
+const Landing = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
   return (
     <StyledLanding>
       <StyledLandingBackground>
         <Image
-          src={"/images/upcoming.background.png"}
+          src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.background?.data?.attributes?.url}`}
           alt={""}
           quality={100}
           fill={true}
+          priority
         />
       </StyledLandingBackground>
       <StyledLandingContent>
         <StyledLandingLogo>
-          <Image src={"/images/upcoming.logo.png"} alt={""} fill={true} />
+          <Image
+            src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.logo?.data?.attributes?.url}`}
+            alt={""}
+            fill={true}
+          />
         </StyledLandingLogo>
-        <h1>THE 6TH ANNUAL EAST AFRICA FINANCE SUMMIT</h1>
-        <p>
-          &quot;Emerging Frontiers in Africa&apos;s Finance Sector: Regional
-          integration, innovation, and Access to finance&quot;
-        </p>
+        <h1>{upcomingEafs.attributes?.content?.title}</h1>
+        <p>&quot;{upcomingEafs.attributes?.content?.intro}&quot;</p>
         <StyledRegister>
           <div>REGISTER HERE</div>
         </StyledRegister>
@@ -79,66 +87,50 @@ const Landing = () => {
   );
 };
 
-const Banner = () => {
+const Banner = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
   return (
     <StyledBanner>
-      <p>
-        The East Africa Finance Summit (EAFS) is a multilateral dialogue among
-        leading industry experts, researchers, bankers, executives,
-        entrepreneurs, fintech providers, policymakers, and government officials
-        from across the value chain to foster collaboration, discuss current
-        challenges, explore business opportunities, develop market strategies,
-        share knowledge, and identify solutions aimed at shaping the future of
-        the finance sector.
-        <br />
-        <br />
-        This summit will feature an expansive line-up of stellar speakers with
-        unique presentations and case studies, engaging panel discussions,
-        providing access to a wealth of industry-leading knowledge, sharing best
-        practices & experiences, and outlooks with actionable takeaways.
-        <br />
-        <br />
-        At the EAFS, you will meet people who are prominent in the finance
-        sector from across East Africa & beyond; and with over 400 participants
-        in attendance.
-        <br />
-        <br />
-        There is a multitude of opportunities for you to connect and collaborate
-        with key stakeholders and industry leaders under one roof. The Event
-        will facilitate unparalleled networking and business matching, providing
-        a catalyst for investment partnerships, business growth, and development
-        in the East African finance sector.
-      </p>
+      <Interweave content={upcomingEafs.attributes?.content?.description} />
       <StyledBannerImage>
-        <Image src={"/images/upcoming.banner.png"} alt={""} fill={true} />
+        <Image
+          src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.banner?.data?.attributes?.url}`}
+          alt={""}
+          fill={true}
+        />
       </StyledBannerImage>
     </StyledBanner>
   );
 };
 
-export const Organizers = () => {
+export const Organizers = ({
+  upcomingEafs,
+}: {
+  upcomingEafs: UpcomingEafsEntity;
+}) => {
   return (
     <StyledOrganizers>
       <StyledOrganizersTitle>
         <MainText title={"Co-Organizers"} />
-        <p>
-          The platform for sharing knowledge is constantly open to collaboration
-          and aims to create avenues for hosting summits and conferences to
-          drive policy changes and foster innovation.
-        </p>
+        <p>{upcomingEafs.attributes?.content?.organizerIntro}</p>
       </StyledOrganizersTitle>
       <StyledOrganizerList>
-        <Organizer image={"/images/organizer.png"} />
-        <Organizer image={"/images/organizer-2.png"} />
-        <Organizer image={"/images/organizer-1.png"} />
+        {upcomingEafs.attributes!.content!.organizer!.map(
+          (organizer, index) => (
+            <Organizer
+              key={index}
+              to={organizer!.url!}
+              image={`${process.env.NEXT_PUBLIC_DATA}${organizer?.logo?.data?.attributes?.url}`}
+            />
+          )
+        )}
       </StyledOrganizerList>
     </StyledOrganizers>
   );
 };
 
-const Organizer = ({ image }: { image: string }) => {
+const Organizer = ({ image, to }: { image: string; to: string }) => {
   return (
-    <Link href={"/"}>
+    <Link href={to} target={"_blank"}>
       <StyledOrganizer>
         <Image src={image} alt={""} fill={true} />
       </StyledOrganizer>
@@ -146,29 +138,33 @@ const Organizer = ({ image }: { image: string }) => {
   );
 };
 
-export const Sponsors = () => {
+export const Sponsors = ({
+  upcomingEafs,
+}: {
+  upcomingEafs: UpcomingEafsEntity;
+}) => {
   return (
     <StyledSponsors>
       <StyledSponsorsTitle>
         <MainText title={"Sponsors"} />
-        <p>
-          The platform for sharing knowledge is constantly open to collaboration
-          and aims to create avenues for hosting summits and conferences to
-          drive policy changes and foster innovation.
-        </p>
+        <p>{upcomingEafs.attributes?.content?.sponsorIntro}</p>
       </StyledSponsorsTitle>
       <StyledSponsorsList>
-        <Sponsor image={"/images/sponsor.1.png"} />
-        <Sponsor image={"/images/sponsor.2.png"} />
-        <Sponsor image={"/images/sponsor.3.png"} />
+        {upcomingEafs.attributes?.content?.sponsor?.map((sponsor, index) => (
+          <Sponsor
+            key={index}
+            to={sponsor!.url!}
+            image={`${process.env.NEXT_PUBLIC_DATA}${sponsor?.logo?.data?.attributes?.url}`}
+          />
+        ))}
       </StyledSponsorsList>
     </StyledSponsors>
   );
 };
 
-const Sponsor = ({ image }: { image: string }) => {
+const Sponsor = ({ image, to }: { image: string; to: string }) => {
   return (
-    <Link href={"/"}>
+    <Link href={to} target={"_blank"}>
       <StyledOrganizer>
         <Image src={image} alt={""} fill={true} />
       </StyledOrganizer>
@@ -176,11 +172,15 @@ const Sponsor = ({ image }: { image: string }) => {
   );
 };
 
-const VideoContainer = () => {
+const VideoContainer = ({
+  upcomingEafs,
+}: {
+  upcomingEafs: UpcomingEafsEntity;
+}) => {
   return (
     <StyledVideoContainer>
       <ReactPlayer
-        url="https://www.youtube.com/watch?v=JqcncLPi9zw"
+        url={`${upcomingEafs.attributes?.content?.youtubeUrl}`}
         width="100%"
         height="100%"
         playing={true}
@@ -191,12 +191,12 @@ const VideoContainer = () => {
   );
 };
 
-const Connect = () => {
+const Connect = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
   return (
     <StyledConnect>
       <StyledConnectBackground>
         <Image
-          src={"/images/upcoming.background.png"}
+          src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.background?.data?.attributes?.url}`}
           alt={""}
           quality={100}
           fill={true}
@@ -205,7 +205,7 @@ const Connect = () => {
       <StyledConnectContent>
         <StyledConnectLogo>
           <Image
-            src={"/images/upcoming.logo.png"}
+            src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.logo?.data?.attributes?.url}`}
             alt={""}
             quality={100}
             fill={true}
