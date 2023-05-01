@@ -4,7 +4,7 @@ import { Upcoming } from "@/components/platform/Upcoming";
 import { Title } from "@/components/shared/Title";
 import { UpcomingEafsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 
 const UpcomingEAFSPage = ({
   upcomingEafs,
@@ -26,7 +26,7 @@ const UpcomingEAFSPage = ({
 
 export default UpcomingEAFSPage;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const upcomingEafs = await KSPService.upcomingEafs();
   console.log("upcomingEafs", upcomingEafs);
   if (upcomingEafs && upcomingEafs.attributes.enabled) {
