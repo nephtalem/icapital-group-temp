@@ -5,7 +5,6 @@ const CrossBorderSolutionsPage = () => {
   return (
     <>
       <Title title={"Cross Border Solutions"} />
-      <Home />
     </>
   );
 };

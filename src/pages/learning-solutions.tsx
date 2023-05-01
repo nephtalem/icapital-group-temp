@@ -5,7 +5,6 @@ const LearningSolutionsPage = () => {
   return (
     <>
       <Title title={"Learning Solutions"} />
-      <Home />
     </>
   );
 };
