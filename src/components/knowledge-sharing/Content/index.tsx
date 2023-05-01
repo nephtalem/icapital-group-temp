@@ -4,9 +4,11 @@ import { Footer } from "@/components/shared/Footer";
 
 export const Content = ({
   scrollable = true,
+  upcomingEafs,
   children,
 }: {
   scrollable?: boolean;
+  upcomingEafs: boolean;
   children: JSX.Element[] | JSX.Element;
 }) => {
   return (
@@ -19,7 +21,9 @@ export const Content = ({
           },
           {
             label: "EAFS",
-            to: "/knowledge-sharing/east-africa-finance-summit",
+            to: `/knowledge-sharing/east-africa-finance-summit/${
+              upcomingEafs ? "upcoming" : "previous-summits"
+            }`,
           },
 
           {
