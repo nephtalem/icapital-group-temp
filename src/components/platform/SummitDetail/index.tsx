@@ -34,8 +34,8 @@ export const SummitDetail = () => {
       <Intro />
       <Remark />
       <Summits />
-      <Organizers />
-      <Sponsors />
+      {/* <Organizers />
+      <Sponsors /> */}
     </StyledSummitDetail>
   );
 };
