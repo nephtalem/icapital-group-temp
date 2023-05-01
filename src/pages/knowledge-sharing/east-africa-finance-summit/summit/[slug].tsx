@@ -7,7 +7,7 @@ const EAFSPage = () => {
   return (
     <>
       <Title title={"Knowledge Sharing"} />
-      <Content>
+      <Content upcomingEafs={false}>
         <PlatformHeader />
         <SummitDetail />
       </Content>
