@@ -6,9 +6,8 @@ const EACMSPage = () => {
   return (
     <>
       <Title title={"Knowledge Sharing"} />
-      <Content>
-      <span />
-
+      <Content upcomingEafs={false}>
+        <span />
       </Content>
     </>
   );
