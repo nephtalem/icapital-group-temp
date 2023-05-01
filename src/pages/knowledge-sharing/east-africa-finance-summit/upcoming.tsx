@@ -34,7 +34,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
       props: {
         upcomingEafs,
       },
-      revalidate: 10, // In seconds
     };
   } else {
     return {
