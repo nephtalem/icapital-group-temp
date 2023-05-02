@@ -24,7 +24,11 @@ import dynamic from "next/dynamic";
 import DownloadIcon from "@/assets/icons/download.svg";
 import WatchIcon from "@/assets/icons/watch.svg";
 import { MainText } from "@/components/shared/MainText";
-import { SummitEntity } from "@/gql/graphql";
+import {
+  ComponentSessionSession,
+  ComponentSessionVideoVideo,
+  SummitEntity,
+} from "@/gql/graphql";
 import { Interweave } from "interweave";
 import Link from "next/link";
 
@@ -145,56 +149,42 @@ const Summits = ({ summit }: { summit: SummitEntity }) => {
   return (
     <StyledSummits>
       <MainText title={"Proceedings of the Summit"} />
-      <Session />
-      <Session />
-      <Session />
-      <Session />
+      {summit.attributes?.session?.map((session, index) => (
+        <Session key={index} session={session!} />
+      ))}
     </StyledSummits>
   );
 };
 
-const Session = () => {
+const Session = ({ session }: { session: ComponentSessionSession }) => {
   return (
     <StyledSession>
       <StyledSessionIntro>
-        <h3>Opening Session</h3>
-        <p>
-          The welcoming speech was delivered by Gemechu Waktola (PhD), CEO of
-          the i-Capital Africa Institute. Introductory Remarks were given by
-          representatives of the summit co-organizers; Kenenisa Lemi, Jimma
-          University; Yared Molla, Association of Ethiopian Insurers and Yodit
-          Kassa, Association of Chartered Certified Accountants (ACCA). The
-          summit was, then, officially opened by H.E. Ahmed Shide, Ministry of
-          Finance.
-        </p>
+        <h3>{session.title}</h3>
+        <p>{session.description}</p>
       </StyledSessionIntro>
       <StyledSessionList>
-        <SessionItem />
-        <SessionItem />
-        <SessionItem />
+        {session.sessionVideo?.map((video, index) => (
+          <SessionItem key={index} video={video!} />
+        ))}
       </StyledSessionList>
     </StyledSession>
   );
 };
 
-const SessionItem = () => {
+const SessionItem = ({ video }: { video: ComponentSessionVideoVideo }) => {
   return (
     <StyledSessionItem>
       <StyledSessionVideo>
         <ReactPlayer
-          url="https://www.youtube.com/watch?v=JqcncLPi9zw"
+          url={video.youtubeUrl!}
           width="100%"
           height="100%"
           controls={true}
         />
       </StyledSessionVideo>
-      <h4>Optional vide title: Welcoming Speech</h4>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit veritatis,
-        odio sint incidunt maxime amet commodi consequuntur voluptatibus illo
-        quaerat recusandae explicabo distinctio quos earum dignissimos dolorem
-        veniam quod sit?
-      </p>
+      <h4>{video.title}</h4>
+      <p>{video.description}</p>
     </StyledSessionItem>
   );
 };
