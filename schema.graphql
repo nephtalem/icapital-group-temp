@@ -886,10 +886,20 @@ type BlogRelationResponseCollection {
   data: [BlogEntity!]!
 }
 
+enum ENUM_DOCUMENT_TYPE {
+  EAFS
+  EACMS
+  CHCDA
+}
+
 input DocumentFiltersInput {
   id: IDFilterInput
   name: StringFilterInput
   category: ComponentCategoryCategoryFiltersInput
+  type: StringFilterInput
+  slug: StringFilterInput
+  date: StringFilterInput
+  status: StringFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -901,12 +911,22 @@ input DocumentFiltersInput {
 input DocumentInput {
   name: String
   category: [ComponentCategoryCategoryInput]
+  type: ENUM_DOCUMENT_TYPE
+  slug: String
+  date: String
+  status: String
+  background: ID
   publishedAt: DateTime
 }
 
 type Document {
   name: String
   category(filters: ComponentCategoryCategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentCategoryCategory]
+  type: ENUM_DOCUMENT_TYPE
+  slug: String
+  date: String
+  status: String
+  background: UploadFileEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime

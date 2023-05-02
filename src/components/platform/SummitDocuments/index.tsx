@@ -9,41 +9,48 @@ import {
 } from "./styles";
 import { ActionButton } from "@/components/shared/Button";
 import Image from "next/image";
+import { DocumentEntity } from "@/gql/graphql";
 
-export const SummitDocuments = () => {
+export const SummitDocuments = ({
+  documents,
+}: {
+  documents: DocumentEntity[];
+}) => {
   return (
     <StyledSummitDocuments>
-      <SummitDocument />
-      <SummitDocument />
-      <SummitDocument />
-      <SummitDocument />
-      <SummitDocument />
-      <SummitDocument />
-      <SummitDocument />
-      <SummitDocument />
+      {documents.map((document, index) => (
+        <SummitDocument key={index} document={document} />
+      ))}
     </StyledSummitDocuments>
   );
 };
 
-const SummitDocument = () => {
+const SummitDocument = ({ document }: { document: DocumentEntity }) => {
   return (
     <Link
-      href={
-        "/knowledge-sharing/east-africa-finance-summit/documents/123"
-      }
+      href={`/knowledge-sharing/east-africa-finance-summit/documents/${document.attributes?.slug}`}
     >
       <StyledSummitDocument>
         <StyledBackground>
-          <Image src={"/images/summit.png"} alt={""} fill={true} />
-          <StyledStatus>Successfully Completed</StyledStatus>
-          <h1>May 10, 2022</h1>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_DATA}${document.attributes?.background?.data?.attributes?.url}`}
+            alt={""}
+            fill={true}
+          />
+          <StyledStatus>{document.attributes?.status}</StyledStatus>
+          <h1>{document.attributes?.date}</h1>
         </StyledBackground>
         <StyledContent>
-          <h2>The 5th Edition: East Africa Finance Summit</h2>
+          <h2>{document.attributes?.name}</h2>
           <StyledInfo>
-            <p>2 Categories</p>
+            <p>{document.attributes?.category?.length} Categories</p>
             <span />
-            <p>12 Files</p>
+            <p>
+              {document
+                .attributes!.category!.map((c) => c!.file!.length)
+                .reduce((a, c) => a + c, 0)}{" "}
+              Files
+            </p>
           </StyledInfo>
 
           <ActionButton

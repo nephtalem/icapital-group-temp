@@ -61,15 +61,14 @@ export const StyledFile = styled.div`
   display: grid;
   grid-column-gap: 3.6rem;
   align-items: center;
+  align-content: center;
   grid-template-columns: max-content 1fr max-content;
+
+ 
 `;
 
 export const StyledFileIcon = styled.div`
   display: grid;
   position: relative;
-  height: 6rem;
   width: 6rem;
-  img {
-    object-fit: contain;
-  }
 `;

@@ -2,6 +2,7 @@ import { KNOWLEDGE_SHARING } from "@/graphql/knowledge-sharing/knowledgeSharing"
 import client from "../utils/apollo.client";
 import { UPCOMING_EAFS } from "@/graphql/knowledge-sharing/upcomingEafs";
 import { SUMMITS } from "@/graphql/knowledge-sharing/summits";
+import { DOCUMENTS } from "@/graphql/knowledge-sharing/documents";
 
 class KSPService {
   static ksp = async () => {
@@ -50,6 +51,37 @@ class KSPService {
         },
       });
       return summitsResult.data.summits.data.shift();
+    } catch (e) {}
+  };
+
+  static documents = async (type: string) => {
+    try {
+      const documentsResult = await client.query({
+        query: DOCUMENTS,
+        variables: {
+          filters: {
+            type: {
+              eq: type,
+            },
+          },
+        },
+      });
+      return documentsResult.data.documents.data;
+    } catch (e) {}
+  };
+  static document = async (slug: string) => {
+    try {
+      const documentsResult = await client.query({
+        query: DOCUMENTS,
+        variables: {
+          filters: {
+            slug: {
+              eq: slug,
+            },
+          },
+        },
+      });
+      return documentsResult.data.documents.data.shift();
     } catch (e) {}
   };
 }

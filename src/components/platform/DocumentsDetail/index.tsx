@@ -8,50 +8,65 @@ import {
 } from "./styles";
 import { ActionButton } from "@/components/shared/Button";
 import DownloadIcon from "@/assets/icons/download.svg";
-export const DocumentsDetail = () => {
+import {
+  ComponentCategoryCategory,
+  ComponentFileFile,
+  DocumentEntity,
+} from "@/gql/graphql";
+import { FileIcon, defaultStyles } from "react-file-icon";
+import Link from "next/link";
+
+export const DocumentsDetail = ({ document }: { document: DocumentEntity }) => {
   return (
     <StyledDocumentsDetail>
       <StyledTitle>
-        <h1>The 5th Edition East Africa Finance Summit</h1>
+        <h1>{document.attributes?.name}</h1>
         <h3>Documents</h3>
         <span />
       </StyledTitle>
-      <Category />
-      <Category />
-      <Category />
+      {document.attributes?.category?.map((category, index) => (
+        <Category key={index} category={category!} />
+      ))}
     </StyledDocumentsDetail>
   );
 };
 
-const Category = () => {
+const Category = ({ category }: { category: ComponentCategoryCategory }) => {
   return (
     <StyledCategory>
-      <h3>Policy, Regulation and Governance for a dynamic Finance Sector</h3>
-      <p>12 Files</p>
-      <File />
-      <File />
-      <File />
+      <h3>{category.name}</h3>
+      <p>{category.file?.length} Files</p>
+      {category.file?.map((file, index) => (
+        <File key={index} file={file!} />
+      ))}
     </StyledCategory>
   );
 };
 
-const File = () => {
+const File = ({ file }: { file: ComponentFileFile }) => {
   return (
     <StyledFile>
       <StyledFileIcon>
-        <Image src={"/images/powerpoint.png"} alt={""} fill={true} />
+        <FileIcon
+          extension={file.content!.data!.attributes!.ext!}
+          {...defaultStyles.pdf}
+        />
       </StyledFileIcon>
-      <p>
-        Global Trends in the Finance Sector_Adrak Mustafina Power Point
-        Presentation
-      </p>
-      <ActionButton
-        label={"Download"}
-        color={"#F07709"}
-        border={"#9F4E03"}
-        icon={<DownloadIcon />}
-        onClick={(): void => {}}
-      />
+      <p>{file.name}</p>
+      <Link
+        href={`${process.env.NEXT_PUBLIC_DATA}${file.content!.data!.attributes!
+          .url!}`}
+        target={"_blank"}
+        download
+      >
+        <ActionButton
+          label={"Download"}
+          color={"#F07709"}
+          border={"#9F4E03"}
+          icon={<DownloadIcon />}
+          onClick={(): void => {}}
+        />
+      </Link>
     </StyledFile>
   );
 };
