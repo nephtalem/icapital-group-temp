@@ -1032,6 +1032,10 @@ input SummitFiltersInput {
   session: ComponentSessionSessionFiltersInput
   type: StringFilterInput
   slug: StringFilterInput
+  sponsorIntro: StringFilterInput
+  organizerIntro: StringFilterInput
+  organizer: ComponentOrganizerOrganizerFiltersInput
+  sponsor: ComponentSponsorSponsorFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -1051,6 +1055,10 @@ input SummitInput {
   type: ENUM_SUMMIT_TYPE
   background: ID
   slug: String
+  sponsorIntro: String
+  organizerIntro: String
+  organizer: [ComponentOrganizerOrganizerInput]
+  sponsor: [ComponentSponsorSponsorInput]
   publishedAt: DateTime
 }
 
@@ -1065,6 +1073,10 @@ type Summit {
   type: ENUM_SUMMIT_TYPE
   background: UploadFileEntityResponse
   slug: String
+  sponsorIntro: String
+  organizerIntro: String
+  organizer(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
+  sponsor(filters: ComponentSponsorSponsorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSponsorSponsor]
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime

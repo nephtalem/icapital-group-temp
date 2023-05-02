@@ -52,6 +52,30 @@ export const SUMMITS = gql`
             }
             title
           }
+          organizer {
+            logo {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+            name
+            url
+          }
+          organizerIntro
+          sponsor {
+            logo {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+            name
+            url
+          }
+          sponsorIntro
         }
       }
     }

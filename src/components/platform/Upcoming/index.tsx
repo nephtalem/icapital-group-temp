@@ -29,7 +29,11 @@ import { MainText } from "@/components/shared/MainText";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Social, socials } from "@/components/home/Header";
-import { UpcomingEafsEntity } from "@/gql/graphql";
+import {
+  ComponentOrganizerOrganizer,
+  ComponentSponsorSponsor,
+  UpcomingEafsEntity,
+} from "@/gql/graphql";
 import { Interweave } from "interweave";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
@@ -43,8 +47,18 @@ export const Upcoming = ({
     <StyledUpcoming>
       <Landing upcomingEafs={upcomingEafs} />
       <Banner upcomingEafs={upcomingEafs} />
-      <Organizers upcomingEafs={upcomingEafs} />
-      <Sponsors upcomingEafs={upcomingEafs} />
+      <Organizers
+        organizer={upcomingEafs.attributes!.content!.organizer!.map(
+          (organizer) => organizer!
+        )}
+        organizerIntro={upcomingEafs.attributes!.content!.organizerIntro!}
+      />
+      <Sponsors
+        sponsor={upcomingEafs.attributes!.content!.sponsor!.map(
+          (sponsor) => sponsor!
+        )}
+        sponsorIntro={upcomingEafs.attributes!.content!.sponsorIntro!}
+      />
       <StyledSponsorApply>
         <h2>SPONSORSHIP AND EXHIBITION</h2>
         <StyledApply>
@@ -103,26 +117,26 @@ const Banner = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
 };
 
 export const Organizers = ({
-  upcomingEafs,
+  organizer,
+  organizerIntro,
 }: {
-  upcomingEafs: UpcomingEafsEntity;
+  organizerIntro: string;
+  organizer: ComponentOrganizerOrganizer[];
 }) => {
   return (
     <StyledOrganizers>
       <StyledOrganizersTitle>
         <MainText title={"Co-Organizers"} />
-        <p>{upcomingEafs.attributes?.content?.organizerIntro}</p>
+        <p>{organizerIntro}</p>
       </StyledOrganizersTitle>
       <StyledOrganizerList>
-        {upcomingEafs.attributes!.content!.organizer!.map(
-          (organizer, index) => (
-            <Organizer
-              key={index}
-              to={organizer!.url!}
-              image={`${process.env.NEXT_PUBLIC_DATA}${organizer?.logo?.data?.attributes?.url}`}
-            />
-          )
-        )}
+        {organizer!.map((organizer, index) => (
+          <Organizer
+            key={index}
+            to={organizer!.url!}
+            image={`${process.env.NEXT_PUBLIC_DATA}${organizer?.logo?.data?.attributes?.url}`}
+          />
+        ))}
       </StyledOrganizerList>
     </StyledOrganizers>
   );
@@ -139,18 +153,20 @@ const Organizer = ({ image, to }: { image: string; to: string }) => {
 };
 
 export const Sponsors = ({
-  upcomingEafs,
+  sponsorIntro,
+  sponsor,
 }: {
-  upcomingEafs: UpcomingEafsEntity;
+  sponsorIntro: string;
+  sponsor: ComponentSponsorSponsor[];
 }) => {
   return (
     <StyledSponsors>
       <StyledSponsorsTitle>
         <MainText title={"Sponsors"} />
-        <p>{upcomingEafs.attributes?.content?.sponsorIntro}</p>
+        <p>{sponsorIntro}</p>
       </StyledSponsorsTitle>
       <StyledSponsorsList>
-        {upcomingEafs.attributes?.content?.sponsor?.map((sponsor, index) => (
+        {sponsor.map((sponsor, index) => (
           <Sponsor
             key={index}
             to={sponsor!.url!}

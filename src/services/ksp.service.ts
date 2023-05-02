@@ -37,6 +37,21 @@ class KSPService {
       return summitsResult.data.summits.data;
     } catch (e) {}
   };
+  static summit = async (slug: string) => {
+    try {
+      const summitsResult = await client.query({
+        query: SUMMITS,
+        variables: {
+          filters: {
+            slug: {
+              eq: slug,
+            },
+          },
+        },
+      });
+      return summitsResult.data.summits.data.shift();
+    } catch (e) {}
+  };
 }
 
 export default KSPService;
