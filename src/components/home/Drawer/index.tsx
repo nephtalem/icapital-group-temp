@@ -6,7 +6,7 @@ import { StyledDrawer, StyledDrawerItem } from "./styles";
 export const Drawer = () => {
   return (
     <StyledDrawer>
-      <h1>iCapital Institute</h1>
+      <h1>i-Capital Institute</h1>
       <DrawerItem label={"Who we are"} to={"/about-us"} />
       <DrawerItem label={"Knowledge Sharing Platform"} to={"/knowledge-sharing"} />
       <DrawerItem label={"Advisory Solutions"} to={"/advisory-solutions"} />

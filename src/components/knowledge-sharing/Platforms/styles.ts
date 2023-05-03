@@ -18,7 +18,6 @@ export const StyledPlatformsItem = styled.div<{
   background: #fafafa;
   border-bottom: 10px solid ${({ color }) => color};
   border-radius: 8px;
-  text-align: center;
   margin-bottom: 20rem;
   justify-items: center;
 
@@ -28,6 +27,7 @@ export const StyledPlatformsItem = styled.div<{
     line-height: 5rem;
     color: ${({ color }) => color};
     margin-top: 8rem;
+    text-align: center;
   }
 
   h5 {
@@ -37,6 +37,7 @@ export const StyledPlatformsItem = styled.div<{
     font-size: 2rem;
     line-height: 2.5rem;
     margin-bottom: 4.6rem;
+    text-align: justify;
 
     color: #333333;
   }
@@ -70,7 +71,7 @@ export const StyledBanner = styled.div`
   border-radius: 8px;
   overflow: hidden;
   img {
-    object-fit:cover;
+    object-fit: contain;
   }
 `;
 

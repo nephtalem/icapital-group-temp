@@ -50,7 +50,7 @@ export const Header = () => {
       <StyledHeader>
         <Socials />
         <StyledMenu>
-          <h3>Get acquainted</h3>
+          <h3>Get Acquainted</h3>
           <button
             onMouseOver={() => {
               gsap.to(drawer.current, { right: 0 });
