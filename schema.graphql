@@ -321,6 +321,43 @@ type ComponentPlatformPlatform {
   themeColor: String
 }
 
+input ComponentPointPointsFiltersInput {
+  content: StringFilterInput
+  and: [ComponentPointPointsFiltersInput]
+  or: [ComponentPointPointsFiltersInput]
+  not: ComponentPointPointsFiltersInput
+}
+
+input ComponentPointPointsInput {
+  id: ID
+  content: String
+}
+
+type ComponentPointPoints {
+  id: ID!
+  content: String
+}
+
+input ComponentPricingPricingFiltersInput {
+  size: IntFilterInput
+  price: FloatFilterInput
+  and: [ComponentPricingPricingFiltersInput]
+  or: [ComponentPricingPricingFiltersInput]
+  not: ComponentPricingPricingFiltersInput
+}
+
+input ComponentPricingPricingInput {
+  id: ID
+  size: Int
+  price: Float
+}
+
+type ComponentPricingPricing {
+  id: ID!
+  size: Int
+  price: Float
+}
+
 input ComponentSessionVideoVideoFiltersInput {
   title: StringFilterInput
   description: StringFilterInput
@@ -998,6 +1035,97 @@ type KnowledgeSharingEntityResponse {
   data: KnowledgeSharingEntity
 }
 
+input ParticipantFiltersInput {
+  id: IDFilterInput
+  fullName: StringFilterInput
+  email: StringFilterInput
+  phone: StringFilterInput
+  organization: StringFilterInput
+  position: StringFilterInput
+  size: IntFilterInput
+  reason: StringFilterInput
+  price: FloatFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [ParticipantFiltersInput]
+  or: [ParticipantFiltersInput]
+  not: ParticipantFiltersInput
+}
+
+input ParticipantInput {
+  fullName: String
+  email: String
+  phone: String
+  organization: String
+  position: String
+  size: Int
+  receipt: ID
+  reason: String
+  price: Float
+  publishedAt: DateTime
+}
+
+type Participant {
+  fullName: String
+  email: String
+  phone: String
+  organization: String
+  position: String
+  size: Int
+  receipt: UploadFileEntityResponse
+  reason: String
+  price: Float
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ParticipantEntity {
+  id: ID
+  attributes: Participant
+}
+
+type ParticipantEntityResponse {
+  data: ParticipantEntity
+}
+
+type ParticipantEntityResponseCollection {
+  data: [ParticipantEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input RegistrationEafsInput {
+  title: String
+  description: String
+  points: [ComponentPointPointsInput]
+  pricing: [ComponentPricingPricingInput]
+  logo: ID
+  name: String
+  publishedAt: DateTime
+}
+
+type RegistrationEafs {
+  title: String
+  description: String
+  points(filters: ComponentPointPointsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPointPoints]
+  pricing(filters: ComponentPricingPricingFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPricingPricing]
+  logo: UploadFileEntityResponse
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type RegistrationEafsEntity {
+  id: ID
+  attributes: RegistrationEafs
+}
+
+type RegistrationEafsEntityResponse {
+  data: RegistrationEafsEntity
+}
+
 input SettingFiltersInput {
   id: IDFilterInput
   eafsUpcomingSummit: BooleanFilterInput
@@ -1185,7 +1313,7 @@ type UpcomingEafsEntityResponse {
   data: UpcomingEafsEntity
 }
 
-union GenericMorph = ComponentCategoryCategory | ComponentFileFile | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPlatformPlatform | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Author | Blog | Document | Home | KnowledgeSharing | Setting | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs
+union GenericMorph = ComponentCategoryCategory | ComponentFileFile | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Author | Blog | Document | Home | KnowledgeSharing | Participant | RegistrationEafs | Setting | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs
 
 input FileInfoInput {
   name: String
@@ -1268,6 +1396,9 @@ type Query {
   documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): DocumentEntityResponseCollection
   home(publicationState: PublicationState = LIVE): HomeEntityResponse
   knowledgeSharing(publicationState: PublicationState = LIVE): KnowledgeSharingEntityResponse
+  participant(id: ID): ParticipantEntityResponse
+  participants(filters: ParticipantFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): ParticipantEntityResponseCollection
+  registrationEafs(publicationState: PublicationState = LIVE): RegistrationEafsEntityResponse
   setting(id: ID): SettingEntityResponse
   settings(filters: SettingFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): SettingEntityResponseCollection
   summit(id: ID): SummitEntityResponse
@@ -1298,6 +1429,11 @@ type Mutation {
   deleteHome: HomeEntityResponse
   updateKnowledgeSharing(data: KnowledgeSharingInput!): KnowledgeSharingEntityResponse
   deleteKnowledgeSharing: KnowledgeSharingEntityResponse
+  createParticipant(data: ParticipantInput!): ParticipantEntityResponse
+  updateParticipant(id: ID!, data: ParticipantInput!): ParticipantEntityResponse
+  deleteParticipant(id: ID!): ParticipantEntityResponse
+  updateRegistrationEafs(data: RegistrationEafsInput!): RegistrationEafsEntityResponse
+  deleteRegistrationEafs: RegistrationEafsEntityResponse
   createSetting(data: SettingInput!): SettingEntityResponse
   updateSetting(id: ID!, data: SettingInput!): SettingEntityResponse
   deleteSetting(id: ID!): SettingEntityResponse

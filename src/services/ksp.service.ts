@@ -5,6 +5,7 @@ import { SUMMITS } from "@/graphql/knowledge-sharing/summits";
 import { DOCUMENTS } from "@/graphql/knowledge-sharing/documents";
 import { UPCOMING_EACMS } from "@/graphql/knowledge-sharing/upcomingEacms";
 import { UPCOMING_CHCDA } from "@/graphql/knowledge-sharing/upcomingChcda";
+import { REGISTRATION_EAFS } from "@/graphql/knowledge-sharing/registrationEafs";
 
 class KSPService {
   static ksp = async () => {
@@ -24,6 +25,16 @@ class KSPService {
         variables: {},
       });
       return upcomingEafsResult.data.upcomingEafs.data;
+    } catch (e) {}
+  };
+
+  static registrationEafs = async () => {
+    try {
+      const registrationEafsResult = await client.query({
+        query: REGISTRATION_EAFS,
+        variables: {},
+      });
+      return registrationEafsResult.data.registrationEafs.data;
     } catch (e) {}
   };
 
