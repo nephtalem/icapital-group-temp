@@ -2,28 +2,22 @@ import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { SummitDetail } from "@/components/platform/SummitDetail";
 import { Title } from "@/components/shared/Title";
-import { SummitEntity, UpcomingEafsEntity } from "@/gql/graphql";
+import { SummitEntity, UpcomingEacmsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 const EAFSPage = ({
   summit,
-  upcomingEafs,
+  upcomingEacms,
 }: {
   summit: SummitEntity;
-  upcomingEafs: UpcomingEafsEntity;
+  upcomingEacms: UpcomingEacmsEntity;
 }) => {
-  console.log(
-    "upcomingEafs",
-    upcomingEafs,
-    !!(upcomingEafs && upcomingEafs?.attributes?.enabled)
-  );
-
   return (
     <>
       <Title title={`${summit.attributes?.name}`} />
       <Content>
-        <PlatformHeader upcoming={upcomingEafs} type="EAFS" />
+        <PlatformHeader upcoming={upcomingEacms} type="ECCDA" />
         <SummitDetail summit={summit} />
       </Content>
     </>
@@ -33,7 +27,7 @@ const EAFSPage = ({
 export default EAFSPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const summits = await KSPService.summits("EAFS");
+  const summits = await KSPService.summits("ECCDA");
 
   return {
     paths: summits.map((summit: any) => ({
@@ -45,11 +39,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const summit = await KSPService.summit(params!.slug!.toString());
-  const upcomingEafs = await KSPService.upcomingEafs();
+  const upcomingEacms = await KSPService.upcomingEacms();
 
-  console.log("upcomingEafs", upcomingEafs);
   return {
-    props: { summit, upcomingEafs },
+    props: { summit, upcomingEacms },
     revalidate: 10, // In seconds
   };
 };

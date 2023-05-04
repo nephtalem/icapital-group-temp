@@ -7,12 +7,18 @@ import {
 } from "./styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { UpcomingEafsEntity } from "@/gql/graphql";
+import {
+  UpcomingChcdaEntity,
+  UpcomingEacmsEntity,
+  UpcomingEafsEntity,
+} from "@/gql/graphql";
 
 export const PlatformHeader = ({
-  upcomingEafs,
+  upcoming,
+  type,
 }: {
-  upcomingEafs?: UpcomingEafsEntity;
+  upcoming?: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
+  type: "EAFS" | "EACMS" | "ECCDA";
 }) => {
   return (
     <StyledPlatformHeader>
@@ -20,29 +26,70 @@ export const PlatformHeader = ({
         <Image src={"/images/eafs.logo.png"} alt={""} fill={true} />
       </StyledLogo>
       <StyledOptions>
-        {upcomingEafs?.attributes?.enabled ? (
-          <Option
-            label={`${upcomingEafs.attributes.content?.menuTitle}`}
-            to={"/knowledge-sharing/east-africa-finance-summit/upcoming"}
-          />
+        {type === "ECCDA" ? (
+          <>
+            {upcoming?.attributes?.enabled ? (
+              <Option
+                label={`${upcoming.attributes.content?.menuTitle}`}
+                to={`/knowledge-sharing/conference-on-human-capital-development-in-africa/upcoming`}
+              />
+            ) : (
+              <></>
+            )}
+            <Option
+              label={"Previous Conferences"}
+              to={`/knowledge-sharing/conference-on-human-capital-development-in-africa/previous-conferences`}
+            />
+            <Option
+              label={"Conference Documents"}
+              to={`/knowledge-sharing/conference-on-human-capital-development-in-africa/conference-documents`}
+            />
+          </>
+        ) : type === "EACMS" ? (
+          <>
+            {upcoming?.attributes?.enabled ? (
+              <Option
+                label={`${upcoming.attributes.content?.menuTitle}`}
+                to={`/knowledge-sharing/east-africa-cement-and-concrete-construction-summit/upcoming`}
+              />
+            ) : (
+              <></>
+            )}
+            <Option
+              label={"Previous Summits"}
+              to={`/knowledge-sharing/east-africa-cement-and-concrete-construction-summit/previous-summits`}
+            />
+            <Option
+              label={"Summit Documents"}
+              to={`/knowledge-sharing/east-africa-cement-and-concrete-construction-summit/summit-documents`}
+            />
+          </>
         ) : (
-          <></>
+          <>
+            {upcoming?.attributes?.enabled ? (
+              <Option
+                label={`${upcoming.attributes.content?.menuTitle}`}
+                to={`/knowledge-sharing/east-africa-finance-summit/upcoming`}
+              />
+            ) : (
+              <></>
+            )}
+            <Option
+              label={"Previous Summits"}
+              to={`/knowledge-sharing/east-africa-finance-summit/previous-summits`}
+            />
+            <Option
+              label={"Summit Documents"}
+              to={`/knowledge-sharing/east-africa-finance-summit/summit-documents`}
+            />
+          </>
         )}
-
-        <Option
-          label={"Previous Summits"}
-          to={"/knowledge-sharing/east-africa-finance-summit/previous-summits"}
-        />
-        <Option
-          label={"Summit Documents"}
-          to={"/knowledge-sharing/east-africa-finance-summit/summit-documents"}
-        />
       </StyledOptions>
     </StyledPlatformHeader>
   );
 };
 
-const Option = ({ label, to }: { label: string; to: string }) => {
+export const Option = ({ label, to }: { label: string; to: string }) => {
   const router = useRouter();
   return (
     <Link href={to}>

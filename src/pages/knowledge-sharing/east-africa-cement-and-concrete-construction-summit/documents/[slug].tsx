@@ -2,22 +2,25 @@ import { Content } from "@/components/knowledge-sharing/Content";
 import { DocumentsDetail } from "@/components/platform/DocumentsDetail";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { Title } from "@/components/shared/Title";
-import { DocumentEntity, UpcomingEafsEntity } from "@/gql/graphql";
+import {
+  DocumentEntity,
+  UpcomingEacmsEntity
+} from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 const EAFSPage = ({
   document,
-  upcomingEafs,
+  upcomingEacms,
 }: {
   document: DocumentEntity;
-  upcomingEafs: UpcomingEafsEntity;
+  upcomingEacms: UpcomingEacmsEntity;
 }) => {
   return (
     <>
       <Title title={"Knowledge Sharing"} />
       <Content>
-        <PlatformHeader upcoming={upcomingEafs} type="EAFS" />
+        <PlatformHeader upcoming={upcomingEacms} type="EACMS" />
         <DocumentsDetail document={document} />
       </Content>
     </>
@@ -27,7 +30,7 @@ const EAFSPage = ({
 export default EAFSPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const documents = await KSPService.documents("EAFS");
+  const documents = await KSPService.documents("EACMS");
 
   return {
     paths: documents.map((document: any) => ({
@@ -39,11 +42,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const document = await KSPService.document(params!.slug!.toString());
-  const upcomingEafs = await KSPService.upcomingEafs();
+  const upcomingEacms = await KSPService.upcomingEacms();
 
-  console.log("upcomingEafs", upcomingEafs);
   return {
-    props: { document, upcomingEafs },
+    props: { document, upcomingEacms },
     revalidate: 10, // In seconds
   };
 };

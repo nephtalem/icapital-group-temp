@@ -3,6 +3,8 @@ import client from "../utils/apollo.client";
 import { UPCOMING_EAFS } from "@/graphql/knowledge-sharing/upcomingEafs";
 import { SUMMITS } from "@/graphql/knowledge-sharing/summits";
 import { DOCUMENTS } from "@/graphql/knowledge-sharing/documents";
+import { UPCOMING_EACMS } from "@/graphql/knowledge-sharing/upcomingEacms";
+import { UPCOMING_CHCDA } from "@/graphql/knowledge-sharing/upcomingChcda";
 
 class KSPService {
   static ksp = async () => {
@@ -14,6 +16,7 @@ class KSPService {
       return kspResult.data.knowledgeSharing.data;
     } catch (e) {}
   };
+
   static upcomingEafs = async () => {
     try {
       const upcomingEafsResult = await client.query({
@@ -23,6 +26,27 @@ class KSPService {
       return upcomingEafsResult.data.upcomingEafs.data;
     } catch (e) {}
   };
+
+  static upcomingEacms = async () => {
+    try {
+      const upcomingEafsResult = await client.query({
+        query: UPCOMING_EACMS,
+        variables: {},
+      });
+      return upcomingEafsResult.data.upcomingEacms.data;
+    } catch (e) {}
+  };
+
+  static upcomingChcda = async () => {
+    try {
+      const upcomingEafsResult = await client.query({
+        query: UPCOMING_CHCDA,
+        variables: {},
+      });
+      return upcomingEafsResult.data.upcomingChcda.data;
+    } catch (e) {}
+  };
+
   static summits = async (type: string) => {
     try {
       const summitsResult = await client.query({

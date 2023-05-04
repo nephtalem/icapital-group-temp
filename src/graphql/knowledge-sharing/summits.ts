@@ -7,6 +7,7 @@ export const SUMMITS = gql`
         attributes {
           date
           slug
+          type
           background {
             data {
               attributes {

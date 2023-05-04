@@ -4,11 +4,9 @@ import { Footer } from "@/components/shared/Footer";
 
 export const Content = ({
   scrollable = true,
-  upcomingEafs,
   children,
 }: {
   scrollable?: boolean;
-  upcomingEafs: boolean;
   children: JSX.Element[] | JSX.Element;
 }) => {
   return (
@@ -22,20 +20,18 @@ export const Content = ({
           },
           {
             label: "EAFS",
-            to: `/knowledge-sharing/east-africa-finance-summit/${
-              upcomingEafs ? "upcoming" : "previous-summits"
-            }`,
+            to: `/knowledge-sharing/east-africa-finance-summit`,
             base: "/knowledge-sharing/east-africa-finance-summit",
           },
 
           {
             label: "EACMS",
-            to: "/knowledge-sharing/east-africa-cement-and-concrete-construction-summit",
+            to: `/knowledge-sharing/east-africa-cement-and-concrete-construction-summit/`,
             base: "/knowledge-sharing/east-africa-cement-and-concrete-construction-summit",
           },
           {
             label: "CHCDA",
-            to: "/knowledge-sharing/conference-on-human-capital-development-in-africa",
+            to: `/knowledge-sharing/conference-on-human-capital-development-in-africa/`,
             base: "/knowledge-sharing/conference-on-human-capital-development-in-africa",
           },
         ]}

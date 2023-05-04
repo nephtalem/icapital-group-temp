@@ -8,15 +8,13 @@ import { KnowledgeSharingEntity } from "@/gql/graphql";
 
 const KnowledgeSharingPage = ({
   knowledgeSharing,
-  upcomingEafs,
 }: {
   knowledgeSharing: KnowledgeSharingEntity;
-  upcomingEafs: boolean;
 }) => {
   return (
     <>
       <Title title={"Knowledge Sharing"} />
-      <Content scrollable={false} upcomingEafs={upcomingEafs}>
+      <Content scrollable={false}>
         <Landing knowledgeSharing={knowledgeSharing} />
         <Platforms knowledgeSharing={knowledgeSharing} />
       </Content>
@@ -28,12 +26,10 @@ export default KnowledgeSharingPage;
 
 export const getStaticProps: GetStaticProps = async () => {
   const knowledgeSharing = await KSPService.ksp();
-  const upcomingEafs = await KSPService.upcomingEafs();
 
   return {
     props: {
       knowledgeSharing,
-      upcomingEafs: upcomingEafs && upcomingEafs.attributes.enabled,
     },
     revalidate: 10, // In seconds
   };

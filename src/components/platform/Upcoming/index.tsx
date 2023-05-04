@@ -32,6 +32,8 @@ import { Social, socials } from "@/components/home/Header";
 import {
   ComponentOrganizerOrganizer,
   ComponentSponsorSponsor,
+  UpcomingChcdaEntity,
+  UpcomingEacmsEntity,
   UpcomingEafsEntity,
 } from "@/gql/graphql";
 import { Interweave } from "interweave";
@@ -39,25 +41,25 @@ import { Interweave } from "interweave";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 export const Upcoming = ({
-  upcomingEafs,
+  upcoming,
 }: {
-  upcomingEafs: UpcomingEafsEntity;
+  upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
 }) => {
   return (
     <StyledUpcoming>
-      <Landing upcomingEafs={upcomingEafs} />
-      <Banner upcomingEafs={upcomingEafs} />
+      <Landing upcoming={upcoming} />
+      <Banner upcoming={upcoming} />
       <Organizers
-        organizer={upcomingEafs.attributes!.content!.organizer!.map(
+        organizer={upcoming.attributes!.content!.organizer!.map(
           (organizer) => organizer!
         )}
-        organizerIntro={upcomingEafs.attributes!.content!.organizerIntro!}
+        organizerIntro={upcoming.attributes!.content!.organizerIntro!}
       />
       <Sponsors
-        sponsor={upcomingEafs.attributes!.content!.sponsor!.map(
+        sponsor={upcoming.attributes!.content!.sponsor!.map(
           (sponsor) => sponsor!
         )}
-        sponsorIntro={upcomingEafs.attributes!.content!.sponsorIntro!}
+        sponsorIntro={upcoming.attributes!.content!.sponsorIntro!}
       />
       <StyledSponsorApply>
         <h2>SPONSORSHIP AND EXHIBITION</h2>
@@ -65,18 +67,22 @@ export const Upcoming = ({
           <div>APPLY HERE</div>
         </StyledApply>
       </StyledSponsorApply>
-      <VideoContainer upcomingEafs={upcomingEafs} />
-      <Connect upcomingEafs={upcomingEafs} />
+      <VideoContainer upcoming={upcoming} />
+      <Connect upcoming={upcoming} />
     </StyledUpcoming>
   );
 };
 
-const Landing = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
+const Landing = ({
+  upcoming,
+}: {
+  upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
+}) => {
   return (
     <StyledLanding>
       <StyledLandingBackground>
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.background?.data?.attributes?.url}`}
+          src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.background?.data?.attributes?.url}`}
           alt={""}
           quality={100}
           fill={true}
@@ -86,13 +92,13 @@ const Landing = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
       <StyledLandingContent>
         <StyledLandingLogo>
           <Image
-            src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.logo?.data?.attributes?.url}`}
+            src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.logo?.data?.attributes?.url}`}
             alt={""}
             fill={true}
           />
         </StyledLandingLogo>
-        <h1>{upcomingEafs.attributes?.content?.title}</h1>
-        <p>&quot;{upcomingEafs.attributes?.content?.intro}&quot;</p>
+        <h1>{upcoming.attributes?.content?.title}</h1>
+        <p>&quot;{upcoming.attributes?.content?.intro}&quot;</p>
         <StyledRegister>
           <div>REGISTER HERE</div>
         </StyledRegister>
@@ -101,13 +107,17 @@ const Landing = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
   );
 };
 
-const Banner = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
+const Banner = ({
+  upcoming,
+}: {
+  upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
+}) => {
   return (
     <StyledBanner>
-      <Interweave content={upcomingEafs.attributes?.content?.description} />
+      <Interweave content={upcoming.attributes?.content?.description} />
       <StyledBannerImage>
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.banner?.data?.attributes?.url}`}
+          src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.banner?.data?.attributes?.url}`}
           alt={""}
           fill={true}
         />
@@ -189,14 +199,14 @@ const Sponsor = ({ image, to }: { image: string; to: string }) => {
 };
 
 const VideoContainer = ({
-  upcomingEafs,
+  upcoming,
 }: {
-  upcomingEafs: UpcomingEafsEntity;
+  upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
 }) => {
   return (
     <StyledVideoContainer>
       <ReactPlayer
-        url={`${upcomingEafs.attributes?.content?.youtubeUrl}`}
+        url={`${upcoming.attributes?.content?.youtubeUrl}`}
         width="100%"
         height="100%"
         playing={true}
@@ -207,12 +217,16 @@ const VideoContainer = ({
   );
 };
 
-const Connect = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
+const Connect = ({
+  upcoming,
+}: {
+  upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
+}) => {
   return (
     <StyledConnect>
       <StyledConnectBackground>
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.background?.data?.attributes?.url}`}
+          src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.background?.data?.attributes?.url}`}
           alt={""}
           quality={100}
           fill={true}
@@ -221,7 +235,7 @@ const Connect = ({ upcomingEafs }: { upcomingEafs: UpcomingEafsEntity }) => {
       <StyledConnectContent>
         <StyledConnectLogo>
           <Image
-            src={`${process.env.NEXT_PUBLIC_DATA}${upcomingEafs.attributes?.content?.logo?.data?.attributes?.url}`}
+            src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.logo?.data?.attributes?.url}`}
             alt={""}
             quality={100}
             fill={true}

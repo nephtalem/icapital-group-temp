@@ -1118,11 +1118,13 @@ type SummitEntityResponseCollection {
 
 input UpcomingChcdaInput {
   content: ComponentUpcomingUpcomingInput
+  enabled: Boolean
   publishedAt: DateTime
 }
 
 type UpcomingChcda {
   content: ComponentUpcomingUpcoming
+  enabled: Boolean
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1139,11 +1141,13 @@ type UpcomingChcdaEntityResponse {
 
 input UpcomingEacmsInput {
   content: ComponentUpcomingUpcomingInput
+  enabled: Boolean
   publishedAt: DateTime
 }
 
 type UpcomingEacms {
   content: ComponentUpcomingUpcoming
+  enabled: Boolean
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime

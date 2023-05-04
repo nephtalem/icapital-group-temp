@@ -26,9 +26,18 @@ export const SummitDocuments = ({
 };
 
 const SummitDocument = ({ document }: { document: DocumentEntity }) => {
+  const base: {
+    [key: string]: string;
+  } = {
+    EAFS: "east-africa-finance-summit",
+    EACMS: "east-africa-cement-and-concrete-construction-summit",
+    ECCDA: "conference-on-human-capital-development-in-africa",
+  };
   return (
     <Link
-      href={`/knowledge-sharing/east-africa-finance-summit/documents/${document.attributes?.slug}`}
+      href={`/knowledge-sharing/${base[document.attributes!.type!]}/documents/${
+        document.attributes?.slug
+      }`}
     >
       <StyledSummitDocument>
         <StyledBackground>

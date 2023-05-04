@@ -2,22 +2,25 @@ import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { SummitDocuments } from "@/components/platform/SummitDocuments";
 import { Title } from "@/components/shared/Title";
-import { DocumentEntity, UpcomingEafsEntity } from "@/gql/graphql";
+import {
+  DocumentEntity,
+  UpcomingChcdaEntity
+} from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetStaticProps } from "next";
 
 const SummitDocumentsEAFSPage = ({
-  upcomingEafs,
+  upcomingChcda,
   documents,
 }: {
-  upcomingEafs: UpcomingEafsEntity;
+  upcomingChcda: UpcomingChcdaEntity;
   documents: DocumentEntity[];
 }) => {
   return (
     <>
-      <Title title={"Summit Documents"} />
+      <Title title={"Conference Documents"} />
       <Content>
-        <PlatformHeader upcoming={upcomingEafs} type="EAFS" />
+        <PlatformHeader upcoming={upcomingChcda} type="ECCDA" />
         <SummitDocuments documents={documents} />
       </Content>
     </>
@@ -27,12 +30,12 @@ const SummitDocumentsEAFSPage = ({
 export default SummitDocumentsEAFSPage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const upcomingEafs = await KSPService.upcomingEafs();
-  const documents = await KSPService.documents("EAFS");
+  const upcomingChcda = await KSPService.upcomingChcda();
+  const documents = await KSPService.documents("ECCDA");
 
   return {
     props: {
-      upcomingEafs,
+      upcomingChcda,
       documents,
     },
     revalidate: 10, // In seconds

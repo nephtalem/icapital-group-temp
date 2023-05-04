@@ -58,7 +58,8 @@ export const StyledStatus = styled.div`
 export const StyledContent = styled.div`
   display: grid;
   justify-items: center;
-
+  padding: 0 1rem;
+  text-align: center;
   h2 {
     font-weight: 700;
     font-size: 2.8rem;

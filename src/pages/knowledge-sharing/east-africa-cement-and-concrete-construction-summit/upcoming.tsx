@@ -2,42 +2,41 @@ import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { Upcoming } from "@/components/platform/Upcoming";
 import { Title } from "@/components/shared/Title";
-import { UpcomingEafsEntity } from "@/gql/graphql";
+import { UpcomingEacmsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetServerSideProps } from "next";
 
-const UpcomingEAFSPage = ({
-  upcomingEafs,
+const UpcomingEACMSPage = ({
+  upcomingEacms,
 }: {
-  upcomingEafs: UpcomingEafsEntity;
+  upcomingEacms: UpcomingEacmsEntity;
 }) => {
   return (
     <>
-      <Title title={`${upcomingEafs.attributes?.content?.title}`} />
+      <Title title={`${upcomingEacms.attributes?.content?.title}`} />
       <Content>
-        <PlatformHeader upcoming={upcomingEafs} type={"EAFS"} />
-        <Upcoming upcoming={upcomingEafs} />
+        <PlatformHeader upcoming={upcomingEacms} type="EACMS" />
+        <Upcoming upcoming={upcomingEacms} />
       </Content>
     </>
   );
 };
 
-export default UpcomingEAFSPage;
+export default UpcomingEACMSPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const upcomingEafs = await KSPService.upcomingEafs();
-  console.log("upcomingEafs", upcomingEafs);
-  if (upcomingEafs && upcomingEafs.attributes.enabled) {
+  const upcomingEacms = await KSPService.upcomingEacms();
+  if (upcomingEacms && upcomingEacms.attributes.enabled) {
     return {
       props: {
-        upcomingEafs,
+        upcomingEacms,
       },
     };
   } else {
     return {
       redirect: {
         destination:
-          "/knowledge-sharing/east-africa-finance-summit/previous-summits",
+          "/knowledge-sharing/east-africa-cement-and-concrete-construction-summit/previous-summits",
         permanent: false,
       },
     };

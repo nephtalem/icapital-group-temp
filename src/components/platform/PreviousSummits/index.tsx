@@ -21,9 +21,18 @@ export const PreviousSummits = ({ summits }: { summits: SummitEntity[] }) => {
 };
 
 const PreviousSummit = ({ summit }: { summit: SummitEntity }) => {
+  const base: {
+    [key: string]: string;
+  } = {
+    EAFS: "east-africa-finance-summit/summit",
+    EACMS: "east-africa-cement-and-concrete-construction-summit/summit",
+    ECCDA: "conference-on-human-capital-development-in-africa/conference",
+  };
   return (
     <Link
-      href={`/knowledge-sharing/east-africa-finance-summit/summit/${summit.attributes?.slug}`}
+      href={`/knowledge-sharing/${base[summit.attributes!.type!]}/${
+        summit.attributes?.slug
+      }`}
     >
       <StyledPreviousSummit>
         <StyledBackground>

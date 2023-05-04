@@ -1,9 +1,10 @@
+import { Home } from "@/components/home/Home";
 import { Content } from "@/components/knowledge-sharing/Content";
 import { Title } from "@/components/shared/Title";
 import KSPService from "@/services/ksp.service";
 import { GetServerSideProps } from "next";
 
-const CHCDASPage = () => {
+const EAFSPage = () => {
   return (
     <>
       <Title title={"Knowledge Sharing"} />
@@ -14,16 +15,16 @@ const CHCDASPage = () => {
   );
 };
 
-export default CHCDASPage;
+export default EAFSPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const upcomingChcda = await KSPService.upcomingChcda();
+  const upcomingEafs = await KSPService.upcomingEafs();
   return {
     redirect: {
-      destination: `/knowledge-sharing/conference-on-human-capital-development-in-africa/${
-        upcomingChcda && upcomingChcda.attributes.enabled
+      destination: `/knowledge-sharing/east-africa-finance-summit/${
+        upcomingEafs && upcomingEafs.attributes.enabled
           ? "upcoming"
-          : "previous-conferences"
+          : "previous-summits"
       }`,
       permanent: false,
     },
