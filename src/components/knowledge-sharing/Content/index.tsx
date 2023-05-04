@@ -20,7 +20,7 @@ export const Content = ({
           },
           {
             label: "EAFS",
-            to: `/knowledge-sharing/east-africa-finance-summit`,
+            to: `/knowledge-sharing/east-africa-finance-summit/`,
             base: "/knowledge-sharing/east-africa-finance-summit",
           },
 
