@@ -16,7 +16,12 @@ const UpcomingECCDAPage = ({
       <Title title={`${upcomingChcda.attributes?.content?.title}`} />
       <Content>
         <PlatformHeader upcoming={upcomingChcda} type="ECCDA" />
-        <Upcoming upcoming={upcomingChcda} />
+        <Upcoming
+          upcoming={upcomingChcda}
+          base={
+            "/knowledge-sharing/conference-on-human-capital-development-in-africa"
+          }
+        />
       </Content>
     </>
   );

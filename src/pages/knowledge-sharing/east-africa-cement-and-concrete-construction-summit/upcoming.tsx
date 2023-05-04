@@ -16,7 +16,10 @@ const UpcomingEACMSPage = ({
       <Title title={`${upcomingEacms.attributes?.content?.title}`} />
       <Content>
         <PlatformHeader upcoming={upcomingEacms} type="EACMS" />
-        <Upcoming upcoming={upcomingEacms} />
+        <Upcoming
+          upcoming={upcomingEacms}
+          base={"/knowledge-sharing/east-africa-cement-and-concrete-construction-summit"}
+        />
       </Content>
     </>
   );

@@ -16,7 +16,7 @@ const UpcomingEAFSPage = ({
       <Title title={`${upcomingEafs.attributes?.content?.title}`} />
       <Content>
         <PlatformHeader upcoming={upcomingEafs} type={"EAFS"} />
-        <Upcoming upcoming={upcomingEafs} />
+        <Upcoming upcoming={upcomingEafs} base={"/knowledge-sharing/east-africa-finance-summit"} />
       </Content>
     </>
   );

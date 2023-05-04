@@ -42,12 +42,14 @@ const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 export const Upcoming = ({
   upcoming,
+  base,
 }: {
+  base: string;
   upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
 }) => {
   return (
     <StyledUpcoming>
-      <Landing upcoming={upcoming} />
+      <Landing upcoming={upcoming} base={base} />
       <Banner upcoming={upcoming} />
       <Organizers
         organizer={upcoming.attributes!.content!.organizer!.map(
@@ -63,9 +65,11 @@ export const Upcoming = ({
       />
       <StyledSponsorApply>
         <h2>SPONSORSHIP AND EXHIBITION</h2>
-        <StyledApply>
-          <div>APPLY HERE</div>
-        </StyledApply>
+        <Link href={`${base}/apply`}>
+          <StyledApply>
+            <div>APPLY HERE</div>
+          </StyledApply>
+        </Link>
       </StyledSponsorApply>
       <VideoContainer upcoming={upcoming} />
       <Connect upcoming={upcoming} />
@@ -75,7 +79,10 @@ export const Upcoming = ({
 
 const Landing = ({
   upcoming,
+  base,
 }: {
+  base: string;
+
   upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
 }) => {
   return (
@@ -99,9 +106,11 @@ const Landing = ({
         </StyledLandingLogo>
         <h1>{upcoming.attributes?.content?.title}</h1>
         <p>&quot;{upcoming.attributes?.content?.intro}&quot;</p>
-        <StyledRegister>
-          <div>REGISTER HERE</div>
-        </StyledRegister>
+        <Link href={`${base}/register`}>
+          <StyledRegister>
+            <div>REGISTER HERE</div>
+          </StyledRegister>
+        </Link>
       </StyledLandingContent>
     </StyledLanding>
   );
