@@ -12,6 +12,11 @@ export const StyledButton = styled.button`
   color: #ffffff;
   padding: 1.6rem 4rem;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  
+  :disabled {
+    opacity: 0.5;
+  }
 `;
 
 export const StyledActionButton = styled.button<{
@@ -30,7 +35,7 @@ export const StyledActionButton = styled.button<{
   padding: 1.6rem 3rem;
   cursor: pointer;
   justify-items: center;
-justify-content: center;
+  justify-content: center;
   display: flex;
   align-items: center;
   gap: 2rem;

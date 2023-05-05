@@ -17,6 +17,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/react-file-icon": "^1.0.1",
+    "axios": "^1.4.0",
     "browser-image-compression": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",

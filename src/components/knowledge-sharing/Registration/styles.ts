@@ -1,3 +1,5 @@
+import { StyledButton } from "@/components/shared/Button/styles";
+import { StyledMainText } from "@/components/shared/MainText/styles";
 import styled from "@emotion/styled";
 
 export const StyledRegistration = styled.div`
@@ -14,10 +16,12 @@ export const StyledRegistration = styled.div`
     margin-top: 6rem;
     margin-bottom: 6rem;
   }
-
-  h1 {
-    font-size: 2.4rem;
-    line-height: 3rem;
+  ${StyledMainText} {
+    grid-row-gap: 1rem;
+    h1 {
+      font-size: 2.4rem;
+      line-height: 3rem;
+    }
   }
 `;
 
@@ -57,6 +61,10 @@ export const StyledForm = styled.form`
     line-height: 4rem;
     color: #000000;
     margin-bottom: 4rem;
+  }
+
+  ${StyledButton} {
+    margin-top: 6rem;
   }
 `;
 
@@ -107,6 +115,7 @@ export const StyledPayment = styled.div`
   position: relative;
   margin-top: 6rem;
   padding: 4rem 2rem;
+  max-width: 94%;
   h4 {
     background-color: #f58016;
     color: white;
@@ -128,6 +137,19 @@ export const StyledPayment = styled.div`
     border-radius: 1rem;
     padding: 2rem;
     outline-color: #f58016;
+  }
+`;
+
+export const StyledReceipt = styled.div`
+  position: relative;
+  height: 20rem;
+  width: 100%;
+  display: grid;
+  margin-top: 4rem;
+  cursor: pointer;
+
+  img {
+    object-fit: contain;
   }
 `;
 
@@ -157,7 +179,18 @@ export const StyledUpload = styled.div`
   background: #fafafa;
   border: 1px solid #eeeeee;
   border-radius: 1rem;
-
+  justify-items: center;
+  grid-row-gap: 2rem;
+  padding: 2rem;
+  margin-top: 4rem;
+  height: 20rem;
+  grid-auto-rows: max-content;
+  align-items: center;
+  align-content: center;
+  input {
+    outline-color: #f58016;
+  }
+  cursor: pointer;
   svg {
     height: 2rem;
   }
@@ -167,5 +200,28 @@ export const StyledUpload = styled.div`
     line-height: 2rem;
 
     color: #666666;
+  }
+`;
+
+export const StyledPoints = styled.div`
+  display: grid;
+  margin-top: 6rem;
+  grid-auto-rows: max-content;
+  grid-row-gap: 2.4rem;
+`;
+
+export const StyledPoint = styled.div`
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-column-gap: 2.4rem;
+  align-items: center;
+  svg {
+    width: 2rem;
+  }
+  p {
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    color: #000000;
   }
 `;

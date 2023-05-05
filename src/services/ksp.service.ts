@@ -6,6 +6,8 @@ import { DOCUMENTS } from "@/graphql/knowledge-sharing/documents";
 import { UPCOMING_EACMS } from "@/graphql/knowledge-sharing/upcomingEacms";
 import { UPCOMING_CHCDA } from "@/graphql/knowledge-sharing/upcomingChcda";
 import { REGISTRATION_EAFS } from "@/graphql/knowledge-sharing/registrationEafs";
+import { ParticipantInput } from "@/gql/graphql";
+import { CREATE_PARTICIPANT } from "@/graphql/knowledge-sharing/createParticipant";
 
 class KSPService {
   static ksp = async () => {
@@ -117,6 +119,18 @@ class KSPService {
         },
       });
       return documentsResult.data.documents.data.shift();
+    } catch (e) {}
+  };
+
+  static createParticipant = async (data: ParticipantInput) => {
+    try {
+      const documentsResult = await client.query({
+        query: CREATE_PARTICIPANT,
+        variables: {
+          data,
+        },
+      });
+      return documentsResult.data.createParticipant;
     } catch (e) {}
   };
 }

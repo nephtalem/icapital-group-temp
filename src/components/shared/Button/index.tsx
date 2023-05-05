@@ -2,12 +2,14 @@ import { StyledActionButton, StyledButton } from "./styles";
 import OpenIcon from "@/assets/icons/open.svg";
 export const Button = ({
   label,
+  disabled,
   onClick,
 }: {
   label: string;
+  disabled?:boolean
   onClick: () => void;
 }) => {
-  return <StyledButton onClick={onClick}>{label}</StyledButton>;
+  return <StyledButton disabled={disabled} onClick={onClick}>{label}</StyledButton>;
 };
 export const ActionButton = ({
   label,
