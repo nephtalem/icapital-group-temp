@@ -29,7 +29,7 @@ const nextConfig = {
   },
 
   reactStrictMode: true,
-  swcMinify: false,
+  swcMinify: true,
 };
 
 module.exports = nextConfig;
