@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledFooter = styled.footer`
@@ -25,12 +26,15 @@ export const StyledFooter = styled.footer`
       display: flex;
       align-items: center;
       align-content: center;
-    gap: 0.4rem;
-
+      gap: 0.4rem;
 
       svg {
         height: 1.4rem;
       }
     }
+  }
+
+  ${breakingPoints.mobile} {
+    padding: 0 4vw;
   }
 `;

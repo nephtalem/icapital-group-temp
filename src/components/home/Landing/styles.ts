@@ -35,7 +35,7 @@ export const StyledContent = styled.div`
 
   ${breakingPoints.mobile} {
     max-width: 90vw;
-    h1{
+    h1 {
       font-size: 3rem;
     }
   }
@@ -48,6 +48,10 @@ export const StyledLogo = styled.div`
   position: relative;
   img {
     object-fit: contain;
+  }
+
+  ${breakingPoints.mobile} {
+    height: 28rem;
   }
 `;
 

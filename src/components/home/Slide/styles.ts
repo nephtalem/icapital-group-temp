@@ -66,12 +66,21 @@ export const StyledContent = styled.div`
     padding: 0 4vw;
 
     h2 {
-      font-size: 3.2rem;
+      font-size: 3rem;
+      margin-top: 3rem;
     }
     p {
-      font-size: 2rem;
-      line-height: 2.8rem;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
       text-align: justify;
+      margin-top: 2rem;
+    }
+    a {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      height: 6rem;
+      margin-top: 4rem;
+      cursor: pointer;
     }
   }
 `;
@@ -88,6 +97,7 @@ export const StyledLogo = styled.div`
   }
 
   ${breakingPoints.mobile} {
-    width: 60vw;
+    width: 50vw;
+    height: 12rem;
   }
 `;

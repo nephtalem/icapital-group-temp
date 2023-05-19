@@ -11,6 +11,10 @@ export const StyledHeader = styled.header`
   width: 100vw;
   z-index: 100;
   padding: 4rem;
+
+  ${breakingPoints.mobile} {
+    padding: 4rem 5vw;
+  }
 `;
 
 export const StyledDrawerWrapper = styled.div`
@@ -36,11 +40,20 @@ export const StyledDrawerWrapper = styled.div`
 export const StyledSocials = styled.div`
   display: flex;
   gap: 3.2rem;
+  ${breakingPoints.mobile} {
+    gap: 2rem;
+  }
 `;
 
 export const StyledSocial = styled.div`
   svg {
     height: 2rem;
+  }
+
+  ${breakingPoints.mobile} {
+    svg {
+      height: 1.6rem;
+    }
   }
 `;
 
@@ -62,6 +75,14 @@ export const StyledMenu = styled.div`
     outline: none;
     svg {
       width: 6rem;
+    }
+  }
+
+  ${breakingPoints.mobile} {
+    button {
+      svg {
+        width: 3rem;
+      }
     }
   }
 `;
