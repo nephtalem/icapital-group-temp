@@ -87,12 +87,16 @@ const PlatformsItem = ({
         {toParticipate ? (
           <StyledAction>
             <h6>To Participate</h6>
-            <ActionButton
-              label={"Register Here"}
-              onClick={(): void => {}}
-              color={"#F07709"}
-              border={"#9F4E03"}
-            />
+            <Link
+              href={"/knowledge-sharing/east-africa-finance-summit/register"}
+            >
+              <ActionButton
+                label={"Register Here"}
+                onClick={(): void => {}}
+                color={"#F07709"}
+                border={"#9F4E03"}
+              />
+            </Link>
           </StyledAction>
         ) : (
           <></>
@@ -100,12 +104,14 @@ const PlatformsItem = ({
         {toSponsor ? (
           <StyledAction>
             <h6>To Sponsor</h6>
-            <ActionButton
-              label={"Apply Here"}
-              color={"#243B7E"}
-              border={"#0D2056"}
-              onClick={(): void => {}}
-            />
+            <Link href={"/knowledge-sharing/east-africa-finance-summit/apply"}>
+              <ActionButton
+                label={"Apply Here"}
+                color={"#243B7E"}
+                border={"#0D2056"}
+                onClick={(): void => {}}
+              />
+            </Link>
           </StyledAction>
         ) : (
           <></>
