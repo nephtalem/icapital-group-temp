@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledDrawer = styled.div`
@@ -14,6 +15,10 @@ export const StyledDrawer = styled.div`
     font-weight: bold;
     color: white;
     margin-bottom: 4rem;
+  }
+
+  ${breakingPoints.mobile}{
+    width: 80vw;
   }
 `;
 

@@ -67,6 +67,12 @@ export const Header = () => {
         }}
       >
         <Drawer />
+        <span
+          className="cover"
+          onClick={() => {
+            gsap.to(drawer.current, { right: "-50rem" });
+          }}
+        />
       </StyledDrawerWrapper>
     </>
   );

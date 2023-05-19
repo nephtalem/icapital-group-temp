@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledLanding = styled.div`
@@ -30,6 +31,13 @@ export const StyledContent = styled.div`
     font-size: 4rem;
     align-content: center;
     color: white;
+  }
+
+  ${breakingPoints.mobile} {
+    max-width: 90vw;
+    h1{
+      font-size: 3rem;
+    }
   }
 `;
 

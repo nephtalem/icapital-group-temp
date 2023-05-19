@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledHeader = styled.header`
@@ -19,7 +20,17 @@ export const StyledDrawerWrapper = styled.div`
   top: 0;
   right: -50rem;
   z-index: 100;
-  
+
+  ${breakingPoints.mobile} {
+    width: 80vw;
+    .cover {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 20vw;
+    }
+  }
 `;
 
 export const StyledSocials = styled.div`
@@ -40,6 +51,9 @@ export const StyledMenu = styled.div`
     font-size: 2.8rem;
     font-weight: 600;
     color: white;
+    ${breakingPoints.mobile} {
+      display: none;
+    }
   }
   button {
     background-color: transparent;

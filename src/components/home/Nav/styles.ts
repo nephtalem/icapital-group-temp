@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledNavWrapper = styled.div`
@@ -8,6 +9,10 @@ export const StyledNavWrapper = styled.div`
   top: 0;
   right: 2rem;
   z-index: 100;
+
+  ${breakingPoints.mobile}{
+    display: none;
+  }
 `;
 export const StyledNav = styled.div`
   display: grid;
