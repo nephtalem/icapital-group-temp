@@ -19,7 +19,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       authorization:
-        "Bearer 3493dfcecf72779e1dfeb8fa81fa3b8e4a18b5d96e4d87caf616254cb54f13319011bab6a58ee5a284e1f2fcccba973210ea5b1b3c147186dff27050fc44d9c18454dfebfc5e6ac7c14b9692d385bf0c29f38e8f4d0dd478b2d1c75bbd85cd7096679d6c89c40c34e8685c61e6b96d7e07ad83dd1f3bf5b6b7bc50d21b941d2e",
+        "Bearer a3dded575632da2dbb1ef2c636e73617c21598a2d61c088df71baaf31cd1faf5fcd3ef665345ec8d1b9ba49eea9a559d43c08b025f098ff33e68413fbeff392f3cfc78ba51c3e08a6f969f0ef939a4e0564f68fdec72c482880dde5dbaa7f8987f3ed01d204505b65d2741a6f3341d8479d18bbf38f5b1cc7bf3a7bb4c3a0e93",
     },
   };
 });
