@@ -102,8 +102,10 @@ const Remark = ({ summit }: { summit: SummitEntity }) => {
         <Interweave content={summit.attributes!.openingRemark!.remark!} />
         <StyledRemarkActions>
           <Link
-            href={`${process.env.NEXT_PUBLIC_DATA}${summit.attributes!
-              .openingRemark!.speechFile!.data!.attributes!.url!}`}
+            href={`${process.env.NEXT_PUBLIC_DATA}${
+              summit.attributes!.openingRemark?.speechFile?.data?.attributes
+                ?.url
+            }`}
             target={"_blank"}
             download
           >
@@ -117,7 +119,7 @@ const Remark = ({ summit }: { summit: SummitEntity }) => {
           </Link>
 
           <Link
-            href={summit.attributes!.openingRemark!.youtubeUrl!}
+            href={summit.attributes!.openingRemark!.youtubeUrl ?? ""}
             target={"_blank"}
           >
             <ActionButton
