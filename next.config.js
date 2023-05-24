@@ -25,7 +25,7 @@ const nextConfig = {
     emotion: true,
   },
   images: {
-    domains: ["strapi.icapitalafrica.org"],
+    domains: ["icapital-cms.techawks.io"],
   },
 
   reactStrictMode: true,

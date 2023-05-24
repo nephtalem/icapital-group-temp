@@ -13,7 +13,7 @@ export const upload = async (data: File) => {
     headers: {
       "Content-Type": "multipart/form-data",
       Authorization:
-        "Bearer 47ceb2558a781f72bae0cc4362c52b4b37eb266568df9678f7e80ebc3dc3c6dc1dec158f56456ac51644eb569a7f1b6569bae03084dd4fd9ae61a03cfa50eaa728c603450fb37b7d7217df394c9461abf6a8bbf707935533ed3756a0cb81fc79b98f2f9827eed6f3613d70e7a834578b16841fbd7a8a55814cea44801e4529a4",
+        "Bearer a3dded575632da2dbb1ef2c636e73617c21598a2d61c088df71baaf31cd1faf5fcd3ef665345ec8d1b9ba49eea9a559d43c08b025f098ff33e68413fbeff392f3cfc78ba51c3e08a6f969f0ef939a4e0564f68fdec72c482880dde5dbaa7f8987f3ed01d204505b65d2741a6f3341d8479d18bbf38f5b1cc7bf3a7bb4c3a0e93",
     },
   };
   let fd = new FormData();
