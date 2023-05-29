@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledFooter = styled.footer`
@@ -6,8 +7,12 @@ export const StyledFooter = styled.footer`
 
 export const StyledFooterContent = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr;
   padding: 5rem;
+
+  ${breakingPoints.mobile} {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
 `;
 export const StyledFooterMain = styled.div`
   display: grid;
@@ -34,6 +39,9 @@ export const StyledContact = styled.div`
 export const StyledContactRow = styled.div`
   display: flex;
   gap: 5rem;
+  ${breakingPoints.mobile} {
+    gap: 2rem;
+  }
 `;
 export const StyledContactMultiple = styled.div`
   display: grid;
@@ -75,6 +83,11 @@ export const StyledFooterLogo = styled.div`
   margin-bottom: 3rem;
   img {
     object-fit: contain;
+  }
+
+  ${breakingPoints.mobile} {
+    width: 12rem;
+    height: 8rem;
   }
 `;
 
@@ -125,6 +138,13 @@ export const StyledFooterLinks = styled.div`
   align-self: end;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 9rem;
+
+  ${breakingPoints.mobile} {
+    grid-template-columns: repeat(2, 1fr);
+    justify-self: left;
+    margin-top: 4rem;
+    grid-row-gap: 4rem;
+  }
 `;
 
 export const StyledFooterLink = styled.div`

@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledButton = styled.button`
@@ -13,7 +14,7 @@ export const StyledButton = styled.button`
   padding: 1.6rem 4rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  
+
   :disabled {
     opacity: 0.5;
   }
@@ -42,5 +43,9 @@ export const StyledActionButton = styled.button<{
 
   svg {
     height: 2rem;
+  }
+
+  ${breakingPoints.mobile} {
+    transform: scale(0.7);
   }
 `;

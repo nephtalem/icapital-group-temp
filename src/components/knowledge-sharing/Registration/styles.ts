@@ -1,5 +1,6 @@
 import { StyledButton } from "@/components/shared/Button/styles";
 import { StyledMainText } from "@/components/shared/MainText/styles";
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledRegistration = styled.div`
@@ -22,6 +23,10 @@ export const StyledRegistration = styled.div`
       font-size: 2.4rem;
       line-height: 3rem;
     }
+  }
+
+  ${breakingPoints.mobile} {
+    max-width: 100vw;
   }
 `;
 
@@ -66,6 +71,9 @@ export const StyledForm = styled.form`
   ${StyledButton} {
     margin-top: 6rem;
   }
+  ${breakingPoints.mobile} {
+    padding: 1rem;
+  }
 `;
 
 export const StyledContent = styled.div`
@@ -73,6 +81,9 @@ export const StyledContent = styled.div`
   grid-template-columns: 1fr 1fr;
   width: 100%;
   grid-gap: 3rem;
+  ${breakingPoints.mobile} {
+    grid-template-columns: 1fr;
+  }
 `;
 export const StyledFormItem = styled.div`
   display: grid;

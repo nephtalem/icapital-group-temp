@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledHeader = styled.header`
@@ -11,6 +12,14 @@ export const StyledHeader = styled.header`
   top: 0;
   background: white;
   z-index: 100;
+
+  ${breakingPoints.mobile} {
+    grid-template-columns: 1fr max-content;
+    grid-template-rows: max-content max-content;
+    grid-row-gap: 2rem;
+    height: max-content;
+    padding-bottom: 2rem;
+  }
 `;
 
 export const StyledLogo = styled.div`
@@ -22,12 +31,22 @@ export const StyledLogo = styled.div`
   img {
     object-fit: contain;
   }
+
+  ${breakingPoints.mobile} {
+    width: 12rem;
+  }
 `;
 
 export const StyledOptions = styled.div`
   display: flex;
   justify-self: center;
   gap: 4rem;
+
+  ${breakingPoints.mobile} {
+    gap: 0;
+    grid-row: 2;
+    grid-column: 1/-1;
+  }
 `;
 
 export const StyledOption = styled.div<{
