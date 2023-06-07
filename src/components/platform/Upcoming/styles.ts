@@ -89,7 +89,14 @@ export const StyledBanner = styled.div`
     color: #ffffff;
   }
 `;
+export const StyledBannerWrapper = styled.div`
+  display: grid;
+  grid-row-gap: 4rem;
 
+  a {
+    justify-self: right;
+  }
+`;
 export const StyledBannerImage = styled.div`
   width: 50rem;
   height: 100%;
@@ -135,6 +142,7 @@ export const StyledOrganizer = styled.div`
   width: 100%;
   img {
     object-fit: contain;
+    object-position: left;
   }
 `;
 
@@ -160,20 +168,42 @@ export const StyledSponsorsTitle = styled.div`
   }
 `;
 
-export const StyledSponsorsList = styled.div`
+export const StyledSponsorsCategory = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
-  grid-gap: 6rem;
+  gap: 4rem;
+`;
+
+export const StyledSponsorsCategoryItem = styled.div`
+  display: grid;
+  grid-row-gap: 2rem;
+  h3 {
+    font-size: 4rem;
+    font-weight: 600;
+  }
+`;
+
+export const StyledSponsorsList = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  a {
+    display: grid;
+    width: 25vw;
+  }
 `;
 
 export const StyledSponsor = styled.div`
   display: grid;
   position: relative;
   height: 20rem;
-  width: 100%;
+  width: 25vw;
+  background-color: blue;
+
   img {
     object-fit: contain;
+    object-position: 0%;
   }
 `;
 
@@ -276,5 +306,128 @@ export const StyledConnectBackground = styled.div`
   position: relative;
   img {
     object-fit: cover;
+  }
+`;
+
+export const StyledGuests = styled.div`
+  display: grid;
+  width: 100vw;
+  padding: 16rem 10rem;
+`;
+
+export const StyledGuestsTitle = styled.div`
+  display: grid;
+  margin: 6rem 0;
+  justify-items: center;
+  justify-self: center;
+  max-width: 90rem;
+  text-align: center;
+  p {
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    margin-top: 4rem;
+    color: #000000;
+  }
+`;
+
+export const StyledGuestsList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  grid-gap: 6rem;
+  margin-top: 6rem;
+`;
+
+export const StyledGuest = styled.div`
+  display: grid;
+  justify-items: center;
+  h4 {
+    font-size: 2.4rem;
+    margin-top: 4rem;
+  }
+  p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+`;
+
+export const StyledGuestImage = styled.div`
+  display: grid;
+  position: relative;
+  height: 30rem;
+  width: 100%;
+  img {
+    object-fit: contain;
+  }
+`;
+
+export const StyledSessions = styled.div`
+  display: grid;
+  width: 100vw;
+  padding: 16rem 10rem;
+`;
+
+export const StyledSessionsList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  grid-gap: 6rem;
+`;
+
+export const StyledSession = styled.div`
+  display: grid;
+  margin-top: 6rem;
+
+  h3 {
+    font-size: 3.2rem;
+  }
+  p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+`;
+
+export const StyledSessionWrapper = styled.div`
+display: grid;
+grid-template-columns: 3fr 1fr;
+  margin-top: 6rem;
+
+
+`
+export const StyledSessionItem = styled.div`
+  display: grid;
+  justify-items: center;
+  h4 {
+    font-size: 2.4rem;
+    margin-top: 4rem;
+  }
+  p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+`;
+
+export const StyledSessionItemImage = styled.div`
+  display: grid;
+  position: relative;
+  height: 30rem;
+  width: 100%;
+  img {
+    object-fit: contain;
+  }
+  span{
+    position: absolute;
+    right: 0;
+    background-color: #F58016;
+    color: white;
+    border-bottom-left-radius: 1rem;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.4rem;
   }
 `;

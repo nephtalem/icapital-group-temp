@@ -3,11 +3,16 @@ import {
   StyledApply,
   StyledBanner,
   StyledBannerImage,
+  StyledBannerWrapper,
   StyledConnect,
   StyledConnectBackground,
   StyledConnectContent,
   StyledConnectLinks,
   StyledConnectLogo,
+  StyledGuest,
+  StyledGuestImage,
+  StyledGuests,
+  StyledGuestsList,
   StyledLanding,
   StyledLandingBackground,
   StyledLandingContent,
@@ -17,9 +22,17 @@ import {
   StyledOrganizers,
   StyledOrganizersTitle,
   StyledRegister,
+  StyledSession,
+  StyledSessionItem,
+  StyledSessionItemImage,
+  StyledSessionWrapper,
+  StyledSessions,
+  StyledSessionsList,
   StyledSocials,
   StyledSponsorApply,
   StyledSponsors,
+  StyledSponsorsCategory,
+  StyledSponsorsCategoryItem,
   StyledSponsorsList,
   StyledSponsorsTitle,
   StyledUpcoming,
@@ -30,14 +43,17 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Social, socials } from "@/components/home/Header";
 import {
+  ComponentEafsSessionEafsSession,
   ComponentOrganizerOrganizer,
+  ComponentPersonPerson,
   ComponentSponsorSponsor,
   UpcomingChcdaEntity,
   UpcomingEacmsEntity,
   UpcomingEafsEntity,
 } from "@/gql/graphql";
 import { Interweave } from "interweave";
-
+import { ActionButton } from "@/components/shared/Button";
+import DownloadIcon from "@/assets/icons/download.svg";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 export const Upcoming = ({
@@ -45,32 +61,50 @@ export const Upcoming = ({
   base,
 }: {
   base: string;
-  upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
+  upcoming: UpcomingEafsEntity;
 }) => {
   return (
     <StyledUpcoming>
       <Landing upcoming={upcoming} base={base} />
       <Banner upcoming={upcoming} />
-      <Organizers
-        organizer={upcoming.attributes!.content!.organizer!.map(
-          (organizer) => organizer!
-        )}
-        organizerIntro={upcoming.attributes!.content!.organizerIntro!}
-      />
+      <Guests upcoming={upcoming} />
+      <Sessions upcoming={upcoming} />
       <Sponsors
         sponsor={upcoming.attributes!.content!.sponsor!.map(
           (sponsor) => sponsor!
         )}
         sponsorIntro={upcoming.attributes!.content!.sponsorIntro!}
       />
-      <StyledSponsorApply>
+      <Organizers
+        organizer={upcoming.attributes!.exhibitor!.map(
+          (organizer) => organizer!
+        )}
+        organizerIntro={""}
+        title="Exhibitors"
+      />
+      <Organizers
+        organizer={upcoming.attributes!.content!.organizer!.map(
+          (organizer) => organizer!
+        )}
+        organizerIntro={upcoming.attributes!.content!.organizerIntro!}
+        title="Organizers"
+      />
+      <Organizers
+        organizer={upcoming.attributes!.strategicPartner!.map(
+          (organizer) => organizer!
+        )}
+        organizerIntro={""}
+        title="Strategic Partners"
+      />
+
+      {/* <StyledSponsorApply>
         <h2>SPONSORSHIP AND EXHIBITION</h2>
         <Link href={`${base}/apply`}>
           <StyledApply>
             <div>APPLY HERE</div>
           </StyledApply>
         </Link>
-      </StyledSponsorApply>
+      </StyledSponsorApply> */}
       <VideoContainer upcoming={upcoming} />
       <Connect upcoming={upcoming} />
     </StyledUpcoming>
@@ -116,36 +150,191 @@ const Landing = ({
   );
 };
 
-const Banner = ({
-  upcoming,
-}: {
-  upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
-}) => {
+const Banner = ({ upcoming }: { upcoming: UpcomingEafsEntity }) => {
   return (
     <StyledBanner>
-      <Interweave content={upcoming.attributes?.content?.description} />
+      <StyledBannerWrapper>
+        <Interweave content={upcoming.attributes?.content?.description} />
+        {upcoming.attributes?.introDocument?.data?.attributes?.url ? (
+          <Link
+            href={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes
+              ?.introDocument!.data!.attributes!.url!}`}
+            target={"_blank"}
+            download
+          >
+            <ActionButton
+              label={"Download Document"}
+              color={"#F07709"}
+              border={"#9F4E03"}
+              icon={<DownloadIcon />}
+              onClick={(): void => {}}
+            />
+          </Link>
+        ) : (
+          <></>
+        )}
+      </StyledBannerWrapper>
+
       <StyledBannerImage>
+        {upcoming.attributes?.introVideo ? (
+          <ReactPlayer
+            url={`${upcoming.attributes?.introVideo}`}
+            width="100%"
+            height="100%"
+            playing={true}
+            muted={true}
+            controls={true}
+          />
+        ) : (
+          <Image
+            src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.banner?.data?.attributes?.url}`}
+            alt={""}
+            fill={true}
+          />
+        )}
+      </StyledBannerImage>
+    </StyledBanner>
+  );
+};
+
+const Guests = ({ upcoming }: { upcoming: UpcomingEafsEntity }) => {
+  return (
+    <StyledGuests>
+      <MainText title={"Guest of Honours"} />
+      <StyledGuestsList>
+        {upcoming.attributes?.guestOfHonour?.map((guest, index) => (
+          <Guest guest={guest!} key={index} />
+        ))}
+      </StyledGuestsList>
+    </StyledGuests>
+  );
+};
+
+const Guest = ({ guest }: { guest: ComponentPersonPerson }) => {
+  return (
+    <StyledGuest>
+      <StyledGuestImage>
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.banner?.data?.attributes?.url}`}
+          src={`${process.env.NEXT_PUBLIC_DATA}${guest?.picture?.data?.attributes?.url}`}
           alt={""}
           fill={true}
         />
-      </StyledBannerImage>
-    </StyledBanner>
+      </StyledGuestImage>
+      <h4>{guest.name}</h4>
+      <p>{guest.position}</p>
+    </StyledGuest>
+  );
+};
+
+const Sessions = ({ upcoming }: { upcoming: UpcomingEafsEntity }) => {
+  return (
+    <StyledSessions>
+      <MainText title={"Proceedings of the Summit"} />
+      {upcoming.attributes?.session?.map((session, index) => (
+        <Session key={index} session={session!} />
+      ))}
+    </StyledSessions>
+  );
+};
+
+const Session = ({ session }: { session: ComponentEafsSessionEafsSession }) => {
+  return (
+    <StyledSession>
+      <h3>{session.title}</h3>
+      <StyledSessionWrapper>
+        <StyledSessionsList>
+          {session.speaker?.map((speaker, index) => (
+            <Speaker speaker={speaker!} key={index} />
+          ))}
+        </StyledSessionsList>
+        {session.moderator ? <Moderator speaker={session.moderator!} /> : <></>}
+      </StyledSessionWrapper>
+    </StyledSession>
+  );
+};
+
+const Speaker = ({ speaker }: { speaker: ComponentPersonPerson }) => {
+  return (
+    <StyledSessionItem>
+      <StyledSessionItemImage>
+        <Image
+          src={`${process.env.NEXT_PUBLIC_DATA}${speaker?.picture?.data?.attributes?.url}`}
+          alt={""}
+          fill={true}
+        />
+      </StyledSessionItemImage>
+      <h4>{speaker.name}</h4>
+      <p>{speaker.position}</p>
+      {speaker.document?.data?.attributes?.url ? (
+        <Link
+          href={`${process.env.NEXT_PUBLIC_DATA}${speaker.document.data!
+            .attributes!.url!}`}
+          target={"_blank"}
+          download
+        >
+          <ActionButton
+            label={"Download Abstract"}
+            color={"#F07709"}
+            border={"#9F4E03"}
+            icon={<DownloadIcon />}
+            onClick={(): void => {}}
+          />
+        </Link>
+      ) : (
+        <></>
+      )}
+    </StyledSessionItem>
+  );
+};
+
+const Moderator = ({ speaker }: { speaker: ComponentPersonPerson }) => {
+  return (
+    <StyledSessionItem>
+      <StyledSessionItemImage>
+        <Image
+          src={`${process.env.NEXT_PUBLIC_DATA}${speaker?.picture?.data?.attributes?.url}`}
+          alt={""}
+          fill={true}
+        />
+        <span>Moderator</span>
+      </StyledSessionItemImage>
+      <h4>{speaker.name}</h4>
+      <p>{speaker.position}</p>
+      {speaker.document?.data?.attributes?.url ? (
+        <Link
+          href={`${process.env.NEXT_PUBLIC_DATA}${speaker.document.data!
+            .attributes!.url!}`}
+          target={"_blank"}
+          download
+        >
+          <ActionButton
+            label={"Download Abstract"}
+            color={"#F07709"}
+            border={"#9F4E03"}
+            icon={<DownloadIcon />}
+            onClick={(): void => {}}
+          />
+        </Link>
+      ) : (
+        <></>
+      )}
+    </StyledSessionItem>
   );
 };
 
 export const Organizers = ({
   organizer,
   organizerIntro,
+  title,
 }: {
+  title: string;
   organizerIntro: string;
   organizer: ComponentOrganizerOrganizer[];
 }) => {
   return (
     <StyledOrganizers>
       <StyledOrganizersTitle>
-        <MainText title={"Co-Organizers"} />
+        <MainText title={title} />
         <p>{organizerIntro}</p>
       </StyledOrganizersTitle>
       <StyledOrganizerList>
@@ -184,15 +373,52 @@ export const Sponsors = ({
         <MainText title={"Sponsors"} />
         <p>{sponsorIntro}</p>
       </StyledSponsorsTitle>
-      <StyledSponsorsList>
-        {sponsor.map((sponsor, index) => (
-          <Sponsor
-            key={index}
-            to={sponsor!.url!}
-            image={`${process.env.NEXT_PUBLIC_DATA}${sponsor?.logo?.data?.attributes?.url}`}
-          />
-        ))}
-      </StyledSponsorsList>
+      <StyledSponsorsCategory>
+        <StyledSponsorsCategoryItem>
+          <h3>Platinum</h3>
+          <StyledSponsorsList>
+            {sponsor
+              .filter((sponsor) => sponsor.level?.toString() === "Platinum")
+              .map((sponsor, index) => (
+                <Sponsor
+                  key={index}
+                  to={sponsor!.url!}
+                  image={`${process.env.NEXT_PUBLIC_DATA}${sponsor?.logo?.data?.attributes?.url}`}
+                />
+              ))}
+          </StyledSponsorsList>
+        </StyledSponsorsCategoryItem>
+
+        <StyledSponsorsCategoryItem>
+          <h3>Gold</h3>
+          <StyledSponsorsList>
+            {sponsor
+              .filter((sponsor) => sponsor.level?.toString() === "Gold")
+              .map((sponsor, index) => (
+                <Sponsor
+                  key={index}
+                  to={sponsor!.url!}
+                  image={`${process.env.NEXT_PUBLIC_DATA}${sponsor?.logo?.data?.attributes?.url}`}
+                />
+              ))}
+          </StyledSponsorsList>
+        </StyledSponsorsCategoryItem>
+
+        <StyledSponsorsCategoryItem>
+          <h3>Silver</h3>
+          <StyledSponsorsList>
+            {sponsor
+              .filter((sponsor) => sponsor.level?.toString() === "Silver")
+              .map((sponsor, index) => (
+                <Sponsor
+                  key={index}
+                  to={sponsor!.url!}
+                  image={`${process.env.NEXT_PUBLIC_DATA}${sponsor?.logo?.data?.attributes?.url}`}
+                />
+              ))}
+          </StyledSponsorsList>
+        </StyledSponsorsCategoryItem>
+      </StyledSponsorsCategory>
     </StyledSponsors>
   );
 };
