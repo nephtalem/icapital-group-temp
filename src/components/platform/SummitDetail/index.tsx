@@ -45,6 +45,7 @@ export const SummitDetail = ({ summit }: { summit: SummitEntity }) => {
       <Organizers
         organizer={summit.attributes!.organizer!.map((organizer) => organizer!)}
         organizerIntro={summit.attributes!.organizerIntro!}
+        title={""}
       />
       <Sponsors
         sponsor={summit.attributes!.sponsor!.map((sponsor) => sponsor!)}
