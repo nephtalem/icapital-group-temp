@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledMainText = styled.div`
@@ -15,5 +16,14 @@ export const StyledMainText = styled.div`
     width: 40%;
     height: 4px;
     background: #f58016;
+  }
+
+  ${breakingPoints.mobile}{
+     h1 {
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 5rem;
+    color: #000000;
+  }
   }
 `;

@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledUpcoming = styled.div`
@@ -20,9 +21,9 @@ export const StyledLandingContent = styled.div`
   h1 {
     font-weight: 700;
     font-size: 3rem;
-    line-height: 3rem;
     color: #ffffff;
     margin-top: 3.2rem;
+    text-align: center;
   }
   p {
     font-weight: 700;
@@ -32,6 +33,12 @@ export const StyledLandingContent = styled.div`
     margin-top: 3.2rem;
     max-width: 50%;
     text-align: center;
+  }
+
+  ${breakingPoints.mobile} {
+    p {
+      max-width: 100%;
+    }
   }
 `;
 
@@ -88,6 +95,12 @@ export const StyledBanner = styled.div`
     text-align: justify;
     color: #ffffff;
   }
+
+  ${breakingPoints.mobile} {
+    grid-template-columns: 1fr;
+    padding: 15rem 2rem;
+    grid-row-gap: 6rem;
+  }
 `;
 export const StyledBannerWrapper = styled.div`
   display: grid;
@@ -104,12 +117,20 @@ export const StyledBannerImage = styled.div`
   img {
     object-fit: contain;
   }
+
+  ${breakingPoints.mobile} {
+    width: 100%;
+    height: 50rem;
+  }
 `;
 
 export const StyledOrganizers = styled.div`
   display: grid;
   width: 100vw;
   padding: 16rem 10rem;
+  ${breakingPoints.mobile} {
+    padding: 16rem 4rem;
+  }
 `;
 
 export const StyledOrganizersTitle = styled.div`
@@ -133,6 +154,10 @@ export const StyledOrganizerList = styled.div`
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
   grid-gap: 6rem;
+
+  ${breakingPoints.mobile} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const StyledOrganizer = styled.div`
@@ -150,6 +175,9 @@ export const StyledSponsors = styled.div`
   display: grid;
   width: 100vw;
   padding: 16rem 10rem;
+  ${breakingPoints.mobile} {
+    padding: 16rem 4rem;
+  }
 `;
 
 export const StyledSponsorsTitle = styled.div`
@@ -173,6 +201,10 @@ export const StyledSponsorsCategory = styled.div`
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
   gap: 4rem;
+
+  ${breakingPoints.mobile} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const StyledSponsorsCategoryItem = styled.div`
@@ -247,6 +279,11 @@ export const StyledVideoContainer = styled.div`
   justify-items: center;
   align-items: center;
   padding: 10rem 20rem;
+
+  ${breakingPoints.mobile} {
+    padding: 10rem 4rem;
+    height: 60rem;
+  }
 `;
 
 export const StyledConnect = styled.div`
@@ -262,6 +299,10 @@ export const StyledConnectContent = styled.div`
   align-self: center;
   grid-column-gap: 7rem;
   padding: 0 8rem;
+
+  ${breakingPoints.mobile} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const StyledConnectLogo = styled.div`
@@ -286,6 +327,14 @@ export const StyledConnectLinks = styled.div`
     align-items: center;
     color: #ffffff;
   }
+
+  ${breakingPoints.mobile} {
+    grid-row-gap: 2rem;
+    h1 {
+      font-size: 4rem;
+      line-height: 6rem;
+    }
+  }
 `;
 export const StyledSocials = styled.header`
   display: flex;
@@ -295,6 +344,12 @@ export const StyledSocials = styled.header`
     height: 7rem !important;
     path {
       fill: #f27724;
+    }
+  }
+
+  ${breakingPoints.mobile} {
+    svg {
+      height: 4rem !important;
     }
   }
 `;
@@ -313,6 +368,10 @@ export const StyledGuests = styled.div`
   display: grid;
   width: 100vw;
   padding: 16rem 10rem;
+
+  ${breakingPoints.mobile} {
+    padding: 16rem 4rem;
+  }
 `;
 
 export const StyledGuestsTitle = styled.div`
@@ -367,6 +426,9 @@ export const StyledSessions = styled.div`
   display: grid;
   width: 100vw;
   padding: 16rem 10rem;
+  ${breakingPoints.mobile} {
+    padding: 16rem 4rem;
+  }
 `;
 
 export const StyledSessionsList = styled.div`
@@ -391,12 +453,14 @@ export const StyledSession = styled.div`
 `;
 
 export const StyledSessionWrapper = styled.div`
-display: grid;
-grid-template-columns: 3fr 1fr;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   margin-top: 6rem;
 
-
-`
+  ${breakingPoints.mobile} {
+    grid-template-columns: 1fr;
+  }
+`;
 export const StyledSessionItem = styled.div`
   display: grid;
   justify-items: center;
@@ -420,10 +484,10 @@ export const StyledSessionItemImage = styled.div`
   img {
     object-fit: contain;
   }
-  span{
+  span {
     position: absolute;
     right: 0;
-    background-color: #F58016;
+    background-color: #f58016;
     color: white;
     border-bottom-left-radius: 1rem;
     padding: 1rem 2rem;
