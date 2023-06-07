@@ -1,3 +1,4 @@
+import { breakingPoints } from "@/styles/breaking.points";
 import styled from "@emotion/styled";
 
 export const StyledPreviousSummits = styled.div`
@@ -5,6 +6,11 @@ export const StyledPreviousSummits = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 6rem;
   padding: 7rem;
+
+  ${breakingPoints.mobile} {
+    grid-template-columns: 1fr;
+    padding: 7rem 2rem;
+  }
 `;
 
 export const StyledPreviousSummit = styled.div`
