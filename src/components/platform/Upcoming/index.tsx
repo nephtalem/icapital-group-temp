@@ -352,7 +352,7 @@ export const Organizers = ({
 
 const Organizer = ({ image, to }: { image: string; to: string }) => {
   return (
-    <Link href={to} target={"_blank"}>
+    <Link href={to ?? "/"} target={"_blank"}>
       <StyledOrganizer>
         <Image src={image} alt={""} fill={true} />
       </StyledOrganizer>

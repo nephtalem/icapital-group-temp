@@ -45,9 +45,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const summit = await KSPService.summit(params!.slug!.toString());
+  console.log("summit", summit);
+
   const upcomingEafs = await KSPService.upcomingEafs();
 
-  console.log("upcomingEafs", upcomingEafs);
   return {
     props: { summit, upcomingEafs },
     revalidate: 10, // In seconds
