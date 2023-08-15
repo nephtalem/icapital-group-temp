@@ -1,13 +1,20 @@
 import Image from "next/image";
 import {
   StyledHeader,
+  StyledHeaderAlt,
   StyledLogo,
+  StyledMenu,
   StyledOption,
   StyledOptions,
 } from "./styles";
 import Link from "next/link";
 import { Button } from "../Button";
 import { useRouter } from "next/router";
+import MenuIcon from "@/assets/icons/menu.svg";
+import gsap from "gsap";
+import { useRef } from "react";
+import { StyledDrawerWrapper } from "@/components/home/Header/styles";
+import { Drawer } from "@/components/home/Drawer";
 
 export const Header = ({
   options,
@@ -39,6 +46,46 @@ export const Header = ({
         <Button label={"Contact Us"} onClick={(): void => {}} />
       </Link>
     </StyledHeader>
+  );
+};
+
+export const HeaderAlt = () => {
+  const drawer = useRef(null);
+
+  return (
+    <>
+      <StyledHeaderAlt>
+        <Link href={"/"}>
+          <StyledLogo>
+            <Image src={"/images/logo.png"} alt={""} fill={true} />
+          </StyledLogo>
+        </Link>
+
+        <StyledMenu>
+          <button
+            onMouseOver={() => {
+              gsap.to(drawer.current, { right: 0 });
+            }}
+          >
+            <MenuIcon />
+          </button>
+        </StyledMenu>
+      </StyledHeaderAlt>
+      <StyledDrawerWrapper
+        ref={drawer}
+        onMouseLeave={() => {
+          gsap.to(drawer.current, { right: "-50rem" });
+        }}
+      >
+        <Drawer />
+        <span
+          className="cover"
+          onClick={() => {
+            gsap.to(drawer.current, { right: "-50rem" });
+          }}
+        />
+      </StyledDrawerWrapper>
+    </>
   );
 };
 

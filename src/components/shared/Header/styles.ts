@@ -21,6 +21,44 @@ export const StyledHeader = styled.header`
     padding-bottom: 2rem;
   }
 `;
+export const StyledHeaderAlt = styled.header`
+  display: flex;
+  height: 12rem;
+  border-bottom: 1px solid #eee;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 100;
+`;
+
+export const StyledMenu = styled.div`
+  display: flex;
+  gap: 4rem;
+
+  button {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    svg {
+      width: 6rem;
+      path {
+        fill: #1a2b42;
+      }
+    }
+  }
+
+  ${breakingPoints.mobile} {
+    button {
+      svg {
+        width: 3rem;
+      }
+    }
+  }
+`;
 
 export const StyledLogo = styled.div`
   display: grid;

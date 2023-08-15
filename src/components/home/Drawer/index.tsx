@@ -7,7 +7,7 @@ export const Drawer = () => {
   return (
     <StyledDrawer>
       <h1>i-Capital Institute</h1>
-      <DrawerItem label={"Who we are"} to={"/about-us"} />
+      <DrawerItem label={"Who we are"} to={"/who-we-are"} />
       <DrawerItem label={"Knowledge Sharing Platform"} to={"/knowledge-sharing"} />
       <DrawerItem label={"Advisory Solutions"} to={"/advisory-solutions"} />
       <DrawerItem label={"Learning Solutions"} to={"/learning-solutions"} />

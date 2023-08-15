@@ -10,7 +10,7 @@ export const StyledMainText = styled.div`
     font-weight: 700;
     font-size: 6.4rem;
     line-height: 8rem;
-    color: #000000;
+    color: #1A2B42;
   }
   span {
     width: 40%;
