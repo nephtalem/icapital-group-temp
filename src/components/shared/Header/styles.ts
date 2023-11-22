@@ -1,6 +1,5 @@
 import { breakingPoints } from "@/styles/breaking.points";
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledHeader = styled.header`
   display: grid;
   height: 12rem;
@@ -88,7 +87,7 @@ export const StyledOptions = styled.div`
 `;
 
 export const StyledOption = styled.div<{
-  active: boolean;
+  $active: boolean;
 }>`
   display: grid;
 
@@ -97,6 +96,6 @@ export const StyledOption = styled.div<{
   font-weight: 600;
   padding: 0.4rem 2.4rem;
   border-radius: 0.8rem;
-  color: ${({ active }) => (active ? "#f58016" : "black")};
-  border: 2px solid ${({ active }) => (active ? "#f58016" : "transparent")};
+  color: ${({ $active }) => ($active ? "#f58016" : "black")};
+  border: 2px solid ${({ $active }) => ($active ? "#f58016" : "transparent")};
 `;

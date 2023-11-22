@@ -1,6 +1,5 @@
 import { breakingPoints } from "@/styles/breaking.points";
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledSlide = styled.div`
   display: grid;
   height: 100vh;

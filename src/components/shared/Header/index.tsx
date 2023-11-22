@@ -9,8 +9,7 @@ import {
 } from "./styles";
 import Link from "next/link";
 import { Button } from "../Button";
-import { useRouter } from "next/router";
-import MenuIcon from "@/assets/icons/menu.svg";
+import { useRouter } from "next/navigation";import MenuIcon from "@/assets/icons/menu.svg";
 import gsap from "gsap";
 import { useRef } from "react";
 import { StyledDrawerWrapper } from "@/components/home/Header/styles";

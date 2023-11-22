@@ -1,6 +1,5 @@
 import { breakingPoints } from "@/styles/breaking.points";
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledFooter = styled.footer`
   background-color: #1a2b42;
 `;

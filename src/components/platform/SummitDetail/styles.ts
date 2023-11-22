@@ -1,6 +1,5 @@
 import { StyledButton } from "@/components/shared/Button/styles";
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledSummitDetail = styled.div`
   display: grid;
 `;

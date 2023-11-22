@@ -31,8 +31,7 @@ import { upload } from "@/utils/upload";
 import { showLoadingMessage, showSuccessMessage } from "@/utils/show.message";
 import KSPService from "@/services/ksp.service";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
-export const Registration = ({
+import { useRouter } from "next/navigation";export const Registration = ({
   registration,
   upcoming,
 }: {

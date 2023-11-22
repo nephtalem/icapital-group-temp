@@ -1,6 +1,5 @@
 import { breakingPoints } from "@/styles/breaking.points";
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledPreviousSummits = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;

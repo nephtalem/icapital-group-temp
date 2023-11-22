@@ -1,6 +1,5 @@
 import { breakingPoints } from "@/styles/breaking.points";
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledButton = styled.button`
   border: none;
   outline: none;

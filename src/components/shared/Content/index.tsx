@@ -7,7 +7,7 @@ export const Content = ({
   children,
 }: {
   scrollable?: boolean;
-  children: JSX.Element[] | JSX.Element;
+  children: ReactNode
 }) => {
   return (
     <StyledContent scrollable={scrollable}>

@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledDepartments = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -1,6 +1,5 @@
 import { breakingPoints } from "@/styles/breaking.points";
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledNavWrapper = styled.div`
   position: fixed;
   display: grid;
@@ -10,7 +9,7 @@ export const StyledNavWrapper = styled.div`
   right: 2rem;
   z-index: 100;
 
-  ${breakingPoints.mobile}{
+  ${breakingPoints.mobile} {
     display: none;
   }
 `;
@@ -23,7 +22,7 @@ export const StyledNav = styled.div`
   grid-row-gap: 3.2rem;
 `;
 
-export const StyledNavItem = styled.div<{ active: boolean }>`
+export const StyledNavItem = styled.div<{ $active: boolean }>`
   height: 1.6rem;
   width: 1.6rem;
   cursor: pointer;
@@ -34,12 +33,12 @@ export const StyledNavItem = styled.div<{ active: boolean }>`
     height: 1.6rem;
     width: 1.6rem;
     border-radius: 50%;
-    background-color: ${({ active }) => (active ? "transparent" : "white")};
+    background-color: ${({ $active }) => ($active ? "transparent" : "white")};
     transition: all 0.3s ease-in-out;
   }
   :hover {
     span {
-      transform: scale(${({ active }) => (active ? 1 : 0.7)});
+      transform: scale(${({ $active }) => ($active ? 1 : 0.7)});
     }
   }
 `;

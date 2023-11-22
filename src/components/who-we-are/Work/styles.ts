@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import { breakingPoints } from "@/styles/breaking.points";
+import styled from "styled-components";import { breakingPoints } from "@/styles/breaking.points";
 
 export const StyledWork = styled.div`
   display: grid;

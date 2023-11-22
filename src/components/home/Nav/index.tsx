@@ -2,7 +2,7 @@ import lodash from "lodash";
 import { useSwiper } from "swiper/react";
 import { StyledNav, StyledNavItem, StyledNavWrapper } from "./styles";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export const Nav = ({ length }: { length: number }) => {
   const swiper = useSwiper();
@@ -20,7 +20,7 @@ export const Nav = ({ length }: { length: number }) => {
         {lodash.range(0, length).map((value) => (
           <StyledNavItem
             key={value}
-            active={active == value}
+            $active={active == value}
             onClick={() => swiper.slideTo(value)}
           >
             <span />

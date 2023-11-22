@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import { breakingPoints } from "@/styles/breaking.points";
+import styled from "styled-components";import { breakingPoints } from "@/styles/breaking.points";
 
 export const StyledMissionVisionValue = styled.div`
   display: grid;

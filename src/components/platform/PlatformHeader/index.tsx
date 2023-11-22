@@ -6,8 +6,7 @@ import {
   StyledPlatformHeader,
 } from "./styles";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import {
+import { useRouter } from "next/navigation";import {
   UpcomingChcdaEntity,
   UpcomingEacmsEntity,
   UpcomingEafsEntity,

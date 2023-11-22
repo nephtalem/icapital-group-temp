@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledDocumentsDetail = styled.div`
   display: grid;
   padding: 4.8rem 24rem;

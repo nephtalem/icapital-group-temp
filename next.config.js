@@ -22,12 +22,17 @@ const nextConfig = {
     ];
   },
   compiler: {
-    emotion: true,
-  },
-  images: {
-    domains: ["icapital-cms.techawks.io"],
+    styledComponents: true,
   },
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: '"icapital-cms.techawks.io',
+      },
+    ],
+  },
   reactStrictMode: true,
   swcMinify: true,
 };

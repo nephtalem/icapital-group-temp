@@ -1,6 +1,5 @@
 import { StyledHeader } from "@/components/shared/Header/styles";
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledContent = styled.div<{ scrollable: boolean }>`
   display: grid;
   position: relative;

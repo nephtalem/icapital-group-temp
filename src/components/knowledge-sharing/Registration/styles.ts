@@ -1,8 +1,7 @@
 import { StyledButton } from "@/components/shared/Button/styles";
 import { StyledMainText } from "@/components/shared/MainText/styles";
 import { breakingPoints } from "@/styles/breaking.points";
-import styled from "@emotion/styled";
-
+import styled from "styled-components";
 export const StyledRegistration = styled.div`
   display: grid;
   justify-items: center;
