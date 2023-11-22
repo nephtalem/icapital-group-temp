@@ -1,3 +1,4 @@
+"use client";
 import { Header } from "@/components/shared/Header";
 import { StyledContent } from "./styles";
 import { Footer } from "@/components/shared/Footer";
@@ -8,7 +9,7 @@ export const Content = ({
   children,
 }: {
   scrollable?: boolean;
-  children: ReactNode
+  children: ReactNode;
 }) => {
   return (
     <StyledContent scrollable={scrollable}>

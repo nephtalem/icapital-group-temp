@@ -1,17 +1,17 @@
 import { Home } from "@/components/home/Home";
-import { Title } from "@/components/shared/Title";
-import { HomeEntity } from "@/gql/graphql";
 import HomeService from "@/services/home.service";
-import { GetStaticProps } from "next";
+import { Metadata } from "next";
 
 export const revalidate = 10;
 
+export const metadata: Metadata = {
+  title: "Home | The i-Capital Africa Institute",
+};
 const HomePage = async () => {
   const home = await HomeService.home();
 
   return (
     <>
-      {/* <Title title={"Home"} /> */}
       <Home home={home} />
     </>
   );

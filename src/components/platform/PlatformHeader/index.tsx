@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   StyledLogo,
@@ -6,7 +8,8 @@ import {
   StyledPlatformHeader,
 } from "./styles";
 import Link from "next/link";
-import { useRouter } from "next/navigation";import {
+import { usePathname, useRouter } from "next/navigation";
+import {
   UpcomingChcdaEntity,
   UpcomingEacmsEntity,
   UpcomingEafsEntity,
@@ -90,9 +93,10 @@ export const PlatformHeader = ({
 
 export const Option = ({ label, to }: { label: string; to: string }) => {
   const router = useRouter();
+  const pathname = usePathname();
   return (
     <Link href={to}>
-      <StyledOption active={to === router.pathname}>{label}</StyledOption>
+      <StyledOption $active={to === pathname}>{label}</StyledOption>
     </Link>
   );
 };

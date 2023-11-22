@@ -9,7 +9,8 @@ import {
 } from "./styles";
 import Link from "next/link";
 import { Button } from "../Button";
-import { useRouter } from "next/navigation";import MenuIcon from "@/assets/icons/menu.svg";
+import { usePathname, useRouter } from "next/navigation";
+import MenuIcon from "@/assets/icons/menu.svg";
 import gsap from "gsap";
 import { useRef } from "react";
 import { StyledDrawerWrapper } from "@/components/home/Header/styles";
@@ -98,14 +99,11 @@ const Option = ({
   base: string;
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
   return (
     <Link href={to}>
       <StyledOption
-        active={
-          base === to
-            ? router.pathname == to
-            : router.pathname.search(base) !== -1
-        }
+        $active={base === to ? pathname == to : pathname.search(base) !== -1}
       >
         {label}
       </StyledOption>

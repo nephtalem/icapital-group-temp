@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { StyledIntro, StyledIntroContent, StyledIntroPicture } from "./styles";
 import { MainText } from "@/components/shared/MainText";

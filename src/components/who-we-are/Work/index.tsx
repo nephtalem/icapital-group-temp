@@ -1,3 +1,5 @@
+"use client";
+
 import CountUp from "react-countup";
 import { StyledWork, StyledWorkItem, StyledWorkList } from "./styles";
 import VisibilitySensor from "react-visibility-sensor";

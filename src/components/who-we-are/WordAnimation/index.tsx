@@ -1,3 +1,5 @@
+"use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { StyledWord, StyledWordAnimation, StyledWordList } from "./styles";
 import { Autoplay, FreeMode } from "swiper/modules";

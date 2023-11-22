@@ -17,10 +17,22 @@ import NextTopLoader from "nextjs-toploader";
 import { ReactNode } from "react";
 import "react-medium-image-zoom/dist/styles.css";
 import "react-phone-number-input/style.css";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 const mulish = Mulish({ subsets: ["latin"] });
 polyfill();
+
+export const metadata: Metadata = {
+  metadataBase: new URL(`https://${process.env.NEXT_PUBLIC_DOMAIN}`),
+  title: "The i-Capital Africa Institute",
+  description: "..in the business of transforming people...",
+  openGraph: {
+    title: "The i-Capital Africa Institute",
+    description: "..in the business of transforming people...",
+    url: `https://${process.env.NEXT_PUBLIC_DOMAIN}`,
+  },
+};
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
