@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Keyboard, Mousewheel } from "swiper";
+import { Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Footer } from "../Footer";
 import { Header } from "../Header";

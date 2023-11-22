@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { StyledWord, StyledWordAnimation, StyledWordList } from "./styles";
-import { Autoplay, FreeMode } from "swiper";
+import { Autoplay, FreeMode } from "swiper/modules";
 import { useEffect, useState } from "react";
 import TextTransition, { presets } from "react-text-transition";
 

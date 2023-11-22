@@ -47,10 +47,10 @@ const File = ({ file }: { file: ComponentFileFile }) => {
   return (
     <StyledFile>
       <StyledFileIcon>
-        <FileIcon
+        {/* <FileIcon
           extension={file.content!.data!.attributes!.ext!}
           {...defaultStyles.pdf}
-        />
+        /> */}
       </StyledFileIcon>
       <p>{file.name}</p>
       <Link

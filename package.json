@@ -23,6 +23,7 @@
     "eslint-config-next": "latest",
     "graphql": "^16.6.0",
     "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.14.2",
     "gsap": "latest",
     "interweave": "^13.1.0",
     "lodash": "latest",
@@ -57,5 +58,6 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "interweave-ssr": "^2.0.0"
-  }
+  },
+  "packageManager": "yarn@4.0.2"
 }
