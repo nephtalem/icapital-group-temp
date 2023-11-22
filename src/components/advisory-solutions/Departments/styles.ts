@@ -1,3 +1,4 @@
+import { Theme } from "@/styles/theme";
 import styled from "styled-components";
 export const StyledDepartments = styled.div`
   display: grid;
@@ -10,12 +11,12 @@ export const StyledDepartment = styled.div`
   display: grid;
   border-radius: 2rem;
   background: #fff;
-  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05);
   padding: 3.2rem;
 
   h3 {
-    color: #f58016;
-    font-size: 3.2rem;
+    color: ${Theme.colors.accent};
+    font-size: 4rem;
     font-weight: 700;
     margin-top: 4.8rem;
   }
@@ -48,5 +49,8 @@ export const StyledCheckItem = styled.div`
   svg {
     height: 3.2rem;
     width: 3.2rem;
+  }
+  p{
+    font-size: 1.6rem;
   }
 `;

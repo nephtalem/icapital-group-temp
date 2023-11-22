@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { StyledIntro, StyledIntroContent, StyledIntroImage } from "./styles";
 

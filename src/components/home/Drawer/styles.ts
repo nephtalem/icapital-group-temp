@@ -1,4 +1,5 @@
 import { breakingPoints } from "@/styles/breaking.points";
+import { Theme } from "@/styles/theme";
 import styled from "styled-components";
 export const StyledDrawer = styled.div`
   display: grid;
@@ -16,7 +17,7 @@ export const StyledDrawer = styled.div`
     margin-bottom: 4rem;
   }
 
-  ${breakingPoints.mobile}{
+  ${breakingPoints.mobile} {
     width: 80vw;
   }
 `;
@@ -32,7 +33,7 @@ export const StyledDrawerItem = styled.div`
     position: absolute;
     height: 0.2rem;
     width: 0;
-    background-color: white;
+    background-color: ${Theme.colors.accent};
     bottom: -1rem;
     left: 0;
   }
@@ -41,20 +42,18 @@ export const StyledDrawerItem = styled.div`
     font-size: 2.4rem;
     font-weight: 500;
     color: white;
+    transition: all 0.3s;
   }
   svg {
     height: 1.6rem;
   }
-  :hover {
+  &:hover {
     p {
-      color: #f07709;
-    }
-    span {
-      background-color: #f07709;
+      color: ${Theme.colors.accent};
     }
     svg {
       path {
-        fill: #f07709;
+        fill: ${Theme.colors.accent};
       }
     }
   }

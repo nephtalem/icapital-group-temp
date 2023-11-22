@@ -1,14 +1,12 @@
 export class Theme {
   static colors = {
-    primary: "#3D76BB",
-    primaryLight: "#6398D8",
-
-    text: "#0D223C",
-    text6: "#696984",
-    textA: "#A8ADB7",
-    grey: "#767676",
-    lightGrey: "#ACACAC",
-
+    primary: "#253E5E",
+    primaryLight: "#4A7DBC",
+    accent: "#F78019",
+    text: "#000000",
+    text6: "#666666",
+    textA: "#aaaaaa",
+    grey: "#777777",
     white: "#FFFFFF",
   };
 }
