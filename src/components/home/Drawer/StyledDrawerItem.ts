@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const StyledDrawerItem = styled.div`
   display: grid;
   grid-template-columns: max-content max-content;
@@ -12,7 +11,6 @@ export const StyledDrawerItem = styled.div`
     position: absolute;
     height: 0.2rem;
     width: 0;
-    background-color: ${Theme};
     bottom: -1rem;
     left: 0;
   }

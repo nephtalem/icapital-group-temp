@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 17000",
-    "lint": "next lint",
+    "lint": "next lint -- --dir . ",
     "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
