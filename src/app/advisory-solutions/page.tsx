@@ -17,21 +17,19 @@ const AdvisorySolutionsPage = async () => {
   const as: AdvisorySolutionsEntity = await ASService.as();
   console.log(as);
   return (
-    <>
-      <Content scrollable={true}>
-        <Intro as={as} />
-        <Departments as={as} />
-        <Partners
-          title={"Our Clients"}
-          partnerIntro={""}
-          partner={as.attributes!.clients!.map((client) => ({
-            image: `${client?.logo?.data?.attributes?.url}`,
-            to: `${client?.url}`,
-          }))}
-        />
-        <CallToAction as={as} />
-      </Content>
-    </>
+    <Content scrollable={true}>
+      <Intro as={as} />
+      <Departments as={as} />
+      <Partners
+        title={"Our Clients"}
+        partnerIntro={""}
+        partner={as.attributes!.clients!.map((client) => ({
+          image: `${client?.logo?.data?.attributes?.url}`,
+          to: `${client?.url}`,
+        }))}
+      />
+      <CallToAction as={as} />
+    </Content>
   );
 };
 

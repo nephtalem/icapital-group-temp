@@ -326,6 +326,20 @@ type ComponentFileFile {
   content: UploadFileEntityResponse
 }
 
+input ComponentLsBannerLsBannerInput {
+  id: ID
+  image: ID
+  callToAction: String
+  callToActionLink: String
+}
+
+type ComponentLsBannerLsBanner {
+  id: ID!
+  image: UploadFileEntityResponse
+  callToAction: String
+  callToActionLink: String
+}
+
 input ComponentOpeningRemarkOpeningRemarkFiltersInput {
   name: StringFilterInput
   position: StringFilterInput
@@ -987,22 +1001,22 @@ type UsersPermissionsUserRelationResponseCollection {
 }
 
 input AdvisorySolutionsInput {
-  description: String
   image: ID
   youtubeUrl: String
   solution: [ComponentSolutionSolutionInput]
   clients: [ComponentOrganizerOrganizerInput]
   callToAction: String
+  description: String
   publishedAt: DateTime
 }
 
 type AdvisorySolutions {
-  description: String
   image: UploadFileEntityResponse
   youtubeUrl: String
   solution(filters: ComponentSolutionSolutionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSolutionSolution]
   clients(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   callToAction: String
+  description: String
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1119,7 +1133,6 @@ type BlogRelationResponseCollection {
 }
 
 input CrossBorderSolutionsInput {
-  description: String
   image: ID
   youtubeUrl: String
   CBSPoint: [ComponentCbsPointCbsPointInput]
@@ -1127,11 +1140,11 @@ input CrossBorderSolutionsInput {
   partners: [ComponentOrganizerOrganizerInput]
   clients: [ComponentOrganizerOrganizerInput]
   callToAction: String
+  description: String
   publishedAt: DateTime
 }
 
 type CrossBorderSolutions {
-  description: String
   image: UploadFileEntityResponse
   youtubeUrl: String
   CBSPoint(filters: ComponentCbsPointCbsPointFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentCbsPointCbsPoint]
@@ -1139,6 +1152,7 @@ type CrossBorderSolutions {
   partners(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   clients(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   callToAction: String
+  description: String
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1289,22 +1303,24 @@ type KnowledgeSharingEntityResponse {
 }
 
 input LearningSolutionsInput {
-  description: String
   image: ID
   youtubeUrl: String
   solution: [ComponentSolutionSolutionInput]
   clients: [ComponentOrganizerOrganizerInput]
   callToAction: String
+  description: String
+  LSBanner: ComponentLsBannerLsBannerInput
   publishedAt: DateTime
 }
 
 type LearningSolutions {
-  description: String
   image: UploadFileEntityResponse
   youtubeUrl: String
   solution(filters: ComponentSolutionSolutionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSolutionSolution]
   clients(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   callToAction: String
+  description: String
+  LSBanner: ComponentLsBannerLsBanner
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1640,7 +1656,7 @@ type UpcomingEafsEntityResponse {
   data: UpcomingEafsEntity
 }
 
-union GenericMorph = ComponentCategoryCategory | ComponentCbsPointCbsPoint | ComponentCertificationPackageCertificationPackage | ComponentEafsSessionEafsSession | ComponentExposureProgramExposureProgram | ComponentFileFile | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPersonPerson | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSolutionPointSolutionPoint | ComponentSolutionSolution | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | AdvisorySolutions | Author | Blog | CrossBorderSolutions | Document | ExposureLearningPrograms | Home | KnowledgeSharing | LearningSolutions | Participant | RegistrationEacms | RegistrationEafs | Setting | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs
+union GenericMorph = ComponentCategoryCategory | ComponentCbsPointCbsPoint | ComponentCertificationPackageCertificationPackage | ComponentEafsSessionEafsSession | ComponentExposureProgramExposureProgram | ComponentFileFile | ComponentLsBannerLsBanner | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPersonPerson | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSolutionPointSolutionPoint | ComponentSolutionSolution | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | AdvisorySolutions | Author | Blog | CrossBorderSolutions | Document | ExposureLearningPrograms | Home | KnowledgeSharing | LearningSolutions | Participant | RegistrationEacms | RegistrationEafs | Setting | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs
 
 input FileInfoInput {
   name: String
