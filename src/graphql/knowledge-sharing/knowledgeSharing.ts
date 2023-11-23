@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const KNOWLEDGE_SHARING = gql`
   query knowledgeSharing {
-    knowledgeSharing {
+    knowledgeSharing(publicationState: LIVE) {
       data {
         attributes {
           intro

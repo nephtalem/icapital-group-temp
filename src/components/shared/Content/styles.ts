@@ -1,6 +1,6 @@
 import { StyledHeader } from "@/components/shared/Header/styles";
 import styled from "styled-components";
-export const StyledContent = styled.div<{ scrollable: boolean }>`
+export const StyledContent = styled.div<{ $scrollable: boolean }>`
   display: grid;
   position: relative;
   width: 100vw;
@@ -9,6 +9,6 @@ export const StyledContent = styled.div<{ scrollable: boolean }>`
   overflow-y: auto;
 
   ${StyledHeader} {
-    position: ${({ scrollable }) => (scrollable ? "relative" : "sticky")};
+    position: ${({ $scrollable }) => ($scrollable ? "relative" : "sticky")};
   }
 `;

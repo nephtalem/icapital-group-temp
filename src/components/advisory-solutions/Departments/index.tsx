@@ -8,53 +8,18 @@ import {
   StyledDepartments,
 } from "./styles";
 import CheckIcon from "@/assets/icons/check.alt.svg";
-export const Departments = () => {
+import { AdvisorySolutionsEntity } from "@/gql/graphql";
+export const Departments = ({ as }: { as: AdvisorySolutionsEntity }) => {
   return (
     <StyledDepartments>
-      <Department
-        image={"/images/ot.png"}
-        title={"Organizational Transformation"}
-        items={[
-          "Corporate Strategy Design",
-          "Organizational Structure",
-          "Organizational Culture Design",
-          "Salary & Benefits",
-          "Job Family",
-        ]}
-      />
-      <Department
-        image={"/images/hrt.png"}
-        title={"Human Resource Transformation"}
-        items={[
-          "S -OJT Implementation",
-          "HR Skill Audit",
-          "Job Analysis (Using DACUM Technique)",
-          "Corporate Policies & Manuals Design",
-          "Knowledge Management System Design",
-        ]}
-      />
-      <Department
-        image={"/images/wfs.png"}
-        title={"Work Force Solution"}
-        items={[
-          "Corporate Strategy Design",
-          "Organizational Structure",
-          "Organizational Culture Design",
-          "Salary & Benefits",
-          "Job Family",
-        ]}
-      />
-      <Department
-        image={"/images/de.png"}
-        title={"Data and Evidence"}
-        items={[
-          "Corporate Strategy Design",
-          "Organizational Structure",
-          "Organizational Culture Design",
-          "Salary & Benefits",
-          "Job Family",
-        ]}
-      />
+      {as.attributes?.solution?.map((solution) => (
+        <Department
+          key={solution?.id}
+          image={`${process.env.NEXT_PUBLIC_DATA}${solution?.icon?.data?.attributes?.url}`}
+          title={`${solution?.title}`}
+          items={solution!.SolutionPoint!.map((point) => point?.point ?? "")}
+        />
+      ))}
     </StyledDepartments>
   );
 };

@@ -222,6 +222,48 @@ type ComponentCategoryCategory {
   file(filters: ComponentFileFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentFileFile]
 }
 
+input ComponentCbsPointCbsPointFiltersInput {
+  title: StringFilterInput
+  description: StringFilterInput
+  and: [ComponentCbsPointCbsPointFiltersInput]
+  or: [ComponentCbsPointCbsPointFiltersInput]
+  not: ComponentCbsPointCbsPointFiltersInput
+}
+
+input ComponentCbsPointCbsPointInput {
+  id: ID
+  title: String
+  description: String
+}
+
+type ComponentCbsPointCbsPoint {
+  id: ID!
+  title: String
+  description: String
+}
+
+input ComponentCertificationPackageCertificationPackageFiltersInput {
+  name: StringFilterInput
+  description: StringFilterInput
+  and: [ComponentCertificationPackageCertificationPackageFiltersInput]
+  or: [ComponentCertificationPackageCertificationPackageFiltersInput]
+  not: ComponentCertificationPackageCertificationPackageFiltersInput
+}
+
+input ComponentCertificationPackageCertificationPackageInput {
+  id: ID
+  name: String
+  image: ID
+  description: String
+}
+
+type ComponentCertificationPackageCertificationPackage {
+  id: ID!
+  name: String
+  image: UploadFileEntityResponse
+  description: String
+}
+
 input ComponentEafsSessionEafsSessionFiltersInput {
   title: StringFilterInput
   speaker: ComponentPersonPersonFiltersInput
@@ -243,6 +285,26 @@ type ComponentEafsSessionEafsSession {
   title: String
   speaker(filters: ComponentPersonPersonFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPersonPerson]
   moderator: ComponentPersonPerson
+}
+
+input ComponentExposureProgramExposureProgramFiltersInput {
+  title: StringFilterInput
+  points: ComponentPointPointsFiltersInput
+  and: [ComponentExposureProgramExposureProgramFiltersInput]
+  or: [ComponentExposureProgramExposureProgramFiltersInput]
+  not: ComponentExposureProgramExposureProgramFiltersInput
+}
+
+input ComponentExposureProgramExposureProgramInput {
+  id: ID
+  title: String
+  points: [ComponentPointPointsInput]
+}
+
+type ComponentExposureProgramExposureProgram {
+  id: ID!
+  title: String
+  points(filters: ComponentPointPointsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPointPoints]
 }
 
 input ComponentFileFileFiltersInput {
@@ -484,6 +546,45 @@ type ComponentSlideSlide {
   cta: String
   ctaLink: String
   background: UploadFileEntityResponse
+}
+
+input ComponentSolutionPointSolutionPointFiltersInput {
+  point: StringFilterInput
+  and: [ComponentSolutionPointSolutionPointFiltersInput]
+  or: [ComponentSolutionPointSolutionPointFiltersInput]
+  not: ComponentSolutionPointSolutionPointFiltersInput
+}
+
+input ComponentSolutionPointSolutionPointInput {
+  id: ID
+  point: String
+}
+
+type ComponentSolutionPointSolutionPoint {
+  id: ID!
+  point: String
+}
+
+input ComponentSolutionSolutionFiltersInput {
+  title: StringFilterInput
+  SolutionPoint: ComponentSolutionPointSolutionPointFiltersInput
+  and: [ComponentSolutionSolutionFiltersInput]
+  or: [ComponentSolutionSolutionFiltersInput]
+  not: ComponentSolutionSolutionFiltersInput
+}
+
+input ComponentSolutionSolutionInput {
+  id: ID
+  icon: ID
+  title: String
+  SolutionPoint: [ComponentSolutionPointSolutionPointInput]
+}
+
+type ComponentSolutionSolution {
+  id: ID!
+  icon: UploadFileEntityResponse
+  title: String
+  SolutionPoint(filters: ComponentSolutionPointSolutionPointFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSolutionPointSolutionPoint]
 }
 
 enum ENUM_COMPONENTSPONSORSPONSOR_LEVEL {
@@ -885,6 +986,37 @@ type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
 
+input AdvisorySolutionsInput {
+  description: String
+  image: ID
+  youtubeUrl: String
+  solution: [ComponentSolutionSolutionInput]
+  clients: [ComponentOrganizerOrganizerInput]
+  callToAction: String
+  publishedAt: DateTime
+}
+
+type AdvisorySolutions {
+  description: String
+  image: UploadFileEntityResponse
+  youtubeUrl: String
+  solution(filters: ComponentSolutionSolutionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSolutionSolution]
+  clients(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
+  callToAction: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type AdvisorySolutionsEntity {
+  id: ID
+  attributes: AdvisorySolutions
+}
+
+type AdvisorySolutionsEntityResponse {
+  data: AdvisorySolutionsEntity
+}
+
 input AuthorFiltersInput {
   id: IDFilterInput
   name: StringFilterInput
@@ -986,6 +1118,41 @@ type BlogRelationResponseCollection {
   data: [BlogEntity!]!
 }
 
+input CrossBorderSolutionsInput {
+  description: String
+  image: ID
+  youtubeUrl: String
+  CBSPoint: [ComponentCbsPointCbsPointInput]
+  CertificationPackage: [ComponentCertificationPackageCertificationPackageInput]
+  partners: [ComponentOrganizerOrganizerInput]
+  clients: [ComponentOrganizerOrganizerInput]
+  callToAction: String
+  publishedAt: DateTime
+}
+
+type CrossBorderSolutions {
+  description: String
+  image: UploadFileEntityResponse
+  youtubeUrl: String
+  CBSPoint(filters: ComponentCbsPointCbsPointFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentCbsPointCbsPoint]
+  CertificationPackage(filters: ComponentCertificationPackageCertificationPackageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentCertificationPackageCertificationPackage]
+  partners(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
+  clients(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
+  callToAction: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type CrossBorderSolutionsEntity {
+  id: ID
+  attributes: CrossBorderSolutions
+}
+
+type CrossBorderSolutionsEntityResponse {
+  data: CrossBorderSolutionsEntity
+}
+
 enum ENUM_DOCUMENT_TYPE {
   EAFS
   EACMS
@@ -1046,6 +1213,29 @@ type DocumentEntityResponseCollection {
   meta: ResponseCollectionMeta!
 }
 
+input ExposureLearningProgramsInput {
+  image: ID
+  ExposureProgram: [ComponentExposureProgramExposureProgramInput]
+  publishedAt: DateTime
+}
+
+type ExposureLearningPrograms {
+  image: UploadFileEntityResponse
+  ExposureProgram(filters: ComponentExposureProgramExposureProgramFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentExposureProgramExposureProgram]
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ExposureLearningProgramsEntity {
+  id: ID
+  attributes: ExposureLearningPrograms
+}
+
+type ExposureLearningProgramsEntityResponse {
+  data: ExposureLearningProgramsEntity
+}
+
 input HomeInput {
   slogan: String
   menu: String
@@ -1096,6 +1286,37 @@ type KnowledgeSharingEntity {
 
 type KnowledgeSharingEntityResponse {
   data: KnowledgeSharingEntity
+}
+
+input LearningSolutionsInput {
+  description: String
+  image: ID
+  youtubeUrl: String
+  solution: [ComponentSolutionSolutionInput]
+  clients: [ComponentOrganizerOrganizerInput]
+  callToAction: String
+  publishedAt: DateTime
+}
+
+type LearningSolutions {
+  description: String
+  image: UploadFileEntityResponse
+  youtubeUrl: String
+  solution(filters: ComponentSolutionSolutionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSolutionSolution]
+  clients(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
+  callToAction: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type LearningSolutionsEntity {
+  id: ID
+  attributes: LearningSolutions
+}
+
+type LearningSolutionsEntityResponse {
+  data: LearningSolutionsEntity
 }
 
 input ParticipantFiltersInput {
@@ -1419,7 +1640,7 @@ type UpcomingEafsEntityResponse {
   data: UpcomingEafsEntity
 }
 
-union GenericMorph = ComponentCategoryCategory | ComponentEafsSessionEafsSession | ComponentFileFile | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPersonPerson | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Author | Blog | Document | Home | KnowledgeSharing | Participant | RegistrationEacms | RegistrationEafs | Setting | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs
+union GenericMorph = ComponentCategoryCategory | ComponentCbsPointCbsPoint | ComponentCertificationPackageCertificationPackage | ComponentEafsSessionEafsSession | ComponentExposureProgramExposureProgram | ComponentFileFile | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPersonPerson | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSolutionPointSolutionPoint | ComponentSolutionSolution | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | AdvisorySolutions | Author | Blog | CrossBorderSolutions | Document | ExposureLearningPrograms | Home | KnowledgeSharing | LearningSolutions | Participant | RegistrationEacms | RegistrationEafs | Setting | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs
 
 input FileInfoInput {
   name: String
@@ -1494,14 +1715,18 @@ type Query {
   usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsRoleEntityResponseCollection
   usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
   usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
+  advisorySolutions(publicationState: PublicationState = LIVE): AdvisorySolutionsEntityResponse
   author(id: ID): AuthorEntityResponse
   authors(filters: AuthorFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): AuthorEntityResponseCollection
   blog(id: ID): BlogEntityResponse
   blogs(filters: BlogFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): BlogEntityResponseCollection
+  crossBorderSolutions(publicationState: PublicationState = LIVE): CrossBorderSolutionsEntityResponse
   document(id: ID): DocumentEntityResponse
   documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): DocumentEntityResponseCollection
+  exposureLearningPrograms(publicationState: PublicationState = LIVE): ExposureLearningProgramsEntityResponse
   home(publicationState: PublicationState = LIVE): HomeEntityResponse
   knowledgeSharing(publicationState: PublicationState = LIVE): KnowledgeSharingEntityResponse
+  learningSolutions(publicationState: PublicationState = LIVE): LearningSolutionsEntityResponse
   participant(id: ID): ParticipantEntityResponse
   participants(filters: ParticipantFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): ParticipantEntityResponseCollection
   registrationEacms(publicationState: PublicationState = LIVE): RegistrationEacmsEntityResponse
@@ -1523,19 +1748,27 @@ type Mutation {
   createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
   updateUploadFolder(id: ID!, data: UploadFolderInput!): UploadFolderEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
+  updateAdvisorySolutions(data: AdvisorySolutionsInput!): AdvisorySolutionsEntityResponse
+  deleteAdvisorySolutions: AdvisorySolutionsEntityResponse
   createAuthor(data: AuthorInput!): AuthorEntityResponse
   updateAuthor(id: ID!, data: AuthorInput!): AuthorEntityResponse
   deleteAuthor(id: ID!): AuthorEntityResponse
   createBlog(data: BlogInput!): BlogEntityResponse
   updateBlog(id: ID!, data: BlogInput!): BlogEntityResponse
   deleteBlog(id: ID!): BlogEntityResponse
+  updateCrossBorderSolutions(data: CrossBorderSolutionsInput!): CrossBorderSolutionsEntityResponse
+  deleteCrossBorderSolutions: CrossBorderSolutionsEntityResponse
   createDocument(data: DocumentInput!): DocumentEntityResponse
   updateDocument(id: ID!, data: DocumentInput!): DocumentEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
+  updateExposureLearningPrograms(data: ExposureLearningProgramsInput!): ExposureLearningProgramsEntityResponse
+  deleteExposureLearningPrograms: ExposureLearningProgramsEntityResponse
   updateHome(data: HomeInput!): HomeEntityResponse
   deleteHome: HomeEntityResponse
   updateKnowledgeSharing(data: KnowledgeSharingInput!): KnowledgeSharingEntityResponse
   deleteKnowledgeSharing: KnowledgeSharingEntityResponse
+  updateLearningSolutions(data: LearningSolutionsInput!): LearningSolutionsEntityResponse
+  deleteLearningSolutions: LearningSolutionsEntityResponse
   createParticipant(data: ParticipantInput!): ParticipantEntityResponse
   updateParticipant(id: ID!, data: ParticipantInput!): ParticipantEntityResponse
   deleteParticipant(id: ID!): ParticipantEntityResponse

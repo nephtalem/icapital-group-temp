@@ -44,7 +44,7 @@ export const StyledCheckItem = styled.div`
   display: grid;
   grid-template-columns: 3.2rem 1fr;
   align-items: center;
-  gap: 2.4rem;
+  gap: 1.2rem;
 
   svg {
     height: 3.2rem;
