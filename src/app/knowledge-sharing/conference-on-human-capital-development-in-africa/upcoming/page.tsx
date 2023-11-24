@@ -3,6 +3,18 @@ import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { Title } from "@/components/shared/Title";
 import KSPService from "@/services/ksp.service";
 import { redirect } from "next/navigation";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+  {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const upcomingChcda = await KSPService.upcomingChcda();
+
+  return {
+    title: `${upcomingChcda.attributes?.content?.title} | The i-Capital Africa Institute`,
+  };
+}
 
 const UpcomingECCDAPage = async () => {
   const upcomingChcda = await KSPService.upcomingChcda();

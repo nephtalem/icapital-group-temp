@@ -2,17 +2,24 @@ import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { SummitDetail } from "@/components/platform/SummitDetail";
 import { Title } from "@/components/shared/Title";
-import { SummitEntity, UpcomingEacmsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 
-const EAFSPage = ({
-  summit,
-  upcomingEacms,
-}: {
-  summit: SummitEntity;
-  upcomingEacms: UpcomingEacmsEntity;
-}) => {
+export async function generateMetadata(
+  {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const upcomingEacms = await KSPService.upcomingEacms();
+
+  return {
+    title: `${upcomingEacms.attributes?.content?.title} | The i-Capital Africa Institute`,
+  };
+}
+
+const EAFSPage = async ({ params }: { params: { slug: string } }) => {
+  const summit = await KSPService.summit(params!.slug);
+  const upcomingEacms = await KSPService.upcomingEacms();
+
   return (
     <>
       <Title title={`${summit.attributes?.name}`} />
@@ -25,24 +32,3 @@ const EAFSPage = ({
 };
 
 export default EAFSPage;
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const summits = await KSPService.summits("ECCDA");
-
-  return {
-    paths: summits.map((summit: any) => ({
-      params: { slug: summit.attributes?.slug },
-    })),
-    fallback: "blocking",
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const summit = await KSPService.summit(params!.slug!.toString());
-  const upcomingEacms = await KSPService.upcomingEacms();
-
-  return {
-    props: { summit, upcomingEacms },
-    revalidate: 10, // In seconds
-  };
-};

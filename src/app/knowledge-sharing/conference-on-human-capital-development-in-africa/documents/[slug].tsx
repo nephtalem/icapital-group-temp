@@ -2,20 +2,29 @@ import { Content } from "@/components/knowledge-sharing/Content";
 import { DocumentsDetail } from "@/components/platform/DocumentsDetail";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { Title } from "@/components/shared/Title";
-import {
-  DocumentEntity,
-  UpcomingChcdaEntity
-} from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
-import { GetStaticPaths, GetStaticProps } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  Metadata,
+  ResolvingMetadata,
+} from "next";
 
-const EAFSPage = ({
-  document,
-  upcomingChcda,
-}: {
-  document: DocumentEntity;
-  upcomingChcda: UpcomingChcdaEntity;
-}) => {
+export async function generateMetadata(
+  {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const upcomingChcda = await KSPService.upcomingChcda();
+
+  return {
+    title: `${upcomingChcda.attributes?.content?.title} | The i-Capital Africa Institute`,
+  };
+}
+
+const EAFSPage = async ({ params }: { params: { slug: string } }) => {
+  const document = await KSPService.document(params!.slug!.toString());
+  const upcomingChcda = await KSPService.upcomingChcda();
+
   return (
     <>
       <Title title={"Knowledge Sharing"} />

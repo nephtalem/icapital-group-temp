@@ -1,7 +1,11 @@
 import { Content } from "@/components/knowledge-sharing/Content";
-import { Title } from "@/components/shared/Title";
 import KSPService from "@/services/ksp.service";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Knowledge Sharing | The i-Capital Africa Institute",
+};
 
 const EAFSPage = async () => {
   const upcomingEafs = await KSPService.upcomingEafs();
@@ -11,14 +15,6 @@ const EAFSPage = async () => {
         ? "upcoming"
         : "previous-summits"
     }`
-  );
-  return (
-    <>
-      <Title title={"Knowledge Sharing"} />
-      <Content>
-        <span />
-      </Content>
-    </>
   );
 };
 

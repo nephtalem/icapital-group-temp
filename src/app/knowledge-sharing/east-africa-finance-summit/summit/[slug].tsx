@@ -2,17 +2,36 @@ import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { SummitDetail } from "@/components/platform/SummitDetail";
 import { Title } from "@/components/shared/Title";
-import { SummitEntity, UpcomingEafsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
-import { GetStaticPaths, GetStaticProps } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  Metadata,
+  ResolvingMetadata,
+} from "next";
 
-const EAFSPage = ({
-  summit,
-  upcomingEafs,
-}: {
-  summit: SummitEntity;
-  upcomingEafs: UpcomingEafsEntity;
-}) => {
+type Props = {
+  params: { slug: string };
+  searchParams: {};
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const summit = await KSPService.summit(params!.slug!.toString());
+
+  return {
+    title: `${summit.attributes?.name} | The i-Capital Africa Institute`,
+  };
+}
+
+const EAFSPage = async ({ params }: { params: { slug: string } }) => {
+  const summit = await KSPService.summit(params!.slug!.toString());
+  console.log("summit", summit);
+
+  const upcomingEafs = await KSPService.upcomingEafs();
+
   console.log(
     "upcomingEafs",
     upcomingEafs,
@@ -20,13 +39,10 @@ const EAFSPage = ({
   );
 
   return (
-    <>
-      <Title title={`${summit.attributes?.name}`} />
-      <Content>
-        <PlatformHeader upcoming={upcomingEafs} type="EAFS" />
-        <SummitDetail summit={summit} />
-      </Content>
-    </>
+    <Content>
+      <PlatformHeader upcoming={upcomingEafs} type="EAFS" />
+      <SummitDetail summit={summit} />
+    </Content>
   );
 };
 
