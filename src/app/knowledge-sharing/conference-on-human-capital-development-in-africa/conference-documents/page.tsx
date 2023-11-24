@@ -13,12 +13,10 @@ const SummitDocumentsEAFSPage = async () => {
   const documents = await KSPService.documents("ECCDA");
 
   return (
-    <>
-      <Content>
-        <PlatformHeader upcoming={upcomingChcda} type="ECCDA" />
-        <SummitDocuments documents={documents} />
-      </Content>
-    </>
+    <Content>
+      <PlatformHeader upcoming={upcomingChcda} type="ECCDA" />
+      <SummitDocuments documents={documents} />
+    </Content>
   );
 };
 
