@@ -1,4 +1,4 @@
-import { Home } from "@/components/home/Home";
+import { Home } from "@/components/home/Home/Home";
 import HomeService from "@/services/home.service";
 import { Metadata } from "next";
 
@@ -10,11 +10,7 @@ export const metadata: Metadata = {
 const HomePage = async () => {
   const home = await HomeService.home();
 
-  return (
-    <>
-      <Home home={home} />
-    </>
-  );
+  return <Home home={home} />;
 };
 
 export default HomePage;

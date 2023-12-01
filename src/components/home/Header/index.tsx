@@ -47,7 +47,7 @@ export const Header = () => {
   const drawer = useRef(null);
   return (
     <>
-      <StyledHeader>
+      <div className="fixed left-0 top-0 z-[100] flex w-screen justify-between p-10">
         <Socials />
         <StyledMenu>
           <h3>Get Acquainted</h3>
@@ -59,7 +59,7 @@ export const Header = () => {
             <MenuIcon />
           </button>
         </StyledMenu>
-      </StyledHeader>
+      </div>
       <StyledDrawerWrapper
         ref={drawer}
         onMouseLeave={() => {

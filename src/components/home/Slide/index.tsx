@@ -25,31 +25,33 @@ export const Slide = ({
   };
 }) => {
   return (
-    <StyledSlide>
-      <StyledBackground>
+    <section className="relative grid h-screen w-screen">
+      <div className="relative h-screen w-screen">
         <Image
           src={`${process.env.NEXT_PUBLIC_DATA}${image}`}
           alt={title}
           fill={true}
           quality={100}
           priority
+          className="object-cover"
         />
-      </StyledBackground>
-      <StyledCover />
-      <StyledContent>
-        <StyledLogo>
+      </div>
+      <div className="absolute h-screen w-screen bg-black opacity-30" />
+      <div className="absolute grid justify-items-center self-center justify-self-center px-48">
+        <div className="relative mt-24 grid h-32 w-[50vw] md:h-40 md:w-[400px]">
           <Image
             src={"/images/white.logo.png"}
             alt={"background"}
             fill={true}
             quality={100}
             priority
+            className="object-contain"
           />
-        </StyledLogo>
+        </div>
         <h2>{title}</h2>
         <p>{description}</p>
         <Link href={link.to}>{link.label}</Link>
-      </StyledContent>
-    </StyledSlide>
+      </div>
+    </section>
   );
 };

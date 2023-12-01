@@ -3,12 +3,7 @@ import localFont from "next/font/local";
 import Image from "next/image";
 import { useSwiper } from "swiper/react";
 import {
-  StyledContent,
-  StyledCover,
-  StyledImage,
-  StyledLanding,
-  StyledLogo,
-  StyledScrollDown,
+  StyledScrollDown
 } from "./styles";
 const nanumBrushScript = localFont({
   src: "../../../fonts/brush_script_mt_kursiv.woff2",
@@ -17,8 +12,8 @@ const nanumBrushScript = localFont({
 export const Landing = () => {
   const swiper = useSwiper();
   return (
-    <StyledLanding>
-      <StyledImage>
+    <div className="relative grid">
+      <div className="relative h-screen w-screen">
         <Image
           src={"/images/home.bg.png"}
           alt={"background"}
@@ -26,25 +21,28 @@ export const Landing = () => {
           quality={100}
           priority
         />
-      </StyledImage>
-      <StyledCover />
-      <StyledContent>
-        <StyledLogo>
+      </div>
+      <div className="absolute h-screen w-screen bg-black opacity-30" />
+      <div className="absolute max-w-[90vw] self-center justify-self-center md:max-w-none">
+        <div className="relative grid h-[280px] w-full md:h-[400px]">
           <Image
             src={"/images/white.logo.png"}
             alt={"background"}
             fill={true}
             quality={100}
             priority
+            className="object-contain"
           />
-        </StyledLogo>
-        <h1 className={nanumBrushScript.className}>
+        </div>
+        <h1
+          className={`${nanumBrushScript.className} w-full content-center text-3xl text-white md:text-4xl`}
+        >
           ...in the business of transforming people...
         </h1>
-      </StyledContent>
+      </div>
       <StyledScrollDown onClick={() => swiper.slideTo(1)}>
         <ArrowDownIcon />
       </StyledScrollDown>
-    </StyledLanding>
+    </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Home } from "@/components/home/Home";
+import { Home } from "@/components/home/Home/Home";
 import { Title } from "@/components/shared/Title";
 import { HomeEntity } from "@/gql/graphql";
 import HomeService from "@/services/home.service";
