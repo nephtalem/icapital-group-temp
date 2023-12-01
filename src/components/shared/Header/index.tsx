@@ -1,20 +1,7 @@
-import Image from "next/image";
-import {
-  StyledHeader,
-  StyledHeaderAlt,
-  StyledLogo,
-  StyledMenu,
-  StyledOption,
-  StyledOptions,
-} from "./styles";
 import Link from "next/link";
-import { Button } from "../Button";
-import { usePathname, useRouter } from "next/navigation";
-import MenuIcon from "@/assets/icons/menu.svg";
-import gsap from "gsap";
-import { useRef } from "react";
-import { StyledDrawerWrapper } from "@/components/home/Header/styles";
-import { Drawer } from "@/components/home/Drawer";
+import { Button } from "../buttons/Button";
+import { Logo } from "./Logo";
+import { Option } from "./Option";
 
 export const Header = ({
   options,
@@ -26,13 +13,9 @@ export const Header = ({
   }[];
 }) => {
   return (
-    <StyledHeader>
-      <Link href={"/"}>
-        <StyledLogo>
-          <Image src={"/images/logo.png"} alt={""} fill={true} />
-        </StyledLogo>
-      </Link>
-      <StyledOptions>
+    <header className="sticky top-0 z-[100] grid h-max grid-cols-[1fr,max-content] grid-rows-[max-content,max-content] items-center gap-y-5 border-b border-b-border bg-white px-4 pb-5 md:h-32 md:grid-cols-[max-content,1fr,max-content] md:px-12">
+      <Logo />
+      <div className="col-start-1 col-end-[-1] row-start-2 flex gap-0 justify-self-center md:col-auto md:row-auto md:gap-10">
         {options.map((option, index) => (
           <Option
             key={index}
@@ -41,72 +24,12 @@ export const Header = ({
             base={option.base}
           />
         ))}
-      </StyledOptions>
+      </div>
       <Link href={"/contact-us"}>
         <Button label={"Contact Us"} onClick={(): void => {}} />
       </Link>
-    </StyledHeader>
+    </header>
   );
 };
 
-export const HeaderAlt = () => {
-  const drawer = useRef(null);
 
-  return (
-    <>
-      <StyledHeaderAlt>
-        <Link href={"/"}>
-          <StyledLogo>
-            <Image src={"/images/logo.png"} alt={""} fill={true} />
-          </StyledLogo>
-        </Link>
-
-        <StyledMenu>
-          <button
-            onMouseOver={() => {
-              gsap.to(drawer.current, { right: 0 });
-            }}
-          >
-            <MenuIcon />
-          </button>
-        </StyledMenu>
-      </StyledHeaderAlt>
-      <StyledDrawerWrapper
-        ref={drawer}
-        onMouseLeave={() => {
-          gsap.to(drawer.current, { right: "-50rem" });
-        }}
-      >
-        <Drawer />
-        <span
-          className="cover"
-          onClick={() => {
-            gsap.to(drawer.current, { right: "-50rem" });
-          }}
-        />
-      </StyledDrawerWrapper>
-    </>
-  );
-};
-
-const Option = ({
-  label,
-  to,
-  base,
-}: {
-  label: string;
-  to: string;
-  base: string;
-}) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  return (
-    <Link href={to}>
-      <StyledOption
-        $active={base === to ? pathname == to : pathname.search(base) !== -1}
-      >
-        {label}
-      </StyledOption>
-    </Link>
-  );
-};

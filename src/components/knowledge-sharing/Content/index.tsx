@@ -1,7 +1,7 @@
 "use client";
 import { Header } from "@/components/shared/Header";
 import { StyledContent } from "./styles";
-import { Footer } from "@/components/shared/Footer";
+import { Footer } from "@/components/shared/Footer/Footer";
 import { ReactNode } from "react";
 
 export const Content = ({

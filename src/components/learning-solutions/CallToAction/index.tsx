@@ -1,6 +1,6 @@
 "use client";
 
-import { Html } from "@/components/shared/Html/index";
+import { Html } from "@/components/shared/Html/Html";
 import {
   LearningSolutionsEntity
 } from "@/gql/graphql";

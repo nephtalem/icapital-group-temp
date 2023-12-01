@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { StyledBanner, StyledBannerImage } from "./styles";
 import { LearningSolutionsEntity } from "@/gql/graphql";
-import { Button } from "@/components/shared/Button";
+import { Button } from "@/components/shared/buttons/Button";
 import Link from "next/link";
 
 export const Banner = ({ ls }: { ls: LearningSolutionsEntity }) => {

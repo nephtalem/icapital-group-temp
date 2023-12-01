@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { StyledIntro, StyledIntroContent, StyledIntroImage } from "./styles";
 import { AdvisorySolutions, AdvisorySolutionsEntity } from "@/gql/graphql";
-import { Html } from "@/components/shared/Html/index";
+import { Html } from "@/components/shared/Html/Html";
 
 export const Intro = ({ as }: { as: AdvisorySolutionsEntity }) => {
   return (

@@ -1,5 +1,5 @@
 "use client";
-import { ActionButton } from "@/components/shared/Button";
+import { ActionButton } from "@/components/shared/buttons/ActionButton";
 import { MainText } from "@/components/shared/MainText";
 import Image from "next/image";
 import {

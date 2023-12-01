@@ -8,7 +8,7 @@ import {
   StyledFileIcon,
   StyledTitle,
 } from "./styles";
-import { ActionButton } from "@/components/shared/Button";
+import { ActionButton } from "@/components/shared/buttons/ActionButton";
 import DownloadIcon from "@/assets/icons/download.svg";
 import {
   ComponentCategoryCategory,

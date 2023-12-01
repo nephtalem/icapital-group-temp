@@ -1,7 +1,7 @@
 "use client";
 
 import { AdvisorySolutionsEntity } from "@/gql/graphql";
-import { Html } from "@/components/shared/Html/index";
+import { Html } from "@/components/shared/Html/Html";
 import { StyledCallToAction } from "./styles";
 export const CallToAction = ({ as }: { as: AdvisorySolutionsEntity }) => {
   return (

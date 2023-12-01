@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -8,7 +12,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-size: 50%;
+  /* font-size: 50%; */
 }
 
 a {
@@ -72,7 +76,9 @@ a {
 }
 
 #nprogress .peg {
-  box-shadow: 0 0 10px #f58016, 0 0 5px #f58016;
+  box-shadow:
+    0 0 10px #f58016,
+    0 0 5px #f58016;
 }
 
 /* width */
@@ -94,4 +100,23 @@ a {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #1a2c42;
+}
+
+.html {
+  strong,
+  a {
+    color: #f78019;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+
+  .htmlTitle {
+    strong {
+      color: #f78019;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+    }
+  }
 }

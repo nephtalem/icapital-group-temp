@@ -9,7 +9,7 @@ import {
   StyledSummitDocument,
   StyledSummitDocuments,
 } from "./styles";
-import { ActionButton } from "@/components/shared/Button";
+import { ActionButton } from "@/components/shared/buttons/ActionButton";
 import Image from "next/image";
 import { DocumentEntity } from "@/gql/graphql";
 

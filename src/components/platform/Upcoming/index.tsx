@@ -54,7 +54,7 @@ import {
   UpcomingEafsEntity,
 } from "@/gql/graphql";
 import { Interweave } from "interweave";
-import { ActionButton } from "@/components/shared/Button";
+import { ActionButton } from "@/components/shared/buttons/ActionButton";
 import DownloadIcon from "@/assets/icons/download.svg";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 

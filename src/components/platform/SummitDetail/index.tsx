@@ -21,7 +21,8 @@ import {
   StyledSummitDetail,
   StyledSummits,
 } from "./styles";
-import { ActionButton, Button } from "@/components/shared/Button";
+import { Button } from "@/components/shared/buttons/Button";
+import { ActionButton } from "@/components/shared/buttons/ActionButton";
 import dynamic from "next/dynamic";
 import DownloadIcon from "@/assets/icons/download.svg";
 import WatchIcon from "@/assets/icons/watch.svg";

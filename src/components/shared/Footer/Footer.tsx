@@ -1,40 +1,29 @@
-import Link from "next/link";
-import {
-  StyledContact,
-  StyledContactItem,
-  StyledContactMultiple,
-  StyledContactRow,
-  StyledFooter,
-  StyledFooterBottom,
-  StyledFooterContent,
-  StyledFooterLink,
-  StyledFooterLinks,
-  StyledFooterLogo,
-  StyledFooterMain,
-  StyledFooterSocials,
-} from "./styles";
-import TechawksLogo from "@/assets/icons/logo.svg";
-import PhoneIcon from "@/assets/icons/phone.svg";
 import EmailIcon from "@/assets/icons/email.svg";
 import LocationIcon from "@/assets/icons/location.svg";
+import TechawksLogo from "@/assets/icons/logo.svg";
+import PhoneIcon from "@/assets/icons/phone.svg";
 import PostIcon from "@/assets/icons/post.svg";
-import Image from "next/image";
 import { Socials } from "@/components/home/Header";
+import Image from "next/image";
+import Link from "next/link";
+import { FooterLink } from "./FooterLink";
+import { ContactItem } from "./ContactItem";
 
 export const Footer = () => {
   return (
-    <StyledFooter>
-      <StyledFooterContent>
-        <StyledFooterMain>
-          <StyledFooterLogo>
+    <footer className="bg-background">
+      <div className="grid p-6 md:p-12">
+        <div className="grid">
+          <div className="relative mb-8 grid h-28 w-48 ">
             <Image
               src={"/images/white.logo.png"}
               quality={100}
               alt={""}
               fill={true}
+              className="object-contain"
             />
-          </StyledFooterLogo>
-          <p>
+          </div>
+          <p className="text-justify text-base text-white">
             The i-Capital Africa Institute is a professional service firm.
             Founded in 2015, we offer a full range of Human Capital Development
             solutions to clients in various sectors. Our approach is
@@ -43,29 +32,38 @@ export const Footer = () => {
             companies, universities, public enterprises, and start-ups in areas
             of strategy, organizational transformation, & talent development.
           </p>
-          <span />
-          <StyledContact>
+          <span className="my-10 h-[1px] w-full bg-white" />
+          <div className="grid gap-y-8">
             <ContactItem
-              icon={<LocationIcon />}
+              icon={(style) => <LocationIcon className={style} />}
               label={"Arat-Killo, Elsabet Bldg #604, Arada Sub-City"}
             />
-            <StyledContactMultiple>
-              <PhoneIcon />
-              <h4>Office Phone: +251 11 812 06 00</h4>
-              <h4>Mobile Phone: +251 91 162 90 11</h4>
-            </StyledContactMultiple>
-            <StyledContactRow>
-              <ContactItem icon={<PostIcon />} label={"P.O.Box: 80484"} />
-              <StyledContactItem>
-                <EmailIcon />
+            <div className="flex gap-5">
+              <PhoneIcon className={"h-4 w-4"} />
+              <h4 className="text-sm text-white">
+                Office Phone: +251 11 812 06 00
+              </h4>
+              <h4 className="text-sm text-white">
+                Mobile Phone: +251 91 162 90 11
+              </h4>
+            </div>
+            <div className="flex gap-5 md:gap-12">
+              <ContactItem
+                icon={(style) => <PostIcon className={style} />}
+                label={"P.O.Box: 80484"}
+              />
+              <div className="flex gap-5">
+                <EmailIcon className={"h-4 w-4"} />
                 <Link href={"mailto:info@icapitalafrica.org"}>
-                  <h4>Email: info@icapitalafrica.org</h4>
+                  <h4 className="text-sm text-white">
+                    Email: info@icapitalafrica.org
+                  </h4>
                 </Link>
-              </StyledContactItem>
-            </StyledContactRow>
-          </StyledContact>
-        </StyledFooterMain>
-        <StyledFooterLinks>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-10 grid auto-rows-max grid-cols-2 gap-10 self-end md:mt-0 md:grid-cols-3 md:gap-24 md:justify-self-end">
           <FooterLink
             main={{
               label: "EAFS",
@@ -140,57 +138,27 @@ export const Footer = () => {
               },
             ]}
           />
-          <StyledFooterSocials>
+          <div className="col-start-1 col-end-[-1] justify-self-center my-10 flex md:justify-self-end">
             <Socials />
-          </StyledFooterSocials>
-        </StyledFooterLinks>
-      </StyledFooterContent>
-      <StyledFooterBottom>
-        <p>Copyright {new Date().getFullYear()}, All right reserved</p>
-        <div>
+          </div>
+        </div>
+      </div>
+      <div className="relative flex h-32 w-screen items-center justify-between bg-black px-16 text-white">
+        <p className="text-base font-medium">
+          Copyright {new Date().getFullYear()}, All right reserved
+        </p>
+        <div className="flex h-3 content-center items-center gap-2 text-base font-medium">
           Made by
-          <Link href={"https://techawks.io/"} target={"_blank"}>
-            <TechawksLogo />
+          <Link
+            className="flex content-center items-center gap-2"
+            href={"https://techawks.io/"}
+            target={"_blank"}
+          >
+            <TechawksLogo className={"h-4"} />
             Techawks
           </Link>
         </div>
-      </StyledFooterBottom>
-    </StyledFooter>
-  );
-};
-
-const FooterLink = ({
-  main,
-  links,
-}: {
-  main: {
-    label: string;
-    to: string;
-  };
-  links: {
-    label: string;
-    to: string;
-  }[];
-}) => {
-  return (
-    <StyledFooterLink>
-      <Link href={main.to}>
-        <h3>{main.label}</h3>
-      </Link>
-      {links.map((link, index) => (
-        <Link key={index} href={link.to}>
-          <p>{link.label}</p>
-        </Link>
-      ))}
-    </StyledFooterLink>
-  );
-};
-
-const ContactItem = ({ icon, label }: { label: string; icon: JSX.Element }) => {
-  return (
-    <StyledContactItem>
-      {icon}
-      <h4>{label}</h4>
-    </StyledContactItem>
+      </div>
+    </footer>
   );
 };

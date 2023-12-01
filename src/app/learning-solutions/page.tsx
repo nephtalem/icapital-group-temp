@@ -2,7 +2,7 @@ import { Banner } from "@/components/learning-solutions/Banner";
 import { CallToAction } from "@/components/learning-solutions/CallToAction";
 import { Intro } from "@/components/learning-solutions/Intro";
 import { Content } from "@/components/shared/Content";
-import { Partners } from "@/components/shared/Partners";
+import { Partners } from "@/components/shared/Partners/Partners";
 import { LearningSolutionsEntity } from "@/gql/graphql";
 import LSService from "@/services/ls.service";
 import { Metadata } from "next";

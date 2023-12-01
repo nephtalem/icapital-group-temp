@@ -26,7 +26,7 @@ import { moneyFormat } from "@/utils/money.format";
 import UploadIcon from "@/assets/icons/upload.svg";
 import CheckIcon from "@/assets/icons/check.svg";
 import Dropzone from "react-dropzone";
-import { Button } from "@/components/shared/Button";
+import { Button } from "@/components/shared/buttons/Button";
 import { previewImage } from "@/utils/preview.image";
 import { upload } from "@/utils/upload";
 import { showLoadingMessage, showSuccessMessage } from "@/utils/show.message";
