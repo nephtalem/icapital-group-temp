@@ -1,10 +1,10 @@
 import { Content } from "@/components/shared/Content";
-import { Banner } from "@/components/who-we-are/Banner/index";
+import { Banner } from "@/components/who-we-are/Banner";
 import { Intro } from "@/components/who-we-are/Intro";
 import { MissionVisionValue } from "@/components/who-we-are/MissionVisionValue";
 import { Socials } from "@/components/who-we-are/Socials";
 import { WordAnimation } from "@/components/who-we-are/WordAnimation";
-import { Work } from "@/components/who-we-are/Work";
+import { Work } from "@/components/who-we-are/Work/Work";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,16 +13,14 @@ export const metadata: Metadata = {
 
 const WhoWeArePage = () => {
   return (
-    <>
-      <Content scrollable={true}>
-        <Banner />
-        <Intro />
-        <MissionVisionValue />
-        <WordAnimation />
-        <Work />
-        <Socials />
-      </Content>
-    </>
+    <Content scrollable={true} noFooter>
+      <Banner />
+      <Intro />
+      <MissionVisionValue />
+      <WordAnimation />
+      <Work />
+      <Socials />
+    </Content>
   );
 };
 

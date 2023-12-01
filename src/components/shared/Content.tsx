@@ -6,9 +6,11 @@ import { ReactNode } from "react";
 
 export const Content = ({
   scrollable = true,
+  noFooter,
   children,
 }: {
   scrollable?: boolean;
+  noFooter?: boolean;
   children: ReactNode;
 }) => {
   return (
@@ -19,7 +21,7 @@ export const Content = ({
     >
       <HeaderAlt />
       {children}
-      <Footer />
+      {noFooter ? <></> : <Footer />}
     </div>
   );
 };

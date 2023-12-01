@@ -49,6 +49,10 @@ a {
   width: 100vw;
 }
 
+.swiper-slide {
+  width: fit-content !important;
+}
+
 #nprogress .bar {
   background: #f58016 !important;
 }

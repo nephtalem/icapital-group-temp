@@ -20,7 +20,7 @@ export const Header = () => {
             }}
             className="cursor-pointer"
           >
-            <MenuIcon className={"w-12"} />
+            <MenuIcon className={"w-12 fill-white"} />
           </button>
         </div>
       </div>

@@ -13,7 +13,7 @@ export const FooterLink = ({
   }[];
 }) => {
   return (
-    <div className="grid gap-8">
+    <div className="grid gap-6">
       <Link href={main.to}>
         <h3 className="mb-2 text-xl font-bold text-white hover:underline">
           {main.label}

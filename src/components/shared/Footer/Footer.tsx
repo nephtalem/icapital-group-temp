@@ -11,8 +11,8 @@ import { Socials } from "@/components/home/Header/Socials";
 
 export const Footer = () => {
   return (
-    <footer className="bg-background">
-      <div className="grid p-6 md:p-12">
+    <footer className=" bg-background">
+      <div className="grid grid-cols-2 gap-[10vw] p-6 md:p-12">
         <div className="grid">
           <div className="relative mb-8 grid h-28 w-48 ">
             <Image
@@ -63,7 +63,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-10 grid auto-rows-max grid-cols-2 gap-10 self-end md:mt-0 md:grid-cols-3 md:gap-24 md:justify-self-end">
+        <div className="mt-10 grid auto-rows-max grid-cols-2  self-center md:mt-0 md:grid-cols-3  ">
           <FooterLink
             main={{
               label: "EAFS",
@@ -150,7 +150,7 @@ export const Footer = () => {
         <div className="flex h-3 content-center items-center gap-2 text-base font-medium">
           Made by
           <Link
-            className="flex content-center items-center gap-2"
+            className="flex content-center items-center gap-2 text-white"
             href={"https://techawks.io/"}
             target={"_blank"}
           >

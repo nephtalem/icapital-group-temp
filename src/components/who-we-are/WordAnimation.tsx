@@ -1,16 +1,17 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { StyledWord, StyledWordAnimation, StyledWordList } from "./styles";
-import { Autoplay, FreeMode } from "swiper/modules";
 import { useEffect, useState } from "react";
 import TextTransition, { presets } from "react-text-transition";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export const WordAnimation = () => {
   return (
-    <StyledWordAnimation>
-      <h2>Co-creating solutions to help businesses connect to the future!</h2>
-      <StyledWordList>
+    <div className="grid">
+      <h2 className="max-w-[90%] justify-self-center text-center text-[1.6rem] font-bold  leading-[2rem] text-accent md:max-w-[70%] md:text-[3rem] md:leading-[4rem]">
+        Co-creating solutions to help businesses connect to the future!
+      </h2>
+      <div className="relative my-[7rem] h-[5rem] w-screen [&>.swiper-slide]:w-fit ">
         <Swiper
           spaceBetween={80}
           slidesPerView={"auto"}
@@ -56,8 +57,8 @@ export const WordAnimation = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </StyledWordList>
-    </StyledWordAnimation>
+      </div>
+    </div>
   );
 };
 
@@ -67,18 +68,20 @@ const Word = ({ title, words }: { title: string; words: string[] }) => {
   useEffect(() => {
     const intervalId = setInterval(
       () => setIndex((index) => index + 1),
-      3000 // every 3 seconds
+      3000, // every 3 seconds
     );
     return () => clearTimeout(intervalId);
   }, []);
   return (
-    <StyledWord>
-      <h3>{title}</h3>
-      <div>
+    <div className="mx-[2rem] grid justify-items-start gap-x-[.8rem] md:mx-[6rem]">
+      <h3 className="text-[1.6rem] font-bold text-text md:text-[2rem]">
+        {title}
+      </h3>
+      <div className="text-[1.2rem] font-medium text-text md:text-[1.6rem]">
         <TextTransition springConfig={presets.wobbly}>
           {words[index % words.length]}
         </TextTransition>
       </div>
-    </StyledWord>
+    </div>
   );
 };
