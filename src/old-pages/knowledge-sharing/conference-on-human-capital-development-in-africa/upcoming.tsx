@@ -1,7 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { Upcoming } from "@/components/platform/Upcoming";
-import { Title } from "@/components/shared/Title";
 import { UpcomingChcdaEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetServerSideProps } from "next";
@@ -13,7 +12,6 @@ const UpcomingECCDAPage = ({
 }) => {
   return (
     <>
-      <Title title={`${upcomingChcda.attributes?.content?.title}`} />
       <Content>
         <PlatformHeader upcoming={upcomingChcda} type="ECCDA" />
         {/* <Upcoming

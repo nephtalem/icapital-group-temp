@@ -1,7 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { Upcoming } from "@/components/platform/Upcoming";
-import { Title } from "@/components/shared/Title";
 import KSPService from "@/services/ksp.service";
 import { redirect } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";

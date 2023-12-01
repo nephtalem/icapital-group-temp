@@ -1,7 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { SummitDetail } from "@/components/platform/SummitDetail";
-import { Title } from "@/components/shared/Title";
 import { SummitEntity, UpcomingEafsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -16,12 +15,11 @@ const EAFSPage = ({
   console.log(
     "upcomingEafs",
     upcomingEafs,
-    !!(upcomingEafs && upcomingEafs?.attributes?.enabled)
+    !!(upcomingEafs && upcomingEafs?.attributes?.enabled),
   );
 
   return (
     <>
-      <Title title={`${summit.attributes?.name}`} />
       <Content>
         <PlatformHeader upcoming={upcomingEafs} type="EAFS" />
         <SummitDetail summit={summit} />

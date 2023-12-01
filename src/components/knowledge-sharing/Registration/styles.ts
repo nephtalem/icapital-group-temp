@@ -1,5 +1,3 @@
-import { StyledButton } from "@/components/shared/Button/styles";
-import { StyledMainText } from "@/components/shared/MainText/styles";
 import { breakingPoints } from "@/styles/breaking.points";
 import styled from "styled-components";
 export const StyledRegistration = styled.div`
@@ -15,13 +13,6 @@ export const StyledRegistration = styled.div`
     color: #000000;
     margin-top: 6rem;
     margin-bottom: 6rem;
-  }
-  ${StyledMainText} {
-    grid-row-gap: 1rem;
-    h1 {
-      font-size: 2.4rem;
-      line-height: 3rem;
-    }
   }
 
   ${breakingPoints.mobile} {
@@ -67,9 +58,6 @@ export const StyledForm = styled.form`
     margin-bottom: 4rem;
   }
 
-  ${StyledButton} {
-    margin-top: 6rem;
-  }
   ${breakingPoints.mobile} {
     padding: 1rem;
   }

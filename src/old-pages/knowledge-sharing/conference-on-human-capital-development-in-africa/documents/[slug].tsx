@@ -1,11 +1,7 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { DocumentsDetail } from "@/components/platform/DocumentsDetail";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
-import { Title } from "@/components/shared/Title";
-import {
-  DocumentEntity,
-  UpcomingChcdaEntity
-} from "@/gql/graphql";
+import { DocumentEntity, UpcomingChcdaEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetStaticPaths, GetStaticProps } from "next";
 
@@ -18,7 +14,6 @@ const EAFSPage = ({
 }) => {
   return (
     <>
-      <Title title={"Knowledge Sharing"} />
       <Content>
         <PlatformHeader upcoming={upcomingChcda} type="ECCDA" />
         <DocumentsDetail document={document} />

@@ -1,5 +1,4 @@
 import { Home } from "@/components/home/Home/Home";
-import { Title } from "@/components/shared/Title";
 import { HomeEntity } from "@/gql/graphql";
 import HomeService from "@/services/home.service";
 import { GetStaticProps } from "next";
@@ -7,7 +6,6 @@ import { GetStaticProps } from "next";
 const HomePage = ({ home }: { home: HomeEntity }) => {
   return (
     <>
-      <Title title={"Home"} />
       <Home home={home} />
     </>
   );

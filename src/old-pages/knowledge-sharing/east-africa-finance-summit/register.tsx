@@ -1,6 +1,5 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { Registration } from "@/components/knowledge-sharing/Registration";
-import { Title } from "@/components/shared/Title";
 import { RegistrationEafsEntity, UpcomingEafsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetServerSideProps } from "next";
@@ -14,7 +13,6 @@ const EAFSPage = ({
 }) => {
   return (
     <>
-      <Title title={`Register - ${upcomingEafs.attributes?.content?.title}`} />
       <Content>
         <Registration upcoming={upcomingEafs} registration={registrationEAFS} />
       </Content>

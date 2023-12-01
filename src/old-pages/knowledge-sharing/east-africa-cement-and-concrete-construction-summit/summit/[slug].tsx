@@ -1,7 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { SummitDetail } from "@/components/platform/SummitDetail";
-import { Title } from "@/components/shared/Title";
 import { SummitEntity, UpcomingEacmsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -15,7 +14,6 @@ const EAFSPage = ({
 }) => {
   return (
     <>
-      <Title title={`${summit.attributes?.name}`} />
       <Content>
         <PlatformHeader upcoming={upcomingEacms} type="EACMS" />
         <SummitDetail summit={summit} />

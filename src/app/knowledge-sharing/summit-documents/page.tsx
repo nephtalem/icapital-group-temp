@@ -1,7 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { SummitDocuments } from "@/components/platform/SummitDocuments";
-import { Title } from "@/components/shared/Title";
 import KSPService from "@/services/ksp.service";
 
 const SummitDocumentsEAFSPage = async () => {
@@ -10,7 +9,6 @@ const SummitDocumentsEAFSPage = async () => {
 
   return (
     <>
-      <Title title={"Summit Documents"} />
       <Content>
         <PlatformHeader upcoming={upcomingEafs} type="EAFS" />
         <SummitDocuments documents={documents} />

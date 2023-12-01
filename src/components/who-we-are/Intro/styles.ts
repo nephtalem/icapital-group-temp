@@ -1,4 +1,3 @@
-import { StyledMainText } from "@/components/shared/MainText/styles";
 import { breakingPoints } from "@/styles/breaking.points";
 import styled from "styled-components";
 export const StyledIntro = styled.div`
@@ -13,10 +12,6 @@ export const StyledIntro = styled.div`
 `;
 export const StyledIntroContent = styled.div`
   display: grid;
-
-  ${StyledMainText} {
-    justify-self: left;
-  }
 
   p {
     color: #1a2b42;

@@ -1,11 +1,7 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { SummitDocuments } from "@/components/platform/SummitDocuments";
-import { Title } from "@/components/shared/Title";
-import {
-  DocumentEntity,
-  UpcomingChcdaEntity
-} from "@/gql/graphql";
+import { DocumentEntity, UpcomingChcdaEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetStaticProps } from "next";
 
@@ -18,7 +14,6 @@ const SummitDocumentsEAFSPage = ({
 }) => {
   return (
     <>
-      <Title title={"Conference Documents"} />
       <Content>
         <PlatformHeader upcoming={upcomingChcda} type="ECCDA" />
         <SummitDocuments documents={documents} />

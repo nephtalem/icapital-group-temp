@@ -1,7 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { DocumentsDetail } from "@/components/platform/DocumentsDetail";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
-import { Title } from "@/components/shared/Title";
 import KSPService from "@/services/ksp.service";
 import {
   GetStaticPaths,
@@ -12,7 +11,7 @@ import {
 
 export async function generateMetadata(
   {},
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const upcomingChcda = await KSPService.upcomingChcda();
 
@@ -27,7 +26,6 @@ const EAFSPage = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <Title title={"Knowledge Sharing"} />
       <Content>
         <PlatformHeader upcoming={upcomingChcda} type="ECCDA" />
         <DocumentsDetail document={document} />

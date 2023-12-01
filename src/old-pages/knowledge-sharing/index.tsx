@@ -1,7 +1,6 @@
 import { Platforms } from "@/components/knowledge-sharing/Platforms";
 import { Content } from "@/components/knowledge-sharing/Content";
 import { Landing } from "@/components/knowledge-sharing/Landing";
-import { Title } from "@/components/shared/Title";
 import { GetStaticProps } from "next";
 import KSPService from "@/services/ksp.service";
 import { KnowledgeSharingEntity } from "@/gql/graphql";
@@ -13,7 +12,6 @@ const KnowledgeSharingPage = ({
 }) => {
   return (
     <>
-      <Title title={"Knowledge Sharing"} />
       <Content scrollable={false}>
         <Landing knowledgeSharing={knowledgeSharing} />
         <Platforms knowledgeSharing={knowledgeSharing} />

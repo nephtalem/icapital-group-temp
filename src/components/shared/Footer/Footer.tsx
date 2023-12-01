@@ -3,11 +3,11 @@ import LocationIcon from "@/assets/icons/location.svg";
 import TechawksLogo from "@/assets/icons/logo.svg";
 import PhoneIcon from "@/assets/icons/phone.svg";
 import PostIcon from "@/assets/icons/post.svg";
-import { Socials } from "@/components/home/Header/Socials.1";
 import Image from "next/image";
 import Link from "next/link";
 import { FooterLink } from "./FooterLink";
 import { ContactItem } from "./ContactItem";
+import { Socials } from "@/components/home/Header/Socials";
 
 export const Footer = () => {
   return (
@@ -138,7 +138,7 @@ export const Footer = () => {
               },
             ]}
           />
-          <div className="col-start-1 col-end-[-1] justify-self-center my-10 flex md:justify-self-end">
+          <div className="col-start-1 col-end-[-1] my-10 flex justify-self-center md:justify-self-end">
             <Socials />
           </div>
         </div>

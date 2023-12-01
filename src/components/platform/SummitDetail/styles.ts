@@ -1,4 +1,3 @@
-import { StyledButton } from "@/components/shared/Button/styles";
 import styled from "styled-components";
 export const StyledSummitDetail = styled.div`
   display: grid;
@@ -78,10 +77,6 @@ export const StyledIntroContent = styled.div`
     color: #000000;
     margin-top: 2.8rem;
     margin-bottom: 2rem;
-  }
-
-  ${StyledButton} {
-    justify-self: right;
   }
 `;
 

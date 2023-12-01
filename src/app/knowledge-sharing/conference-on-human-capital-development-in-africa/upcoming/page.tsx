@@ -1,6 +1,5 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
-import { Title } from "@/components/shared/Title";
 import KSPService from "@/services/ksp.service";
 import { redirect } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
@@ -25,7 +24,6 @@ const UpcomingECCDAPage = async () => {
   }
   return (
     <>
-      <Title title={`${upcomingChcda.attributes?.content?.title}`} />
       <Content>
         <PlatformHeader upcoming={upcomingChcda} type="ECCDA" />
         {/* <Upcoming

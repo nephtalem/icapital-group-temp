@@ -3,6 +3,7 @@
 import { socials } from "@/components/home/Header/Socials";
 import { StyledSocial, StyledSocials, StyledSocialsList } from "./styles";
 import Link from "next/link";
+import { ReactNode } from "react";
 
 export const Socials = () => {
   return (
@@ -28,12 +29,12 @@ const Social = ({
   icon,
 }: {
   to: string;
-  icon: JSX.Element;
+  icon: (style: string) => ReactNode;
   title: string;
 }) => {
   return (
     <Link href={to} target="_blank">
-      <StyledSocial title={title}>{icon}</StyledSocial>
+      <StyledSocial title={title}>{icon("")}</StyledSocial>
     </Link>
   );
 };

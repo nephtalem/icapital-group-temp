@@ -1,7 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { SummitDetail } from "@/components/platform/SummitDetail";
-import { Title } from "@/components/shared/Title";
 import KSPService from "@/services/ksp.service";
 import { Metadata, ResolvingMetadata } from "next";
 
@@ -22,7 +21,6 @@ const EAFSPage = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <Title title={`${summit.attributes?.name}`} />
       <Content>
         <PlatformHeader upcoming={upcomingEacms} type="ECCDA" />
         <SummitDetail summit={summit} />

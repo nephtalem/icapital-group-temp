@@ -1,7 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import { Upcoming } from "@/components/platform/Upcoming";
-import { Title } from "@/components/shared/Title";
 import { UpcomingEacmsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetServerSideProps } from "next";
@@ -13,7 +12,6 @@ const UpcomingEACMSPage = ({
 }) => {
   return (
     <>
-      <Title title={`${upcomingEacms.attributes?.content?.title}`} />
       <Content>
         <PlatformHeader upcoming={upcomingEacms} type="EACMS" />
         {/* <Upcoming
