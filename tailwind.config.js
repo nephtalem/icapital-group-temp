@@ -16,6 +16,28 @@ module.exports = {
         background: "#1a2b42",
         border: "#eee",
       },
+      animation: {
+        scrollDown: "scrollDown 3s ease-in-out infinite",
+      },
+      keyframes: {
+        scrollDown: {
+          "0%": {
+            bottom: "2.5rem",
+          },
+          "25%": {
+            bottom: "1.5rem",
+          },
+          "50%": {
+            bottom: "1.5rem;",
+          },
+          "75%": {
+            bottom: "1.5rem",
+          },
+          "100%": {
+            bottom: "2.5rem",
+          },
+        },
+      },
     },
   },
   plugins: [],

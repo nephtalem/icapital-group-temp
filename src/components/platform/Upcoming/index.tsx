@@ -43,7 +43,8 @@ import {
 import { MainText } from "@/components/shared/MainText";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { Social, socials } from "@/components/home/Header";
+import { Social } from "@/components/home/Header/Social";
+import { socials } from "@/components/home/Header/Socials";
 import {
   ComponentEafsSessionEafsSession,
   ComponentOrganizerOrganizer,

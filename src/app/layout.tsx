@@ -10,14 +10,13 @@ import { Mulish } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import StyledComponentsRegistry from "@/lib/registry";
 import { Theme } from "@/styles/theme";
 import "leaflet/dist/leaflet.css";
+import { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
 import { ReactNode } from "react";
 import "react-medium-image-zoom/dist/styles.css";
 import "react-phone-number-input/style.css";
-import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 const mulish = Mulish({ subsets: ["latin"] });
@@ -39,14 +38,12 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     <html lang="en">
       <body className={mulish.className}>
         <ToastContainer />
-        <StyledComponentsRegistry>
-          <NextTopLoader
-            color={Theme.colors.primary}
-            height={2}
-            showSpinner={false}
-          />
-          <Layout>{children}</Layout>
-        </StyledComponentsRegistry>
+        <NextTopLoader
+          color={Theme.colors.primary}
+          height={2}
+          showSpinner={false}
+        />
+        <Layout>{children}</Layout>
       </body>
     </html>
   );

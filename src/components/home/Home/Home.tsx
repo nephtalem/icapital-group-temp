@@ -3,10 +3,10 @@ import { HomeEntity } from "@/gql/graphql";
 import { Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Footer } from "../Footer";
-import { Header } from "../Header";
+import { Header } from "../Header/Header";
 import { Landing } from "../Landing";
-import { Nav } from "../Nav";
-import { Slide } from "../Slide";
+import { Nav } from "./Nav";
+import { Slide } from "./Slide";
 
 export const Home = ({ home }: { home: HomeEntity }) => {
   return (

@@ -3,7 +3,7 @@ import LocationIcon from "@/assets/icons/location.svg";
 import TechawksLogo from "@/assets/icons/logo.svg";
 import PhoneIcon from "@/assets/icons/phone.svg";
 import PostIcon from "@/assets/icons/post.svg";
-import { Socials } from "@/components/home/Header";
+import { Socials } from "@/components/home/Header/Socials.1";
 import Image from "next/image";
 import Link from "next/link";
 import { FooterLink } from "./FooterLink";

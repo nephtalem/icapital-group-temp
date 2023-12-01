@@ -49,24 +49,6 @@ a {
   width: 100vw;
 }
 
-@keyframes scrollDown {
-  0% {
-    bottom: 5rem;
-  }
-  25% {
-    bottom: 3rem;
-  }
-  50% {
-    bottom: 3rem;
-  }
-  75% {
-    bottom: 3rem;
-  }
-  100% {
-    bottom: 5rem;
-  }
-}
-
 #nprogress .bar {
   background: #f58016 !important;
 }
@@ -102,21 +84,17 @@ a {
   background: #1a2c42;
 }
 
-.html {
-  strong,
-  a {
-    color: #f78019;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-  }
+.html > strong,
+a {
+  color: #f78019;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
 
-  .htmlTitle {
-    strong {
-      color: #f78019;
-      font-size: inherit;
-      font-weight: inherit;
-      line-height: inherit;
-    }
-  }
+.htmlTitle > strong {
+  color: #f78019;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }

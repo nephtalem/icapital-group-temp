@@ -1,6 +1,6 @@
 "use client";
 
-import { socials } from "@/components/home/Header";
+import { socials } from "@/components/home/Header/Socials";
 import { StyledSocial, StyledSocials, StyledSocialsList } from "./styles";
 import Link from "next/link";
 

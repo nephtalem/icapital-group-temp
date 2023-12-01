@@ -1,13 +1,4 @@
-import { SwiperSlide } from "swiper/react";
-import {
-  StyledBackground,
-  StyledContent,
-  StyledCover,
-  StyledLogo,
-  StyledSlide,
-} from "./styles";
 import Image from "next/image";
-import { title } from "process";
 import Link from "next/link";
 
 export const Slide = ({
@@ -38,7 +29,7 @@ export const Slide = ({
       </div>
       <div className="absolute h-screen w-screen bg-black opacity-30" />
       <div className="absolute grid justify-items-center self-center justify-self-center px-48">
-        <div className="relative mt-24 grid h-32 w-[50vw] md:h-40 md:w-[400px]">
+        <div className="relative mt-24 grid h-[6rem] w-[50vw] md:h-[8rem] md:w-[20rem]">
           <Image
             src={"/images/white.logo.png"}
             alt={"background"}
@@ -48,9 +39,18 @@ export const Slide = ({
             className="object-contain"
           />
         </div>
-        <h2>{title}</h2>
-        <p>{description}</p>
-        <Link href={link.to}>{link.label}</Link>
+        <h2 className="mt-[1.5rem] text-[1.5rem] font-bold text-white md:mt-[3rem] md:text-[2.4rem]">
+          {title}
+        </h2>
+        <p className="mt-[1rem] text-justify text-2xl text-white md:mt-[2rem] md:text-center md:text-[1.2rem] md:leading-[1.6rem]">
+          {description}
+        </p>
+        <Link
+          className="mt-2rem flex cursor-pointer items-center border-2 border-white px-8 text-[.8rem] font-medium leading-[1.2rem] text-white md:mt-[5rem] md:h-[3.6rem] md:text-[1rem] md:leading-[1.5rem]"
+          href={link.to}
+        >
+          {link.label}
+        </Link>
       </div>
     </section>
   );
