@@ -1,5 +1,3 @@
-"use client";
-
 import { MainText } from "@/components/shared/MainText";
 import Image from "next/image";
 

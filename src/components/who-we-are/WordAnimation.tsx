@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import TextTransition, { presets } from "react-text-transition";
 import { Autoplay } from "swiper/modules";

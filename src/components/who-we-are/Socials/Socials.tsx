@@ -1,8 +1,5 @@
-"use client";
-
 import { socials } from "@/components/home/Header/Socials";
-import Link from "next/link";
-import { ReactNode } from "react";
+import { Social } from "./Social";
 
 export const Socials = () => {
   return (
@@ -21,23 +18,5 @@ export const Socials = () => {
         Copyright {new Date().getFullYear()}, All right reserved
       </p>
     </div>
-  );
-};
-
-const Social = ({
-  to,
-  title,
-  icon,
-}: {
-  to: string;
-  icon: (style: string) => ReactNode;
-  title: string;
-}) => {
-  return (
-    <Link href={to} target="_blank">
-      <div className="flex" title={title}>
-        {icon("h-[3rem] fill-[#243b7e] md:h-[2rem]")}
-      </div>
-    </Link>
   );
 };
