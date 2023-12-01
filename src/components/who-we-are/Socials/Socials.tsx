@@ -1,3 +1,5 @@
+"use client";
+
 import { socials } from "@/components/home/Header/Socials";
 import { Social } from "./Social";
 
