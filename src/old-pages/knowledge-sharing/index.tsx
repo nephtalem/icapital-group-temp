@@ -1,4 +1,4 @@
-import { Platforms } from "@/components/knowledge-sharing/Platforms";
+import { Platforms } from "@/components/knowledge-sharing/Platforms/Platforms";
 import { Content } from "@/components/knowledge-sharing/Content";
 import { Landing } from "@/components/knowledge-sharing/Landing";
 import { GetStaticProps } from "next";

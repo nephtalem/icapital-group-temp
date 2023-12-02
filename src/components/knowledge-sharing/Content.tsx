@@ -1,7 +1,6 @@
 "use client";
-import { Header } from "@/components/shared/Header/Header";
-import { StyledContent } from "./styles";
 import { Footer } from "@/components/shared/Footer/Footer";
+import { Header } from "@/components/shared/Header/Header";
 import { ReactNode } from "react";
 
 export const Content = ({
@@ -12,8 +11,11 @@ export const Content = ({
   children: ReactNode;
 }) => {
   return (
-    <StyledContent scrollable={scrollable}>
+    <div
+      className={`relative grid h-screen w-screen overflow-y-auto overflow-x-hidden`}
+    >
       <Header
+        scrollable={scrollable}
         options={[
           {
             label: "Home",
@@ -40,6 +42,6 @@ export const Content = ({
       />
       {children}
       <Footer />
-    </StyledContent>
+    </div>
   );
 };

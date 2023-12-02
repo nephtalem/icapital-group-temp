@@ -11,7 +11,7 @@ export const Social = ({
 }) => {
   return (
     <Link href={to} target="_blank">
-      <div title={title}>{icon("h-[0.8rem] md:h-[1rem]")}</div>
+      <div title={title}>{icon("h-[0.8rem] fill-white md:h-[1rem]")}</div>
     </Link>
   );
 };

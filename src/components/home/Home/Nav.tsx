@@ -23,7 +23,7 @@ export const Nav = ({ length }: { length: number }) => {
             onClick={() => swiper.slideTo(value)}
           >
             <div
-              className={`grid h-3 w-3 cursor-pointer rounded-full border-2 border-white ${
+              className={`grid h-3 w-3 cursor-pointer rounded-full border-2 border-white duration-300 ease-in-out ${
                 active == value ? "bg-transparent" : "bg-white"
               }`}
             />
