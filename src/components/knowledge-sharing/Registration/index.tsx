@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   ComponentPricingPricing,
   RegistrationEafsEntity,
@@ -31,8 +31,9 @@ import { previewImage } from "@/utils/preview.image";
 import { upload } from "@/utils/upload";
 import { showLoadingMessage, showSuccessMessage } from "@/utils/show.message";
 import KSPService from "@/services/ksp.service";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";export const Registration = ({
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+export const Registration = ({
   registration,
   upcoming,
 }: {
@@ -75,7 +76,7 @@ import { useRouter } from "next/navigation";export const Registration = ({
     setTimeout(() => {
       showSuccessMessage("Registration successful!");
       router.push(
-        "/knowledge-sharing/east-africa-finance-summit/previous-summits/"
+        "/knowledge-sharing/east-africa-finance-summit/previous-summits/",
       );
     }, 1000);
   };
@@ -164,7 +165,7 @@ import { useRouter } from "next/navigation";export const Registration = ({
                 size: value,
                 price:
                   registration.attributes?.pricing?.find(
-                    (price) => price?.size === value
+                    (price) => price?.size === value,
                   )?.price ?? 5000,
               });
             }}
@@ -219,8 +220,8 @@ const Payment = ({
             {price.size === 1
               ? "person"
               : pricing.length - 1 === index
-              ? "persons & above"
-              : "persons"}
+                ? "persons & above"
+                : "persons"}
           </option>
         ))}
       </select>
@@ -233,7 +234,7 @@ const Payment = ({
         <h5>
           {moneyFormat(
             pricing.find((price) => price.size === size)!.price!,
-            "ETB"
+            "ETB",
           )}{" "}
           / person
         </h5>
