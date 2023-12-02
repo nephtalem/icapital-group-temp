@@ -98,9 +98,14 @@ a {
   color: #f78019;
 }
 
-.htmlTitle > strong {
+.htmlTitle strong {
   color: #f78019;
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
+}
+
+.htmlTitle span {
+  font-size: 3.2rem;
+  color: #f58016;
 }

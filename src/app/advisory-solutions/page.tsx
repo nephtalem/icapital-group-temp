@@ -1,13 +1,11 @@
-import { Departments } from "@/components/advisory-solutions/Departments";
+import { CallToAction } from "@/components/advisory-solutions/CallToAction";
+import { Departments } from "@/components/advisory-solutions/Departments/Departments";
 import { Intro } from "@/components/advisory-solutions/Intro";
 import { Content } from "@/components/shared/Content";
-import { Metadata } from "next";
 import { Partners } from "@/components/shared/Partners/Partners";
-import KSPService from "@/services/ksp.service";
-import ASService from "@/services/as.service";
 import { AdvisorySolutionsEntity } from "@/gql/graphql";
-import { Html } from "@/components/shared/Html/Html";
-import { CallToAction } from "@/components/advisory-solutions/CallToAction";
+import ASService from "@/services/as.service";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Advisory Solutions | The i-Capital Africa Institute",
