@@ -1,20 +1,17 @@
 import { Content } from "@/components/knowledge-sharing/Content";
-import { DocumentsDetail } from "@/components/platform/DocumentsDetail";
+import { DocumentsDetail } from "@/components/platform/DocumentsDetail/DocumentsDetail";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import KSPService from "@/services/ksp.service";
-import {
-  Metadata,
-  ResolvingMetadata
-} from "next";
+import { Metadata, ResolvingMetadata } from "next";
 
 export async function generateMetadata(
-  {},
-  parent: ResolvingMetadata
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const upcomingEafs = await KSPService.upcomingEafs();
+  const document = await KSPService.document(params!.slug!.toString());
 
   return {
-    title: `${upcomingEafs.attributes?.content?.title} | The i-Capital Africa Institute`,
+    title: `${document?.attributes?.name} | The i-Capital Africa Institute`,
   };
 }
 

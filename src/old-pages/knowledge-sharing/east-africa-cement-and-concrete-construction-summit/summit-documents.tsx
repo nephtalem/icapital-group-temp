@@ -1,6 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
-import { SummitDocuments } from "@/components/platform/SummitDocuments";
+import { SummitDocuments } from "@/components/platform/SummitDocuments/SummitDocuments";
 import { DocumentEntity, UpcomingEacmsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetStaticProps } from "next";

@@ -1,5 +1,5 @@
 import { Content } from "@/components/knowledge-sharing/Content";
-import { DocumentsDetail } from "@/components/platform/DocumentsDetail";
+import { DocumentsDetail } from "@/components/platform/DocumentsDetail/DocumentsDetail";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import KSPService from "@/services/ksp.service";
 import { Metadata, ResolvingMetadata } from "next";
