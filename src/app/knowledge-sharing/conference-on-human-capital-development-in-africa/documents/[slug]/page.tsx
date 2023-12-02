@@ -3,20 +3,18 @@ import { DocumentsDetail } from "@/components/platform/DocumentsDetail/Documents
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
 import KSPService from "@/services/ksp.service";
 import {
-  GetStaticPaths,
-  GetStaticProps,
   Metadata,
-  ResolvingMetadata,
+  ResolvingMetadata
 } from "next";
 
 export async function generateMetadata(
-  {},
+  { params }: { params: { slug: string } },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const upcomingChcda = await KSPService.upcomingChcda();
+  const document = await KSPService.document(params!.slug!.toString());
 
   return {
-    title: `${upcomingChcda.attributes?.content?.title} | The i-Capital Africa Institute`,
+    title: `${document.attributes?.name} | The i-Capital Africa Institute`,
   };
 }
 
@@ -35,24 +33,3 @@ const EAFSPage = async ({ params }: { params: { slug: string } }) => {
 };
 
 export default EAFSPage;
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const documents = await KSPService.documents("ECCDA");
-
-  return {
-    paths: documents.map((document: any) => ({
-      params: { slug: document.attributes?.slug },
-    })),
-    fallback: "blocking",
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const document = await KSPService.document(params!.slug!.toString());
-  const upcomingChcda = await KSPService.upcomingChcda();
-
-  return {
-    props: { document, upcomingChcda },
-    revalidate: 10, // In seconds
-  };
-};
