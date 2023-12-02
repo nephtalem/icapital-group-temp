@@ -19,7 +19,11 @@ import "react-medium-image-zoom/dist/styles.css";
 import "react-phone-number-input/style.css";
 
 export const dynamic = "force-dynamic";
-const mulish = Mulish({ subsets: ["latin"] });
+const mulish = Mulish({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mulish",
+});
 polyfill();
 
 export const metadata: Metadata = {
@@ -35,8 +39,8 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="en">
-      <body className={mulish.className}>
+    <html lang="en" className={`${mulish.variable}`}>
+      <body>
         <ToastContainer />
         <NextTopLoader
           color={Theme.colors.primary}

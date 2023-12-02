@@ -18,8 +18,8 @@ export const Header = ({
   return (
     <header
       className={`${
-        scrollable ? "sticky" : "relative"
-      } top-0 z-[100] grid h-max grid-cols-[1fr,max-content] grid-rows-[max-content,max-content] content-center items-center gap-y-5 border-b border-b-border bg-white px-4 py-5 md:h-32 md:grid-cols-[max-content,1fr,max-content] md:px-12`}
+        scrollable ? "sticky top-0 " : "relative"
+      } z-[100] grid h-max grid-cols-[1fr,max-content] grid-rows-[max-content,max-content] content-center items-center gap-y-5 border-b border-b-border bg-white px-4 md:h-[6rem] md:grid-cols-[max-content,1fr,max-content] md:grid-rows-1 md:px-12`}
     >
       <Logo />
       <div className="col-start-1 col-end-[-1] row-start-2 flex gap-0 justify-self-center md:col-auto md:row-auto md:gap-10">

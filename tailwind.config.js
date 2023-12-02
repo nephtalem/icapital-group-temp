@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-mulish)"],
+      },
       colors: {
         primary: "#253E5E",
         primaryLight: "#4A7DBC",

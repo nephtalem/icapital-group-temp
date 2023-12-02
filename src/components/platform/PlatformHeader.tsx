@@ -1,19 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import {
-  StyledLogo,
-  StyledOption,
-  StyledOptions,
-  StyledPlatformHeader,
-} from "./styles";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import {
   UpcomingChcdaEntity,
   UpcomingEacmsEntity,
   UpcomingEafsEntity,
 } from "@/gql/graphql";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export const PlatformHeader = ({
   upcoming,
@@ -23,11 +17,16 @@ export const PlatformHeader = ({
   type: "EAFS" | "EACMS" | "ECCDA";
 }) => {
   return (
-    <StyledPlatformHeader>
-      <StyledLogo>
-        <Image src={"/images/eafs.logo.png"} alt={""} fill={true} />
-      </StyledLogo>
-      <StyledOptions>
+    <div className="sticky top-0 z-[100] grid h-[6rem] w-screen grid-cols-[max-content,1fr] items-center border-b border-b-border bg-white px-[3.5rem]">
+      <div className="relative h-[4rem] w-[11rem]">
+        <Image
+          className="object-contain"
+          src={"/images/eafs.logo.png"}
+          alt={""}
+          fill={true}
+        />
+      </div>
+      <div className="flex justify-self-end">
         {type === "ECCDA" ? (
           <>
             {upcoming?.attributes?.enabled ? (
@@ -86,17 +85,24 @@ export const PlatformHeader = ({
             />
           </>
         )}
-      </StyledOptions>
-    </StyledPlatformHeader>
+      </div>
+    </div>
   );
 };
 
 export const Option = ({ label, to }: { label: string; to: string }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const active = to === pathname;
   return (
     <Link href={to}>
-      <StyledOption $active={to === pathname}>{label}</StyledOption>
+      <div
+        className={`${
+          active ? "bg-[rgba(245,128,22,0.1)] text-accent" : "text-black"
+        } grid items-center rounded-[1.5rem] px-[.5rem] py-[.6rem] text-center text-[.7rem] font-semibold md:px-[3.5rem] md:text-[1rem]`}
+      >
+        {label}
+      </div>
     </Link>
   );
 };

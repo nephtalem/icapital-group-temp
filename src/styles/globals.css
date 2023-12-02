@@ -88,12 +88,14 @@ a {
   background: #1a2c42;
 }
 
-.html > strong,
-a {
-  color: #f78019;
+.html * {
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
+  font-family: inherit;
+}
+.html a {
+  color: #f78019;
 }
 
 .htmlTitle > strong {
