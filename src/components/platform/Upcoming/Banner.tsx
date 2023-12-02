@@ -5,7 +5,7 @@ import { ActionButton } from "@/components/shared/buttons/ActionButton";
 import { UpcomingEafsEntity } from "@/gql/graphql";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactPlayer } from ".";
+import { ReactPlayer } from "./Upcoming";
 
 export const Banner = ({ upcoming }: { upcoming: UpcomingEafsEntity; }) => {
   return (

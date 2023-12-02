@@ -3,7 +3,7 @@ import { MainText } from "@/components/shared/MainText";
 import { UpcomingEafsEntity } from "@/gql/graphql";
 import { Guest } from "./Guest";
 
-export const Guests = ({ upcoming }: { upcoming: UpcomingEafsEntity; }) => {
+export const Guests = ({ upcoming }: { upcoming: UpcomingEafsEntity }) => {
   return (
     <div className="grid w-screen px-[2rem] py-[8rem] md:px-[5rem]">
       <MainText title={"Guest of Honours"} />

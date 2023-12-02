@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Organizers, Sponsors } from "../Upcoming";
+import { Sponsors } from "../Upcoming/Sponsors";
+import { Organizers } from "../Upcoming/Organizers";
 import {
   StyledIntro,
   StyledIntroContent,

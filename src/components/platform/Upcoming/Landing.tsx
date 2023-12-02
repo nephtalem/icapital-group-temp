@@ -3,13 +3,14 @@ import { Button } from "@/components/shared/buttons/Button";
 import {
   UpcomingChcdaEntity,
   UpcomingEacmsEntity,
-  UpcomingEafsEntity
+  UpcomingEafsEntity,
 } from "@/gql/graphql";
 import Image from "next/image";
 import Link from "next/link";
 
 export const Landing = ({
-  upcoming, base,
+  upcoming,
+  base,
 }: {
   base: string;
 
@@ -24,7 +25,8 @@ export const Landing = ({
           quality={100}
           fill={true}
           priority
-          className="object-cover" />
+          className="object-cover"
+        />
       </div>
       <div className="absolute grid h-full w-full auto-rows-max justify-items-center">
         <div className="relative mt-[2.4rem] h-[16rem] w-[16rem]">
@@ -32,7 +34,8 @@ export const Landing = ({
             src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.logo?.data?.attributes?.url}`}
             alt={""}
             fill={true}
-            className="object-contain" />
+            className="object-contain"
+          />
         </div>
         <h1 className="mt-[1.6rem] text-center text-[1.6rem] font-bold text-white">
           {upcoming.attributes?.content?.title}
@@ -41,7 +44,7 @@ export const Landing = ({
           &quot;{upcoming.attributes?.content?.intro}&quot;
         </p>
         <Link className="mt-[3rem]" href={`${base}/register`}>
-          <Button label={"REGISTER HERE"} onClick={(): void => { }} />
+          <Button label={"REGISTER HERE"} onClick={(): void => {}} />
         </Link>
       </div>
     </div>

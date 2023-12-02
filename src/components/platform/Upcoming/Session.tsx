@@ -1,6 +1,7 @@
 "use client";
 import { ComponentEafsSessionEafsSession } from "@/gql/graphql";
-import { Speaker, Moderator } from ".";
+import { Moderator } from "./Moderator";
+import { Speaker } from "./Speaker";
 
 
 export const Session = ({ session }: { session: ComponentEafsSessionEafsSession; }) => {

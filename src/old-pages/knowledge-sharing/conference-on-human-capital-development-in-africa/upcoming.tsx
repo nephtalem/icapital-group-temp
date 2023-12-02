@@ -1,6 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
-import { Upcoming } from "@/components/platform/Upcoming";
+import { Upcoming } from "@/components/platform/Upcoming/Upcoming";
 import { UpcomingChcdaEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { GetServerSideProps } from "next";
