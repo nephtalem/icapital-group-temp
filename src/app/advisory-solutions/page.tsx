@@ -1,4 +1,4 @@
-import { CallToAction } from "@/components/advisory-solutions/CallToAction";
+import { CallToAction } from "@/components/shared/CallToAction";
 import { Departments } from "@/components/advisory-solutions/Departments/Departments";
 import { Intro } from "@/components/advisory-solutions/Intro";
 import { Content } from "@/components/shared/Content";
@@ -26,7 +26,7 @@ const AdvisorySolutionsPage = async () => {
           to: `${client?.url}`,
         }))}
       />
-      <CallToAction as={as} />
+      <CallToAction callToAction={as.attributes?.callToAction??""} />
     </Content>
   );
 };

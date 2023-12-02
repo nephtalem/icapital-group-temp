@@ -1,8 +1,7 @@
 "use client";
 
 import { Html } from "@/components/shared/Html/Html";
-import { AdvisorySolutionsEntity } from "@/gql/graphql";
-export const CallToAction = ({ as }: { as: AdvisorySolutionsEntity }) => {
+export const CallToAction = ({ callToAction }: { callToAction: string }) => {
   return (
     <div className="m-[10rem] grid justify-items-center">
       <Html
@@ -13,7 +12,7 @@ export const CallToAction = ({ as }: { as: AdvisorySolutionsEntity }) => {
           color: "black",
           textAlign: "center",
         }}
-        content={`${as.attributes?.callToAction}`}
+        content={`${callToAction}`}
       />
     </div>
   );

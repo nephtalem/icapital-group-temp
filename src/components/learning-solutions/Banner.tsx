@@ -1,26 +1,26 @@
 "use client";
-import Image from "next/image";
-import { StyledBanner, StyledBannerImage } from "./styles";
-import { LearningSolutionsEntity } from "@/gql/graphql";
 import { Button } from "@/components/shared/buttons/Button";
+import { LearningSolutionsEntity } from "@/gql/graphql";
+import Image from "next/image";
 import Link from "next/link";
 
 export const Banner = ({ ls }: { ls: LearningSolutionsEntity }) => {
   return (
-    <StyledBanner>
-      <StyledBannerImage>
+    <div className="my-[10rem] grid justify-items-center gap-[2.4rem]">
+      <div className="relative grid h-[20rem] w-full">
         <Image
+          className="object-contain"
           src={`${process.env.NEXT_PUBLIC_DATA}${ls.attributes?.LSBanner?.image?.data?.attributes?.url}`}
           alt=""
           fill
         />
-      </StyledBannerImage>
+      </div>
       <Link href={`${ls.attributes?.LSBanner?.callToActionLink}`}>
         <Button
           label={`${ls.attributes?.LSBanner?.callToAction}`}
           onClick={function (): void {}}
         />
       </Link>
-    </StyledBanner>
+    </div>
   );
 };
