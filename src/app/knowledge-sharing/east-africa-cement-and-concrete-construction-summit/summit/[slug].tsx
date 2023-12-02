@@ -1,6 +1,6 @@
 import { Content } from "@/components/knowledge-sharing/Content";
 import { PlatformHeader } from "@/components/platform/PlatformHeader";
-import { SummitDetail } from "@/components/platform/SummitDetail";
+import { SummitDetail } from "@/components/platform/SummitDetail/SummitDetail";
 import KSPService from "@/services/ksp.service";
 import { Metadata, ResolvingMetadata } from "next";
 
