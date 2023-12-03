@@ -11,7 +11,7 @@ import { Socials } from "@/components/home/Header/Socials";
 
 export const Footer = () => {
   return (
-    <footer className=" bg-background">
+    <footer className=" bg-background" id="contact">
       <div className="grid grid-cols-2 gap-[10vw] p-6 md:p-12">
         <div className="grid">
           <div className="relative mb-8 grid h-28 w-48 ">

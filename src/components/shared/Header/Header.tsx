@@ -1,7 +1,9 @@
+"use client";
 import Link from "next/link";
 import { Button } from "../buttons/Button";
 import { Logo } from "./Logo";
 import { Option } from "./Option";
+import { usePathname } from "next/navigation";
 
 export const Header = ({
   scrollable,
@@ -15,6 +17,7 @@ export const Header = ({
     base: string;
   }[];
 }) => {
+  const pathname = usePathname();
   return (
     <header
       className={`${
@@ -32,7 +35,7 @@ export const Header = ({
           />
         ))}
       </div>
-      <Link href={"/contact-us"}>
+      <Link href={`${pathname}/#contact`}>
         <Button label={"Contact Us"} onClick={(): void => {}} />
       </Link>
     </header>
