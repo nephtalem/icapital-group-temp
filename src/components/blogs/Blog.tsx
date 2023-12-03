@@ -6,7 +6,11 @@ import Link from "next/link";
 export const Blog = ({ blog }: { blog: BlogEntity }) => {
   return (
     <div className="grid justify-items-start rounded-xl p-[2rem] shadow">
-      <h3 className="text-xl font-bold text-black">{blog.attributes?.title}</h3>
+      <Link href={`/news-and-blogs/${blog.attributes?.slug}`}>
+        <h3 className="text-xl font-bold text-black">
+          {blog.attributes?.title}
+        </h3>
+      </Link>
       <div className="mb-4 mt-3 flex w-full justify-between">
         <p className="text-sm font-medium text-black/60">
           Written by {blog.attributes?.author?.data?.attributes?.name}
