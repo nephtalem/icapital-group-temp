@@ -1,18 +1,19 @@
-import { KNOWLEDGE_SHARING } from "@/graphql/knowledge-sharing/knowledgeSharing";
-import client from "../utils/apollo.client";
-import { UPCOMING_EAFS } from "@/graphql/knowledge-sharing/upcomingEafs";
-import { SUMMITS } from "@/graphql/knowledge-sharing/summits";
-import { DOCUMENTS } from "@/graphql/knowledge-sharing/documents";
-import { UPCOMING_EACMS } from "@/graphql/knowledge-sharing/upcomingEacms";
-import { UPCOMING_CHCDA } from "@/graphql/knowledge-sharing/upcomingChcda";
-import { REGISTRATION_EAFS } from "@/graphql/knowledge-sharing/registrationEafs";
 import { ParticipantInput } from "@/gql/graphql";
 import { CREATE_PARTICIPANT } from "@/graphql/knowledge-sharing/createParticipant";
+import { DOCUMENTS } from "@/graphql/knowledge-sharing/documents";
+import { KNOWLEDGE_SHARING } from "@/graphql/knowledge-sharing/knowledgeSharing";
+import { REGISTRATION_EAFS } from "@/graphql/knowledge-sharing/registrationEafs";
+import { SUMMITS } from "@/graphql/knowledge-sharing/summits";
+import { UPCOMING_CHCDA } from "@/graphql/knowledge-sharing/upcomingChcda";
+import { UPCOMING_EACMS } from "@/graphql/knowledge-sharing/upcomingEacms";
+import { UPCOMING_EAFS } from "@/graphql/knowledge-sharing/upcomingEafs";
+import apolloClient from "@/utils/apollo.client";
+import { client } from "@/utils/client";
 
 class KSPService {
   static ksp = async () => {
     try {
-      const kspResult = await client.query({
+      const kspResult = await client({
         query: KNOWLEDGE_SHARING,
         variables: {},
       });
@@ -22,7 +23,7 @@ class KSPService {
 
   static upcomingEafs = async () => {
     try {
-      const upcomingEafsResult = await client.query({
+      const upcomingEafsResult = await client({
         query: UPCOMING_EAFS,
         variables: {},
       });
@@ -32,7 +33,7 @@ class KSPService {
 
   static registrationEafs = async () => {
     try {
-      const registrationEafsResult = await client.query({
+      const registrationEafsResult = await client({
         query: REGISTRATION_EAFS,
         variables: {},
       });
@@ -42,7 +43,7 @@ class KSPService {
 
   static upcomingEacms = async () => {
     try {
-      const upcomingEafsResult = await client.query({
+      const upcomingEafsResult = await client({
         query: UPCOMING_EACMS,
         variables: {},
       });
@@ -52,7 +53,7 @@ class KSPService {
 
   static upcomingChcda = async () => {
     try {
-      const upcomingEafsResult = await client.query({
+      const upcomingEafsResult = await client({
         query: UPCOMING_CHCDA,
         variables: {},
       });
@@ -62,7 +63,7 @@ class KSPService {
 
   static summits = async (type: string) => {
     try {
-      const summitsResult = await client.query({
+      const summitsResult = await client({
         query: SUMMITS,
         variables: {
           filters: {
@@ -77,7 +78,7 @@ class KSPService {
   };
   static summit = async (slug: string) => {
     try {
-      const summitsResult = await client.query({
+      const summitsResult = await client({
         query: SUMMITS,
         variables: {
           filters: {
@@ -93,7 +94,7 @@ class KSPService {
 
   static documents = async (type: string) => {
     try {
-      const documentsResult = await client.query({
+      const documentsResult = await client({
         query: DOCUMENTS,
         variables: {
           filters: {
@@ -108,7 +109,7 @@ class KSPService {
   };
   static document = async (slug: string) => {
     try {
-      const documentsResult = await client.query({
+      const documentsResult = await client({
         query: DOCUMENTS,
         variables: {
           filters: {
@@ -124,8 +125,8 @@ class KSPService {
 
   static createParticipant = async (data: ParticipantInput) => {
     try {
-      const documentsResult = await client.query({
-        query: CREATE_PARTICIPANT,
+      const documentsResult = await apolloClient.mutate({
+        mutation: CREATE_PARTICIPANT,
         variables: {
           data,
         },

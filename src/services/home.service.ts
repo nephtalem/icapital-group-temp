@@ -1,10 +1,10 @@
 import { HOME } from "@/graphql/home/home";
-import client from "../utils/apollo.client";
+import { client } from "@/utils/client";
 
 class HomeService {
   static home = async () => {
     try {
-      const homeResult = await client.query({
+      const homeResult = await client({
         query: HOME,
         variables: {},
       });

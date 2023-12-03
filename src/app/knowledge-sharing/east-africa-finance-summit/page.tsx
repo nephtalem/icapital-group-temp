@@ -1,4 +1,3 @@
-import { Content } from "@/components/knowledge-sharing/Content";
 import KSPService from "@/services/ksp.service";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";

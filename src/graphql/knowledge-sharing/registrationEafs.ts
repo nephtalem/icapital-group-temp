@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "@/utils/gql";
 
 export const REGISTRATION_EAFS = gql`
   query registrationEafs {

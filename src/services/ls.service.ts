@@ -1,10 +1,10 @@
 import { LEARNING_SOLUTIONS } from "@/graphql/learning-solutions/learningSolutions";
-import client from "../utils/apollo.client";
+import { client } from "@/utils/client";
 
 class LSService {
   static ls = async () => {
     try {
-      const asResult = await client.query({
+      const asResult = await client({
         query: LEARNING_SOLUTIONS,
         variables: {},
       });

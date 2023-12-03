@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "@/utils/gql";
 
 export const HOME = gql`
   query home {

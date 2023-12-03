@@ -1,10 +1,10 @@
 import { ADVISORY_SOLUTIONS } from "@/graphql/advisory-solutions/advisorySolutions";
-import client from "../utils/apollo.client";
+import { client } from "@/utils/client";
 
 class ASService {
   static as = async () => {
     try {
-      const asResult = await client.query({
+      const asResult = await client({
         query: ADVISORY_SOLUTIONS,
         variables: {},
       });

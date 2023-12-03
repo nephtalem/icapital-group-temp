@@ -58,7 +58,7 @@ const splitLink = split(
   authLink.concat(httpLink)
 );
 
-const client = new ApolloClient({
+const apolloClient = new ApolloClient({
   link: splitLink,
   cache: new InMemoryCache(),
   defaultOptions: defaultOptions,
@@ -66,4 +66,4 @@ const client = new ApolloClient({
   queryDeduplication: false,
 });
 
-export default client;
+export default apolloClient;

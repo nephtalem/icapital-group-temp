@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
+import { gql } from "@/utils/gql";
 
 export const LEARNING_SOLUTIONS = gql`
-  query LearningSolutions{
+  query LearningSolutions {
     learningSolutions(publicationState: LIVE) {
       data {
         id
