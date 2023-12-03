@@ -7,7 +7,7 @@ export const Blog = ({ blog }: { blog: BlogEntity }) => {
   return (
     <div className="grid justify-items-start rounded-xl p-[2rem] shadow">
       <Link href={`/news-and-blogs/${blog.attributes?.slug}`}>
-        <h3 className="text-xl font-bold text-black">
+        <h3 className="text-xl font-bold text-black hover:underline">
           {blog.attributes?.title}
         </h3>
       </Link>
