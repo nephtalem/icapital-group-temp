@@ -13,9 +13,7 @@ The `BigInt` scalar type represents non-fractional signed whole numeric values.
 """
 scalar Long
 
-"""
-The `Upload` scalar type represents a file upload.
-"""
+"""The `Upload` scalar type represents a file upload."""
 scalar Upload
 
 type Pagination {
@@ -251,11 +249,7 @@ input ComponentCategoryCategoryInput {
 type ComponentCategoryCategory {
   id: ID!
   name: String
-  file(
-    filters: ComponentFileFileFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentFileFile]
+  file(filters: ComponentFileFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentFileFile]
 }
 
 input ComponentCbsPointCbsPointFiltersInput {
@@ -300,6 +294,26 @@ type ComponentCertificationPackageCertificationPackage {
   description: String
 }
 
+input ComponentClientCounterClientCounterFiltersInput {
+  name: StringFilterInput
+  value: LongFilterInput
+  and: [ComponentClientCounterClientCounterFiltersInput]
+  or: [ComponentClientCounterClientCounterFiltersInput]
+  not: ComponentClientCounterClientCounterFiltersInput
+}
+
+input ComponentClientCounterClientCounterInput {
+  id: ID
+  name: String
+  value: Long
+}
+
+type ComponentClientCounterClientCounter {
+  id: ID!
+  name: String
+  value: Long
+}
+
 input ComponentEafsSessionEafsSessionFiltersInput {
   title: StringFilterInput
   speaker: ComponentPersonPersonFiltersInput
@@ -319,11 +333,7 @@ input ComponentEafsSessionEafsSessionInput {
 type ComponentEafsSessionEafsSession {
   id: ID!
   title: String
-  speaker(
-    filters: ComponentPersonPersonFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentPersonPerson]
+  speaker(filters: ComponentPersonPersonFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPersonPerson]
   moderator: ComponentPersonPerson
 }
 
@@ -344,11 +354,7 @@ input ComponentExposureProgramExposureProgramInput {
 type ComponentExposureProgramExposureProgram {
   id: ID!
   title: String
-  points(
-    filters: ComponentPointPointsFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentPointPoints]
+  points(filters: ComponentPointPointsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPointPoints]
 }
 
 input ComponentFileFileFiltersInput {
@@ -368,6 +374,24 @@ type ComponentFileFile {
   id: ID!
   name: String
   content: UploadFileEntityResponse
+}
+
+input ComponentIntroIntroInput {
+  id: ID
+  image: ID
+  title: String
+  description: String
+  fullName: String
+  position: String
+}
+
+type ComponentIntroIntro {
+  id: ID!
+  image: UploadFileEntityResponse
+  title: String
+  description: String
+  fullName: String
+  position: String
 }
 
 input ComponentLsBannerLsBannerInput {
@@ -575,11 +599,7 @@ type ComponentSessionSession {
   id: ID!
   title: String
   description: String
-  sessionVideo(
-    filters: ComponentSessionVideoVideoFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentSessionVideoVideo]
+  sessionVideo(filters: ComponentSessionVideoVideoFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSessionVideoVideo]
 }
 
 input ComponentSlideSlideFiltersInput {
@@ -646,11 +666,7 @@ type ComponentSolutionSolution {
   id: ID!
   icon: UploadFileEntityResponse
   title: String
-  SolutionPoint(
-    filters: ComponentSolutionPointSolutionPointFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentSolutionPointSolutionPoint]
+  SolutionPoint(filters: ComponentSolutionPointSolutionPointFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSolutionPointSolutionPoint]
 }
 
 enum ENUM_COMPONENTSPONSORSPONSOR_LEVEL {
@@ -745,20 +761,66 @@ type ComponentUpcomingUpcoming {
   title: String
   intro: String
   banner: UploadFileEntityResponse
-  organizer(
-    filters: ComponentOrganizerOrganizerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentOrganizerOrganizer]
+  organizer(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   organizerIntro: String
   sponsorIntro: String
-  sponsor(
-    filters: ComponentSponsorSponsorFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentSponsorSponsor]
+  sponsor(filters: ComponentSponsorSponsorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSponsorSponsor]
   youtubeUrl: String
   description: String
+}
+
+input ComponentVisionMissionValueVisionMissionValueFiltersInput {
+  title: StringFilterInput
+  description: StringFilterInput
+  and: [ComponentVisionMissionValueVisionMissionValueFiltersInput]
+  or: [ComponentVisionMissionValueVisionMissionValueFiltersInput]
+  not: ComponentVisionMissionValueVisionMissionValueFiltersInput
+}
+
+input ComponentVisionMissionValueVisionMissionValueInput {
+  id: ID
+  icon: ID
+  title: String
+  description: String
+}
+
+type ComponentVisionMissionValueVisionMissionValue {
+  id: ID!
+  icon: UploadFileEntityResponse
+  title: String
+  description: String
+}
+
+input ComponentWordAnimationItemWordAnimationItemFiltersInput {
+  title: StringFilterInput
+  words: StringFilterInput
+  and: [ComponentWordAnimationItemWordAnimationItemFiltersInput]
+  or: [ComponentWordAnimationItemWordAnimationItemFiltersInput]
+  not: ComponentWordAnimationItemWordAnimationItemFiltersInput
+}
+
+input ComponentWordAnimationItemWordAnimationItemInput {
+  id: ID
+  title: String
+  words: String
+}
+
+type ComponentWordAnimationItemWordAnimationItem {
+  id: ID!
+  title: String
+  words: String
+}
+
+input ComponentWordAnimationWordAnimationInput {
+  id: ID
+  title: String
+  WordAnimationItem: [ComponentWordAnimationItemWordAnimationItemInput]
+}
+
+type ComponentWordAnimationWordAnimation {
+  id: ID!
+  title: String
+  WordAnimationItem(filters: ComponentWordAnimationItemWordAnimationItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentWordAnimationItemWordAnimationItem]
 }
 
 input UploadFileFiltersInput {
@@ -871,16 +933,8 @@ type UploadFolder {
   name: String!
   pathId: Int!
   parent: UploadFolderEntityResponse
-  children(
-    filters: UploadFolderFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): UploadFolderRelationResponseCollection
-  files(
-    filters: UploadFileFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): UploadFileRelationResponseCollection
+  children(filters: UploadFolderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFolderRelationResponseCollection
+  files(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
   path: String!
   createdAt: DateTime
   updatedAt: DateTime
@@ -989,16 +1043,8 @@ type UsersPermissionsRole {
   name: String!
   description: String
   type: String
-  permissions(
-    filters: UsersPermissionsPermissionFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): UsersPermissionsPermissionRelationResponseCollection
-  users(
-    filters: UsersPermissionsUserFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): UsersPermissionsUserRelationResponseCollection
+  permissions(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsPermissionRelationResponseCollection
+  users(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -1089,16 +1135,8 @@ input AdvisorySolutionsInput {
 type AdvisorySolutions {
   image: UploadFileEntityResponse
   youtubeUrl: String
-  solution(
-    filters: ComponentSolutionSolutionFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentSolutionSolution]
-  clients(
-    filters: ComponentOrganizerOrganizerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentOrganizerOrganizer]
+  solution(filters: ComponentSolutionSolutionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSolutionSolution]
+  clients(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   callToAction: String
   description: String
   createdAt: DateTime
@@ -1141,12 +1179,7 @@ type Author {
   name: String
   email: String
   position: String
-  blogs(
-    filters: BlogFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): BlogRelationResponseCollection
+  blogs(filters: BlogFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): BlogRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1242,26 +1275,10 @@ input CrossBorderSolutionsInput {
 type CrossBorderSolutions {
   image: UploadFileEntityResponse
   youtubeUrl: String
-  CBSPoint(
-    filters: ComponentCbsPointCbsPointFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentCbsPointCbsPoint]
-  CertificationPackage(
-    filters: ComponentCertificationPackageCertificationPackageFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentCertificationPackageCertificationPackage]
-  partners(
-    filters: ComponentOrganizerOrganizerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentOrganizerOrganizer]
-  clients(
-    filters: ComponentOrganizerOrganizerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentOrganizerOrganizer]
+  CBSPoint(filters: ComponentCbsPointCbsPointFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentCbsPointCbsPoint]
+  CertificationPackage(filters: ComponentCertificationPackageCertificationPackageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentCertificationPackageCertificationPackage]
+  partners(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
+  clients(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   callToAction: String
   description: String
   createdAt: DateTime
@@ -1313,11 +1330,7 @@ input DocumentInput {
 
 type Document {
   name: String
-  category(
-    filters: ComponentCategoryCategoryFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentCategoryCategory]
+  category(filters: ComponentCategoryCategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentCategoryCategory]
   type: ENUM_DOCUMENT_TYPE
   slug: String
   date: String
@@ -1350,11 +1363,7 @@ input ExposureLearningProgramsInput {
 
 type ExposureLearningPrograms {
   image: UploadFileEntityResponse
-  ExposureProgram(
-    filters: ComponentExposureProgramExposureProgramFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentExposureProgramExposureProgram]
+  ExposureProgram(filters: ComponentExposureProgramExposureProgramFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentExposureProgramExposureProgram]
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1379,11 +1388,7 @@ input HomeInput {
 type Home {
   slogan: String
   menu: String
-  slides(
-    filters: ComponentSlideSlideFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentSlideSlide]
+  slides(filters: ComponentSlideSlideFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSlideSlide]
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1410,11 +1415,7 @@ type KnowledgeSharing {
   intro: String
   quote: String
   quoteAuthor: String
-  platform(
-    filters: ComponentPlatformPlatformFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentPlatformPlatform]
+  platform(filters: ComponentPlatformPlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPlatformPlatform]
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1443,16 +1444,8 @@ input LearningSolutionsInput {
 type LearningSolutions {
   image: UploadFileEntityResponse
   youtubeUrl: String
-  solution(
-    filters: ComponentSolutionSolutionFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentSolutionSolution]
-  clients(
-    filters: ComponentOrganizerOrganizerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentOrganizerOrganizer]
+  solution(filters: ComponentSolutionSolutionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSolutionSolution]
+  clients(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   callToAction: String
   description: String
   LSBanner: ComponentLsBannerLsBanner
@@ -1545,16 +1538,8 @@ type RegistrationEacms {
   description: String
   name: String
   logo: UploadFileEntityResponse
-  points(
-    filters: ComponentPointPointsFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentPointPoints]
-  pricing(
-    filters: ComponentPricingPricingFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentPricingPricing]
+  points(filters: ComponentPointPointsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPointPoints]
+  pricing(filters: ComponentPricingPricingFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPricingPricing]
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1582,16 +1567,8 @@ input RegistrationEafsInput {
 type RegistrationEafs {
   title: String
   description: String
-  points(
-    filters: ComponentPointPointsFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentPointPoints]
-  pricing(
-    filters: ComponentPricingPricingFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentPricingPricing]
+  points(filters: ComponentPointPointsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPointPoints]
+  pricing(filters: ComponentPricingPricingFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPricingPricing]
   logo: UploadFileEntityResponse
   name: String
   createdAt: DateTime
@@ -1699,26 +1676,14 @@ type Summit {
   status: String
   intro: ComponentSummitIntroSummitIntro
   openingRemark: ComponentOpeningRemarkOpeningRemark
-  session(
-    filters: ComponentSessionSessionFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentSessionSession]
+  session(filters: ComponentSessionSessionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSessionSession]
   type: ENUM_SUMMIT_TYPE
   background: UploadFileEntityResponse
   slug: String
   sponsorIntro: String
   organizerIntro: String
-  organizer(
-    filters: ComponentOrganizerOrganizerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentOrganizerOrganizer]
-  sponsor(
-    filters: ComponentSponsorSponsorFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentSponsorSponsor]
+  organizer(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
+  sponsor(filters: ComponentSponsorSponsorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSponsorSponsor]
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1800,26 +1765,10 @@ type UpcomingEafs {
   content: ComponentUpcomingUpcoming
   enabled: Boolean
   introVideo: String
-  guestOfHonour(
-    filters: ComponentPersonPersonFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentPersonPerson]
-  session(
-    filters: ComponentEafsSessionEafsSessionFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentEafsSessionEafsSession]
-  exhibitor(
-    filters: ComponentOrganizerOrganizerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentOrganizerOrganizer]
-  strategicPartner(
-    filters: ComponentOrganizerOrganizerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentOrganizerOrganizer]
+  guestOfHonour(filters: ComponentPersonPersonFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPersonPerson]
+  session(filters: ComponentEafsSessionEafsSessionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentEafsSessionEafsSession]
+  exhibitor(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
+  strategicPartner(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   introDocument: UploadFileEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
@@ -1835,53 +1784,40 @@ type UpcomingEafsEntityResponse {
   data: UpcomingEafsEntity
 }
 
-union GenericMorph =
-    ComponentCategoryCategory
-  | ComponentCbsPointCbsPoint
-  | ComponentCertificationPackageCertificationPackage
-  | ComponentEafsSessionEafsSession
-  | ComponentExposureProgramExposureProgram
-  | ComponentFileFile
-  | ComponentLsBannerLsBanner
-  | ComponentOpeningRemarkOpeningRemark
-  | ComponentOrganizerOrganizer
-  | ComponentOrganizerSponsor
-  | ComponentPersonPerson
-  | ComponentPlatformPlatform
-  | ComponentPointPoints
-  | ComponentPricingPricing
-  | ComponentSessionVideoVideo
-  | ComponentSessionSession
-  | ComponentSlideSlide
-  | ComponentSolutionPointSolutionPoint
-  | ComponentSolutionSolution
-  | ComponentSponsorSponsor
-  | ComponentSummitIntroSummitIntro
-  | ComponentSummitSummit
-  | ComponentUpcomingUpcoming
-  | UploadFile
-  | UploadFolder
-  | I18NLocale
-  | UsersPermissionsPermission
-  | UsersPermissionsRole
-  | UsersPermissionsUser
-  | AdvisorySolutions
-  | Author
-  | Blog
-  | CrossBorderSolutions
-  | Document
-  | ExposureLearningPrograms
-  | Home
-  | KnowledgeSharing
-  | LearningSolutions
-  | Participant
-  | RegistrationEacms
-  | RegistrationEafs
-  | Setting
-  | Summit
-  | UpcomingChcda
-  | UpcomingEacms
-  | UpcomingEafs
+input WhoWeAreInput {
+  banner: ID
+  Intro: ComponentIntroIntroInput
+  VisionMissionValue: [ComponentVisionMissionValueVisionMissionValueInput]
+  visionMissionValueBackground: ID
+  WordAnimation: ComponentWordAnimationWordAnimationInput
+  ClientCounter: [ComponentClientCounterClientCounterInput]
+  clientCounterTitle: String
+  publishedAt: DateTime
+}
+
+type WhoWeAre {
+  banner: UploadFileEntityResponse
+  Intro: ComponentIntroIntro
+  VisionMissionValue(filters: ComponentVisionMissionValueVisionMissionValueFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentVisionMissionValueVisionMissionValue]
+  visionMissionValueBackground: UploadFileEntityResponse
+  WordAnimation: ComponentWordAnimationWordAnimation
+  ClientCounter(filters: ComponentClientCounterClientCounterFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentClientCounterClientCounter]
+  clientCounterTitle: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type WhoWeAreEntity {
+  id: ID
+  attributes: WhoWeAre
+}
+
+type WhoWeAreEntityResponse {
+  data: WhoWeAreEntity
+}
+
+union GenericMorph = ComponentCategoryCategory | ComponentCbsPointCbsPoint | ComponentCertificationPackageCertificationPackage | ComponentClientCounterClientCounter | ComponentEafsSessionEafsSession | ComponentExposureProgramExposureProgram | ComponentFileFile | ComponentIntroIntro | ComponentLsBannerLsBanner | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPersonPerson | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSolutionPointSolutionPoint | ComponentSolutionSolution | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | ComponentVisionMissionValueVisionMissionValue | ComponentWordAnimationItemWordAnimationItem | ComponentWordAnimationWordAnimation | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | AdvisorySolutions | Author | Blog | CrossBorderSolutions | Document | ExposureLearningPrograms | Home | KnowledgeSharing | LearningSolutions | Participant | RegistrationEacms | RegistrationEafs | Setting | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs | WhoWeAre
 
 input FileInfoInput {
   name: String
@@ -1947,108 +1883,39 @@ input PaginationArg {
 
 type Query {
   uploadFile(id: ID): UploadFileEntityResponse
-  uploadFiles(
-    filters: UploadFileFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): UploadFileEntityResponseCollection
+  uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileEntityResponseCollection
   uploadFolder(id: ID): UploadFolderEntityResponse
-  uploadFolders(
-    filters: UploadFolderFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): UploadFolderEntityResponseCollection
+  uploadFolders(filters: UploadFolderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFolderEntityResponseCollection
   i18NLocale(id: ID): I18NLocaleEntityResponse
-  i18NLocales(
-    filters: I18NLocaleFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): I18NLocaleEntityResponseCollection
+  i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
   usersPermissionsRole(id: ID): UsersPermissionsRoleEntityResponse
-  usersPermissionsRoles(
-    filters: UsersPermissionsRoleFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): UsersPermissionsRoleEntityResponseCollection
+  usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsRoleEntityResponseCollection
   usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
-  usersPermissionsUsers(
-    filters: UsersPermissionsUserFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): UsersPermissionsUserEntityResponseCollection
-  advisorySolutions(
-    publicationState: PublicationState = LIVE
-  ): AdvisorySolutionsEntityResponse
+  usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
+  advisorySolutions(publicationState: PublicationState = LIVE): AdvisorySolutionsEntityResponse
   author(id: ID): AuthorEntityResponse
-  authors(
-    filters: AuthorFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): AuthorEntityResponseCollection
+  authors(filters: AuthorFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): AuthorEntityResponseCollection
   blog(id: ID): BlogEntityResponse
-  blogs(
-    filters: BlogFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): BlogEntityResponseCollection
-  crossBorderSolutions(
-    publicationState: PublicationState = LIVE
-  ): CrossBorderSolutionsEntityResponse
+  blogs(filters: BlogFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): BlogEntityResponseCollection
+  crossBorderSolutions(publicationState: PublicationState = LIVE): CrossBorderSolutionsEntityResponse
   document(id: ID): DocumentEntityResponse
-  documents(
-    filters: DocumentFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): DocumentEntityResponseCollection
-  exposureLearningPrograms(
-    publicationState: PublicationState = LIVE
-  ): ExposureLearningProgramsEntityResponse
+  documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): DocumentEntityResponseCollection
+  exposureLearningPrograms(publicationState: PublicationState = LIVE): ExposureLearningProgramsEntityResponse
   home(publicationState: PublicationState = LIVE): HomeEntityResponse
-  knowledgeSharing(
-    publicationState: PublicationState = LIVE
-  ): KnowledgeSharingEntityResponse
-  learningSolutions(
-    publicationState: PublicationState = LIVE
-  ): LearningSolutionsEntityResponse
+  knowledgeSharing(publicationState: PublicationState = LIVE): KnowledgeSharingEntityResponse
+  learningSolutions(publicationState: PublicationState = LIVE): LearningSolutionsEntityResponse
   participant(id: ID): ParticipantEntityResponse
-  participants(
-    filters: ParticipantFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): ParticipantEntityResponseCollection
-  registrationEacms(
-    publicationState: PublicationState = LIVE
-  ): RegistrationEacmsEntityResponse
-  registrationEafs(
-    publicationState: PublicationState = LIVE
-  ): RegistrationEafsEntityResponse
+  participants(filters: ParticipantFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): ParticipantEntityResponseCollection
+  registrationEacms(publicationState: PublicationState = LIVE): RegistrationEacmsEntityResponse
+  registrationEafs(publicationState: PublicationState = LIVE): RegistrationEafsEntityResponse
   setting(id: ID): SettingEntityResponse
-  settings(
-    filters: SettingFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): SettingEntityResponseCollection
+  settings(filters: SettingFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): SettingEntityResponseCollection
   summit(id: ID): SummitEntityResponse
-  summits(
-    filters: SummitFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): SummitEntityResponseCollection
-  upcomingChcda(
-    publicationState: PublicationState = LIVE
-  ): UpcomingChcdaEntityResponse
-  upcomingEacms(
-    publicationState: PublicationState = LIVE
-  ): UpcomingEacmsEntityResponse
-  upcomingEafs(
-    publicationState: PublicationState = LIVE
-  ): UpcomingEafsEntityResponse
+  summits(filters: SummitFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): SummitEntityResponseCollection
+  upcomingChcda(publicationState: PublicationState = LIVE): UpcomingChcdaEntityResponse
+  upcomingEacms(publicationState: PublicationState = LIVE): UpcomingEacmsEntityResponse
+  upcomingEafs(publicationState: PublicationState = LIVE): UpcomingEafsEntityResponse
+  whoWeAre(publicationState: PublicationState = LIVE): WhoWeAreEntityResponse
   me: UsersPermissionsMe
 }
 
@@ -2057,14 +1924,9 @@ type Mutation {
   updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
   createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
-  updateUploadFolder(
-    id: ID!
-    data: UploadFolderInput!
-  ): UploadFolderEntityResponse
+  updateUploadFolder(id: ID!, data: UploadFolderInput!): UploadFolderEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
-  updateAdvisorySolutions(
-    data: AdvisorySolutionsInput!
-  ): AdvisorySolutionsEntityResponse
+  updateAdvisorySolutions(data: AdvisorySolutionsInput!): AdvisorySolutionsEntityResponse
   deleteAdvisorySolutions: AdvisorySolutionsEntityResponse
   createAuthor(data: AuthorInput!): AuthorEntityResponse
   updateAuthor(id: ID!, data: AuthorInput!): AuthorEntityResponse
@@ -2072,37 +1934,25 @@ type Mutation {
   createBlog(data: BlogInput!): BlogEntityResponse
   updateBlog(id: ID!, data: BlogInput!): BlogEntityResponse
   deleteBlog(id: ID!): BlogEntityResponse
-  updateCrossBorderSolutions(
-    data: CrossBorderSolutionsInput!
-  ): CrossBorderSolutionsEntityResponse
+  updateCrossBorderSolutions(data: CrossBorderSolutionsInput!): CrossBorderSolutionsEntityResponse
   deleteCrossBorderSolutions: CrossBorderSolutionsEntityResponse
   createDocument(data: DocumentInput!): DocumentEntityResponse
   updateDocument(id: ID!, data: DocumentInput!): DocumentEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
-  updateExposureLearningPrograms(
-    data: ExposureLearningProgramsInput!
-  ): ExposureLearningProgramsEntityResponse
+  updateExposureLearningPrograms(data: ExposureLearningProgramsInput!): ExposureLearningProgramsEntityResponse
   deleteExposureLearningPrograms: ExposureLearningProgramsEntityResponse
   updateHome(data: HomeInput!): HomeEntityResponse
   deleteHome: HomeEntityResponse
-  updateKnowledgeSharing(
-    data: KnowledgeSharingInput!
-  ): KnowledgeSharingEntityResponse
+  updateKnowledgeSharing(data: KnowledgeSharingInput!): KnowledgeSharingEntityResponse
   deleteKnowledgeSharing: KnowledgeSharingEntityResponse
-  updateLearningSolutions(
-    data: LearningSolutionsInput!
-  ): LearningSolutionsEntityResponse
+  updateLearningSolutions(data: LearningSolutionsInput!): LearningSolutionsEntityResponse
   deleteLearningSolutions: LearningSolutionsEntityResponse
   createParticipant(data: ParticipantInput!): ParticipantEntityResponse
   updateParticipant(id: ID!, data: ParticipantInput!): ParticipantEntityResponse
   deleteParticipant(id: ID!): ParticipantEntityResponse
-  updateRegistrationEacms(
-    data: RegistrationEacmsInput!
-  ): RegistrationEacmsEntityResponse
+  updateRegistrationEacms(data: RegistrationEacmsInput!): RegistrationEacmsEntityResponse
   deleteRegistrationEacms: RegistrationEacmsEntityResponse
-  updateRegistrationEafs(
-    data: RegistrationEafsInput!
-  ): RegistrationEafsEntityResponse
+  updateRegistrationEafs(data: RegistrationEafsInput!): RegistrationEafsEntityResponse
   deleteRegistrationEafs: RegistrationEafsEntityResponse
   createSetting(data: SettingInput!): SettingEntityResponse
   updateSetting(id: ID!, data: SettingInput!): SettingEntityResponse
@@ -2116,93 +1966,46 @@ type Mutation {
   deleteUpcomingEacms: UpcomingEacmsEntityResponse
   updateUpcomingEafs(data: UpcomingEafsInput!): UpcomingEafsEntityResponse
   deleteUpcomingEafs: UpcomingEafsEntityResponse
-  upload(
-    refId: ID
-    ref: String
-    field: String
-    info: FileInfoInput
-    file: Upload!
-  ): UploadFileEntityResponse!
-  multipleUpload(
-    refId: ID
-    ref: String
-    field: String
-    files: [Upload]!
-  ): [UploadFileEntityResponse]!
+  updateWhoWeAre(data: WhoWeAreInput!): WhoWeAreEntityResponse
+  deleteWhoWeAre: WhoWeAreEntityResponse
+  upload(refId: ID, ref: String, field: String, info: FileInfoInput, file: Upload!): UploadFileEntityResponse!
+  multipleUpload(refId: ID, ref: String, field: String, files: [Upload]!): [UploadFileEntityResponse]!
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
   removeFile(id: ID!): UploadFileEntityResponse
 
-  """
-  Create a new role
-  """
-  createUsersPermissionsRole(
-    data: UsersPermissionsRoleInput!
-  ): UsersPermissionsCreateRolePayload
+  """Create a new role"""
+  createUsersPermissionsRole(data: UsersPermissionsRoleInput!): UsersPermissionsCreateRolePayload
 
-  """
-  Update an existing role
-  """
-  updateUsersPermissionsRole(
-    id: ID!
-    data: UsersPermissionsRoleInput!
-  ): UsersPermissionsUpdateRolePayload
+  """Update an existing role"""
+  updateUsersPermissionsRole(id: ID!, data: UsersPermissionsRoleInput!): UsersPermissionsUpdateRolePayload
 
-  """
-  Delete an existing role
-  """
+  """Delete an existing role"""
   deleteUsersPermissionsRole(id: ID!): UsersPermissionsDeleteRolePayload
 
-  """
-  Create a new user
-  """
-  createUsersPermissionsUser(
-    data: UsersPermissionsUserInput!
-  ): UsersPermissionsUserEntityResponse!
+  """Create a new user"""
+  createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
 
-  """
-  Update an existing user
-  """
-  updateUsersPermissionsUser(
-    id: ID!
-    data: UsersPermissionsUserInput!
-  ): UsersPermissionsUserEntityResponse!
+  """Update an existing user"""
+  updateUsersPermissionsUser(id: ID!, data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
 
-  """
-  Delete an existing user
-  """
+  """Delete an existing user"""
   deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
   login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
 
-  """
-  Register a user
-  """
+  """Register a user"""
   register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
 
-  """
-  Request a reset password token
-  """
+  """Request a reset password token"""
   forgotPassword(email: String!): UsersPermissionsPasswordPayload
 
   """
   Reset user password. Confirm with a code (resetToken from forgotPassword)
   """
-  resetPassword(
-    password: String!
-    passwordConfirmation: String!
-    code: String!
-  ): UsersPermissionsLoginPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
 
-  """
-  Change user password. Confirm with the current password.
-  """
-  changePassword(
-    currentPassword: String!
-    password: String!
-    passwordConfirmation: String!
-  ): UsersPermissionsLoginPayload
+  """Change user password. Confirm with the current password."""
+  changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
 
-  """
-  Confirm an email users email address
-  """
+  """Confirm an email users email address"""
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 }

@@ -5,20 +5,24 @@ import { MissionVisionValue } from "@/components/who-we-are/MissionVisionValue";
 import { Socials } from "@/components/who-we-are/Socials/Socials";
 import { WordAnimation } from "@/components/who-we-are/WordAnimation";
 import { Work } from "@/components/who-we-are/Work/Work";
+import { WhoWeAreEntity } from "@/gql/graphql";
+import WhoService from "@/services/who.service";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Who We Are | The i-Capital Africa Institute",
 };
 
-const WhoWeArePage = () => {
+const WhoWeArePage = async () => {
+  const who: WhoWeAreEntity = await WhoService.who();
+
   return (
     <Content scrollable={true} noFooter>
-      <Banner />
-      <Intro />
-      <MissionVisionValue />
-      <WordAnimation />
-      <Work />
+      <Banner who={who} />
+      <Intro who={who} />
+      <MissionVisionValue who={who} />
+      <WordAnimation who={who} />
+      <Work who={who} />
       <Socials />
     </Content>
   );
