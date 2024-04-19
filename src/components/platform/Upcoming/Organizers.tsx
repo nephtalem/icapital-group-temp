@@ -23,7 +23,7 @@ export const Organizers = ({
           <Organizer
             key={index}
             to={organizer!.url!}
-            image={`${process.env.NEXT_PUBLIC_DATA}${organizer?.logo?.data?.attributes?.url}`}
+            image={`${organizer?.logo?.data?.attributes?.url}`}
           />
         ))}
       </div>

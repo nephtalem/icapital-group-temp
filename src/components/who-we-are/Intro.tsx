@@ -26,7 +26,7 @@ export const Intro = ({ who }: { who: WhoWeAreEntity }) => {
       <div className="relative h-full w-full">
         <Image
           className="object-cover"
-          src={`${process.env.NEXT_PUBLIC_DATA}${who.attributes?.Intro?.image?.data?.attributes?.url}`}
+          src={`${who.attributes?.Intro?.image?.data?.attributes?.url}`}
           alt={""}
           fill={true}
         />

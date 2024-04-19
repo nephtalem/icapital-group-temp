@@ -28,7 +28,7 @@ export const BlogDetail = ({ blog }: { blog: BlogEntity }) => {
           fill
           priority
           alt={`${blog.attributes?.title}`}
-          src={`${process.env.NEXT_PUBLIC_DATA}${blog.attributes?.image?.data?.attributes?.url}`}
+          src={`${blog.attributes?.image?.data?.attributes?.url}`}
         />
       </div>
       <div className="mb-6 mt-6 flex w-full justify-between">

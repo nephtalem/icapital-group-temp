@@ -11,7 +11,7 @@ export const Moderator = ({ speaker }: { speaker: ComponentPersonPerson; }) => {
     <div className="grid justify-items-center">
       <div className="relative grid h-[15rem] w-full">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${speaker?.picture?.data?.attributes?.url}`}
+          src={`${speaker?.picture?.data?.attributes?.url}`}
           alt={""}
           fill={true}
           className="object-contain" />
@@ -24,7 +24,7 @@ export const Moderator = ({ speaker }: { speaker: ComponentPersonPerson; }) => {
 
       {speaker.document?.data?.attributes?.url ? (
         <Link
-          href={`${process.env.NEXT_PUBLIC_DATA}${speaker.document.data!
+          href={`${speaker.document.data!
             .attributes!.url!}`}
           target={"_blank"}
           download

@@ -85,7 +85,7 @@ export const Registration = ({
     <StyledRegistration>
       <StyledLogo>
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${registration.attributes?.logo?.data?.attributes?.url}`}
+          src={`${registration.attributes?.logo?.data?.attributes?.url}`}
           alt={""}
           fill={true}
           quality={100}

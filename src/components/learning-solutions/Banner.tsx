@@ -10,7 +10,7 @@ export const Banner = ({ ls }: { ls: LearningSolutionsEntity }) => {
       <div className="relative grid h-[20rem] w-full">
         <Image
           className="object-contain"
-          src={`${process.env.NEXT_PUBLIC_DATA}${ls.attributes?.LSBanner?.image?.data?.attributes?.url}`}
+          src={`${ls.attributes?.LSBanner?.image?.data?.attributes?.url}`}
           alt=""
           fill
         />

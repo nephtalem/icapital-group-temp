@@ -6,7 +6,7 @@ export const MissionVisionValue = ({ who }: { who: WhoWeAreEntity }) => {
   return (
     <div className="relative my-[10rem] grid h-max md:h-[33rem]">
       <Image
-        src={`${process.env.NEXT_PUBLIC_DATA}${who.attributes?.visionMissionValueBackground?.data?.attributes?.url}`}
+        src={`${who.attributes?.visionMissionValueBackground?.data?.attributes?.url}`}
         alt={""}
         fill={true}
       />
@@ -43,7 +43,7 @@ const ListItem = ({
       <div className="relative h-[7.5rem] w-[8rem] object-cover md:w-[10rem]">
         <Image
           className="object-contain"
-          src={`${process.env.NEXT_PUBLIC_DATA}${icon}`}
+          src={`${icon}`}
           alt={""}
           fill={true}
         />

@@ -7,7 +7,7 @@ export const Departments = ({ as }: { as: AdvisorySolutionsEntity }) => {
       {as.attributes?.solution?.map((solution) => (
         <Department
           key={solution?.id}
-          image={`${process.env.NEXT_PUBLIC_DATA}${solution?.icon?.data?.attributes?.url}`}
+          image={`${solution?.icon?.data?.attributes?.url}`}
           title={`${solution?.title}`}
           items={solution!.SolutionPoint!.map((point) => point?.point ?? "")}
         />

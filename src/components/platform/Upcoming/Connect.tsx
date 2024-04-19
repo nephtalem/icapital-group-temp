@@ -18,7 +18,7 @@ export const Connect = ({
       <div className="relative grid h-[40rem] w-screen">
         <Image
           className="object-cover"
-          src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.background?.data?.attributes?.url}`}
+          src={`${upcoming.attributes?.content?.background?.data?.attributes?.url}`}
           alt={""}
           quality={100}
           fill={true} />
@@ -27,7 +27,7 @@ export const Connect = ({
         <div className="relative grid h-[20rem] w-[20rem] opacity-30">
           <Image
             className="object-contain"
-            src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.logo?.data?.attributes?.url}`}
+            src={`${upcoming.attributes?.content?.logo?.data?.attributes?.url}`}
             alt={""}
             quality={100}
             fill={true} />

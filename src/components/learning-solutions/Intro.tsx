@@ -21,7 +21,7 @@ export const Intro = ({ ls }: { ls: LearningSolutionsEntity }) => {
       </div>
       <div className="relative h-[23rem]">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${ls.attributes?.image?.data?.attributes?.url}`}
+          src={`${ls.attributes?.image?.data?.attributes?.url}`}
           alt={""}
           fill={true}
         />

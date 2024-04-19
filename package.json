@@ -19,7 +19,7 @@
     "@types/react-file-icon": "^1.0.1",
     "axios": "^1.4.0",
     "browser-image-compression": "latest",
-    "eslint": "latest",
+    "eslint": "^7.23.0 || ^8.0.0",
     "eslint-config-next": "latest",
     "framer-motion": "^10.16.12",
     "graphql": "^16.6.0",
@@ -71,6 +71,5 @@
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
     "tailwindcss": "^3.3.5"
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }

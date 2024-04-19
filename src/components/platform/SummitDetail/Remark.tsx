@@ -24,7 +24,7 @@ export const Remark = ({ summit }: { summit: SummitEntity; }) => {
           content={summit.attributes!.openingRemark!.remark!} />
         <div className="mt-[2.5rem] grid grid-cols-2 gap-x-[2rem]">
           <Link
-            href={`${process.env.NEXT_PUBLIC_DATA}${summit.attributes!
+            href={`${summit.attributes!
               .openingRemark?.speechFile?.data?.attributes?.url}`}
             target={"_blank"}
             download
@@ -54,7 +54,7 @@ export const Remark = ({ summit }: { summit: SummitEntity; }) => {
         <div className="relative grid h-[20rem] w-full bg-slate-100">
           <Image
             className="object-cover"
-            src={`${process.env.NEXT_PUBLIC_DATA}${summit.attributes?.openingRemark?.picture?.data?.attributes?.url}`}
+            src={`${summit.attributes?.openingRemark?.picture?.data?.attributes?.url}`}
             alt={""}
             fill={true} />
         </div>

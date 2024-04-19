@@ -19,6 +19,6 @@ export const upload = async (data: File) => {
   let fd = new FormData();
   fd.append("files", data, data.name);
   return (
-    await Axios.post(`${process.env.NEXT_PUBLIC_DATA}/api/upload`, fd, config)
+    await Axios.post(`/api/upload`, fd, config)
   ).data;
 };

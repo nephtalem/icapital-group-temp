@@ -16,7 +16,7 @@ export const Banner = ({ upcoming }: { upcoming: UpcomingEafsEntity; }) => {
           content={`${upcoming.attributes?.content?.description}`} />
         {upcoming.attributes?.introDocument?.data?.attributes?.url ? (
           <Link
-            href={`${process.env.NEXT_PUBLIC_DATA}${(upcoming.attributes
+            href={`${(upcoming.attributes
               ?.introDocument!.data!.attributes!.url)!}`}
             target={"_blank"}
             download
@@ -44,7 +44,7 @@ export const Banner = ({ upcoming }: { upcoming: UpcomingEafsEntity; }) => {
             controls={true} />
         ) : (
           <Image
-            src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.banner?.data?.attributes?.url}`}
+            src={`${upcoming.attributes?.content?.banner?.data?.attributes?.url}`}
             alt={""}
             fill={true}
             className="object-contain" />

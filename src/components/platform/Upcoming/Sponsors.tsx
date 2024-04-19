@@ -25,7 +25,7 @@ export const Sponsors = ({
               <Sponsor
                 key={index}
                 to={sponsor!.url!}
-                image={`${process.env.NEXT_PUBLIC_DATA}${sponsor?.logo?.data?.attributes?.url}`} />
+                image={`${sponsor?.logo?.data?.attributes?.url}`} />
             ))}
         </SponsorsCategoryItem>
         <SponsorsCategoryItem title={"Gold"}>
@@ -35,7 +35,7 @@ export const Sponsors = ({
               <Sponsor
                 key={index}
                 to={sponsor!.url!}
-                image={`${process.env.NEXT_PUBLIC_DATA}${sponsor?.logo?.data?.attributes?.url}`} />
+                image={`${sponsor?.logo?.data?.attributes?.url}`} />
             ))}
         </SponsorsCategoryItem>
         <SponsorsCategoryItem title={"Silver"}>
@@ -45,7 +45,7 @@ export const Sponsors = ({
               <Sponsor
                 key={index}
                 to={sponsor!.url!}
-                image={`${process.env.NEXT_PUBLIC_DATA}${sponsor?.logo?.data?.attributes?.url}`} />
+                image={`${sponsor?.logo?.data?.attributes?.url}`} />
             ))}
         </SponsorsCategoryItem>
       </div>

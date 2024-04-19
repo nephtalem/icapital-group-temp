@@ -21,7 +21,7 @@ export const PlatformsItem = ({
     >
       <div className="relative grid h-[27rem] w-full overflow-hidden rounded-lg">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${banner}`}
+          src={`${banner}`}
           alt={""}
           fill={true}
           quality={100}

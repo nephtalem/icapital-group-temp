@@ -21,7 +21,7 @@ export const PreviousSummit = ({ summit }: { summit: SummitEntity; }) => {
         <div className="relative grid h-[20rem]  w-full overflow-hidden rounded-lg">
           <Image
             className="object-cover"
-            src={`${process.env.NEXT_PUBLIC_DATA}${summit.attributes?.background?.data?.attributes?.url}`}
+            src={`${summit.attributes?.background?.data?.attributes?.url}`}
             alt={""}
             fill={true} />
           <div className="absolute right-0 top-0 grid rounded-lg bg-green-500 p-[.5rem] text-base font-bold text-white">
