@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker image
-        run: docker build -t us-central1-docker.pkg.dev/shofer-393807/icapital-cms/icapital-cms:latest .
+        run: docker build -t us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website:latest .
 
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v2.1.2
@@ -32,7 +32,7 @@ jobs:
           gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
 
       - name: Push image
-        run: docker push us-central1-docker.pkg.dev/shofer-393807/icapital-cms/icapital-cms
+        run: docker push us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website
 
       - name: Deploy to Compute Engine
         uses: appleboy/ssh-action@v1.0.3
@@ -42,9 +42,9 @@ jobs:
           key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            docker stop $(docker ps -a -q --filter ancestor=us-central1-docker.pkg.dev/shofer-393807/icapital-cms/icapital-cms)
-            docker rm $(docker ps -a -q --filter ancestor=us-central1-docker.pkg.dev/shofer-393807/icapital-cms/icapital-cms)
-            IMAGE_ID=$(docker images -q us-central1-docker.pkg.dev/shofer-393807/icapital-cms/icapital-cms)
+            docker stop $(docker ps -a -q --filter ancestor=us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website)
+            docker rm $(docker ps -a -q --filter ancestor=us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website)
+            IMAGE_ID=$(docker images -q us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website)
             docker rmi -f $IMAGE_ID
-            docker pull us-central1-docker.pkg.dev/shofer-393807/icapital-cms/icapital-cms
-            docker run -d -p 17000:17000 us-central1-docker.pkg.dev/shofer-393807/icapital-cms/icapital-cms
+            docker pull us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website
+            docker run -d -p 17000:17000 us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website
