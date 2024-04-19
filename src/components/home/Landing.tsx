@@ -20,8 +20,8 @@ export const Landing = () => {
         />
       </div>
       <div className="absolute h-screen w-screen bg-black opacity-30" />
-      <div className="absolute max-w-[90vw] self-center justify-self-center md:max-w-none">
-        <div className="relative grid h-[14rem] w-full md:h-[20rem]">
+      <div className="absolute max-w-[90vw] grid gap-10 md:gap-0 self-center justify-self-center md:max-w-none">
+        <div className="relative grid h-[10rem] w-full md:h-[20rem]">
           <Image
             src={"/images/white.logo.png"}
             alt={"background"}
@@ -32,7 +32,7 @@ export const Landing = () => {
           />
         </div>
         <h1
-          className={`${nanumBrushScript.className} w-full content-center text-[2rem] text-white md:text-4xl`}
+          className={`${nanumBrushScript.className} w-full text-center content-center text-[1.6rem] text-white md:text-4xl`}
         >
           ...in the business of transforming people...
         </h1>

@@ -122,6 +122,9 @@ importers:
       swiper:
         specifier: latest
         version: 11.1.1
+      tailwind-merge:
+        specifier: ^2.2.2
+        version: 2.2.2
       typescript:
         specifier: latest
         version: 5.4.5
@@ -172,7 +175,7 @@ importers:
         specifier: ^3.1.0
         version: 3.2.5
       prettier-plugin-tailwindcss:
-        specifier: ^0.5.7
+        specifier: ^0.5.14
         version: 0.5.14(prettier@3.2.5)
       tailwindcss:
         specifier: ^3.3.5
@@ -4142,6 +4145,9 @@ packages:
   symbol-observable@4.0.0:
     resolution: {integrity: sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ==}
     engines: {node: '>=0.10'}
+
+  tailwind-merge@2.2.2:
+    resolution: {integrity: sha512-tWANXsnmJzgw6mQ07nE3aCDkCK4QdT3ThPMCzawoYA2Pws7vSTCvz3Vrjg61jVUGfFZPJzxEP+NimbcW+EdaDw==}
 
   tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
@@ -9170,6 +9176,10 @@ snapshots:
   swiper@11.1.1: {}
 
   symbol-observable@4.0.0: {}
+
+  tailwind-merge@2.2.2:
+    dependencies:
+      '@babel/runtime': 7.24.4
 
   tailwindcss@3.4.3:
     dependencies:

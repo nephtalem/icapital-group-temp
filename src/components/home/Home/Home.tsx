@@ -1,5 +1,5 @@
 "use client";
-import { HomeEntity } from "@/gql/graphql";
+import { HomeEntity, UpcomingEafsEntity } from "@/gql/graphql";
 import { Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Footer } from "../Footer";
@@ -7,8 +7,15 @@ import { Header } from "../Header/Header";
 import { Landing } from "../Landing";
 import { Nav } from "./Nav";
 import { Slide } from "./Slide";
+import { Landing as EafsLanding } from "@/components/platform/Upcoming/Landing";
 
-export const Home = ({ home }: { home: HomeEntity }) => {
+export const Home = ({
+  home,
+  upcoming,
+}: {
+  home: HomeEntity;
+  upcoming?: UpcomingEafsEntity;
+}) => {
   return (
     <div className="relative h-screen w-screen bg-background">
       <Header />
@@ -26,6 +33,15 @@ export const Home = ({ home }: { home: HomeEntity }) => {
         onSlideChange={(s) => {}}
         onSwiper={(s) => {}}
       >
+        {upcoming && (
+          <SwiperSlide>
+            <EafsLanding
+              upcoming={upcoming}
+              base={"/knowledge-sharing/east-africa-finance-summit"}
+              className="h-screen"
+            />
+          </SwiperSlide>
+        )}
         <SwiperSlide>
           <Landing />
         </SwiperSlide>
