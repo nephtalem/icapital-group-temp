@@ -20,7 +20,7 @@ export const Landing = ({
     <div className="grid h-[40rem] w-screen">
       <div className="relative grid h-[40rem] w-screen">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.background?.data?.attributes?.url}`}
+          src={`${upcoming.attributes?.content?.background?.data?.attributes?.url}`}
           alt={""}
           quality={100}
           fill={true}
@@ -31,7 +31,7 @@ export const Landing = ({
       <div className="absolute grid h-full w-full auto-rows-max justify-items-center">
         <div className="relative mt-[2.4rem] h-[16rem] w-[16rem]">
           <Image
-            src={`${process.env.NEXT_PUBLIC_DATA}${upcoming.attributes?.content?.logo?.data?.attributes?.url}`}
+            src={`${upcoming.attributes?.content?.logo?.data?.attributes?.url}`}
             alt={""}
             fill={true}
             className="object-contain"

@@ -24,7 +24,7 @@ export const Intro = ({ cbs }: { cbs: CrossBorderSolutionsEntity }) => {
       </div>
       <div className="relative h-[23rem]">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${cbs.attributes?.image?.data?.attributes?.url}`}
+          src={`${cbs.attributes?.image?.data?.attributes?.url}`}
           alt={""}
           fill={true}
           className="object-contain"

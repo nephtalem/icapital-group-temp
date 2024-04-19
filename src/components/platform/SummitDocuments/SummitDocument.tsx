@@ -20,7 +20,7 @@ export const SummitDocument = ({ document }: { document: DocumentEntity; }) => {
         <div className="relative grid h-[20rem] w-full overflow-hidden rounded-lg">
           <Image
             className="object-cover"
-            src={`${process.env.NEXT_PUBLIC_DATA}${document.attributes?.background?.data?.attributes?.url}`}
+            src={`${document.attributes?.background?.data?.attributes?.url}`}
             alt={""}
             fill={true} />
           <div className="absolute right-0 top-0 grid rounded-lg bg-green-500 p-[.5rem] text-white">

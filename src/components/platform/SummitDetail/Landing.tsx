@@ -7,7 +7,7 @@ export const Landing = ({ summit }: { summit: SummitEntity; }) => {
     <div className="relative grid h-[35rem] w-screen">
       <Image
         className="object-cover"
-        src={`${process.env.NEXT_PUBLIC_DATA}${summit.attributes?.background?.data?.attributes?.url}`}
+        src={`${summit.attributes?.background?.data?.attributes?.url}`}
         alt={""}
         fill={true} />
       <div className="absolute grid justify-items-center self-center justify-self-center">

@@ -7,7 +7,7 @@ export const Guest = ({ guest }: { guest: ComponentPersonPerson }) => {
     <div className="grid justify-items-center">
       <div className="relative grid h-[15rem] w-full">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${guest?.picture?.data?.attributes?.url}`}
+          src={`${guest?.picture?.data?.attributes?.url}`}
           alt={""}
           fill={true}
           className="object-contain"

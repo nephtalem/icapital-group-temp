@@ -19,7 +19,7 @@ export const Slide = ({
     <section className="relative grid h-screen w-screen">
       <div className="relative h-screen w-screen">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${image}`}
+          src={`${image}`}
           alt={title}
           fill={true}
           quality={100}

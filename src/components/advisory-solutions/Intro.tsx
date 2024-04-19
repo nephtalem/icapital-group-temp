@@ -21,7 +21,7 @@ export const Intro = ({ as }: { as: AdvisorySolutionsEntity }) => {
       </div>
       <div className="relative h-[23rem]">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DATA}${as.attributes?.image?.data?.attributes?.url}`}
+          src={`${as.attributes?.image?.data?.attributes?.url}`}
           alt={""}
           fill={true}
           className="object-contain"

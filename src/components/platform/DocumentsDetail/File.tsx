@@ -18,7 +18,7 @@ export const File = ({ file }: { file: ComponentFileFile; }) => {
         {file.name}
       </p>
       <Link
-        href={`${process.env.NEXT_PUBLIC_DATA}${file.content!.data!.attributes!
+        href={`${file.content!.data!.attributes!
           .url!}`}
         target={"_blank"}
         download

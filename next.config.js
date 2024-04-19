@@ -30,6 +30,12 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: '"icapital-cms.techawks.io',
+      },{
+        protocol: "https",
+        hostname: '"cms.icapitalafrica.org',
+      },{
+        protocol: "https",
+        hostname: '"icapital.s3.us-east-2.amazonaws.com',
       },
     ],
   },

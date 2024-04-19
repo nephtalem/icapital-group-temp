@@ -23,7 +23,7 @@ export const Partners = ({
           <Partner
             key={index}
             to={partner!.to!}
-            image={`${process.env.NEXT_PUBLIC_DATA}${partner.image}`}
+            image={`${partner.image}`}
           />
         ))}
       </div>

@@ -12,7 +12,7 @@ export const MoreBlog = ({ blog }: { blog: BlogEntity }) => {
             className="object-cover"
             fill
             alt={`${blog.attributes?.title}`}
-            src={`${process.env.NEXT_PUBLIC_DATA}${blog.attributes?.image?.data?.attributes?.url}`}
+            src={`${blog.attributes?.image?.data?.attributes?.url}`}
           />
         </div>
         <div className="grid gap-1">
