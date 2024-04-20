@@ -17,7 +17,7 @@ export const PlatformHeader = ({
   type: "EAFS" | "EACMS" | "ECCDA";
 }) => {
   return (
-    <div className="sticky top-0 z-[100] grid w-screen grid-cols-1 items-center justify-items-center border-b border-b-border bg-white px-6 py-4 md:h-[6rem] md:grid-cols-[max-content,1fr] md:px-[3.5rem]">
+    <div className="sticky top-0 gap-5 md:gap-0 z-[100] grid w-screen grid-cols-1 items-center justify-items-center border-b border-b-border bg-white px-6 py-4 md:h-[6rem] md:grid-cols-[max-content,1fr] md:px-[3.5rem]">
       <div className="relative aspect-[11/4] h-10 md:h-[4rem] md:w-[11rem]">
         <Image
           className="object-contain"

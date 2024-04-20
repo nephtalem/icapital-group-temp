@@ -1,5 +1,5 @@
 import { Content } from "@/components/knowledge-sharing/Content";
-import { Registration } from "@/components/knowledge-sharing/Registration";
+import { Registration } from "@/components/knowledge-sharing/Registration/Registration";
 import KSPService from "@/services/ksp.service";
 import { Metadata, ResolvingMetadata } from "next";
 import { redirect } from "next/navigation";

@@ -15,7 +15,7 @@ export const Action = ({
   return (
     <div className="grid w-full justify-center justify-items-center gap-[1.2rem]">
       <h6 className="text-[1.2rem] font-semibold text-text">{title}</h6>
-      <Link href={to}>
+      <Link href={to} className="w-full grid">
         <ActionButton
           label={action}
           onClick={(): void => { }}

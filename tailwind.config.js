@@ -17,6 +17,7 @@ module.exports = {
         grey: "#777777",
         white: "#FFFFFF",
         background: "#1a2b42",
+        backgroundAlt: "#fafafa",
         border: "#eee",
       },
       animation: {
