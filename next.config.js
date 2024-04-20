@@ -32,7 +32,7 @@ const nextConfig = {
         hostname: '"icapital-cms.techawks.io',
       },{
         protocol: "https",
-        hostname: '"cms.icapitalafrica.org',
+        hostname: '"icapital-cms.frontiertech',
       },{
         protocol: "https",
         hostname: '"icapital.s3.us-east-2.amazonaws.com',

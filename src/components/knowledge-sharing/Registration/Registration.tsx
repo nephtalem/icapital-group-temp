@@ -6,7 +6,6 @@ import { Button } from "@/components/shared/buttons/Button";
 import { RegistrationEafsEntity, UpcomingEafsEntity } from "@/gql/graphql";
 import KSPService from "@/services/ksp.service";
 import { showLoadingMessage, showSuccessMessage } from "@/utils/show.message";
-import { upload } from "@/utils/upload";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { HTMLInputTypeAttribute, useRef, useState } from "react";
@@ -40,10 +39,7 @@ export const Registration = ({
       phone: form.phone,
       organization: form.organization,
       position: form.position,
-      size: form.size,
-      price: form.price,
       reason: upcoming.attributes?.content?.title,
-      receipt: "",
     });
     toast.dismiss(toastId.current);
     showSuccessMessage("Registration successful!");

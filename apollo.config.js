@@ -3,7 +3,7 @@ module.exports = {
     includes: ["./src/graphql/**/*.ts"], // array of glob patterns
     service: {
       name: "Icapital",
-      url: "https://cms.icapitalafrica.org/graphql",
+      url: "https://icapital-cms.frontiertech.org/graphql",
     },
   },
 };
