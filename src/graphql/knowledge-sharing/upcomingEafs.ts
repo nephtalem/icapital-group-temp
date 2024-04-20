@@ -36,6 +36,8 @@ export const UPCOMING_EAFS = gql`
                 data {
                   attributes {
                     url
+                    height
+                    width
                   }
                 }
               }
@@ -48,6 +50,8 @@ export const UPCOMING_EAFS = gql`
                 data {
                   attributes {
                     url
+                    height
+                    width
                   }
                 }
               }
@@ -64,6 +68,8 @@ export const UPCOMING_EAFS = gql`
               data {
                 attributes {
                   url
+                  height
+                  width
                 }
               }
             }
@@ -76,6 +82,8 @@ export const UPCOMING_EAFS = gql`
               data {
                 attributes {
                   url
+                  height
+                  width
                 }
               }
             }
@@ -127,6 +135,8 @@ export const UPCOMING_EAFS = gql`
               data {
                 attributes {
                   url
+                  height
+                  width
                 }
               }
             }

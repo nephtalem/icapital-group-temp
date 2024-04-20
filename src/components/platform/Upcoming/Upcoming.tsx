@@ -25,8 +25,8 @@ export const Upcoming = ({
 }) => {
   return (
     <div className="grid">
-      <Landing upcoming={upcoming} base={base} />
-      <Banner upcoming={upcoming} />
+      {/* <Landing upcoming={upcoming} base={base} /> */}
+      <Banner upcoming={upcoming} base={base} />
       <Guests upcoming={upcoming} />
       <Sessions upcoming={upcoming} />
       <Sponsors
@@ -58,7 +58,7 @@ export const Upcoming = ({
       />
 
       <div className="mb-[10rem] mt-[6rem] grid justify-items-center">
-        <h2 className="mb-[3rem] text-[1.8rem] font-extrabold text-background">
+        <h2 className="mb-[3rem] text-center text-lg md:text-[1.8rem] font-extrabold text-background">
           SPONSORSHIP AND EXHIBITION
         </h2>
         <Link href={`${base}/apply`}>

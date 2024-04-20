@@ -12,7 +12,7 @@ import { Socials } from "@/components/home/Header/Socials";
 export const Footer = () => {
   return (
     <footer className=" bg-background" id="contact">
-      <div className="grid grid-cols-2 gap-[10vw] p-6 md:p-12">
+      <div className="grid grid-cols-1 gap-[10vw] p-6 md:grid-cols-2 md:p-12">
         <div className="grid">
           <div className="relative mb-8 grid h-28 w-48 ">
             <Image
@@ -23,7 +23,7 @@ export const Footer = () => {
               className="object-contain"
             />
           </div>
-          <p className="text-justify text-base text-white">
+          <p className="text-left text-base text-white">
             The i-Capital Africa Institute is a professional service firm.
             Founded in 2015, we offer a full range of Human Capital Development
             solutions to clients in various sectors. Our approach is
@@ -47,7 +47,7 @@ export const Footer = () => {
                 Mobile Phone: +251 91 162 90 11
               </h4>
             </div>
-            <div className="flex gap-5 md:gap-12">
+            <div className="md:flex grid gap-5 md:gap-12">
               <ContactItem
                 icon={(style) => <PostIcon className={style} />}
                 label={"P.O.Box: 80484"}
@@ -63,7 +63,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-10 grid auto-rows-max grid-cols-2  self-center md:mt-0 md:grid-cols-3  ">
+        <div className="mt-10 grid auto-rows-max grid-cols-2 gap-10 self-center md:mt-0 md:grid-cols-3  ">
           <FooterLink
             main={{
               label: "EAFS",
@@ -143,11 +143,11 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="relative flex h-32 w-screen items-center justify-between bg-black px-16 text-white">
+      <div className="relative flex h-32 w-screen items-center justify-between bg-black px-8 md:px-16 text-white">
         <p className="text-base font-medium">
           Copyright {new Date().getFullYear()}, All right reserved
         </p>
-        <div className="flex h-3 content-center items-center gap-2 text-base font-medium">
+        {/* <div className="flex h-3 content-center items-center gap-2 text-base font-medium">
           Made by
           <Link
             className="flex content-center items-center gap-2 text-white"
@@ -157,7 +157,7 @@ export const Footer = () => {
             <TechawksLogo className={"h-4"} />
             Techawks
           </Link>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

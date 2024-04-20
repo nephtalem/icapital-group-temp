@@ -14,7 +14,7 @@ export const Option = ({
   return (
     <Link href={to}>
       <div
-        className={`grid rounded-lg px-4 py-1 text-xl font-semibold md:px-6 ${active ? "border-accent text-accent" : "border-transparent text-black"} border `}
+        className={`grid rounded-lg px-4 py-1 text-base md:text-xl font-semibold md:px-6 ${active ? "border-accent text-accent" : "border-transparent text-black"} border `}
       >
         {label}
       </div>

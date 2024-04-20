@@ -13,6 +13,7 @@
     "@apollo/client": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@tailwindcss/typography": "^0.5.12",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

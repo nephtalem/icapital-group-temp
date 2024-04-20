@@ -11,7 +11,7 @@ export const MainText = ({
         align ?? "justify-self-center"
       }`}
     >
-      <h1 className="text-4xl font-bold text-text md:text-6xl">{title}</h1>
+      <h1 className="text-2xl font-bold text-text md:text-4xl">{title}</h1>
       <span className="h-1 w-2/5 bg-accent" />
     </div>
   );

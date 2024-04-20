@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 export const Social = ({
   to,
@@ -15,7 +16,7 @@ export const Social = ({
   return (
     <Link href={to} target="_blank">
       <div title={title}>
-        {icon(className ?? "h-[0.8rem] fill-white md:h-[1rem]")}
+        {icon(twMerge("h-5 w-5 fill-white md:h-[1rem]", className))}
       </div>
     </Link>
   );

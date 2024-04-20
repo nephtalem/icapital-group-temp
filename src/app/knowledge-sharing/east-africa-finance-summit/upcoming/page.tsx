@@ -7,7 +7,7 @@ import { Metadata, ResolvingMetadata } from "next";
 
 export async function generateMetadata(
   {},
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const upcomingEafs = await KSPService.upcomingEafs();
 
@@ -23,7 +23,7 @@ const UpcomingEAFSPage = async () => {
   }
   return (
     <>
-      <Content>
+      <Content scrollable={false}>
         <PlatformHeader upcoming={upcomingEafs} type={"EAFS"} />
         <Upcoming
           upcoming={upcomingEafs}

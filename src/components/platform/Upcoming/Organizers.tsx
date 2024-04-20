@@ -13,17 +13,19 @@ export const Organizers = ({
   organizer: ComponentOrganizerOrganizer[];
 }) => {
   return (
-    <div className="grid w-screen px-[2rem] py-[8rem] md:px-[5rem]">
+    <div className="grid w-screen px-[2rem] py-[6rem] md:px-[5rem]">
       <div className="my-[3rem] grid max-w-[45rem] justify-items-center justify-self-center text-center">
         <MainText title={title} />
         <p className="mt-[2rem] text-[1rem] text-black">{organizerIntro}</p>
       </div>
-      <div className="grid w-full grid-cols-1 gap-[3rem] md:grid-cols-3">
+      <div className="flex w-full gap-10 flex-wrap justify-center">
         {organizer!.map((organizer, index) => (
           <Organizer
             key={index}
             to={organizer!.url!}
             image={`${organizer?.logo?.data?.attributes?.url}`}
+            width={organizer?.logo?.data?.attributes?.width ?? 0}
+            height={organizer?.logo?.data?.attributes?.height ?? 1}
           />
         ))}
       </div>

@@ -12,7 +12,7 @@ export const Sponsors = ({
   sponsor: ComponentSponsorSponsor[];
 }) => {
   return (
-    <div className="px:[2rem] grid w-screen py-[8rem] md:px-[5rem]">
+    <div className="px:[2rem] grid w-screen py-[6rem] md:px-[5rem]">
       <div className="my-[3rem] grid max-w-[90rem] justify-items-center justify-self-center text-center">
         <MainText title={"Sponsors"} />
         <p className="mt-[2rem] text-[1rem] text-black">{sponsorIntro}</p>
