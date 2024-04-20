@@ -17,7 +17,7 @@ export const Home = ({
   upcoming?: UpcomingEafsEntity;
 }) => {
   return (
-    <div className="relative h-screen w-screen bg-background">
+    <div className="relative h-dvh w-screen bg-background">
       <Header />
       <Swiper
         direction={"vertical"}
@@ -38,7 +38,7 @@ export const Home = ({
             <EafsLanding
               upcoming={upcoming}
               base={"/knowledge-sharing/east-africa-finance-summit"}
-              className="h-screen"
+              className="h-dvh"
             />
           </SwiperSlide>
         )}

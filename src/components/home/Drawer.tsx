@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useRef } from "react";
 export const Drawer = () => {
   return (
-    <div className="grid h-screen w-10/12 auto-rows-max justify-items-start gap-8 bg-gradient-to-b from-[#253E5F] to-[#1A4A86] px-12 py-20  md:w-[25rem] ">
-      <h1 className="mb-8 text-[1.6rem] font-bold text-white">
+    <div className="grid h-dvh w-full auto-rows-max justify-items-start gap-8 bg-gradient-to-b from-[#253E5F] to-[#1A4A86] px-6 md:px-12 py-20  md:w-[25rem] ">
+      <h1 className="mb-8 text-2xl font-bold text-white md:text-[1.6rem]">
         i-Capital Institute
       </h1>
       <DrawerItem label={"Who we are"} to={"/who-we-are"} />
@@ -40,7 +40,7 @@ const DrawerItem = ({ label, to }: { label: string; to: string }) => {
       }}
     >
       <div className="group relative flex items-center gap-7 duration-300 ease-in-out">
-        <p className="text-[1.2rem] text-white duration-300 ease-linear group-hover:text-accent">
+        <p className="text-sm grow text-white duration-300 ease-linear group-hover:text-accent md:text-[1.2rem]">
           {label}
         </p>
         <OpenIcon

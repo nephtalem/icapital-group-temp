@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export async function generateMetadata(
   {},
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const upcomingEafs = await KSPService.upcomingEafs();
 

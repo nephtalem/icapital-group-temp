@@ -17,7 +17,7 @@ export const Content = ({
     <div
       className={`${
         scrollable ? "relative" : "sticky"
-      } grid h-screen w-screen overflow-y-auto overflow-x-hidden`}
+      } grid h-dvh w-screen overflow-y-auto overflow-x-hidden`}
     >
       <HeaderAlt />
       {children}

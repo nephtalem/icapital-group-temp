@@ -14,7 +14,7 @@ export const Nav = ({ length }: { length: number }) => {
   }, [swiper]);
 
   return (
-    <div className="fixed right-8 top-0 z-[100] hidden h-screen w-8 md:grid">
+    <div className="fixed right-8 top-0 z-[100] hidden h-dvh w-8 md:grid">
       <div className="grid items-center justify-items-center gap-7 self-center rounded-[5rem] border border-white px-1 py-6">
         {lodash.range(0, length).map((value) => (
           <div

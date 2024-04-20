@@ -17,3 +17,23 @@ export const Button = ({
     </button>
   );
 };
+
+export const OutlineButton = ({
+  label,
+  disabled,
+  onClick,
+}: {
+  label: string;
+  disabled?: boolean;
+  onClick: () => void;
+}) => {
+  return (
+    <button
+      className="cursor-pointer rounded-lg border border-accent border-b-4 border-b-accentBorder bg-transparent px-10 py-4 text-xl font-semibold text-accent duration-300 ease-in-out disabled:opacity-50"
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {label}
+    </button>
+  );
+};

@@ -12,7 +12,7 @@ export const Content = ({
 }) => {
   return (
     <div
-      className={`relative grid h-screen w-screen overflow-y-auto overflow-x-hidden`}
+      className={`relative grid h-dvh w-screen overflow-y-auto overflow-x-hidden`}
     >
       <Header
         scrollable={scrollable}

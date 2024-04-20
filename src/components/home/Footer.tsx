@@ -6,7 +6,7 @@ export const Footer = () => {
       <p className="text-sm font-medium">
         Copyright {new Date().getFullYear()}, All right reserved
       </p>
-      <div className="flex content-center items-center gap-1 text-sm font-medium">
+      {/* <div className="flex content-center items-center gap-1 text-sm font-medium">
         Made by
         <Link
           className="flex content-center text-white items-center gap-1"
@@ -16,7 +16,7 @@ export const Footer = () => {
           <TechawksLogo className={"h-[0.7rem]"} />
           Techawks
         </Link>
-      </div>
+      </div> */}
     </footer>
   );
 };

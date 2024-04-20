@@ -24,7 +24,7 @@ export const HeaderAlt = () => {
         </div>
       </header>
       <div
-        className="fixed right-[-100vw] top-0 z-[100] h-screen w-10/12 md:w-[25rem]"
+        className="fixed right-[-100vw] top-0 z-[100] h-dvh w-10/12 md:w-[25rem]"
         ref={drawer}
         onMouseLeave={() => {
           gsap.to(drawer.current, { right: "-50rem" });
@@ -32,7 +32,7 @@ export const HeaderAlt = () => {
       >
         <Drawer />
         <div
-          className="fixed left-0 right-0 h-screen w-2/12"
+          className="fixed left-0 right-0 h-dvh w-2/12"
           onClick={() => {
             gsap.to(drawer.current, { right: "-50rem" });
           }}
