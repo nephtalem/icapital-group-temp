@@ -13,10 +13,10 @@ export const Organizers = ({
   organizer: ComponentOrganizerOrganizer[];
 }) => {
   return (
-    <div className="grid w-screen px-[2rem] py-[6rem] md:px-[5rem]">
-      <div className="my-[3rem] grid max-w-[45rem] justify-items-center justify-self-center text-center">
+    <div className="grid w-screen px-[2rem] py-10 gap-10 md:px-[5rem]">
+      <div className="grid max-w-[45rem] justify-items-center justify-self-center text-center">
         <MainText title={title} />
-        <p className="mt-[2rem] text-[1rem] text-black">{organizerIntro}</p>
+        {/* <p className="mt-[2rem] text-[1rem] text-black">{organizerIntro}</p> */}
       </div>
       <div className="flex w-full gap-10 flex-wrap justify-center">
         {organizer!.map((organizer, index) => (

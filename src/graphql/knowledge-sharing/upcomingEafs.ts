@@ -143,6 +143,11 @@ export const UPCOMING_EAFS = gql`
             name
             url
           }
+          eafsSetting {
+            order
+            published
+            sectionName
+          }
         }
       }
     }

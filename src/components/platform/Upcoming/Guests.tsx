@@ -5,9 +5,9 @@ import { Guest } from "./Guest";
 
 export const Guests = ({ upcoming }: { upcoming: UpcomingEafsEntity }) => {
   return (
-    <div className="grid w-screen px-[2rem] py-[6rem] md:px-[5rem]">
+    <div className="grid w-screen px-[2rem] py-10 md:px-[5rem] gap-10">
       <MainText title={"Guest of Honours"} />
-      <div className="mt-[3rem] grid w-full grid-cols-3 px-[3rem]">
+      <div className="grid w-full grid-cols-3 px-10 gap-10">
         {upcoming.attributes?.guestOfHonour?.map((guest, index) => (
           <Guest guest={guest!} key={index} />
         ))}
