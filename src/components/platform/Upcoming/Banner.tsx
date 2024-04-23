@@ -33,7 +33,7 @@ export const Banner = ({
         </div>
       </div>
 
-      <div className="relative aspect-square w-full">
+      <div className="relative h-full w-full">
         <Image
           src={`${upcoming.attributes?.content?.banner?.data?.attributes?.url}`}
           alt={""}
