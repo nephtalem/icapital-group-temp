@@ -1,5 +1,7 @@
-import { ParticipantInput } from "@/gql/graphql";
+import { ParticipantInput, SponsorExhibitorInput } from "@/gql/graphql";
+import { APPLY_EAFS } from "@/graphql/knowledge-sharing/applyEafs";
 import { CREATE_PARTICIPANT } from "@/graphql/knowledge-sharing/createParticipant";
+import { CREATE_SPONSOR_EXHIBITOR } from "@/graphql/knowledge-sharing/createSponsorExhibitor";
 import { DOCUMENTS } from "@/graphql/knowledge-sharing/documents";
 import { KNOWLEDGE_SHARING } from "@/graphql/knowledge-sharing/knowledgeSharing";
 import { REGISTRATION_EAFS } from "@/graphql/knowledge-sharing/registrationEafs";
@@ -38,6 +40,17 @@ class KSPService {
         variables: {},
       });
       return registrationEafsResult.data.registrationEafs.data;
+    } catch (e) {}
+  };
+
+  static applyEafs = async () => {
+    try {
+      const applyEafsResult = await client({
+        query: APPLY_EAFS,
+        variables: {},
+      });
+      console.log(applyEafsResult);
+      return applyEafsResult.data.applyEafs.data;
     } catch (e) {}
   };
 
@@ -132,6 +145,17 @@ class KSPService {
         },
       });
       return documentsResult.data.createParticipant;
+    } catch (e) {}
+  };
+  static createSponsorExhibitor = async (data: SponsorExhibitorInput) => {
+    try {
+      const documentsResult = await apolloClient.mutate({
+        mutation: CREATE_SPONSOR_EXHIBITOR,
+        variables: {
+          data,
+        },
+      });
+      return documentsResult.data.createSponsorExhibitor;
     } catch (e) {}
   };
 }

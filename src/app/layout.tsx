@@ -37,7 +37,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en" className={`${mulish.variable}`}>
       <body>
-        <Toaster />
+        <Toaster position="top-right" richColors />
         <NextTopLoader
           color={Theme.colors.primary}
           height={2}

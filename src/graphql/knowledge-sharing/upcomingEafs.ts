@@ -147,6 +147,7 @@ export const UPCOMING_EAFS = gql`
             order
             published
             sectionName
+            title
           }
         }
       }

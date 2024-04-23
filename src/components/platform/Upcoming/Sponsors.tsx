@@ -7,15 +7,17 @@ import { SponsorsCategoryItem } from "./SponsorsCategoryItem";
 export const Sponsors = ({
   sponsorIntro,
   sponsor,
+  title,
 }: {
   sponsorIntro: string;
   sponsor: ComponentSponsorSponsor[];
+  title?: string;
 }) => {
   console.log(sponsor);
   return (
     <div className="px:[2rem] grid w-screen gap-10 py-10 md:px-[5rem]">
       <div className="grid max-w-[90rem] justify-items-center justify-self-center text-center">
-        <MainText title={"Sponsors"} />
+        <MainText title={title ?? "Sponsors"} />
         {/* <p className="mt-[2rem] text-[1rem] text-black">{sponsorIntro}</p> */}
       </div>
       <div className="grid w-full grid-cols-1 gap-20">

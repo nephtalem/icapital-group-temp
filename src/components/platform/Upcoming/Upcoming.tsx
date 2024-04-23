@@ -31,13 +31,20 @@ export const Upcoming = ({
       published: upcoming.attributes?.eafsSetting?.find(
         (s) => s?.sectionName === "organizer",
       )?.published,
+      title: upcoming.attributes?.eafsSetting?.find(
+        (s) => s?.sectionName === "organizer",
+      )?.title,
       component: (
         <Organizers
           organizer={(upcoming.attributes!.content!.organizer ?? []).map(
             (organizer) => organizer!,
           )}
           organizerIntro={upcoming.attributes!.content!.organizerIntro!}
-          title="Organizers"
+          title={
+            upcoming.attributes?.eafsSetting?.find(
+              (s) => s?.sectionName === "organizer",
+            )?.title ?? "Organizers"
+          }
         />
       ),
     },
@@ -48,7 +55,19 @@ export const Upcoming = ({
       published: upcoming.attributes?.eafsSetting?.find(
         (s) => s?.sectionName === "guestOfHonour",
       )?.published,
-      component: <Guests upcoming={upcoming} />,
+      title: upcoming.attributes?.eafsSetting?.find(
+        (s) => s?.sectionName === "guestOfHonour",
+      )?.title,
+      component: (
+        <Guests
+          upcoming={upcoming}
+          title={
+            upcoming.attributes?.eafsSetting?.find(
+              (s) => s?.sectionName === "guestOfHonour",
+            )?.title ?? ""
+          }
+        />
+      ),
     },
     {
       order: upcoming.attributes?.eafsSetting?.find(
@@ -57,12 +76,20 @@ export const Upcoming = ({
       published: upcoming.attributes?.eafsSetting?.find(
         (s) => s?.sectionName === "sponsor",
       )?.published,
+      title: upcoming.attributes?.eafsSetting?.find(
+        (s) => s?.sectionName === "sponsor",
+      )?.title,
       component: (
         <Sponsors
           sponsor={(upcoming.attributes!.content!.sponsor ?? []).map(
             (sponsor) => sponsor!,
           )}
           sponsorIntro={upcoming.attributes!.content!.sponsorIntro!}
+          title={
+            upcoming.attributes?.eafsSetting?.find(
+              (s) => s?.sectionName === "sponsor",
+            )?.title ?? ""
+          }
         />
       ),
     },
@@ -73,7 +100,19 @@ export const Upcoming = ({
       published: upcoming.attributes?.eafsSetting?.find(
         (s) => s?.sectionName === "session",
       )?.published,
-      component: <Sessions upcoming={upcoming} />,
+      title: upcoming.attributes?.eafsSetting?.find(
+        (s) => s?.sectionName === "session",
+      )?.title,
+      component: (
+        <Sessions
+          upcoming={upcoming}
+          title={
+            upcoming.attributes?.eafsSetting?.find(
+              (s) => s?.sectionName === "session",
+            )?.title ?? ""
+          }
+        />
+      ),
     },
     {
       order: upcoming.attributes?.eafsSetting?.find(
@@ -82,13 +121,20 @@ export const Upcoming = ({
       published: upcoming.attributes?.eafsSetting?.find(
         (s) => s?.sectionName === "strategicPartner",
       )?.published,
+      title: upcoming.attributes?.eafsSetting?.find(
+        (s) => s?.sectionName === "strategicPartner",
+      )?.title,
       component: (
         <Organizers
           organizer={(upcoming.attributes!.strategicPartner ?? []).map(
             (organizer) => organizer!,
           )}
           organizerIntro={""}
-          title="Strategic Partners"
+          title={
+            upcoming.attributes?.eafsSetting?.find(
+              (s) => s?.sectionName === "strategicPartner",
+            )?.title ?? "Strategic Partners"
+          }
         />
       ),
     },
@@ -99,13 +145,20 @@ export const Upcoming = ({
       published: upcoming.attributes?.eafsSetting?.find(
         (s) => s?.sectionName === "exhibitor",
       )?.published,
+      title: upcoming.attributes?.eafsSetting?.find(
+        (s) => s?.sectionName === "exhibitor",
+      )?.title,
       component: (
         <Organizers
           organizer={(upcoming.attributes!.exhibitor ?? []).map(
             (organizer) => organizer!,
           )}
           organizerIntro={""}
-          title="Exhibitors"
+          title={
+            upcoming.attributes?.eafsSetting?.find(
+              (s) => s?.sectionName === "exhibitor",
+            )?.title ?? "Exhibitors"
+          }
         />
       ),
     },

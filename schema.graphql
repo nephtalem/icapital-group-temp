@@ -35,6 +35,33 @@ input AdvisorySolutionsInput {
   publishedAt: DateTime
 }
 
+type ApplyEafs {
+  title: String
+  description: String
+  logo: UploadFileEntityResponse
+  message: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ApplyEafsEntity {
+  id: ID
+  attributes: ApplyEafs
+}
+
+type ApplyEafsEntityResponse {
+  data: ApplyEafsEntity
+}
+
+input ApplyEafsInput {
+  title: String
+  description: String
+  logo: ID
+  message: String
+  publishedAt: DateTime
+}
+
 type Author {
   name: String
   email: String
@@ -277,12 +304,14 @@ type ComponentEafsSettingEafsSetting {
   sectionName: String
   published: Boolean
   order: Int
+  title: String
 }
 
 input ComponentEafsSettingEafsSettingFiltersInput {
   sectionName: StringFilterInput
   published: BooleanFilterInput
   order: IntFilterInput
+  title: StringFilterInput
   and: [ComponentEafsSettingEafsSettingFiltersInput]
   or: [ComponentEafsSettingEafsSettingFiltersInput]
   not: ComponentEafsSettingEafsSettingFiltersInput
@@ -293,6 +322,7 @@ input ComponentEafsSettingEafsSettingInput {
   sectionName: String
   published: Boolean
   order: Int
+  title: String
 }
 
 type ComponentExposureProgramExposureProgram {
@@ -908,6 +938,11 @@ enum ENUM_DOCUMENT_TYPE {
   CHCDA
 }
 
+enum ENUM_PARTICIPANT_TYPE {
+  Organization
+  Personal
+}
+
 enum ENUM_SPONSOREXHIBITOR_TYPE {
   Sponsorship
   Exhibition
@@ -973,7 +1008,7 @@ input FloatFilterInput {
   between: [Float]
 }
 
-union GenericMorph = ComponentCategoryCategory | ComponentCbsPointCbsPoint | ComponentCertificationPackageCertificationPackage | ComponentClientCounterClientCounter | ComponentEafsSessionEafsSession | ComponentEafsSettingEafsSetting | ComponentExposureProgramExposureProgram | ComponentFileFile | ComponentIntroIntro | ComponentLsBannerLsBanner | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPersonPerson | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSolutionPointSolutionPoint | ComponentSolutionSolution | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | ComponentVisionMissionValueVisionMissionValue | ComponentWordAnimationItemWordAnimationItem | ComponentWordAnimationWordAnimation | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | AdvisorySolutions | Author | Blog | CrossBorderSolutions | Document | ExposureLearningPrograms | Home | KnowledgeSharing | LearningSolutions | Participant | RegistrationEacms | RegistrationEafs | Setting | SponsorExhibitor | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs | WhoWeAre
+union GenericMorph = ComponentCategoryCategory | ComponentCbsPointCbsPoint | ComponentCertificationPackageCertificationPackage | ComponentClientCounterClientCounter | ComponentEafsSessionEafsSession | ComponentEafsSettingEafsSetting | ComponentExposureProgramExposureProgram | ComponentFileFile | ComponentIntroIntro | ComponentLsBannerLsBanner | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPersonPerson | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSolutionPointSolutionPoint | ComponentSolutionSolution | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | ComponentVisionMissionValueVisionMissionValue | ComponentWordAnimationItemWordAnimationItem | ComponentWordAnimationWordAnimation | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | AdvisorySolutions | ApplyEafs | Author | Blog | CrossBorderSolutions | Document | ExposureLearningPrograms | Home | KnowledgeSharing | LearningSolutions | Participant | RegistrationEacms | RegistrationEafs | Setting | SponsorExhibitor | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs | WhoWeAre
 
 type Home {
   slogan: String
@@ -1211,6 +1246,8 @@ type Mutation {
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
   updateAdvisorySolutions(data: AdvisorySolutionsInput!): AdvisorySolutionsEntityResponse
   deleteAdvisorySolutions: AdvisorySolutionsEntityResponse
+  updateApplyEafs(data: ApplyEafsInput!): ApplyEafsEntityResponse
+  deleteApplyEafs: ApplyEafsEntityResponse
   createAuthor(data: AuthorInput!): AuthorEntityResponse
   updateAuthor(id: ID!, data: AuthorInput!): AuthorEntityResponse
   deleteAuthor(id: ID!): AuthorEntityResponse
@@ -1317,6 +1354,8 @@ type Participant {
   organization: String
   position: String
   reason: String
+  type: ENUM_PARTICIPANT_TYPE
+  tin: Long
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1344,6 +1383,8 @@ input ParticipantFiltersInput {
   organization: StringFilterInput
   position: StringFilterInput
   reason: StringFilterInput
+  type: StringFilterInput
+  tin: LongFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -1359,6 +1400,8 @@ input ParticipantInput {
   organization: String
   position: String
   reason: String
+  type: ENUM_PARTICIPANT_TYPE
+  tin: Long
   publishedAt: DateTime
 }
 
@@ -1379,6 +1422,7 @@ type Query {
   usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
   usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
   advisorySolutions(publicationState: PublicationState = LIVE): AdvisorySolutionsEntityResponse
+  applyEafs(publicationState: PublicationState = LIVE): ApplyEafsEntityResponse
   author(id: ID): AuthorEntityResponse
   authors(filters: AuthorFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): AuthorEntityResponseCollection
   blog(id: ID): BlogEntityResponse
@@ -1445,6 +1489,7 @@ type RegistrationEafs {
   pricing(filters: ComponentPricingPricingFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPricingPricing]
   logo: UploadFileEntityResponse
   name: String
+  message: String
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1466,6 +1511,7 @@ input RegistrationEafsInput {
   pricing: [ComponentPricingPricingInput]
   logo: ID
   name: String
+  message: String
   publishedAt: DateTime
 }
 
