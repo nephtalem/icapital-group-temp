@@ -154,7 +154,7 @@ export const Registration = ({
               setValue={(value: string): void => {
                 setForm({ ...form, tin: value });
               }}
-              required={true}
+              required={false}
               type="number"
             />
             <FormItem
