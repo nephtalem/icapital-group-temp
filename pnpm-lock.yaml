@@ -59,6 +59,9 @@ importers:
       gsap:
         specifier: latest
         version: 3.12.5
+      iconsax-react:
+        specifier: ^0.0.8
+        version: 0.0.8(react@18.2.0)
       interweave:
         specifier: ^13.1.0
         version: 13.1.0(react@18.2.0)
@@ -2854,6 +2857,11 @@ packages:
   https-proxy-agent@7.0.4:
     resolution: {integrity: sha512-wlwpilI7YdjSkWaQ/7omYBMTliDcmCN8OLihO6I9B86g06lMyAoqgoDpV0XqoaPOKj+0DIdAvnsWfyAAhmimcg==}
     engines: {node: '>= 14'}
+
+  iconsax-react@0.0.8:
+    resolution: {integrity: sha512-l3dVk4zGtkkJHgvNYqAf0wDKqnKxXykee5/DoESGo2JvSYwaxajJUHSX2YrPRXSov8Hd8ClGFwJxCEaEjrFD1Q==}
+    peerDependencies:
+      react: '*'
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -7916,6 +7924,11 @@ snapshots:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+
+  iconsax-react@0.0.8(react@18.2.0):
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
 
   iconv-lite@0.4.24:
     dependencies:

@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { twMerge } from "tailwind-merge";
 
 export const Option = ({
-  label, to, base,
+  label,
+  to,
+  base,
 }: {
   label: string;
   to: string;
@@ -14,7 +17,12 @@ export const Option = ({
   return (
     <Link href={to}>
       <div
-        className={`grid rounded-lg px-4 py-1 text-base md:text-xl font-semibold md:px-6 ${active ? "border-accent text-accent" : "border-transparent text-black"} border `}
+        className={twMerge(
+          `grid border-b-2 px-2 py-2 text-base font-semibold  md:px-2 md:text-xl `,
+          active
+            ? "border-b-accent text-accent"
+            : "border-transparent text-white",
+        )}
       >
         {label}
       </div>

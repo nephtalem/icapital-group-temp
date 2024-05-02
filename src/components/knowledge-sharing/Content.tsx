@@ -12,7 +12,7 @@ export const Content = ({
 }) => {
   return (
     <div
-      className={`relative grid h-dvh w-screen overflow-y-auto overflow-x-hidden`}
+      className={`relative bg-[#FEF4EA] grid h-dvh w-screen overflow-y-auto overflow-x-hidden`}
     >
       <Header
         scrollable={scrollable}

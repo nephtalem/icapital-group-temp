@@ -8,6 +8,9 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
+import { Calendar2, Clock, DocumentText1 } from "iconsax-react";
 
 export const PlatformHeader = ({
   upcoming,
@@ -17,15 +20,7 @@ export const PlatformHeader = ({
   type: "EAFS" | "EACMS" | "ECCDA";
 }) => {
   return (
-    <div className="sticky top-0 gap-5 md:gap-0 z-[100] grid w-screen grid-cols-1 items-center justify-items-center border-b border-b-border bg-white px-6 py-4 md:h-[6rem] md:grid-cols-[max-content,1fr] md:px-[3.5rem]">
-      <div className="relative aspect-[11/4] h-10 md:h-[4rem] md:w-[11rem]">
-        <Image
-          className="object-contain"
-          src={"/images/eafs.logo.png"}
-          alt={""}
-          fill={true}
-        />
-      </div>
+    <div className="absolute top-28 z-[100] grid grid-cols-1 items-center justify-items-center justify-self-center rounded-full border border-zinc-500 p-2 ">
       <div className="flex justify-between justify-self-stretch md:justify-self-end">
         {type === "ECCDA" ? (
           <>
@@ -33,6 +28,7 @@ export const PlatformHeader = ({
               <Option
                 label={`${upcoming.attributes.content?.menuTitle}`}
                 to={`/knowledge-sharing/conference-on-human-capital-development-in-africa/upcoming`}
+                icon={<Calendar2 size="24" color="#fff" />}
               />
             ) : (
               <></>
@@ -40,10 +36,12 @@ export const PlatformHeader = ({
             <Option
               label={"Previous Conferences"}
               to={`/knowledge-sharing/conference-on-human-capital-development-in-africa/previous-conferences`}
+              icon={<Clock size="24" color="#fff" />}
             />
             <Option
               label={"Conference Documents"}
               to={`/knowledge-sharing/conference-on-human-capital-development-in-africa/conference-documents`}
+              icon={<DocumentText1 size="24" color="#fff" />}
             />
           </>
         ) : type === "EACMS" ? (
@@ -52,6 +50,7 @@ export const PlatformHeader = ({
               <Option
                 label={`${upcoming.attributes.content?.menuTitle}`}
                 to={`/knowledge-sharing/east-africa-cement-and-concrete-construction-summit/upcoming`}
+                icon={<Calendar2 size="24" color="#fff" />}
               />
             ) : (
               <></>
@@ -59,10 +58,12 @@ export const PlatformHeader = ({
             <Option
               label={"Previous Summits"}
               to={`/knowledge-sharing/east-africa-cement-and-concrete-construction-summit/previous-summits`}
+              icon={<Clock size="24" color="#fff" />}
             />
             <Option
               label={"Summit Documents"}
               to={`/knowledge-sharing/east-africa-cement-and-concrete-construction-summit/summit-documents`}
+              icon={<DocumentText1 size="24" color="#fff" />}
             />
           </>
         ) : (
@@ -71,6 +72,7 @@ export const PlatformHeader = ({
               <Option
                 label={`${upcoming.attributes.content?.menuTitle}`}
                 to={`/knowledge-sharing/east-africa-finance-summit/upcoming`}
+                icon={<Calendar2 size="24" color="#fff" />}
               />
             ) : (
               <></>
@@ -78,10 +80,12 @@ export const PlatformHeader = ({
             <Option
               label={"Previous Summits"}
               to={`/knowledge-sharing/east-africa-finance-summit/previous-summits`}
+              icon={<Clock size="24" color="#fff" />}
             />
             <Option
               label={"Summit Documents"}
               to={`/knowledge-sharing/east-africa-finance-summit/summit-documents`}
+              icon={<DocumentText1 size="24" color="#fff" />}
             />
           </>
         )}
@@ -90,18 +94,28 @@ export const PlatformHeader = ({
   );
 };
 
-export const Option = ({ label, to }: { label: string; to: string }) => {
+export const Option = ({
+  label,
+  to,
+  icon,
+}: {
+  label: string;
+  icon: ReactNode;
+  to: string;
+}) => {
   const router = useRouter();
   const pathname = usePathname();
   const active = to === pathname;
   return (
     <Link href={to}>
       <div
-        className={`${
-          active ? "bg-[rgba(245,128,22,0.1)] text-accent" : "text-black"
-        } grid items-center rounded-[1.5rem] px-[.5rem] py-[.6rem] text-center text-[.7rem] font-semibold md:px-[3.5rem] md:text-[1rem]`}
+        className={twMerge(
+          ` flex items-center gap-2 rounded-full px-4 py-2 text-center font-semibold text-white`,
+          active ? "bg-accent " : "",
+        )}
       >
-        {label}
+        {icon}
+        <p>{label}</p>
       </div>
     </Link>
   );

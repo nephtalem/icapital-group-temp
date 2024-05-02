@@ -27,6 +27,7 @@
     "graphql-subscriptions": "^2.0.0",
     "graphql-ws": "^5.14.2",
     "gsap": "latest",
+    "iconsax-react": "^0.0.8",
     "interweave": "^13.1.0",
     "leaflet": "^1.9.4",
     "lodash": "latest",

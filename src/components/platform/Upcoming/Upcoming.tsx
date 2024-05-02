@@ -12,6 +12,7 @@ import { VideoContainer } from "./VideoContainer";
 import Link from "next/link";
 import { Button } from "@/components/shared/buttons/Button";
 import { Connect } from "./Connect";
+import { Hero } from "./Hero";
 export const ReactPlayer = dynamic(() => import("react-player/lazy"), {
   ssr: false,
 });
@@ -166,8 +167,8 @@ export const Upcoming = ({
 
   console.log(upcoming.attributes?.eafsSetting);
   return (
-    <div className="grid">
-      {/* <Landing upcoming={upcoming} base={base} /> */}
+    <div className="grid bg-[#FEF4EA]">
+      <Hero upcoming={upcoming} base={base} />
       <Banner upcoming={upcoming} base={base} />
       {components
         .sort((a, b) => a.order! - b.order!)

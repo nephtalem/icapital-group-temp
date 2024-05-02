@@ -23,7 +23,7 @@ const UpcomingEAFSPage = async () => {
   }
   return (
     <>
-      <Content scrollable={false}>
+      <Content>
         <PlatformHeader upcoming={upcomingEafs} type={"EAFS"} />
         <Upcoming
           upcoming={upcomingEafs}
