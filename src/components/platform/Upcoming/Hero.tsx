@@ -5,8 +5,10 @@ import {
   UpcomingEacmsEntity,
   UpcomingEafsEntity,
 } from "@/gql/graphql";
+import { Calendar2, Location } from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 export const Hero = ({
@@ -19,7 +21,7 @@ export const Hero = ({
   className?: string;
 }) => {
   return (
-    <div className={twMerge("grid h-dvh w-screen", className)}>
+    <div className={twMerge("grid min-h-dvh w-screen md:h-dvh", className)}>
       <div className="relative grid h-full w-full">
         <Image
           src={"/images/eafs.hero.png"}
@@ -30,7 +32,7 @@ export const Hero = ({
           className="object-cover"
         />
         <div
-          className={"absolute left-0 top-0 z-10 h-dvh w-screen"}
+          className={"absolute left-0 top-0 z-10 h-full w-screen"}
           style={{
             background:
               "linear-gradient(180deg, #1A2B42 0%, rgba(106, 71, 45, 0.81) 49.49%, rgba(240, 119, 9, 0.50) 100%)",
@@ -45,7 +47,7 @@ export const Hero = ({
         >
           <h1
             className={
-              "text-center text-8xl font-bold leading-[96px] md:leading-[140px] text-white md:text-[140px] "
+              "text-center text-8xl font-bold leading-[96px] text-white md:text-[120px] md:leading-[120px] "
             }
           >
             7<sup>th</sup>
@@ -53,28 +55,28 @@ export const Hero = ({
           <div className={"flex h-full flex-col justify-between md:gap-1"}>
             <h3
               className={
-                "text-2xl font-semibold leading-[1.875rem] text-white md:leading-[32px]"
+                "text-base font-semibold leading-[1.875rem] text-white md:text-xl md:leading-[28px]"
               }
             >
               East Africa
             </h3>
             <h3
               className={
-                "text-2xl font-semibold leading-[1.875rem] text-white md:leading-[32px]"
+                "text-base font-semibold leading-[1.875rem] text-white md:text-xl md:leading-[28px]"
               }
             >
               Finance
             </h3>
             <h3
               className={
-                "text-2xl  font-semibold leading-[1.875rem] text-white md:leading-[32px]"
+                "text-base font-semibold leading-[1.875rem] text-white md:text-xl md:leading-[28px]"
               }
             >
               Summit
             </h3>
           </div>
         </div>
-        <p className="mt-4 max-w-[100%] text-justify break-words hyphens-auto md:text-center text-sm font-medium text-white md:mt-10 md:max-w-[70%] md:text-xl">
+        <p className="mt-4 max-w-[100%] hyphens-auto break-words text-justify text-sm font-medium text-white md:mt-10 md:max-w-[80%] md:text-center md:text-lg">
           The East Africa Finance Summit (EAFS) convenes industry experts,
           bankers, executives, entrepreneurs, policymakers, and more to
           collaborate, address challenges, explore opportunities, strategize,
@@ -82,7 +84,25 @@ export const Hero = ({
           summit showcases renowned speakers, panel discussions, and valuable
           insights for actionable outcomes.
         </p>
-        <div className="mt-8 w-full md:w-auto grid gap-x-10 gap-y-5 md:mt-10 md:grid-cols-2 ">
+        <div
+          className={
+            "mt-4 grid grid-cols-2 items-start justify-self-center md:mt-10 md:gap-10"
+          }
+        >
+          <HeroData
+            icon={
+              <Calendar2 className={"h-6 w-6 md:h-9 md:w-9"} color="#fff" />
+            }
+            label={"When"}
+            value={"9th - 10th May, 2024"}
+          />
+          <HeroData
+            icon={<Location className={"h-6 w-6 md:h-9 md:w-9"} color="#fff" />}
+            label={"Where"}
+            value={"Skylight Hotel, Addis Ababa, Ethiopia"}
+          />
+        </div>
+        <div className="mt-4 grid w-full gap-x-10 gap-y-5 md:mt-10 md:w-auto md:grid-cols-2 ">
           <Link className="grid w-full" href={`${base}/register`}>
             <Button label={"Register here"} onClick={(): void => {}} />
           </Link>
@@ -90,6 +110,30 @@ export const Hero = ({
             <OutlineButton label={"Sponsor us"} onClick={(): void => {}} />
           </Link>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const HeroData = ({
+  icon,
+  label,
+  value,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+}) => {
+  return (
+    <div
+      className={
+        "grid grid-cols-[max-content,1fr] items-center gap-1 md:gap-2 md:first:justify-end"
+      }
+    >
+      {icon}
+      <div className={"grid"}>
+        <p className={"text-xs text-white md:text-sm"}>{label}</p>
+        <p className={"text-xs font-bold text-white md:text-base"}>{value}</p>
       </div>
     </div>
   );

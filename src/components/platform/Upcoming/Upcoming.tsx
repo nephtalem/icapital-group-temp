@@ -210,7 +210,7 @@ export const Upcoming = ({
           </Link>
         </div>
       </div>
-      {/* <VideoContainer upcoming={upcoming} /> */}
+      <VideoContainer upcoming={upcoming} />
       <Connect upcoming={upcoming} />
     </div>
   );
