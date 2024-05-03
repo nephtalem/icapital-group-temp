@@ -8,7 +8,7 @@ export const Statistics = ({
   base: string;
 }) => {
   return (
-    <div className={"flex my-20 flex-wrap items-center justify-center gap-10"}>
+    <div className={"grid md:flex my-20 flex-wrap items-center justify-center gap-10"}>
       {upcoming.attributes?.statstics?.map((statistic, i) => {
         return <StatisticItem key={i} statistic={statistic!} />;
       })}
@@ -36,7 +36,7 @@ const StatisticItem = ({
         className={"object-contain object-left"}
       />
       <h3
-        className={"text-4xl mt-4 font-bold"}
+        className={"text-2xl md:text-4xl mt-4 font-bold"}
         style={{
           color: statistic.color!,
         }}
@@ -44,7 +44,7 @@ const StatisticItem = ({
         {statistic.amount}
       </h3>
       <p
-        className={"text-2xl font-medium mt-2"}
+        className={"text-lg md:text-2xl font-medium mt-2"}
         style={{
           color: statistic.color!,
         }}

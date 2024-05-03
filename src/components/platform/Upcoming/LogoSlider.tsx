@@ -18,7 +18,7 @@ export const LogoSlider = ({
   const swiper = useRef<any>();
   return (
     <div className={"grid gap-5 py-20 md:gap-10"}>
-      <div className={"flex gap-3 justify-self-center md:gap-6"}>
+      <div className={"flex gap-2 justify-self-center md:gap-6"}>
         <Indicator
           text={"Co - Organizers"}
           active={current === 0}
@@ -122,7 +122,7 @@ const Indicator = ({
   return (
     <div
       className={twMerge(
-        "relative grid cursor-pointer rounded-full border-2 border-transparent px-6 py-2 text-lg md:text-2xl",
+        "relative grid cursor-pointer rounded-full border-2 border-transparent px-3 md:px-6 py-2 text-sm md:text-2xl",
         active ? "border-accent font-semibold bg-accent text-white" : "text-neutral-400",
       )}
       onClick={onClick}

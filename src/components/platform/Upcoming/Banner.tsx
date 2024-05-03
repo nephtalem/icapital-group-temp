@@ -27,13 +27,13 @@ export const Banner = ({
 
       {upcoming.attributes?.guests?.find((g) => g?.honourable) && (
         <div className={"grid"}>
-          <div className="relative grid aspect-[4/3] w-full">
+          <div className="relative grid aspect-square md:aspect-[4/3] w-full">
             {
               <Image
                 src={`${upcoming.attributes?.guests?.find((g) => g?.honourable)?.picture?.data?.attributes?.url}`}
                 alt={""}
                 fill={true}
-                className="overflow-hidden rounded-3xl object-contain"
+                className=" object-contain"
               />
             }
             <div

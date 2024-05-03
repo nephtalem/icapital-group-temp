@@ -22,7 +22,7 @@ export const Header = ({
   return (
     <header
       className={twMerge(
-        "z-[100] grid h-max py-2 grid-cols-[1fr,max-content] grid-rows-[max-content,max-content] content-center items-center gap-y-5 px-4 md:h-[6rem] md:grid-cols-[max-content,1fr,max-content] md:grid-rows-1 md:px-12",
+        "z-[100] grid h-max py-2 grid-cols-[1fr,max-content] grid-rows-[max-content,max-content] content-center items-center gap-y-2 md:gap-y-5 px-4 md:h-[6rem] md:grid-cols-[max-content,1fr,max-content] md:grid-rows-1 md:px-12",
         scrollable ? "absolute w-screen top-0 " : "relative",
       )}
     >

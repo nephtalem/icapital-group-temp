@@ -10,11 +10,12 @@ import { Sessions } from "./Sessions";
 import { Sponsors } from "./Sponsors";
 import { VideoContainer } from "./VideoContainer";
 import Link from "next/link";
-import { Button } from "@/components/shared/buttons/Button";
+import { Button, OutlineButton } from "@/components/shared/buttons/Button";
 import { Connect } from "./Connect";
 import { Hero } from "./Hero";
 import { LogoSlider } from "./LogoSlider";
 import { Statistics } from "./Statistics";
+import Image from "next/image";
 export const ReactPlayer = dynamic(() => import("react-player/lazy"), {
   ssr: false,
 });
@@ -190,13 +191,24 @@ export const Upcoming = ({
           )?.title ?? ""
         }
       />
-      <div className="mb-[10rem] mt-[6rem] grid justify-items-center">
-        <h2 className="mb-[3rem] text-center text-lg font-extrabold text-background md:text-[1.8rem]">
-          SPONSORSHIP AND EXHIBITION
-        </h2>
-        <Link href={`${base}/apply`}>
-          <Button label={"APPLY HERE"} onClick={(): void => {}} />
-        </Link>
+      <div className="relative mb-[10rem] py-20 mt-[6rem] grid justify-items-center">
+        <Image
+          src={"/images/apply.bg.png"}
+          alt={""}
+          fill
+          className={"object-cover"}
+          loading={"eager"}
+        />
+        <div className={"absolute w-full h-full z-10 top-0 left-0 bg-black/50"} />
+        <div className={"grid relative auto-rows-max gap-16 content-center items-center md:w-1/2 justify-items-center z-20"}>
+          <p className={"text-lg md:text-4xl text-white text-center font-extrabold"}>
+            Become a Sponsor or Exhibitor at EAFS 2024 and Get your Products &
+            Services Promoted!
+          </p>
+          <Link href={`${base}/apply`}>
+            <OutlineButton label={"APPLY HERE"} onClick={(): void => {}} />
+          </Link>
+        </div>
       </div>
       {/* <VideoContainer upcoming={upcoming} /> */}
       <Connect upcoming={upcoming} />

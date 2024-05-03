@@ -72,7 +72,13 @@ export const PlatformHeader = ({
               <Option
                 label={`${upcoming.attributes.content?.menuTitle}`}
                 to={`/knowledge-sharing/east-africa-finance-summit/upcoming`}
-                icon={<Calendar2 size="24" color="#fff" />}
+                icon={
+                  <Calendar2
+                    size="24"
+                    className={"hidden md:visible"}
+                    color="#fff"
+                  />
+                }
               />
             ) : (
               <></>
@@ -80,12 +86,20 @@ export const PlatformHeader = ({
             <Option
               label={"Previous Summits"}
               to={`/knowledge-sharing/east-africa-finance-summit/previous-summits`}
-              icon={<Clock size="24" color="#fff" />}
+              icon={
+                <Clock size="24" className={"hidden md:visible"} color="#fff" />
+              }
             />
             <Option
               label={"Summit Documents"}
               to={`/knowledge-sharing/east-africa-finance-summit/summit-documents`}
-              icon={<DocumentText1 size="24" color="#fff" />}
+              icon={
+                <DocumentText1
+                  size="24"
+                  className={"hidden md:visible"}
+                  color="#fff"
+                />
+              }
             />
           </>
         )}
@@ -110,7 +124,7 @@ export const Option = ({
     <Link href={to}>
       <div
         className={twMerge(
-          ` flex items-center gap-2 rounded-full px-4 py-2 text-center font-semibold text-white`,
+          ` flex items-center gap-1 rounded-full px-2 py-1 text-center text-xs font-semibold text-white md:gap-2 md:px-4 md:py-2 md:text-base`,
           active ? "bg-accent " : "",
         )}
       >

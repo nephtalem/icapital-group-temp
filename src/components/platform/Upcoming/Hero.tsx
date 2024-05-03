@@ -45,46 +45,49 @@ export const Hero = ({
         >
           <h1
             className={
-              "text-center text-[140px] font-bold leading-[140px] text-white "
+              "text-center text-8xl font-bold leading-[96px] md:leading-[140px] text-white md:text-[140px] "
             }
           >
             7<sup>th</sup>
           </h1>
-          <div className={"flex h-full flex-col justify-between gap-1"}>
+          <div className={"flex h-full flex-col justify-between md:gap-1"}>
             <h3
-              className={"text-[32px] font-semibold leading-[32px] text-white"}
+              className={
+                "text-2xl font-semibold leading-[1.875rem] text-white md:leading-[32px]"
+              }
             >
               East Africa
             </h3>
             <h3
-              className={"text-[32px] font-semibold leading-[32px] text-white"}
+              className={
+                "text-2xl font-semibold leading-[1.875rem] text-white md:leading-[32px]"
+              }
             >
               Finance
             </h3>
             <h3
-              className={"text-[32px] font-semibold leading-[32px] text-white"}
+              className={
+                "text-2xl  font-semibold leading-[1.875rem] text-white md:leading-[32px]"
+              }
             >
               Summit
             </h3>
           </div>
         </div>
-        <p className="mt-4 max-w-[100%] text-center text-base font-medium text-white md:mt-10 md:max-w-[70%] md:text-xl">
+        <p className="mt-4 max-w-[100%] text-justify break-words hyphens-auto md:text-center text-sm font-medium text-white md:mt-10 md:max-w-[70%] md:text-xl">
           The East Africa Finance Summit (EAFS) convenes industry experts,
           bankers, executives, entrepreneurs, policymakers, and more to
           collaborate, address challenges, explore opportunities, strategize,
-          share knowledge, and shape the finance sector&apos;s future. The summit
-          showcases renowned speakers, panel discussions, and valuable insights
-          for actionable outcomes.
+          share knowledge, and shape the finance sector&apos;s future. The
+          summit showcases renowned speakers, panel discussions, and valuable
+          insights for actionable outcomes.
         </p>
-        <div className="mt-8 grid gap-x-10 gap-y-5 md:mt-10 md:grid-cols-2 ">
+        <div className="mt-8 w-full md:w-auto grid gap-x-10 gap-y-5 md:mt-10 md:grid-cols-2 ">
           <Link className="grid w-full" href={`${base}/register`}>
             <Button label={"Register here"} onClick={(): void => {}} />
           </Link>
           <Link className="grid w-full" href={`${base}`}>
-            <OutlineButton
-              label={"Sponsor us"}
-              onClick={(): void => {}}
-            />
+            <OutlineButton label={"Sponsor us"} onClick={(): void => {}} />
           </Link>
         </div>
       </div>

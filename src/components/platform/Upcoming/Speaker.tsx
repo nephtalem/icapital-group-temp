@@ -9,7 +9,7 @@ import Link from "next/link";
 export const Speaker = ({ speaker }: { speaker: ComponentPersonPerson; }) => {
   return (
     <div className="grid auto-rows-max items-start justify-items-center">
-      <div className="relative grid h-[15rem] w-full">
+      <div className="relative grid aspect-square md:aspect-auto md:h-[15rem] w-full">
         <Image
           src={`${speaker?.picture?.data?.attributes?.url}`}
           alt={""}

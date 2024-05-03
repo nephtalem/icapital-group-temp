@@ -12,15 +12,20 @@ export const VideoContainer = ({
   upcoming: UpcomingEafsEntity | UpcomingEacmsEntity | UpcomingChcdaEntity;
 }) => {
   return (
-    <div className="grid aspect-[16/9] w-screen items-center justify-items-center bg-[#01102f] px-[2rem] py-10 md:h-[43rem] md:px-[10rem] md:py-[10rem]">
-      <ReactPlayer
-        url={`${upcoming.attributes?.content?.youtubeUrl}`}
-        width="100%"
-        height="100%"
-        playing={true}
-        muted={true}
-        controls={true}
-      />
+    <div className={"grid justify-items-center gap-10 md:px-40 px-5 pb-20"}>
+      <h2 className={"text-4xl font-semibold text-black"}>
+        Recap Rewind: A Glimpse Back at the 6th EAFS
+      </h2>
+      <div className="grid aspect-square md:aspect-video w-full items-center justify-items-center">
+        <ReactPlayer
+          url={`${upcoming.attributes?.content?.youtubeUrl}`}
+          width="100%"
+          height="100%"
+          playing={true}
+          muted={true}
+          controls={true}
+        />
+      </div>
     </div>
   );
 };

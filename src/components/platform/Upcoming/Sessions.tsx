@@ -33,7 +33,7 @@ export const Sessions = ({
           </div>
         ))}
       </div>
-      <div className="grid w-screen gap-10 px-[2rem] py-10 md:px-[5rem]">
+      <div className="grid w-screen gap-10 py-10 md:px-[5rem]">
         <MainText title={"Moderators"} />
         {upcoming.attributes?.session?.map((session, index) => (
           <div
