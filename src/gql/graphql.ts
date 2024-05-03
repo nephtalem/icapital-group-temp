@@ -556,6 +556,7 @@ export type ComponentPersonPerson = {
   name?: Maybe<Scalars['String']['output']>;
   picture?: Maybe<UploadFileEntityResponse>;
   position?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Enum_Componentpersonperson_Type>;
 };
 
 export type ComponentPersonPersonFiltersInput = {
@@ -566,6 +567,7 @@ export type ComponentPersonPersonFiltersInput = {
   not?: InputMaybe<ComponentPersonPersonFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentPersonPersonFiltersInput>>>;
   position?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentPersonPersonInput = {
@@ -576,6 +578,7 @@ export type ComponentPersonPersonInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   picture?: InputMaybe<Scalars['ID']['input']>;
   position?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Enum_Componentpersonperson_Type>;
 };
 
 export type ComponentPlatformPlatform = {
@@ -1143,6 +1146,11 @@ export type DocumentInput = {
   status?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Enum_Document_Type>;
 };
+
+export enum Enum_Componentpersonperson_Type {
+  Moderator = 'MODERATOR',
+  Speaker = 'SPEAKER'
+}
 
 export enum Enum_Componentsponsorsponsor_Level {
   Gold = 'Gold',

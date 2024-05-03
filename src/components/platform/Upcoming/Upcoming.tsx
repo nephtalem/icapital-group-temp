@@ -14,6 +14,7 @@ import { Button } from "@/components/shared/buttons/Button";
 import { Connect } from "./Connect";
 import { Hero } from "./Hero";
 import { LogoSlider } from "./LogoSlider";
+import { Statistics } from "./Statistics";
 export const ReactPlayer = dynamic(() => import("react-player/lazy"), {
   ssr: false,
 });
@@ -170,16 +171,25 @@ export const Upcoming = ({
   return (
     <div className="grid bg-[#FEF4EA]">
       <Hero upcoming={upcoming} base={base} />
+      <Statistics upcoming={upcoming} base={base} />
       <LogoSlider upcoming={upcoming} base={base} />
       <Banner upcoming={upcoming} base={base} />
-      {components
-        .sort((a, b) => a.order! - b.order!)
-        .map((component) => {
-          if (component.published) {
-            return component.component;
-          }
-        })}
-
+      <Guests
+        upcoming={upcoming}
+        title={
+          upcoming.attributes?.eafsSetting?.find(
+            (s) => s?.sectionName === "guestOfHonour",
+          )?.title ?? ""
+        }
+      />
+      <Sessions
+        upcoming={upcoming}
+        title={
+          upcoming.attributes?.eafsSetting?.find(
+            (s) => s?.sectionName === "session",
+          )?.title ?? ""
+        }
+      />
       <div className="mb-[10rem] mt-[6rem] grid justify-items-center">
         <h2 className="mb-[3rem] text-center text-lg font-extrabold text-background md:text-[1.8rem]">
           SPONSORSHIP AND EXHIBITION

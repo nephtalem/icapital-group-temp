@@ -129,6 +129,8 @@ export const UPCOMING_EAFS = gql`
                 }
               }
               position
+              type
+              bio
             }
             title
           }

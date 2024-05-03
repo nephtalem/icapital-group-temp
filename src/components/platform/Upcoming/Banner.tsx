@@ -14,7 +14,7 @@ export const Banner = ({
   base: string;
 }) => {
   return (
-    <div className="grid w-screen grid-cols-1 items-center gap-x-10 gap-y-[3rem]  px-[1rem] py-20 md:grid-cols-2 md:px-40">
+    <div className="grid w-screen grid-cols-1 items-start gap-x-10 gap-y-[3rem]  px-[1rem] py-20 md:grid-cols-2 md:px-32">
       <div className="grid auto-rows-max content-center items-center justify-items-start gap-6">
         <h1 className="text-center text-xl font-bold text-black md:text-left md:text-4xl">
           About the summit

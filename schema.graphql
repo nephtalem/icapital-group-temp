@@ -460,6 +460,7 @@ type ComponentPersonPerson {
   document: UploadFileEntityResponse
   honourable: Boolean
   bio: String
+  type: ENUM_COMPONENTPERSONPERSON_TYPE
 }
 
 input ComponentPersonPersonFiltersInput {
@@ -467,6 +468,7 @@ input ComponentPersonPersonFiltersInput {
   position: StringFilterInput
   honourable: BooleanFilterInput
   bio: StringFilterInput
+  type: StringFilterInput
   and: [ComponentPersonPersonFiltersInput]
   or: [ComponentPersonPersonFiltersInput]
   not: ComponentPersonPersonFiltersInput
@@ -480,6 +482,7 @@ input ComponentPersonPersonInput {
   document: ID
   honourable: Boolean
   bio: String
+  type: ENUM_COMPONENTPERSONPERSON_TYPE
 }
 
 type ComponentPlatformPlatform {
@@ -960,6 +963,11 @@ input DocumentInput {
   status: String
   background: ID
   publishedAt: DateTime
+}
+
+enum ENUM_COMPONENTPERSONPERSON_TYPE {
+  SPEAKER
+  MODERATOR
 }
 
 enum ENUM_COMPONENTSPONSORSPONSOR_LEVEL {
