@@ -14,33 +14,49 @@ export const Banner = ({
   base: string;
 }) => {
   return (
-    <div className="grid w-screen grid-cols-1 gap-x-10 gap-y-[3rem]  px-[1rem] py-20 md:grid-cols-2 md:px-[3.5rem]">
-      <div className="grid justify-items-start gap-6 auto-rows-max items-start">
-        <h1 className="text-center text-xl font-bold text-accent md:text-left md:text-xl">
-          {upcoming.attributes?.content?.title}
+    <div className="grid w-screen grid-cols-1 items-center gap-x-10 gap-y-[3rem]  px-[1rem] py-20 md:grid-cols-2 md:px-40">
+      <div className="grid auto-rows-max content-center items-center justify-items-start gap-6">
+        <h1 className="text-center text-xl font-bold text-black md:text-left md:text-4xl">
+          About the summit
         </h1>
         <Html
-          className="text-center text-sm font-normal text-text md:text-left"
+          className="text-center text-xl font-normal text-text md:text-left"
           content={`${upcoming.attributes?.content?.description}`}
         />
-        <div className="mt-6 grid w-full justify-center gap-x-10 gap-y-5 md:mt-[3rem] md:grid-cols-2 ">
-          <Link className="grid w-full" href={`${base}/register`}>
-            <Button label={"REGISTER HERE"} onClick={(): void => {}} />
-          </Link>
-          <Link className="grid w-full" href={`${base}/apply`}>
-            <OutlineButton label={"SPONSOR US"} onClick={(): void => {}} />
-          </Link>
-        </div>
       </div>
 
-      <div className="relative h-full w-full">
-        <Image
-          src={`${upcoming.attributes?.content?.banner?.data?.attributes?.url}`}
-          alt={""}
-          fill={true}
-          className="object-contain"
-        />
-      </div>
+      {upcoming.attributes?.guests?.find((g) => g?.honourable) && (
+        <div className={"grid"}>
+          <div className="relative grid aspect-[4/3] w-full">
+            {
+              <Image
+                src={`${upcoming.attributes?.guests?.find((g) => g?.honourable)?.picture?.data?.attributes?.url}`}
+                alt={""}
+                fill={true}
+                className="overflow-hidden rounded-3xl object-contain"
+              />
+            }
+            <div
+              className={
+                "absolute bottom-[-24px] grid h-12 items-center justify-center justify-self-center rounded-full bg-accent px-4 text-xl font-semibold text-white"
+              }
+            >
+              Guest of Honor
+            </div>
+          </div>
+          <div className={"mt-12 grid justify-items-center gap-2"}>
+            <h3 className={"text-xl font-semibold text-black"}>
+              {upcoming.attributes?.guests?.find((g) => g?.honourable)?.name}
+            </h3>
+            <p className={"text-base text-black"}>
+              {
+                upcoming.attributes?.guests?.find((g) => g?.honourable)
+                  ?.position
+              }
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

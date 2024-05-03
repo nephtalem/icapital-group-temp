@@ -7,14 +7,16 @@ export const Sponsor = ({
   to,
   width,
   height,
+  level,
 }: {
   image: string;
   to: string;
   width: number;
   height: number;
+  level?: string;
 }) => {
   return (
-    <Link href={to} target={"_blank"} className="grid">
+    <Link href={to} target={"_blank"} className="grid py-3">
       <div
         className="relative grid w-full"
         style={{
@@ -28,6 +30,23 @@ export const Sponsor = ({
           alt={""}
           fill={true}
         />
+        {level && (
+          <div className={"absolute top-[-10px] justify-self-center"}>
+            <Image
+            className="object-contain object-left"
+            src={
+              level?.toLowerCase() === "platinum"
+                ? "/images/platinum.png"
+                : level?.toLowerCase() === "gold"
+                  ? "/images/gold.png"
+                  : "/images/silver.png"
+            }
+            alt={""}
+            height={20}
+            width={60}
+          />
+          </div>
+        )}
       </div>
     </Link>
   );

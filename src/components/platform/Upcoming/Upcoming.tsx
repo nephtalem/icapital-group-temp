@@ -13,6 +13,7 @@ import Link from "next/link";
 import { Button } from "@/components/shared/buttons/Button";
 import { Connect } from "./Connect";
 import { Hero } from "./Hero";
+import { LogoSlider } from "./LogoSlider";
 export const ReactPlayer = dynamic(() => import("react-player/lazy"), {
   ssr: false,
 });
@@ -169,6 +170,7 @@ export const Upcoming = ({
   return (
     <div className="grid bg-[#FEF4EA]">
       <Hero upcoming={upcoming} base={base} />
+      <LogoSlider upcoming={upcoming} base={base} />
       <Banner upcoming={upcoming} base={base} />
       {components
         .sort((a, b) => a.order! - b.order!)
@@ -186,7 +188,7 @@ export const Upcoming = ({
           <Button label={"APPLY HERE"} onClick={(): void => {}} />
         </Link>
       </div>
-      <VideoContainer upcoming={upcoming} />
+      {/* <VideoContainer upcoming={upcoming} /> */}
       <Connect upcoming={upcoming} />
     </div>
   );

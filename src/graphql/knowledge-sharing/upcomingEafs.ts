@@ -76,7 +76,7 @@ export const UPCOMING_EAFS = gql`
             name
             url
           }
-          guestOfHonour {
+          guests  {
             name
             picture {
               data {
@@ -88,6 +88,8 @@ export const UPCOMING_EAFS = gql`
               }
             }
             position
+            bio
+            honourable
           }
           introDocument {
             data {
@@ -148,6 +150,19 @@ export const UPCOMING_EAFS = gql`
             published
             sectionName
             title
+          }
+          statstics {
+            amount
+            color
+            label
+            order
+            icon {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
           }
         }
       }

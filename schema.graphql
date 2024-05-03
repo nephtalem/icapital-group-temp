@@ -458,11 +458,15 @@ type ComponentPersonPerson {
   picture: UploadFileEntityResponse
   position: String
   document: UploadFileEntityResponse
+  honourable: Boolean
+  bio: String
 }
 
 input ComponentPersonPersonFiltersInput {
   name: StringFilterInput
   position: StringFilterInput
+  honourable: BooleanFilterInput
+  bio: StringFilterInput
   and: [ComponentPersonPersonFiltersInput]
   or: [ComponentPersonPersonFiltersInput]
   not: ComponentPersonPersonFiltersInput
@@ -474,6 +478,8 @@ input ComponentPersonPersonInput {
   picture: ID
   position: String
   document: ID
+  honourable: Boolean
+  bio: String
 }
 
 type ComponentPlatformPlatform {
@@ -682,6 +688,34 @@ input ComponentSponsorSponsorInput {
   level: ENUM_COMPONENTSPONSORSPONSOR_LEVEL
 }
 
+type ComponentStatsticsStatstics {
+  id: ID!
+  label: String
+  amount: Long
+  icon: UploadFileEntityResponse
+  color: String
+  order: Int
+}
+
+input ComponentStatsticsStatsticsFiltersInput {
+  label: StringFilterInput
+  amount: LongFilterInput
+  color: StringFilterInput
+  order: IntFilterInput
+  and: [ComponentStatsticsStatsticsFiltersInput]
+  or: [ComponentStatsticsStatsticsFiltersInput]
+  not: ComponentStatsticsStatsticsFiltersInput
+}
+
+input ComponentStatsticsStatsticsInput {
+  id: ID
+  label: String
+  amount: Long
+  icon: ID
+  color: String
+  order: Int
+}
+
 type ComponentSummitIntroSummitIntro {
   id: ID!
   title: String
@@ -733,6 +767,7 @@ type ComponentUpcomingUpcoming {
   sponsor(filters: ComponentSponsorSponsorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSponsorSponsor]
   youtubeUrl: String
   description: String
+  shortDescription: String
 }
 
 input ComponentUpcomingUpcomingInput {
@@ -749,6 +784,7 @@ input ComponentUpcomingUpcomingInput {
   sponsor: [ComponentSponsorSponsorInput]
   youtubeUrl: String
   description: String
+  shortDescription: String
 }
 
 type ComponentVisionMissionValueVisionMissionValue {
@@ -1008,7 +1044,7 @@ input FloatFilterInput {
   between: [Float]
 }
 
-union GenericMorph = ComponentCategoryCategory | ComponentCbsPointCbsPoint | ComponentCertificationPackageCertificationPackage | ComponentClientCounterClientCounter | ComponentEafsSessionEafsSession | ComponentEafsSettingEafsSetting | ComponentExposureProgramExposureProgram | ComponentFileFile | ComponentIntroIntro | ComponentLsBannerLsBanner | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPersonPerson | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSolutionPointSolutionPoint | ComponentSolutionSolution | ComponentSponsorSponsor | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | ComponentVisionMissionValueVisionMissionValue | ComponentWordAnimationItemWordAnimationItem | ComponentWordAnimationWordAnimation | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | AdvisorySolutions | ApplyEafs | Author | Blog | CrossBorderSolutions | Document | ExposureLearningPrograms | Home | KnowledgeSharing | LearningSolutions | Participant | RegistrationEacms | RegistrationEafs | Setting | SponsorExhibitor | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs | WhoWeAre
+union GenericMorph = ComponentCategoryCategory | ComponentCbsPointCbsPoint | ComponentCertificationPackageCertificationPackage | ComponentClientCounterClientCounter | ComponentEafsSessionEafsSession | ComponentEafsSettingEafsSetting | ComponentExposureProgramExposureProgram | ComponentFileFile | ComponentIntroIntro | ComponentLsBannerLsBanner | ComponentOpeningRemarkOpeningRemark | ComponentOrganizerOrganizer | ComponentOrganizerSponsor | ComponentPersonPerson | ComponentPlatformPlatform | ComponentPointPoints | ComponentPricingPricing | ComponentSessionVideoVideo | ComponentSessionSession | ComponentSlideSlide | ComponentSolutionPointSolutionPoint | ComponentSolutionSolution | ComponentSponsorSponsor | ComponentStatsticsStatstics | ComponentSummitIntroSummitIntro | ComponentSummitSummit | ComponentUpcomingUpcoming | ComponentVisionMissionValueVisionMissionValue | ComponentWordAnimationItemWordAnimationItem | ComponentWordAnimationWordAnimation | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | AdvisorySolutions | ApplyEafs | Author | Blog | CrossBorderSolutions | Document | ExposureLearningPrograms | Home | KnowledgeSharing | LearningSolutions | Participant | RegistrationEacms | RegistrationEafs | Setting | SponsorExhibitor | Summit | UpcomingChcda | UpcomingEacms | UpcomingEafs | WhoWeAre
 
 type Home {
   slogan: String
@@ -1752,12 +1788,13 @@ type UpcomingEafs {
   content: ComponentUpcomingUpcoming
   enabled: Boolean
   introVideo: String
-  guestOfHonour(filters: ComponentPersonPersonFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPersonPerson]
+  guests(filters: ComponentPersonPersonFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPersonPerson]
   session(filters: ComponentEafsSessionEafsSessionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentEafsSessionEafsSession]
   exhibitor(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   strategicPartner(filters: ComponentOrganizerOrganizerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentOrganizerOrganizer]
   introDocument: UploadFileEntityResponse
   eafsSetting(filters: ComponentEafsSettingEafsSettingFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentEafsSettingEafsSetting]
+  statstics(filters: ComponentStatsticsStatsticsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentStatsticsStatstics]
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1776,12 +1813,13 @@ input UpcomingEafsInput {
   content: ComponentUpcomingUpcomingInput
   enabled: Boolean
   introVideo: String
-  guestOfHonour: [ComponentPersonPersonInput]
+  guests: [ComponentPersonPersonInput]
   session: [ComponentEafsSessionEafsSessionInput]
   exhibitor: [ComponentOrganizerOrganizerInput]
   strategicPartner: [ComponentOrganizerOrganizerInput]
   introDocument: ID
   eafsSetting: [ComponentEafsSettingEafsSettingInput]
+  statstics: [ComponentStatsticsStatsticsInput]
   publishedAt: DateTime
 }
 
