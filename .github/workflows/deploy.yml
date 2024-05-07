@@ -47,4 +47,4 @@ jobs:
             IMAGE_ID=$(docker images -q us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website)
             docker rmi -f $IMAGE_ID
             docker pull us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website
-            docker run -d -p 80:80 us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website
+            docker run -d -p 17000:17000 us-central1-docker.pkg.dev/shofer-393807/icapital-website/icapital-website
