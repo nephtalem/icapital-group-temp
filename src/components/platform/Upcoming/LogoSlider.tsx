@@ -40,6 +40,13 @@ export const LogoSlider = ({
             swiper.current.slideToLoop(2);
           }}
         />
+        <Indicator
+          text={"Exhibitors"}
+          active={current === 3}
+          onClick={(): void => {
+            swiper.current.slideToLoop(3);
+          }}
+        />
       </div>
       <div className={"w-screen"}>
         <Swiper
@@ -104,6 +111,21 @@ export const LogoSlider = ({
                 ))}
             </div>
           </SwiperSlide>
+          <SwiperSlide>
+            <div className="flex h-80 w-screen flex-wrap items-start justify-center gap-10 md:h-auto">
+              {(upcoming.attributes?.exhibitor ?? [])
+                .map((exhibitor) => exhibitor!)
+                .map((exhibitor, index) => (
+                  <Organizer
+                    key={index}
+                    to={exhibitor!.url!}
+                    image={`${exhibitor?.logo?.data?.attributes?.url}`}
+                    width={exhibitor?.logo?.data?.attributes?.width ?? 0}
+                    height={exhibitor?.logo?.data?.attributes?.height ?? 1}
+                  />
+                ))}
+            </div>
+          </SwiperSlide>
         </Swiper>
       </div>
     </div>
@@ -122,8 +144,10 @@ const Indicator = ({
   return (
     <div
       className={twMerge(
-        "relative grid cursor-pointer rounded-full border-2 border-transparent px-3 md:px-6 py-2 text-sm md:text-2xl",
-        active ? "border-accent font-semibold bg-accent text-white" : "text-neutral-400",
+        "relative grid cursor-pointer rounded-full border-2 border-transparent px-3 py-2 text-sm md:px-6 md:text-2xl",
+        active
+          ? "border-accent bg-accent font-semibold text-white"
+          : "text-neutral-400",
       )}
       onClick={onClick}
     >

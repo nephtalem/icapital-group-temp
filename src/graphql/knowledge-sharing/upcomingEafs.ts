@@ -76,7 +76,7 @@ export const UPCOMING_EAFS = gql`
             name
             url
           }
-          guests  {
+          guests {
             name
             picture {
               data {
@@ -133,6 +133,9 @@ export const UPCOMING_EAFS = gql`
               bio
             }
             title
+            points {
+              content
+            }
           }
           strategicPartner {
             logo {

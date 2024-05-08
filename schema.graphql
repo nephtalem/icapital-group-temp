@@ -281,12 +281,14 @@ type ComponentEafsSessionEafsSession {
   title: String
   speaker(filters: ComponentPersonPersonFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPersonPerson]
   moderator: ComponentPersonPerson
+  points(filters: ComponentPointPointsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentPointPoints]
 }
 
 input ComponentEafsSessionEafsSessionFiltersInput {
   title: StringFilterInput
   speaker: ComponentPersonPersonFiltersInput
   moderator: ComponentPersonPersonFiltersInput
+  points: ComponentPointPointsFiltersInput
   and: [ComponentEafsSessionEafsSessionFiltersInput]
   or: [ComponentEafsSessionEafsSessionFiltersInput]
   not: ComponentEafsSessionEafsSessionFiltersInput
@@ -297,6 +299,7 @@ input ComponentEafsSessionEafsSessionInput {
   title: String
   speaker: [ComponentPersonPersonInput]
   moderator: ComponentPersonPersonInput
+  points: [ComponentPointPointsInput]
 }
 
 type ComponentEafsSettingEafsSetting {

@@ -6,7 +6,7 @@ import { Banner } from "./Banner";
 import { Guests } from "./Guests";
 import { Landing } from "./Landing";
 import { Organizers } from "./Organizers";
-import { Sessions } from "./Sessions";
+import { Sessions, Speakers } from "./Sessions";
 import { Sponsors } from "./Sponsors";
 import { VideoContainer } from "./VideoContainer";
 import Link from "next/link";
@@ -108,7 +108,7 @@ export const Upcoming = ({
         (s) => s?.sectionName === "session",
       )?.title,
       component: (
-        <Sessions
+        <Speakers
           upcoming={upcoming}
           title={
             upcoming.attributes?.eafsSetting?.find(
@@ -183,7 +183,7 @@ export const Upcoming = ({
           )?.title ?? ""
         }
       />
-      <Sessions
+      <Speakers
         upcoming={upcoming}
         title={
           upcoming.attributes?.eafsSetting?.find(
@@ -191,7 +191,10 @@ export const Upcoming = ({
           )?.title ?? ""
         }
       />
-      <div className="relative mb-[10rem] py-20 mt-[6rem] grid justify-items-center">
+      <Sessions 
+        upcoming={upcoming}
+      />
+      <div className="relative mb-[10rem] grid justify-items-center py-20">
         <Image
           src={"/images/apply.bg.png"}
           alt={""}
@@ -199,9 +202,19 @@ export const Upcoming = ({
           className={"object-cover"}
           loading={"eager"}
         />
-        <div className={"absolute w-full h-full z-10 top-0 left-0 bg-black/50"} />
-        <div className={"grid relative auto-rows-max gap-16 content-center items-center md:w-1/2 justify-items-center z-20"}>
-          <p className={"text-lg md:text-4xl text-white text-center font-extrabold"}>
+        <div
+          className={"absolute left-0 top-0 z-10 h-full w-full bg-black/50"}
+        />
+        <div
+          className={
+            "relative z-20 grid auto-rows-max content-center items-center justify-items-center gap-16 md:w-1/2"
+          }
+        >
+          <p
+            className={
+              "text-center text-lg font-extrabold text-white md:text-4xl"
+            }
+          >
             Become a Sponsor or Exhibitor at EAFS 2024 and Get your Products &
             Services Promoted!
           </p>
