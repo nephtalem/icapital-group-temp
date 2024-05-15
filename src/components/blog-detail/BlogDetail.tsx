@@ -22,7 +22,7 @@ export const BlogDetail = ({ blog }: { blog: BlogEntity }) => {
 
   return (
     <div className="grid">
-      <div className="relative grid h-[28rem] w-full overflow-hidden rounded-3xl">
+      <div className="relative grid h-80 lg:h-[28rem] w-full overflow-hidden rounded-3xl">
         <Image
           className="object-cover"
           fill

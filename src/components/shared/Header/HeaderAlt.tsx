@@ -19,24 +19,26 @@ export const HeaderAlt = () => {
             }}
             className="cursor-pointer"
           >
-            <MenuIcon className={"w-16 fill-background"} />
+            <MenuIcon className={"w-10 fill-background md:w-16"} />
           </button>
         </div>
       </header>
       <div
-        className="fixed right-[-100vw] top-0 z-[100] h-dvh w-10/12 md:w-[25rem]"
+        className="fixed right-[-100vw] top-0 z-[100] grid h-dvh w-screen grid-cols-[max-content,1fr] md:w-[25rem]"
         ref={drawer}
         onMouseLeave={() => {
           gsap.to(drawer.current, { right: "-50rem" });
         }}
       >
-        <Drawer />
         <div
-          className="fixed left-0 right-0 h-dvh w-2/12"
+          className="left-0 top-0 z-[100] grid h-dvh w-[16vw]"
           onClick={() => {
             gsap.to(drawer.current, { right: "-50rem" });
           }}
         />
+        <div className={"grid"}>
+          <Drawer />
+        </div>
       </div>
     </>
   );
