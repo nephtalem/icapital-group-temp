@@ -21,7 +21,7 @@ export const BlogDetail = ({ blog }: { blog: BlogEntity }) => {
   }, [blog.id]);
 
   return (
-    <div className="grid">
+    <div className="grid grid-cols-1 w-full">
       <div className="relative grid h-80 lg:h-[28rem] w-full overflow-hidden rounded-3xl">
         <Image
           className="object-cover"
@@ -53,7 +53,7 @@ export const BlogDetail = ({ blog }: { blog: BlogEntity }) => {
       <h2 className="mb-10 text-3xl font-bold text-text">
         {blog.attributes?.title}
       </h2>
-      <Html content={`${blog.attributes?.content}`} />
+      <Html content={`${blog.attributes?.content}`} className={"w-full"} />
     </div>
   );
 };
