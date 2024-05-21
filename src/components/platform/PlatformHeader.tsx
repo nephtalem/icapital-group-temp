@@ -124,8 +124,12 @@ export const Option = ({
     <Link href={to}>
       <div
         className={twMerge(
-          ` flex items-center gap-1 rounded-full px-2 py-1 text-center text-xs font-semibold text-white md:gap-2 md:px-4 md:py-2 md:text-base`,
-          active ? "bg-accent " : "",
+          ` flex items-center gap-1 rounded-full px-2 py-1 text-center text-xs font-semibold  md:gap-2 md:px-4 md:py-2 md:text-base`,
+          active
+            ? "bg-accent text-white"
+            : pathname.search("/upcoming") !== -1
+              ? "text-white"
+              : "text-black",
         )}
       >
         {icon}

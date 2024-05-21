@@ -30,7 +30,7 @@ export const SummitDocument = ({ document }: { document: DocumentEntity; }) => {
             {document.attributes?.date}
           </h1>
         </div>
-        <div className="grid justify-items-center">
+        <div className="grid justify-items-center px-6">
           <h2 className="mt-[1.8rem] text-[1.4rem] font-bold text-black">
             {document.attributes?.name}
           </h2>

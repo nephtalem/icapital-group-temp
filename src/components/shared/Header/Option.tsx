@@ -21,7 +21,8 @@ export const Option = ({
           `grid border-b-2 px-2 py-2 text-base font-semibold  md:px-2 md:text-xl `,
           active
             ? "border-b-accent text-accent"
-            : "border-transparent text-white",
+            : "border-transparent text-black",
+          pathname.search("/upcoming") !== -1 && !active ? "text-white" : "",
         )}
       >
         {label}

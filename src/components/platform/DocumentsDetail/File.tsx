@@ -8,7 +8,7 @@ import { FileIcon, defaultStyles } from "react-file-icon";
 
 export const File = ({ file }: { file: ComponentFileFile; }) => {
   return (
-    <div className="mb-[1.2rem] grid grid-cols-[max-content,1fr,max-content] content-center items-center gap-x-[1.8rem] rounded-lg border-border bg-white px-[1.8rem] py-[2.2rem]">
+    <div className="mb-[1.2rem] grid grid-cols-1 md:grid-cols-[max-content,1fr,max-content] content-center items-center gap-x-[1.8rem] rounded-lg border-border bg-white px-[1.8rem] py-[2.2rem]">
       <div className="relative grid w-[3rem]">
         <FileIcon
           extension={file.content!.data!.attributes!.ext!}
