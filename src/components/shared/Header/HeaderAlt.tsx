@@ -24,16 +24,16 @@ export const HeaderAlt = () => {
         </div>
       </header>
       <div
-        className="fixed right-[-100vw] top-0 z-[100] grid h-dvh w-screen grid-cols-[max-content,1fr] md:w-[25rem]"
+        className="fixed right-[-100vw] top-0 z-[100] grid h-dvh grid-cols-[max-content,1fr] w-screen md:w-max"
         ref={drawer}
         onMouseLeave={() => {
-          gsap.to(drawer.current, { right: "-50rem" });
+          gsap.to(drawer.current, { right: "-100vw" });
         }}
       >
         <div
-          className="left-0 top-0 z-[100] grid h-dvh w-[16vw]"
+          className="left-0 top-0 z-[100] grid h-dvh w-[20vw] md:w-0"
           onClick={() => {
-            gsap.to(drawer.current, { right: "-50rem" });
+            gsap.to(drawer.current, { right: "-100vw" });
           }}
         />
         <div className={"grid"}>

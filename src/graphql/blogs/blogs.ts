@@ -2,7 +2,7 @@ import { gql } from "@/utils/gql";
 
 export const BLOGS = gql`
   query blogs {
-    blogs(publicationState: LIVE) {
+    blogs(publicationState: LIVE, sort: "createdAt:desc") {
       meta {
         pagination {
           page
