@@ -19,75 +19,6 @@ a {
   text-decoration: none;
 }
 
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  height: max-content !important;
-}
-
-.swiper-wrapper {
-  transition-timing-function: linear;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  /*padding-left: 150px;*/
-}
-
-@media only screen and (max-width: 800px) {
-  .swiper-wrapper {
-    padding-left: 0;
-  }
-}
-
-.swiper-container {
-  width: 100vw;
-}
-
-.swiper-slide {
-  width: fit-content !important;
-  height: fit-content !important;
-}
-
-#nprogress .bar {
-  background: #f58016 !important;
-}
-
-#nprogress .spinner-icon {
-  display: none;
-}
-
-#nprogress .peg {
-  box-shadow:
-    0 0 10px #f58016,
-    0 0 5px #f58016;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #1a2c42;
-  border-radius: 4px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #1a2c42;
-}
-
 .html * {
   font-size: inherit;
   font-weight: inherit;
@@ -108,4 +39,62 @@ a {
 .htmlTitle span {
   font-size: 3.2rem;
   color: #f58016;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4a5568; /* Change to any color */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #edf2f7;
+}
+
+/* Global CSS file or inside your Tailwind @layer components */
+
+/* Make the arrows smaller and white */
+/* Force white color and smaller size */
+.swiper-button-prev,
+.swiper-button-next {
+  color: white !important; /* Ensures arrows are white */
+  font-size: 5px !important; /* Reduces arrow size */
+}
+
+/* Adjust positioning */
+.swiper-button-prev {
+  left: 5px !important; /* Moves left arrow inward */
+}
+
+.swiper-button-next {
+  right: 5px !important; /* Moves right arrow inward */
+}
+
+.swiper-navigation-size {
+  font-size: 10px !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px !important;
+}
+
+@media (min-width: 768px) {
+  /* Targets screens larger than medium (md) */
+
+  .swiper-button-prev {
+    left: 30px !important; /* Moves left arrow inward */
+  }
+
+  .swiper-button-next {
+    right: 30px !important; /* Moves right arrow inward */
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 30px !important;
+  }
 }
