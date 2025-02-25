@@ -21,7 +21,7 @@ export type PageData = {
 const CrossBorderSolutionsPage = async () => {
   const data: PageData = await CBSService.cbs();
   return (
-    <Content scrollable={true}>
+    <Content scrollable={true} noFooter>
       <Intro cbs={data.cbs} />
       <Services cbs={data.cbs} />
       <Programs programs={data.programs} />

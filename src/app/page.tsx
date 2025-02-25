@@ -13,8 +13,8 @@ import Testimonials from "@/components/Home/Testimonials";
 import GetInTouch from "@/components/Home/GetInTouch";
 import GetStarted from "@/components/Home/GetStarted";
 import Footer from "@/components/Home/Footer";
-import PortfolioDetail from "./[slug]/page";
-import ProjectPage from "./[slug]/page";
+import PortfolioDetail from "./portfolios/[slug]/page";
+import ProjectPage from "./portfolios/[slug]/page";
 
 export const revalidate = 10;
 

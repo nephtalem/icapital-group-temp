@@ -37,9 +37,11 @@ const AboutUs = () => {
 
           {/* Learn More Button */}
           <div className="mt-6">
-            <button className="font flex items-center gap-2 rounded-full bg-orange-500 px-4 py-2 text-sm text-white shadow-md transition-all duration-300 hover:bg-orange-600 md:px-6 md:py-3 md:text-lg">
-              Learn More <FaArrowDown className="text-xl " />
-            </button>
+            <Link href="/who-we-are">
+              <button className="font flex items-center gap-2 rounded-full bg-orange-500 px-4 py-2 text-sm text-white shadow-md transition-all duration-300 hover:bg-orange-600 md:px-6 md:py-3 md:text-lg">
+                Learn More <FaArrowDown className="text-xl " />
+              </button>
+            </Link>
           </div>
         </div>
       </div>

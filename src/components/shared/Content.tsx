@@ -1,8 +1,10 @@
 "use client";
 
-import { Footer } from "@/components/shared/Footer/Footer";
+
 import { HeaderAlt } from "./Header/HeaderAlt";
 import { ReactNode } from "react";
+import Header from "../Home/Header";
+import Footer from "../Home/Footer";
 
 export const Content = ({
   scrollable = true,
@@ -19,9 +21,12 @@ export const Content = ({
         scrollable ? "relative" : "sticky"
       } grid h-dvh w-screen overflow-y-auto overflow-x-hidden`}
     >
-      <HeaderAlt />
+      {/* <HeaderAlt /> */}
+      <div className="mb-6">
+        <Header />
+      </div>
       {children}
-      {noFooter ? <></> : <Footer />}
+      {noFooter ? <></> : <Footer/>}
     </div>
   );
 };

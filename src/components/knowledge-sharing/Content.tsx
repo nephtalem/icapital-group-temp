@@ -1,7 +1,8 @@
 "use client";
-import { Footer } from "@/components/shared/Footer/Footer";
+
 import { Header } from "@/components/shared/Header/Header";
 import { ReactNode } from "react";
+import Footer from "../Home/Footer";
 
 export const Content = ({
   scrollable = true,
@@ -12,7 +13,7 @@ export const Content = ({
 }) => {
   return (
     <div
-      className={`relative bg-[#FEF4EA] grid h-dvh w-screen overflow-y-auto overflow-x-hidden`}
+      className={`relative grid h-dvh w-screen overflow-y-auto overflow-x-hidden bg-[#FEF4EA]`}
     >
       <Header
         scrollable={scrollable}

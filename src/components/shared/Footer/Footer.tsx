@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FooterLink } from "./FooterLink";
 import { ContactItem } from "./ContactItem";
-import { Socials } from "@/components/home/Header/Socials";
+// import { Socials } from "@/components/home/Header/Socials";
 
 export const Footer = () => {
   return (
@@ -139,7 +139,7 @@ export const Footer = () => {
             ]}
           />
           <div className="col-start-1 col-end-[-1] my-10 flex justify-self-center md:justify-self-end">
-            <Socials />
+            {/* <Socials /> */}
           </div>
         </div>
       </div>
