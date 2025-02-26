@@ -1,26 +1,32 @@
 "use client";
+
 import { useState } from "react";
 import { CheckItem } from "./CheckItem";
 
-export const Department = ({ title, items }: { title: string; items: string[]; }) => {
+export const Department = ({
+  title,
+  items,
+}: {
+  title: string;
+  items: string[];
+}) => {
   const [showMore, setShowMore] = useState(false);
+
   return (
-    <div className="grid auto-rows-max rounded-[2rem] bg-white p-[1.6rem] shadow-md">
-      <h3 className="text-[1.2rem] font-bold text-accent">{title}</h3>
-      <div className="mt-[2.4rem] grid gap-[1rem]">
-        {items.slice(0, showMore ? undefined : 5).map((item, index) => (
+    <div className="rounded-xl bg-white p-6 shadow-md transition-all hover:shadow-lg">
+      <h3 className="text-lg font-bold text-accent">{title}</h3>
+      <div className="mt-4 grid gap-2">
+        {items.slice(0, showMore ? items.length : 5).map((item) => (
           <CheckItem key={item} text={item} />
         ))}
       </div>
-      {items.length > 5 ? (
+      {items.length > 5 && (
         <button
-          className="mt-[2rem] cursor-pointer justify-self-center text-[.8rem] font-medium text-accent"
+          className="mt-4 w-full text-center text-sm font-medium text-accent hover:underline"
           onClick={() => setShowMore(!showMore)}
         >
           {showMore ? "Show Less" : "Show More"}
         </button>
-      ) : (
-        <></>
       )}
     </div>
   );

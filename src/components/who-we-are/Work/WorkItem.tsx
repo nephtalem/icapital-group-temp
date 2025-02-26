@@ -1,6 +1,5 @@
 "use client";
-import CountUp from "react-countup";
-import VisibilitySensor from "react-visibility-sensor";
+import { useState, useEffect } from "react";
 
 export const WorkItem = ({
   value,
@@ -9,18 +8,29 @@ export const WorkItem = ({
   value: number;
   label: string;
 }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const increment = value / 100;
+    const interval = setInterval(() => {
+      start += increment;
+      if (start >= value) {
+        setCount(value);
+        clearInterval(interval);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 20);
+
+    return () => clearInterval(interval);
+  }, [value]);
+
   return (
-    <div className="grid w-full auto-rows-max content-center  justify-start justify-items-start gap-[.2rem]">
-      <CountUp start={0} end={value}>
-        {({ countUpRef, start }) => (
-          <VisibilitySensor onChange={start}>
-            <span
-              className="text-center text-[2rem] font-bold text-white before:content-['+'] md:text-[3rem]"
-              ref={countUpRef}
-            />
-          </VisibilitySensor>
-        )}
-      </CountUp>
+    <div className="grid w-full auto-rows-max content-center justify-start justify-items-start gap-[.2rem]">
+      <span className="text-center text-[2rem] font-bold text-white before:content-['+'] md:text-[3rem]">
+        {count}
+      </span>
       <p className="text-center text-[1rem] font-medium text-white">{label}</p>
     </div>
   );

@@ -17,16 +17,16 @@ export const Content = ({
 }) => {
   return (
     <div
-      className={`${
+      className={`custom-scrollbar ${
         scrollable ? "relative" : "sticky"
       } grid h-dvh w-screen overflow-y-auto overflow-x-hidden`}
     >
       {/* <HeaderAlt /> */}
       <div className="mb-6">
-        <Header />
+        <Header iconColor="text-black" />
       </div>
       {children}
-      {noFooter ? <></> : <Footer/>}
+      {noFooter ? <></> : <Footer />}
     </div>
   );
 };

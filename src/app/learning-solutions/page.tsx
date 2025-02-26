@@ -14,19 +14,21 @@ export const metadata: Metadata = {
 
 const LearningSolutionsPage = async () => {
   const ls: LearningSolutionsEntity = await LSService.ls();
-  console.log(ls);
+
   return (
     <Content scrollable={true}>
       <Intro ls={ls} />
       <Banner ls={ls} />
       <Departments ls={ls} />
       <Partners
-        title={"Our Clients"}
-        partnerIntro={""}
-        partner={ls.attributes!.clients!.map((client) => ({
-          image: `${client?.logo?.data?.attributes?.url}`,
-          to: `${client?.url}`,
-        }))}
+        title="Our Clients"
+        partnerIntro=""
+        partner={
+          ls.attributes?.clients?.map((client) => ({
+            image: client?.logo?.data?.attributes?.url ?? "",
+            to: client?.url ?? "#",
+          })) ?? []
+        }
       />
       <CallToAction callToAction={ls.attributes?.callToAction ?? ""} />
     </Content>

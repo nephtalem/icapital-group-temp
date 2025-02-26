@@ -2,7 +2,6 @@ import { Content } from "@/components/shared/Content";
 import { Banner } from "@/components/who-we-are/Banner";
 import { Intro } from "@/components/who-we-are/Intro";
 import { MissionVisionValue } from "@/components/who-we-are/MissionVisionValue";
-// import { Socials } from "@/components/who-we-are/Socials/Socials";
 import { WordAnimation } from "@/components/who-we-are/WordAnimation";
 import { Work } from "@/components/who-we-are/Work/Work";
 import { WhoWeAreEntity } from "@/gql/graphql";
@@ -21,9 +20,8 @@ const WhoWeArePage = async () => {
       <Banner who={who} />
       <Intro who={who} />
       <MissionVisionValue who={who} />
-      {/* <WordAnimation who={who} /> */}
-      {/* <Work who={who} /> */}
-      {/* <Socials /> */}
+      <WordAnimation who={who} />
+      <Work who={who} />
     </Content>
   );
 };

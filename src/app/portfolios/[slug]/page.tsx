@@ -30,7 +30,7 @@ const PortfolioDetail = ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <Header />
+      <Header iconColor="text-black" />
       <div className="container mx-auto px-6 py-24 lg:px-16">
         {/* Project Header */}
         <div className="">
@@ -104,7 +104,7 @@ const PortfolioDetail = ({ params }: { params: { slug: string } }) => {
                 href={`/portfolios/${project.slug}`}
                 passHref
               >
-                <div className="cursor-pointer overflow-hidden rounded-lg bg-white shadow-md hover:shadow-lg " >
+                <div className="cursor-pointer overflow-hidden rounded-lg bg-white shadow-md hover:shadow-lg ">
                   <Image
                     src={project.cardImg}
                     alt={project.title}
