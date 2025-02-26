@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Testimonial1 from "@/assets/testimonial1.png";
 import Testimonial2 from "@/assets/testimonial2.png";
 import Testimonial3 from "@/assets/testimonial3.png";
 import Testimonial4 from "@/assets/tetimonial4.png";
+import Tag from "@/ui/Tag";
 
 const testimonials = [
   {
@@ -35,34 +35,19 @@ const testimonials = [
   },
 ];
 
-// Duplicate for smooth infinite scrolling
+// Duplicate testimonials for seamless infinite scrolling
 const duplicatedTestimonials = [...testimonials, ...testimonials];
 
 const Testimonials = () => {
-  const controls = useAnimation();
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const animate = async () => {
-      await controls.start({
-        x: ["0%", "-100%"],
-        transition: {
-          ease: "linear",
-          duration: 20, // Adjust speed
-          repeat: Infinity,
-        },
-      });
-    };
-    animate();
-  }, [controls]);
-
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="text-center mb-8 px-6">
-        <span className="text-orange-500 text-sm font-semibold">
-          Testimonials
-        </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+    <section className="bg-gray-50 py-12">
+      <div className="mb-8 px-6 text-center">
+        <Tag
+          title="Testimonials"
+          titleColor="text-[#F78019]"
+          bgColor="bg-[#F7801926]"
+        />
+        <h2 className="mt-4 text-2xl font-bold text-[#061C3D] md:text-3xl">
           What Our Partners Say about Us
         </h2>
       </div>
@@ -70,28 +55,32 @@ const Testimonials = () => {
       <div className="relative w-full overflow-hidden">
         <motion.div
           className="flex gap-6"
-          ref={containerRef}
-          animate={controls}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            ease: "linear",
+            duration: 20, // Adjust speed if needed
+            repeat: Infinity,
+          }}
         >
           {duplicatedTestimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="w-[300px] md:w-[350px] p-6 bg-white rounded-2xl shadow-lg flex-shrink-0"
+              className="w-[300px] flex-shrink-0 rounded-2xl bg-white p-6 shadow-lg md:w-[350px]"
             >
-              <p className="text-gray-600 mb-4">{testimonial.text}</p>
+              <p className="mb-4 text-gray-600">{testimonial.text}</p>
               <div className="flex items-center gap-3">
                 <Image
                   src={testimonial.image}
                   alt={testimonial.name}
                   width={40}
                   height={40}
-                  className="w-10 h-10 rounded-full"
+                  className="h-10 w-10 rounded-full"
                 />
                 <div>
-                  <h4 className="text-gray-900 font-semibold">
+                  <h4 className="font-semibold text-gray-900">
                     {testimonial.name}
                   </h4>
-                  <p className="text-gray-500 text-sm">{testimonial.role}</p>
+                  <p className="text-sm text-gray-500">{testimonial.role}</p>
                 </div>
               </div>
             </div>

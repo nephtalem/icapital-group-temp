@@ -11,6 +11,7 @@ import PortfolioImg4 from "@/assets/portfolio-img-4.png";
 import PortfolioImg5 from "@/assets/portfolio-img-5.png";
 import PortfolioImg6 from "@/assets/portfolio-img-6.png";
 import Link from "next/link";
+import Tag from "@/ui/Tag";
 
 const portfolioItems = [
   { id: 1, title: "Digital Literacy Assessment", image: PortfolioImg1 },
@@ -46,14 +47,16 @@ const Portfolio = () => {
 
   return (
     <section className="bg-gray-50 px-6 py-16 text-center">
-      <span className="rounded-full bg-orange-100 px-4 py-1 text-sm text-orange-500">
-        Portfolio
-      </span>
+      <Tag
+        title="Portfolio"
+        titleColor="text-[#F78019]"
+        bgColor="bg-[#F7801926]"
+      />
       <h2 className="mt-4 text-2xl font-bold text-gray-900 md:text-3xl">
         What We Have Achieved So Far
       </h2>
 
-      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto mt-10 grid max-w-[1320px] grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
         {portfolioItems
           .slice(0, showAll ? portfolioItems.length : 3)
           .map((item) => {
@@ -67,19 +70,19 @@ const Portfolio = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.5 }}
-                    className="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:scale-105  hover:shadow-xl"
-                    style={{ height: "380px" }}
+                    className="duration-400 cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-all   hover:scale-105 hover:shadow-xl"
+                    style={{ height: "400px" }}
                   >
                     <Image
                       src={item.image}
                       alt={item.title}
-                      className="h-60 w-full object-cover transition-all duration-500"
+                      className="h-64 w-full object-cover transition-all duration-500"
                     />
-                    <div className="p-5">
+                    <div className="p-5 flex flex-col ">
                       <h3 className="text-left text-lg font-semibold text-gray-900">
                         {item.title}
                       </h3>
-                      <span className="mt-6 inline-block text-orange-500">
+                      <span className="mt-6 inline-block text-orange-500 self-end">
                         View Project →
                       </span>
                     </div>
@@ -94,7 +97,7 @@ const Portfolio = () => {
         <motion.button
           onClick={() => setShowAll(!showAll)}
           whileTap={{ scale: 0.9 }}
-          className="flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-500 hover:bg-orange-600"
+          className="flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-all  duration-500 hover:bg-orange-600"
         >
           {showAll ? (
             <>

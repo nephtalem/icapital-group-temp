@@ -70,19 +70,19 @@ const Hero = () => {
               {/* Hero Content */}
               <div className="absolute inset-0 z-20 flex flex-col items-start justify-center px-8 text-white md:px-16 lg:px-32 ">
                 {/* Content Wrapper */}
-                <div className="w-full max-w-4xl space-y-6">
+                <div className="w-full max-w-4xl space-y-6 md:space-y-8">
                   {/* Event Badge */}
-                  <span className="rounded-full bg-white bg-opacity-20 px-4 py-1 text-xs tracking-wide text-white lg:text-sm">
+                  <span className="rounded-full bg-white bg-opacity-20 px-4 py-2 text-base tracking-wide text-white  lg:text-base">
                     Upcoming Event
                   </span>
 
                   {/* Title */}
-                  <h1 className="text-3xl font-bold leading-tight lg:text-5xl">
+                  <h1 className="text-4xl font-bold leading-[50px] sm:text-5xl  lg:text-6xl lg:leading-[80px]">
                     {slide.title}
                   </h1>
 
                   {/* Description */}
-                  <p className="max-w-2xl text-sm text-gray-200 lg:text-lg">
+                  <p className="max-w-2xl text-lg text-gray-200 lg:text-2xl">
                     {slide.description}
                   </p>
 

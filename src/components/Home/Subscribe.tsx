@@ -1,6 +1,6 @@
 const Subscribe = () => {
   return (
-    <section className="bg-[#1F3758] text-white py-8 px-6 border-t-2 border-blue-400">
+    <section className="bg-[#1F3758] text-white py-12 px-6 border-t-2 border-blue-400">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
         {/* Left Content */}
         <h2 className="text-2xl md:text-3xl font-bold max-w-lg text-white">

@@ -4,6 +4,7 @@ import Step1 from "@/assets/step1.png";
 import Step2 from "@/assets/step2.png";
 import Step3 from "@/assets/step3.png";
 import Step4 from "@/assets/step4.png";
+import Tag from "@/ui/Tag";
 
 const milestones = [
   {
@@ -31,24 +32,26 @@ const milestones = [
 
 const Journey = () => {
   return (
-    <section className="flex flex-col items-center py-16 px-6">
+    <section className="flex flex-col items-center px-6 py-16">
       {/* Header */}
-      <div className="bg-orange-200 text-orange-600 px-4 py-1 rounded-full text-sm font-semibold">
-        Our Journey
-      </div>
-      <h2 className="text-3xl font-bold text-center text-gray-900 mt-4">
+      <Tag
+        title="Our Journey"
+        titleColor="text-[#F78019]"
+        bgColor="bg-[#F7801926]"
+      />
+      <h2 className="mt-4 text-center text-3xl font-bold text-gray-900">
         Moving Through Years with Success
       </h2>
 
       {/* Content Wrapper (Image First on Desktop, Timeline First on Mobile) */}
-      <div className="flex flex-col md:flex-row-reverse mt-12 w-full max-w-5xl md:max-w-7xl items-center gap-16">
+      <div className="mt-12 flex w-full max-w-5xl flex-col gap-16 md:max-w-7xl md:flex-row-reverse  md:gap-32">
         {/* Timeline - Appears First on Mobile, Second on Desktop */}
-        <div className="relative w-full md:w-1/2 mt-10 md:mt-0 pl-6 md:pl-10">
-          <div className="border-l-2 border-orange-300 absolute left-[16px] md:left-8 top-0 h-full"></div>
+        <div className="relative flex h-[450px] w-full flex-col justify-between pl-6 md:h-[600px] md:w-1/2 md:pl-10">
+          <div className="absolute left-[16px] top-0 h-full border-l-2 border-orange-300 md:left-8"></div>
           {milestones.map((milestone, index) => (
-            <div key={index} className="relative mb-10 flex items-start">
+            <div key={index} className="relative flex items-start">
               {/* Circle with Icon */}
-              <div className="absolute -left-5 w-6 h-6 rounded-full border-4 border-orange-300 bg-white flex items-center justify-center">
+              <div className="absolute -left-5 flex h-6 w-6 items-center justify-center rounded-full border-4 border-orange-300 bg-white">
                 <Image
                   src={milestone.image}
                   alt={milestone.year}
@@ -58,23 +61,19 @@ const Journey = () => {
               </div>
 
               {/* Text */}
-              <div
-                className={`ml-8 ${
-                  milestone.highlight
-                    ? "font-bold text-orange-600"
-                    : "text-gray-700"
-                }`}
-              >
-                <h3 className="text-lg font-semibold">{milestone.year}</h3>
-                <p className="text-sm mt-1">{milestone.text}</p>
+              <div className={"ml-14 text-gray-700 "}>
+                <h3 className="text-xl font-bold text-[#191919]">
+                  {milestone.year}
+                </h3>
+                <p className="mt-3 text-sm max-w-[320px]">{milestone.text}</p>
               </div>
             </div>
           ))}
         </div>
 
         {/* Left Side Image - Appears Second on Mobile, First on Desktop */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-          <div className="w-full md:w-[75%] h-[350px] md:h-[450px] rounded-tl-[100px] overflow-hidden relative">
+        <div className="flex w-full justify-center md:w-1/2 md:justify-end">
+          <div className="relative h-[375px] w-full overflow-hidden rounded-tl-[100px] md:h-[650px] md:w-[100%]">
             <Image
               src={JourneyImg}
               alt="Team Working"

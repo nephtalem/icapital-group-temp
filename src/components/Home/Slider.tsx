@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 // Import company logos
@@ -33,50 +32,37 @@ const logos = [
   CompanyLogo12,
 ];
 
-// Duplicate logos for smooth infinite scrolling
+// Duplicate logos for seamless loop
 const duplicatedLogos = [...logos, ...logos];
 
 const Slider = () => {
-  const controls = useAnimation();
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const animate = async () => {
-      await controls.start({
-        x: ["0%", "-100%"],
-        transition: {
-          ease: "linear",
-          duration: 20, // Adjust speed for smooth scrolling
-          repeat: Infinity,
-        },
-      });
-    };
-    animate();
-  }, [controls]);
-
   return (
-    <section className="py-12 bg-white">
-      <h2 className="text-center text-xl md:text-3xl font-bold text-gray-900 mb-8">
+    <section className="bg-white py-12">
+      <h2 className="mb-8 text-center text-xl font-bold text-[#061C3D] md:text-4xl">
         As Trusted by Top Companies
       </h2>
 
       <div className="relative w-full overflow-hidden">
         <motion.div
           className="flex gap-6"
-          ref={containerRef}
-          animate={controls}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            ease: "linear",
+            duration: 15,
+            repeat: Infinity,
+          }}
         >
           {duplicatedLogos.map((logo, index) => (
             <div
               key={index}
-              className="w-24 md:w-32 flex-shrink-0 flex items-center justify-center"
+              className="flex w-24 flex-shrink-0 items-center justify-center md:w-32"
             >
               <Image
                 src={logo}
                 alt={`Company Logo ${(index % logos.length) + 1}`}
                 width={80}
                 height={80}
-                className="object-contain w-full h-auto"
+                className="h-auto w-full object-contain"
               />
             </div>
           ))}

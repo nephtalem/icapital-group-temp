@@ -2,6 +2,7 @@ import AboutUsImg from "@/assets/about-us.png";
 import Image from "next/image";
 import { FaArrowDown } from "react-icons/fa";
 import Link from "next/link";
+import Tag from "@/ui/Tag";
 
 const AboutUs = () => {
   return (
@@ -21,18 +22,20 @@ const AboutUs = () => {
         </div>
         {/* Text Content */}
         <div className="w-full text-left md:w-1/2">
-          <span className="rounded-md bg-orange-100 px-3 py-1 text-sm font-semibold uppercase tracking-widest text-orange-400">
-            About Us
-          </span>
+          <Tag
+            title="About Us"
+            titleColor="text-[#F78019]"
+            bgColor="bg-[#F7801926]"
+          />
           <h2 className="mt-4 text-xl  font-bold leading-snug text-white md:text-4xl">
-            The Company with Multi Purposes Lorem Consectetur. Metus Faucibus
-            Paculis.
+            The i-Capital Africa Institute: A Leading Business Consulting &
+            Services Company
           </h2>
           <p className="mt-4  text-xs leading-relaxed text-gray-300 md:text-lg">
-            Lorem ipsum dolor sit amet consectetur. Arcu eu at tellus velit ac
-            vitae. Morbi sem volutpat sed a tincidunt ante vitae. Pellentesque`
-            ` mi nibh tempor justo arcu tempus ac. Nisl porttitor eros dui amet
-            id vitae elit. Libero turpis duis nunc viver...
+            The i-Capital Africa Institute is a professional service firm.
+            Founded in 2015, we offer a full range of Human Capital Development
+            solutions to clients in various sectors. Our approach is
+            business-driven and we work to co-create innovative...
           </p>
 
           {/* Learn More Button */}
