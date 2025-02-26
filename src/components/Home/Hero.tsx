@@ -10,6 +10,7 @@ import HeroImg from "@/assets/hero-img.png";
 import Header from "./Header";
 import { twMerge } from "tailwind-merge";
 import { useState } from "react";
+import Link from "next/link";
 
 const slides = [
   {
@@ -94,9 +95,11 @@ const Hero = () => {
                     >
                       {slide.buttonText} →
                     </a>
-                    <button className="w-fit rounded-full border border-white px-6 py-3 text-sm text-white transition duration-300 hover:bg-white hover:text-gray-900 lg:text-base">
-                      More News →
-                    </button>
+                    <Link href="/news-and-blogs">
+                      <button className="w-fit rounded-full border border-white px-6 py-3 text-sm text-white transition duration-300 hover:bg-white hover:text-gray-900 lg:text-base">
+                        More News →
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

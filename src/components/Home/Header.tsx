@@ -10,7 +10,7 @@ type HeaderProps = {
 const Header = ({ iconColor = "text-white" }: HeaderProps) => {
   return (
     <header className="absolute left-0 top-0 z-50 flex w-full items-center justify-between px-4 py-4 md:px-12">
-      <div className="relative h-12 w-32">
+      <div className="relative h-14 w-40">
         <Link href="/">
           <Image
             src={IcapitalLogo}
