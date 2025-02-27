@@ -28,7 +28,7 @@ const cards = [
     title: "Life Design Lab",
     description:
       "A unique program focused on personal and career growth, helping individuals design a fulfilling life through mentorship, coaching, and structured planning.",
-    link: "/advisory-solutions",
+    link: "https://leadlifedesignlab.com/",
   },
   {
     image: Card4Img,
