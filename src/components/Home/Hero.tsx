@@ -18,7 +18,7 @@ const slides = [
     description:
       "Lorem ipsum dolor sit amet cons sed pretium lorem vel id ali aliquam tellus viverra velit elit in eg.",
     buttonText: "Register Now",
-    buttonLink: "#",
+    buttonLink: "/register-now",
   },
   {
     title: "Join the Global Economic Leaders Conference",
