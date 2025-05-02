@@ -35,7 +35,7 @@ const RegisterNow = () => {
             </h1>
             <p className="max-w-2xl text-lg sm:text-xl">
               Join industry leaders and finance experts for an insightful event.
-              Don't miss out!
+              Don&apos;t miss out!
             </p>
           </div>
         </div>

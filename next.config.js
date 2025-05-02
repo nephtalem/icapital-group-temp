@@ -7,7 +7,7 @@ const nextConfig = {
           test: /\.svg$/,
           use: ["@svgr/webpack"],
         },
-      ]
+      ],
     );
 
     return config;
@@ -29,13 +29,19 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: '"icapital-cms.techawks.io',
-      },{
+        hostname: "icapital-cms.techawks.io",
+      },
+      {
         protocol: "https",
-        hostname: '"icapital-cms.frontiertech',
-      },{
+        hostname: "icapital-cms.frontiertech",
+      },
+      {
         protocol: "https",
-        hostname: '"icapital.s3.us-east-2.amazonaws.com',
+        hostname: "icapital.s3.us-east-2.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
       },
     ],
   },
