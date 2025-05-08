@@ -6,6 +6,7 @@ import { getPortfolioItemBySlug, portfolioData } from "@/data/portfolioData";
 import GetStarted from "@/components/Home/GetStarted";
 import Link from "next/link";
 import Tag from "@/ui/Tag";
+import { PageProps } from "next";
 
 export async function generateStaticParams() {
   const portfolios = await import("@/data/portfolioData").then(
@@ -16,8 +17,8 @@ export async function generateStaticParams() {
   }));
 }
 
-const PortfolioDetail = ({ params }: { params: { slug: string } }) => {
-  const portfolio = getPortfolioItemBySlug(params.slug);
+export default async function PortfolioDetail({ params }: PageProps) {
+  const portfolio = getPortfolioItemBySlug(params.slug as string);
 
   if (!portfolio) {
     notFound();
@@ -25,7 +26,7 @@ const PortfolioDetail = ({ params }: { params: { slug: string } }) => {
 
   // Filter other projects excluding the current one
   const otherProjects = portfolioData
-    .filter((p) => p.slug !== params.slug)
+    .filter((p) => p.slug !== (params.slug as string))
     .slice(0, 3);
 
   return (
@@ -128,6 +129,4 @@ const PortfolioDetail = ({ params }: { params: { slug: string } }) => {
       <Footer />
     </>
   );
-};
-
-export default PortfolioDetail;
+}
