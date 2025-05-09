@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Card1Img from "@/assets/card1.png";
@@ -22,7 +24,7 @@ const cards = [
     description:
       "We provide expert-led training programs and consulting services designed to empower professionals and businesses with the skills needed to navigate today's dynamic market.",
     link: "https://i-capital-institute.vercel.app/",
-    website: "icapital.education",
+    website: "icapital.institute",
     logo: IcapitalInstituteLogo,
     originalWebsiteBgColor: "linear-gradient(to right, #253E5E, #19A2F7)",
     isGradient: true,
@@ -33,9 +35,11 @@ const cards = [
     description:
       "Offering investment advisory, financial planning, and capital market insights to help businesses and individuals make informed investment decisions.",
     link: "https://investify.et/",
+    alternativeLink: "https://i-capital-investment-partners.vercel.app/",
     website: "investify.et",
     logo: InvestifyLogo,
-    originalWebsiteBgColor: "#06302F",
+    originalWebsiteBgColor: "linear-gradient(to right, #06302F, #274E13)",
+    isGradient: true,
   },
   {
     image: Card3Img,
@@ -73,10 +77,11 @@ const cards = [
     title: "International Programs",
     description:
       "Facilitating global exchange programs, professional development opportunities, and cross-border partnerships to foster innovation and collaboration.",
-    link: "https://i-capital-investment-partners.vercel.app/",
-    website: "icapital.global",
+    // link: "https://i-capital-investment-partners.vercel.app/",
+    link: "https://excelerate-nine.vercel.app/",
+    website: "icapital.excelerate",
     logo: IcapitalInvestmentLogo,
-    originalWebsiteBgColor: "#274E13",
+    originalWebsiteBgColor: "#044569",
   },
 ];
 
@@ -136,8 +141,12 @@ const Sectors = () => {
       {/* Cards Grid */}
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
         {cards.map((card, index) => (
-          <Link key={index} href={card.link} passHref>
-            <div className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:scale-[1.02]">
+          <div
+            key={index}
+            className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:scale-[1.02]"
+          >
+            {/* Main Link wrapper - doesn't wrap the alternativeLink */}
+            <Link href={card.link} className="block h-full w-full">
               {/* Image Section */}
               <div className="relative h-60 w-full">
                 <Image
@@ -160,47 +169,49 @@ const Sectors = () => {
                   →
                 </span>
               </div>
+            </Link>
 
-              {/* Hover Effect */}
-              <div
-                className="absolute inset-0 flex cursor-pointer flex-col justify-between p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                style={{
-                  background: card.originalWebsiteBgColor,
-                }}
-              >
-                <div>
-                  <h2
-                    className="mb-4 text-3xl font-semibold"
-                    style={{
-                      color: isColorDark(card.originalWebsiteBgColor)
-                        ? "white"
-                        : "black",
-                    }}
-                  >
-                    {card.title}
-                  </h2>
-                  <p
-                    className="leading-relaxed"
-                    style={{
-                      color: isColorDark(card.originalWebsiteBgColor)
-                        ? "rgba(255, 255, 255, 0.8)"
-                        : "rgba(0, 0, 0, 0.7)",
-                    }}
-                  >
-                    {card.description}
-                  </p>
-                </div>
+            {/* Hover Effect */}
+            <div
+              className="absolute inset-0 flex cursor-pointer flex-col justify-between p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              style={{
+                background: card.originalWebsiteBgColor,
+              }}
+            >
+              <div>
+                <h2
+                  className="mb-4 text-3xl font-semibold"
+                  style={{
+                    color: isColorDark(card.originalWebsiteBgColor)
+                      ? "white"
+                      : "black",
+                  }}
+                >
+                  {card.title}
+                </h2>
+                <p
+                  className="leading-relaxed"
+                  style={{
+                    color: isColorDark(card.originalWebsiteBgColor)
+                      ? "rgba(255, 255, 255, 0.8)"
+                      : "rgba(0, 0, 0, 0.7)",
+                  }}
+                >
+                  {card.description}
+                </p>
+              </div>
 
-                <div className="mt-8 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="relative h-8 w-8 overflow-hidden rounded bg-white p-1">
-                      <Image
-                        src={card.logo}
-                        alt={`${card.title} Logo`}
-                        layout="fill"
-                        objectFit="contain"
-                      />
-                    </div>
+              <div className="mt-8 flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="relative h-8 w-8 overflow-hidden rounded bg-white p-1">
+                    <Image
+                      src={card.logo}
+                      alt={`${card.title} Logo`}
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <Link href={card.link} className="block">
                     <div className="flex h-7 items-center rounded bg-white px-3">
                       <span
                         className="text-sm font-medium"
@@ -209,7 +220,21 @@ const Sectors = () => {
                         {card.website}
                       </span>
                     </div>
-                  </div>
+                  </Link>
+                  {card.alternativeLink && (
+                    <Link href={card.alternativeLink} className="block">
+                      <div className="flex h-7 items-center rounded bg-white px-3">
+                        <span
+                          className="text-sm font-medium"
+                          style={{ color: getElementColor(card) }}
+                        >
+                          IIP
+                        </span>
+                      </div>
+                    </Link>
+                  )}
+                </div>
+                <Link href={card.link} className="block">
                   <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white">
                     <span
                       className="text-xl font-medium"
@@ -218,10 +243,10 @@ const Sectors = () => {
                       →
                     </span>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </section>

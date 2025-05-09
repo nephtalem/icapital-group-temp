@@ -18,6 +18,7 @@ module.exports = {
           "var(--font-mulish)",
           "sans-serif",
         ],
+        urbanist: ["var(--font-urbanist)", "Urbanist", "sans-serif"],
       },
       colors: {
         primary: "#253E5E",

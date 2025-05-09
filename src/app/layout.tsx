@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import "nprogress/nprogress.css";
 
 import { polyfill } from "interweave-ssr";
-import { Mulish, Nunito } from "next/font/google";
+import { Mulish, Nunito, Urbanist } from "next/font/google";
 
 import { Theme } from "@/styles/theme";
 import { Metadata } from "next";
@@ -23,6 +23,13 @@ const nunito = Nunito({
   variable: "--font-century-gothic",
 });
 
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-urbanist",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${process.env.NEXT_PUBLIC_DOMAIN}`),
   title: "The i-Capital Africa Institute",
@@ -38,7 +45,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html
       lang="en"
-      className={`custom-scrollbar ${mulish.variable} ${nunito.variable}`}
+      className={`custom-scrollbar ${mulish.variable} ${nunito.variable} ${urbanist.variable}`}
     >
       <body>{children}</body>
     </html>

@@ -26,7 +26,7 @@ const Header: FC<HeaderProps> = ({
   const [pathname, setPathname] = useState("");
 
   const navLinks = [
-    { name: "Previous Summits", href: "/previous-summits" },
+    { name: "Previous Summits", href: "/eafs/previous-summit" },
     { name: "Upcoming Summits", href: "/upcoming-summits" },
     { name: "Summit Documents", href: "/summit-documents" },
     { name: "Photo Gallery", href: "/photo-gallery" },

@@ -25,7 +25,7 @@ const slides = [
     description:
       "Gain insights from top financial experts and policymakers across the world.",
     buttonText: "Learn More",
-    buttonLink: "#",
+    buttonLink: "/",
   },
 ];
 
@@ -95,7 +95,7 @@ const Hero = () => {
                     >
                       {slide.buttonText} →
                     </a>
-                    <Link href="/news-and-blogs">
+                    <Link href="/">
                       <button className="w-fit rounded-full border border-white px-6 py-3 text-sm text-white transition duration-300 hover:bg-white hover:text-gray-900 lg:text-base">
                         More News →
                       </button>

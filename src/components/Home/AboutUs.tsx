@@ -80,7 +80,7 @@ const AboutUs = () => {
               >
                 <FaArrowDown className="text-xl" />
               </span>
-            </button>
+              </button>
           </div>
         </div>
       </div>
