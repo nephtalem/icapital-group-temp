@@ -11,21 +11,29 @@ const milestones = [
     year: "2011",
     image: Step1,
     text: "Lorem ipsum dolor sit amet consectetur. Pulvinar eu tellus.",
+    size: "h-5 w-5",
+    iconSize: 12,
   },
   {
     year: "2016",
     image: Step2,
     text: "Lorem ipsum dolor sit amet consectetur. Pulvinar eu tellus viverra velit.",
+    size: "h-6 w-6",
+    iconSize: 16,
   },
   {
     year: "2022",
     image: Step3,
     text: "Lorem ipsum dolor sit amet consectetur. Pulvinar eu tellus viverra velit.",
+    size: "h-7 w-7",
+    iconSize: 18,
   },
   {
     year: "2025 & Counting",
     image: Step4,
     text: "Lorem ipsum dolor sit amet consectetur. Pulvinar eu tellus viverra velit.",
+    size: "h-8 w-8",
+    iconSize: 20,
     highlight: true,
   },
 ];
@@ -44,28 +52,33 @@ const Journey = () => {
       </h2>
 
       {/* Content Wrapper (Image First on Desktop, Timeline First on Mobile) */}
-      <div className="mt-12 flex w-full max-w-5xl flex-col gap-16 md:max-w-7xl md:flex-row-reverse  md:gap-32">
+      <div className="mt-12 flex w-full max-w-5xl flex-col gap-16 md:max-w-7xl md:flex-row-reverse md:gap-32">
         {/* Timeline - Appears First on Mobile, Second on Desktop */}
         <div className="relative flex h-[450px] w-full flex-col justify-between pl-6 md:h-[600px] md:w-1/2 md:pl-10">
-          <div className="absolute left-[16px] top-0 h-full border-l-2 border-orange-300 md:left-8"></div>
+          <div className="absolute left-[14px] top-0 h-full border-l-2 border-orange-300 md:left-[30px]"></div>
           {milestones.map((milestone, index) => (
             <div key={index} className="relative flex items-start">
               {/* Circle with Icon */}
-              <div className="absolute -left-5 flex h-6 w-6 items-center justify-center rounded-full border-4 border-orange-300 bg-white">
+              <div
+                className={`absolute -left-5 flex items-center justify-center rounded-full bg-white ${milestone.size} border-4 border-orange-300`}
+                style={{ marginLeft: index * -2 }}
+              >
                 <Image
                   src={milestone.image}
                   alt={milestone.year}
-                  width={16}
-                  height={16}
+                  width={milestone.iconSize}
+                  height={milestone.iconSize}
                 />
               </div>
 
               {/* Text */}
-              <div className={"ml-14 text-gray-700 "}>
+              <div
+                className={`ml-14 text-gray-700 ${index === 3 ? "ml-16" : ""}`}
+              >
                 <h3 className="text-xl font-bold text-[#191919]">
                   {milestone.year}
                 </h3>
-                <p className="mt-3 text-sm max-w-[320px]">{milestone.text}</p>
+                <p className="mt-3 max-w-[320px] text-sm">{milestone.text}</p>
               </div>
             </div>
           ))}

@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import "nprogress/nprogress.css";
 
 import { polyfill } from "interweave-ssr";
-import { Mulish } from "next/font/google";
+import { Mulish, Nunito } from "next/font/google";
 
 import { Theme } from "@/styles/theme";
 import { Metadata } from "next";
@@ -14,6 +14,13 @@ const mulish = Mulish({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mulish",
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-century-gothic",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +36,10 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="en" className={`custom-scrollbar ${mulish.variable}`}>
+    <html
+      lang="en"
+      className={`custom-scrollbar ${mulish.variable} ${nunito.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

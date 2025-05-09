@@ -9,7 +9,15 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-mulish)"],
+        sans: [
+          "var(--font-century-gothic)",
+          "Nunito",
+          "Century Gothic",
+          "CenturyGothic",
+          "AppleGothic",
+          "var(--font-mulish)",
+          "sans-serif",
+        ],
       },
       colors: {
         primary: "#253E5E",
@@ -27,6 +35,7 @@ module.exports = {
       },
       animation: {
         scrollDown: "scrollDown 3s ease-in-out infinite",
+        fadeIn: "fadeIn 0.5s ease-in-out",
       },
       keyframes: {
         scrollDown: {
@@ -44,6 +53,16 @@ module.exports = {
           },
           "100%": {
             bottom: "2.5rem",
+          },
+        },
+        fadeIn: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
           },
         },
       },

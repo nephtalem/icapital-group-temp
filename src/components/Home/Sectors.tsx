@@ -21,7 +21,7 @@ const cards = [
     title: "Training & Consulting Solutions",
     description:
       "We provide expert-led training programs and consulting services designed to empower professionals and businesses with the skills needed to navigate today's dynamic market.",
-    link: "/learning-solutions",
+    link: "https://i-capital-institute.vercel.app/",
     website: "icapital.education",
     logo: IcapitalInstituteLogo,
     originalWebsiteBgColor: "linear-gradient(to right, #253E5E, #19A2F7)",
