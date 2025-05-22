@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useRef } from "react";
 import Card1Img from "@/assets/card1.png";
 import Card2Img from "@/assets/card2.png";
 import Card3Img from "@/assets/card3.png";
@@ -16,6 +19,7 @@ import InvestifyLogo from "@/assets/logos/investify-logo.png";
 import LeadLifeDesignLabLogo from "@/assets/logos/LEAD-Logo.png";
 import IcapitalInvestmentLogo from "@/assets/logos/iip-green-logo.png";
 import EAFSLogo from "@/assets/logos/EAFS-Logo.png";
+import ExcelerateLogo from "@/assets/logos/excelerate.png";
 
 const cards = [
   {
@@ -31,14 +35,13 @@ const cards = [
   },
   {
     image: Card2Img,
-    title: "Capital Market Solutions",
+    title: "Icapital Investment Partners",
     description:
       "Offering investment advisory, financial planning, and capital market insights to help businesses and individuals make informed investment decisions.",
-    link: "https://investify.et/",
-    alternativeLink: "https://i-capital-investment-partners.vercel.app/",
+    link: "https://i-capital-investment-partners.vercel.app/",
     website: "investify.et",
-    logo: InvestifyLogo,
-    originalWebsiteBgColor: "linear-gradient(to right, #06302F, #274E13)",
+    logo: IcapitalInvestmentLogo,
+    originalWebsiteBgColor: "#06302F",
     isGradient: true,
   },
   {
@@ -80,115 +83,205 @@ const cards = [
     // link: "https://i-capital-investment-partners.vercel.app/",
     link: "https://excelerate-nine.vercel.app/",
     website: "icapital.excelerate",
-    logo: IcapitalInvestmentLogo,
+    logo: ExcelerateLogo,
     originalWebsiteBgColor: "#044569",
   },
 ];
 
 const Sectors = () => {
+  const pathname = usePathname();
+
   // Helper function to determine if a color is dark based on its hex value
   const isColorDark = (hexColor: string): boolean => {
-    // If it's a gradient, we'll assume it's dark
     if (hexColor.includes("gradient")) {
       return true;
     }
-
-    // Remove the hash if it exists
     const hex = hexColor.replace("#", "");
-
-    // Convert hex to RGB
     const r = parseInt(hex.substring(0, 2), 16);
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
-
-    // Calculate luminance
     const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-
-    // Return true if dark, false if light
     return luminance < 0.5;
   };
 
-  // Function to get color for small elements in a card
   const getElementColor = (card: any): string => {
     if (card.isGradient) {
-      // Extract the second color from the gradient for use in small elements
       if (card.originalWebsiteBgColor.includes("#F78019")) {
-        return "#F78019"; // For EAFS card
+        return "#F78019";
       }
-      return "#19A2F7"; // For Training card
+      return "#19A2F7";
     }
     return card.originalWebsiteBgColor;
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.05,
+        duration: 0.4,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 60,
+      scale: 0.95,
+      rotateX: 10,
+      filter: "blur(8px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
-    <section className="bg-[#F8F8F8] px-6 py-16 md:px-12">
+    <section key={pathname} className="bg-[#F8F8F8] px-6 py-16 md:px-12">
       {/* Header Section */}
-      <div className="mb-14 text-center">
-        <Tag
-          title="The iCapital Group"
-          titleColor="text-[#F78019]"
-          bgColor="bg-[#F7801926]"
-        />
-        <h1 className="my-4 text-xl font-bold text-gray-900 md:my-6 md:text-[40px]">
+      <motion.div
+        initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-14 text-center"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.4 }}
+        >
+          <Tag
+            title="Group Sectors"
+            titleColor="text-[#F78019]"
+            bgColor="bg-[#F7801926]"
+          />
+        </motion.div>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="my-4 text-xl font-bold text-gray-900 md:my-6 md:text-[40px]"
+        >
           Creating Impact Through Diverse Sectors
-        </h1>
-        <p className="text-xs text-gray-600 md:text-base">
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-xs text-gray-600 md:text-base"
+        >
           Empowering businesses, individuals, and communities with innovative
           solutions that drive growth, development, and success.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false }}
+        className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3"
+      >
         {cards.map((card, index) => (
-          <div
-            key={index}
-            className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:scale-[1.02]"
+          <motion.div
+            key={`sector-card-${index}`}
+            variants={cardVariants}
+            whileHover={{
+              scale: 1.02,
+              transition: { duration: 0.2 },
+            }}
+            className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
+            onClick={() => {
+              if ([1, 2, 3, 5].includes(index)) {
+                window.open(card.link, "_blank");
+              } else {
+                window.location.href = card.link;
+              }
+            }}
           >
-            {/* Main Link wrapper - doesn't wrap the alternativeLink */}
-            <Link href={card.link} className="block h-full w-full">
-              {/* Image Section */}
-              <div className="relative h-60 w-full">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-t-2xl"
-                />
-              </div>
+            {/* Image Section */}
+            <motion.div
+              className="relative h-60 w-full overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image
+                src={card.image}
+                alt={card.title}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-t-2xl transition-all duration-500"
+              />
+            </motion.div>
 
-              {/* Title & Arrow */}
-              <div className="flex items-center justify-between p-6">
-                <h3 className="block w-fit text-xl font-semibold text-gray-900">
-                  {card.title.split(" ").slice(0, -1).join(" ")}
-                  <br />
-                  {card.title.split(" ").slice(-1)}
-                </h3>
-                <span className="text-2xl text-orange-500 transition-transform duration-300 group-hover:translate-x-2">
-                  →
-                </span>
-              </div>
-            </Link>
+            {/* Title & Arrow */}
+            <div className="flex items-center justify-between p-6">
+              <h3 className="block w-fit text-xl font-semibold text-gray-900">
+                {card.title.split(" ").slice(0, -1).join(" ")}
+                <br />
+                {card.title.split(" ").slice(-1)}
+              </h3>
+              <motion.span
+                className="text-2xl text-orange-500"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                →
+              </motion.span>
+            </div>
 
             {/* Hover Effect */}
-            <div
-              className="absolute inset-0 flex cursor-pointer flex-col justify-between p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 flex cursor-pointer flex-col justify-between p-6"
               style={{
                 background: card.originalWebsiteBgColor,
               }}
             >
               <div>
-                <h2
-                  className="mb-4 text-3xl font-semibold"
-                  style={{
-                    color: isColorDark(card.originalWebsiteBgColor)
-                      ? "white"
-                      : "black",
-                  }}
+                <motion.div
+                  className="mb-4 flex items-center gap-4"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  {card.title}
-                </h2>
+                  <div className="relative h-12 w-12 overflow-hidden rounded bg-white p-1 transition-all duration-500 group-hover:scale-110">
+                    <Image
+                      src={card.logo}
+                      alt={`${card.title} Logo`}
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <h2
+                    className="text-3xl font-semibold"
+                    style={{
+                      color: isColorDark(card.originalWebsiteBgColor)
+                        ? "white"
+                        : "black",
+                    }}
+                  >
+                    {card.title}
+                  </h2>
+                </motion.div>
                 <p
                   className="leading-relaxed"
                   style={{
@@ -201,54 +294,27 @@ const Sectors = () => {
                 </p>
               </div>
 
-              <div className="mt-8 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="relative h-8 w-8 overflow-hidden rounded bg-white p-1">
-                    <Image
-                      src={card.logo}
-                      alt={`${card.title} Logo`}
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                  <Link href={card.link} className="block">
-                    <div className="flex h-7 items-center rounded bg-white px-3">
-                      <span
-                        className="text-sm font-medium"
-                        style={{ color: getElementColor(card) }}
-                      >
-                        {card.website}
-                      </span>
-                    </div>
-                  </Link>
-                  {card.alternativeLink && (
-                    <Link href={card.alternativeLink} className="block">
-                      <div className="flex h-7 items-center rounded bg-white px-3">
-                        <span
-                          className="text-sm font-medium"
-                          style={{ color: getElementColor(card) }}
-                        >
-                          IIP
-                        </span>
-                      </div>
-                    </Link>
-                  )}
-                </div>
-                <Link href={card.link} className="block">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white">
-                    <span
-                      className="text-xl font-medium"
-                      style={{ color: getElementColor(card) }}
-                    >
-                      →
-                    </span>
-                  </div>
-                </Link>
+              <div className="mt-8 flex items-center justify-end">
+                <motion.div
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white"
+                  whileHover={{
+                    scale: 1.1,
+                    rotate: 5,
+                    transition: { duration: 0.2 },
+                  }}
+                >
+                  <span
+                    className="text-xl font-medium"
+                    style={{ color: getElementColor(card) }}
+                  >
+                    →
+                  </span>
+                </motion.div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

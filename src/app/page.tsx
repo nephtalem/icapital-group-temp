@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-
+import "../styles/globals.css";
 import Hero from "@/components/Home/Hero";
 import Slider from "@/components/Home/Slider";
 import Sectors from "@/components/Home/Sectors";
@@ -15,29 +15,54 @@ import GetStarted from "@/components/Home/GetStarted";
 import Footer from "@/components/Home/Footer";
 import PortfolioDetail from "./portfolios/[slug]/page";
 import ProjectPage from "./portfolios/[slug]/page";
+import ScrollSpyWrapper from "@/components/ScrollSpyWrapper";
 
 export const revalidate = 10;
 
 export const metadata: Metadata = {
   title: "Home | The i-Capital Africa Institute",
 };
+
+const sectionIds = [
+  "sectors",
+  "about",
+  "features",
+  "journey",
+  "portfolio",
+  "contact",
+];
+
 const HomePage = () => {
   return (
-    <div>
-      <Hero />
-      <Slider />
-      <Sectors />
-      <AboutUs />
-      <Features />
-      <UpcomingEvents />
-      <Journey />
-      <Portfolio />
-      <Subscribe />
-      <Testimonials />
-      <GetInTouch />
-      <GetStarted />
-      <Footer />
-    </div>
+    <ScrollSpyWrapper sectionIds={sectionIds}>
+      <div>
+        <Hero />
+        <Slider />
+        <div id="sectors">
+          <Sectors />
+        </div>
+        <div id="about">
+          <AboutUs />
+        </div>
+        <div id="features">
+          <Features />
+        </div>
+        <UpcomingEvents />
+        <div id="journey">
+          <Journey />
+        </div>
+        <div id="portfolio">
+          <Portfolio />
+        </div>
+        <Subscribe />
+        <Testimonials />
+        <div id="contact">
+          <GetInTouch />
+        </div>
+        <GetStarted />
+        <Footer />
+      </div>
+    </ScrollSpyWrapper>
   );
 };
 

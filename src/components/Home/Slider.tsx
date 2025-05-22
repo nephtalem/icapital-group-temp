@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
+import { useEffect } from "react";
 
 // Import company logos
 import CompanyLogo1 from "@/assets/company-logo-1.png";
@@ -36,11 +37,46 @@ const logos = [
 const duplicatedLogos = [...logos, ...logos];
 
 const Slider = () => {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start("visible");
+  }, [controls]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const logoVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section className="bg-white py-12">
-      <h2 className="mb-8 text-center text-xl font-bold text-[#061C3D] md:text-4xl">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="mb-8 text-center text-xl font-bold text-[#061C3D] md:text-4xl"
+      >
         As Trusted by Top Companies
-      </h2>
+      </motion.h2>
 
       <div className="relative w-full overflow-hidden">
         <motion.div
@@ -48,13 +84,22 @@ const Slider = () => {
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             ease: "linear",
-            duration: 15,
+            duration: 20,
             repeat: Infinity,
           }}
         >
           {duplicatedLogos.map((logo, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={logoVariants}
+              initial="hidden"
+              animate={controls}
+              whileInView="visible"
+              viewport={{ once: false }}
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.2 },
+              }}
               className="flex w-24 flex-shrink-0 items-center justify-center md:w-32"
             >
               <Image
@@ -62,9 +107,9 @@ const Slider = () => {
                 alt={`Company Logo ${(index % logos.length) + 1}`}
                 width={80}
                 height={80}
-                className="h-auto w-full object-contain"
+                className="h-auto w-full object-contain transition-all duration-300 hover:brightness-110"
               />
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

@@ -22,7 +22,7 @@
     "browser-image-compression": "latest",
     "eslint": "^7.23.0 || ^8.0.0",
     "eslint-config-next": "latest",
-    "framer-motion": "^10.16.12",
+    "framer-motion": "^10.18.0",
     "graphql": "^16.6.0",
     "graphql-subscriptions": "^2.0.0",
     "graphql-ws": "^5.14.2",
