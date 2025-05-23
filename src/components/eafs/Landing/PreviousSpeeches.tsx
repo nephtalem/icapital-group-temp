@@ -3,23 +3,99 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaYoutube } from "react-icons/fa";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 interface SpeechProps {
   name: string;
   role: string;
   videoId: string;
+  index: number;
 }
 
-const SpeechCard = ({ name, role, videoId }: SpeechProps) => {
+const SpeechCard = ({ name, role, videoId, index }: SpeechProps) => {
   const [showVideo, setShowVideo] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, {
+    once: false,
+    amount: 0.3,
+    margin: "0px 0px -100px 0px",
+  });
 
   const handlePlayClick = () => {
     setShowVideo(true);
   };
 
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: index * 0.15,
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+    hover: {
+      y: -8,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: {
+      scale: 0.95,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const playButtonVariants = {
+    hidden: {
+      scale: 0.9,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+    hover: {
+      scale: 1.1,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <div className="flex flex-col">
+    <motion.div
+      ref={cardRef}
+      variants={cardVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      whileHover="hover"
+      className="flex flex-col"
+    >
       <div className="relative mb-4 overflow-hidden rounded-lg shadow-md">
         {showVideo ? (
           <iframe
@@ -34,7 +110,11 @@ const SpeechCard = ({ name, role, videoId }: SpeechProps) => {
             className="aspect-video"
           ></iframe>
         ) : (
-          <div className="relative cursor-pointer" onClick={handlePlayClick}>
+          <motion.div
+            variants={imageVariants}
+            className="relative cursor-pointer"
+            onClick={handlePlayClick}
+          >
             {!imageError ? (
               <Image
                 src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
@@ -50,21 +130,65 @@ const SpeechCard = ({ name, role, videoId }: SpeechProps) => {
                 <FaYoutube size={48} className="text-gray-400" />
               </div>
             )}
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+            <motion.div
+              variants={playButtonVariants}
+              whileHover="hover"
+              className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"
+            >
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white transition-transform hover:scale-110">
                 <FaYoutube size={28} />
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
       </div>
-      <h3 className="mb-1 text-xl font-bold text-[#0A244E]">{name}</h3>
-      <p className="text-sm text-gray-600">{role}</p>
-    </div>
+      <motion.h3
+        variants={cardVariants}
+        className="mb-1 text-xl font-bold text-[#0A244E]"
+      >
+        {name}
+      </motion.h3>
+      <motion.p variants={cardVariants} className="text-sm text-gray-600">
+        {role}
+      </motion.p>
+    </motion.div>
   );
 };
 
 const PreviousSpeeches = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    once: false,
+    amount: 0.3,
+    margin: "0px 0px -100px 0px",
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const titleVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   const speeches = [
     {
       name: "H.E. Mr John Doe",
@@ -86,22 +210,34 @@ const PreviousSpeeches = () => {
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
-        <h2 className="mb-12 text-center text-3xl font-bold text-[#0A244E] md:text-4xl">
+        <motion.h2
+          variants={titleVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="mb-12 text-center text-3xl font-bold text-[#0A244E] md:text-4xl"
+        >
           Speeches from Previous Guests
           <br />
           of Honor
-        </h2>
+        </motion.h2>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {speeches.map((speech, index) => (
             <SpeechCard
               key={index}
               name={speech.name}
               role={speech.role}
               videoId={speech.videoId}
+              index={index}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { FC, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface HeaderProps {
   logo?: string | StaticImageData;
@@ -59,17 +60,79 @@ const Header: FC<HeaderProps> = ({
     return pathname === path;
   };
 
+  const headerVariants = {
+    hidden: {
+      opacity: 0,
+      y: -20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1], // Custom cubic-bezier for smooth motion
+      },
+    },
+  };
+
+  const navItemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 10,
+    },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.08,
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
+  };
+
+  const contactButtonVariants = {
+    initial: {
+      scale: 1,
+      boxShadow: "0 0 0 rgba(255, 255, 255, 0)",
+    },
+    pulse: {
+      scale: [1, 1.02, 1],
+      boxShadow: [
+        "0 0 0 rgba(255, 255, 255, 0)",
+        "0 0 15px rgba(255, 255, 255, 0.3)",
+        "0 0 0 rgba(255, 255, 255, 0)",
+      ],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   if (!mounted) {
     return null; // Return nothing on the server side
   }
 
   return (
-    <header
+    <motion.header
+      initial="hidden"
+      animate="visible"
+      variants={headerVariants}
       className={`w-full bg-transparent py-4 transition-all duration-300`}
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex items-center justify-between">
-          <div className="flex-shrink-0">
+          <motion.div
+            className="flex-shrink-0"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             <Link
               href="/"
               className="transition-opacity duration-300 hover:opacity-80"
@@ -82,53 +145,77 @@ const Header: FC<HeaderProps> = ({
                 priority
               />
             </Link>
-          </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center space-x-8 md:flex">
-            {navLinks.map((link) => {
+            {navLinks.map((link, index) => {
               const active = isActive(link.href);
               return (
-                <Link
+                <motion.div
                   key={link.name}
-                  href={link.href}
-                  className={`relative py-2 text-base font-medium transition-all duration-300 ${active ? "font-semibold" : ""} group`}
-                  style={{
-                    color: active ? linkActiveColor : linkColor,
-                  }}
+                  custom={index}
+                  initial="hidden"
+                  animate="visible"
+                  variants={navItemVariants}
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  {link.name}
-                  <span
-                    className={`absolute bottom-0 left-0 h-0.5 w-full transform transition-all duration-300 group-hover:scale-x-100 ${active ? "scale-x-100" : "scale-x-0"}`}
+                  <Link
+                    href={link.href}
+                    className={`relative py-2 text-base font-medium transition-all duration-300 ${active ? "font-semibold" : ""} group`}
                     style={{
-                      backgroundColor: linkActiveColor,
-                      transformOrigin: "center",
+                      color: active ? linkActiveColor : linkColor,
                     }}
-                  />
-                </Link>
+                  >
+                    {link.name}
+                    <motion.span
+                      className={`absolute bottom-0 left-0 h-0.5 w-full transform transition-all duration-300 ${active ? "scale-x-100" : "scale-x-0"}`}
+                      style={{
+                        backgroundColor: linkActiveColor,
+                        transformOrigin: "center",
+                      }}
+                      whileHover={{ scaleX: 1 }}
+                    />
+                  </Link>
+                </motion.div>
               );
             })}
           </nav>
 
           <div className="hidden md:block">
-            <Link
-              href="/contact"
-              className="rounded-full border-2 px-6 py-2 text-sm font-medium transition-all duration-300 hover:bg-white hover:text-blue-900"
-              style={{
-                borderColor: buttonBorderColor,
-                color: buttonTextColor,
+            <motion.div
+              initial="initial"
+              animate="pulse"
+              variants={contactButtonVariants}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 20px rgba(255, 255, 255, 0.4)",
+                transition: { duration: 0.2 },
               }}
             >
-              Contact Us
-            </Link>
+              <Link
+                href="/contact"
+                className="rounded-full border-2 px-6 py-2 text-sm font-medium transition-all duration-300 hover:bg-white/10"
+                style={{
+                  borderColor: buttonBorderColor,
+                  color: buttonTextColor,
+                }}
+              >
+                Contact Us
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <motion.button
             className="flex items-center p-2 transition-opacity duration-300 hover:opacity-80 md:hidden"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
             style={{ color: linkColor }}
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -153,49 +240,101 @@ const Header: FC<HeaderProps> = ({
                 />
               )}
             </svg>
-          </button>
+          </motion.button>
         </div>
 
         {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="mt-4 rounded-lg bg-blue-900 bg-opacity-90 py-4 md:hidden">
-            <nav className="flex flex-col space-y-4 px-4">
-              {navLinks.map((link) => {
-                const active = isActive(link.href);
-                return (
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{
+                opacity: 1,
+                height: "auto",
+                transition: {
+                  height: {
+                    duration: 0.4,
+                    ease: [0.22, 1, 0.36, 1],
+                  },
+                  opacity: {
+                    duration: 0.3,
+                    delay: 0.1,
+                  },
+                },
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+                transition: {
+                  height: { duration: 0.3 },
+                  opacity: { duration: 0.2 },
+                },
+              }}
+              className="mt-4 overflow-hidden rounded-lg bg-blue-900 bg-opacity-90 py-4 md:hidden"
+            >
+              <nav className="flex flex-col space-y-4 px-4">
+                {navLinks.map((link, index) => {
+                  const active = isActive(link.href);
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: index * 0.06,
+                        duration: 0.4,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    >
+                      <Link
+                        href={link.href}
+                        className={`py-2 text-base font-medium transition-colors duration-300 ${active ? "font-semibold" : ""}`}
+                        style={{
+                          color: active ? linkActiveColor : linkColor,
+                          borderLeft: active
+                            ? `3px solid ${linkActiveColor}`
+                            : "none",
+                          paddingLeft: active ? "8px" : "0",
+                        }}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: navLinks.length * 0.06,
+                    duration: 0.4,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 0 20px rgba(255, 255, 255, 0.4)",
+                    transition: { duration: 0.2 },
+                  }}
+                >
                   <Link
-                    key={link.name}
-                    href={link.href}
-                    className={`py-2 text-base font-medium transition-colors duration-300 ${active ? "font-semibold" : ""}`}
+                    href="/contact"
+                    className="w-full rounded-full border-2 px-6 py-2 text-center text-sm font-medium transition-all duration-300 hover:bg-white/10"
                     style={{
-                      color: active ? linkActiveColor : linkColor,
-                      borderLeft: active
-                        ? `3px solid ${linkActiveColor}`
-                        : "none",
-                      paddingLeft: active ? "8px" : "0",
+                      borderColor: buttonBorderColor,
+                      color: buttonTextColor,
                     }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {link.name}
+                    Contact Us
                   </Link>
-                );
-              })}
-              <Link
-                href="/contact"
-                className="w-full rounded-full border-2 px-6 py-2 text-center text-sm font-medium transition-all duration-300 hover:bg-white hover:text-blue-900"
-                style={{
-                  borderColor: buttonBorderColor,
-                  color: buttonTextColor,
-                }}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact Us
-              </Link>
-            </nav>
-          </div>
-        )}
+                </motion.div>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

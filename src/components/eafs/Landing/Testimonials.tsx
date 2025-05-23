@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { FiUser } from "react-icons/fi";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 interface TestimonialProps {
   quote: string;
@@ -10,6 +12,7 @@ interface TestimonialProps {
   role: string;
   summit: string;
   imageUrl?: string;
+  index: number;
 }
 
 const TestimonialCard = ({
@@ -18,15 +21,74 @@ const TestimonialCard = ({
   role,
   summit,
   imageUrl,
+  index,
 }: TestimonialProps) => {
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, {
+    once: false,
+    amount: 0.3,
+    margin: "0px 0px -100px 0px",
+  });
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: index * 0.1,
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+    hover: {
+      y: -8,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const avatarVariants = {
+    hidden: {
+      scale: 0.9,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
-    <div
-      className="flex h-full flex-col rounded-lg bg-white p-6 shadow-md"
+    <motion.div
+      ref={cardRef}
+      variants={cardVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      whileHover="hover"
+      className="flex h-full flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg"
       style={{ boxShadow: "0px 3.11px 77.76px 0px rgba(0, 0, 0, 0.03)" }}
     >
-      <p className="mb-6 flex-grow text-gray-700">&quot;{quote}&quot;</p>
+      <motion.p
+        variants={cardVariants}
+        className="mb-6 flex-grow text-gray-700"
+      >
+        &quot;{quote}&quot;
+      </motion.p>
       <div className="flex items-center">
-        <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+        <motion.div
+          variants={avatarVariants}
+          className="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100"
+        >
           {imageUrl ? (
             <Image
               src={imageUrl}
@@ -38,17 +100,50 @@ const TestimonialCard = ({
           ) : (
             <FiUser size={20} className="text-gray-500" />
           )}
-        </div>
-        <div>
+        </motion.div>
+        <motion.div variants={cardVariants}>
           <h4 className="font-bold text-[#0A244E]">{name}</h4>
           <p className="text-sm text-gray-600">{summit} Summit Attendant</p>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const Testimonials = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    once: false,
+    amount: 0.3,
+    margin: "0px 0px -100px 0px",
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const titleVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   const testimonials = [
     {
       quote:
@@ -97,11 +192,22 @@ const Testimonials = () => {
   return (
     <section className="bg-gray-50 py-16 md:py-24">
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
-        <h2 className="mb-12 text-center text-3xl font-bold text-[#0A244E] md:text-4xl">
+        <motion.h2
+          variants={titleVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="mb-12 text-center text-3xl font-bold text-[#0A244E] md:text-4xl"
+        >
           Who said What about the Summit?
-        </h2>
+        </motion.h2>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
               key={index}
@@ -109,9 +215,10 @@ const Testimonials = () => {
               name={testimonial.name}
               role={testimonial.role}
               summit={testimonial.summit}
+              index={index}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

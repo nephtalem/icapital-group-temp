@@ -67,11 +67,35 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="max-w-6xl"
         >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-12"
+          >
+            <Link
+              href="/eafs"
+              className="group inline-flex items-center gap-3 rounded-full border border-[#F78019]/20 bg-white/50 px-6 py-3 text-[#F78019] backdrop-blur-sm transition-all hover:border-[#F78019] hover:bg-[#F78019]/10 hover:shadow-md"
+            >
+              <motion.span
+                initial={{ x: 0 }}
+                whileHover={{ x: -5 }}
+                transition={{ duration: 0.2 }}
+                className="text-xl font-medium"
+              >
+                ←
+              </motion.span>
+              <span className="text-sm font-semibold tracking-wide">
+                Go Back to Home
+              </span>
+            </Link>
+          </motion.div>
+
           <h1 className="font-urbanist text-4xl font-bold leading-relaxed tracking-wide text-[#1A365D] md:text-5xl md:leading-relaxed md:tracking-wider lg:text-6xl lg:leading-snug">
             A Legacy of Impactful Conversations and Strategic Growth
           </h1>
 
-          <p className="font-urbanist mx-auto mt-8 max-w-4xl text-base font-light leading-loose tracking-wide text-[#2D3748] md:text-lg md:leading-loose md:tracking-wide">
+          <p className="mx-auto mt-8 max-w-4xl font-urbanist text-base font-light leading-loose tracking-wide text-[#2D3748] md:text-lg md:leading-loose md:tracking-wide">
             Explore highlights from past East Africa Finance Summits—where
             thought leaders, innovators, and changemakers came together to shape
             the region&apos;s financial future.
