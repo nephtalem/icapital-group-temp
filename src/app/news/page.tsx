@@ -4,6 +4,10 @@ import Footer from "@/components/Home/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import News1 from "@/assets/news/news1.jpg";
+import News2 from "@/assets/news/news2.jpg";
+import News3 from "@/assets/news/news3.jpg";
+import News4 from "@/assets/news/news4.jpg";
 
 const mockNews = [
   {
@@ -11,8 +15,7 @@ const mockNews = [
     title: "i-Capital Africa Institute Launches New Leadership Program",
     summary:
       "A new initiative to empower the next generation of African leaders was launched this week, featuring global experts and hands-on workshops.",
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+    image: News1,
     date: "2024-06-01",
     category: "Announcements",
     isFeatured: true,
@@ -22,8 +25,7 @@ const mockNews = [
     title: "East Africa Finance Summit 2024: Key Takeaways",
     summary:
       "Highlights and insights from the 10th annual summit, including keynote speakers and emerging trends in African finance.",
-    image:
-      "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80",
+    image: News2,
     date: "2024-05-20",
     category: "Events",
     isFeatured: false,
@@ -33,8 +35,7 @@ const mockNews = [
     title: "Women in Business: Breaking Barriers in 2024",
     summary:
       "Celebrating the achievements of women leaders and entrepreneurs across Africa, and the institute's role in supporting them.",
-    image:
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80",
+    image: News3,
     date: "2024-05-10",
     category: "Insights",
     isFeatured: false,
@@ -44,8 +45,7 @@ const mockNews = [
     title: "i-Capital Partners with Global Think Tanks",
     summary:
       "A new partnership will bring world-class research and policy expertise to the region, fostering innovation and growth.",
-    image:
-      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80",
+    image: News4,
     date: "2024-04-28",
     category: "Announcements",
     isFeatured: false,
@@ -129,9 +129,12 @@ const FeaturedNews = ({ article }: { article: (typeof mockNews)[0] }) => (
           <span className="mb-2 text-sm text-gray-400">
             {new Date(article.date).toLocaleDateString()}
           </span>
-          <button className="mt-4 w-fit rounded-full bg-gradient-to-r from-orange-500 to-orange-400 px-6 py-2 font-semibold text-white shadow-md transition hover:scale-105 hover:from-orange-600 hover:to-orange-500">
+          <Link
+            href={`/news/${article.id}`}
+            className="mt-4 w-fit rounded-full bg-gradient-to-r from-orange-500 to-orange-400 px-6 py-2 font-semibold text-white shadow-md transition hover:scale-105 hover:from-orange-600 hover:to-orange-500"
+          >
             Read More
-          </button>
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -175,9 +178,12 @@ const NewsGrid = ({ articles }: { articles: typeof mockNews }) => (
                 <p className="mb-4 line-clamp-3 text-gray-600">
                   {article.summary}
                 </p>
-                <button className="mt-auto w-fit rounded-full bg-gradient-to-r from-orange-500 to-orange-400 px-5 py-1.5 text-sm font-semibold text-white shadow transition hover:scale-105 hover:from-orange-600 hover:to-orange-500">
+                <Link
+                  href={`/news/${article.id}`}
+                  className="mt-auto w-fit rounded-full bg-gradient-to-r from-orange-500 to-orange-400 px-5 py-1.5 text-sm font-semibold text-white shadow transition hover:scale-105 hover:from-orange-600 hover:to-orange-500"
+                >
                   Read More
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>
