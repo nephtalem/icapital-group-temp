@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@apollo/client':
         specifier: ^3.9.5
-        version: 3.9.11(@types/react@19.1.8)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.9.11(@types/react@18.3.23)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@emotion/react':
         specifier: latest
-        version: 11.11.4(@types/react@19.1.8)(react@18.3.1)
+        version: 11.11.4(@types/react@18.3.23)(react@18.3.1)
       '@emotion/styled':
         specifier: latest
-        version: 11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1)
+        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.23)(react@18.3.1))(@types/react@18.3.23)(react@18.3.1)
       '@hookform/resolvers':
         specifier: ^5.1.1
         version: 5.1.1(react-hook-form@7.57.0(react@18.3.1))
@@ -64,7 +64,7 @@ importers:
         version: 3.12.5
       html-react-parser:
         specifier: ^5.2.5
-        version: 5.2.5(@types/react@19.1.8)(react@18.3.1)
+        version: 5.2.5(@types/react@18.3.23)(react@18.3.1)
       iconsax-react:
         specifier: ^0.0.8
         version: 0.0.8(react@18.3.1)
@@ -193,11 +193,11 @@ importers:
         specifier: latest
         version: 0.2.3
       '@types/react':
-        specifier: ^19.1.8
-        version: 19.1.8
+        specifier: ^18.2.0
+        version: 18.3.23
       '@types/react-dom':
-        specifier: ^19.1.6
-        version: 19.1.6(@types/react@19.1.8)
+        specifier: ^18.2.0
+        version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.16
         version: 10.4.19(postcss@8.4.38)
@@ -1995,22 +1995,25 @@ packages:
   '@types/pbf@3.0.5':
     resolution: {integrity: sha512-j3pOPiEcWZ34R6a6mN07mUkM4o4Lwf6hPNt8eilOeZhTFbxFXmKhvXl9Y28jotFPaI1bpPDJsbCprUoNke6OrA==}
 
+  '@types/prop-types@15.7.15':
+    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
+
   '@types/qs@6.9.15':
     resolution: {integrity: sha512-uXHQKES6DQKKCLh441Xv/dwxOq1TVS3JPUMlEqoEglvlhR6Mxnlew/Xq/LRVHpLyk7iK3zODe1qYHIMltO7XGg==}
 
   '@types/range-parser@1.2.7':
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
 
-  '@types/react-dom@19.1.6':
-    resolution: {integrity: sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw==}
+  '@types/react-dom@18.3.7':
+    resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
     peerDependencies:
-      '@types/react': ^19.0.0
+      '@types/react': ^18.0.0
 
   '@types/react-file-icon@1.0.4':
     resolution: {integrity: sha512-c1mIklUDaxm9odxf8RTiy/EAxsblZliJ86EKIOAyuafP9eK3iudyn4ATv53DX6ZvgGymc7IttVNm97LTGnTiYA==}
 
-  '@types/react@19.1.8':
-    resolution: {integrity: sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==}
+  '@types/react@18.3.23':
+    resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
 
   '@types/send@0.17.4':
     resolution: {integrity: sha512-x2EM6TJOybec7c52BX0ZspPodMsQUd5L6PRwOunVyVUhXiBSKf3AezDL8Dgvgt5o0UfKNfuA0eMLr2wLT4AiBA==}
@@ -5019,7 +5022,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@apollo/client@3.9.11(@types/react@19.1.8)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@apollo/client@3.9.11(@types/react@18.3.23)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
       '@wry/caches': 1.0.1
@@ -5030,7 +5033,7 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       optimism: 0.18.0
       prop-types: 15.8.1
-      rehackt: 0.0.6(@types/react@19.1.8)(react@18.3.1)
+      rehackt: 0.0.6(@types/react@18.3.23)(react@18.3.1)
       response-iterator: 0.2.6
       symbol-observable: 4.0.0
       ts-invariant: 0.10.3
@@ -5927,7 +5930,7 @@ snapshots:
 
   '@emotion/memoize@0.8.1': {}
 
-  '@emotion/react@11.11.4(@types/react@19.1.8)(react@18.3.1)':
+  '@emotion/react@11.11.4(@types/react@18.3.23)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
       '@emotion/babel-plugin': 11.11.0
@@ -5939,7 +5942,7 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       react: 18.3.1
     optionalDependencies:
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
 
   '@emotion/serialize@1.1.4':
     dependencies:
@@ -5951,18 +5954,18 @@ snapshots:
 
   '@emotion/sheet@1.2.2': {}
 
-  '@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1)':
+  '@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.23)(react@18.3.1))(@types/react@18.3.23)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
       '@emotion/babel-plugin': 11.11.0
       '@emotion/is-prop-valid': 1.2.2
-      '@emotion/react': 11.11.4(@types/react@19.1.8)(react@18.3.1)
+      '@emotion/react': 11.11.4(@types/react@18.3.23)(react@18.3.1)
       '@emotion/serialize': 1.1.4
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.3.1)
       '@emotion/utils': 1.2.1
       react: 18.3.1
     optionalDependencies:
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
 
   '@emotion/unitless@0.8.0': {}
 
@@ -7170,20 +7173,23 @@ snapshots:
 
   '@types/pbf@3.0.5': {}
 
+  '@types/prop-types@15.7.15': {}
+
   '@types/qs@6.9.15': {}
 
   '@types/range-parser@1.2.7': {}
 
-  '@types/react-dom@19.1.6(@types/react@19.1.8)':
+  '@types/react-dom@18.3.7(@types/react@18.3.23)':
     dependencies:
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
 
   '@types/react-file-icon@1.0.4':
     dependencies:
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
 
-  '@types/react@19.1.8':
+  '@types/react@18.3.23':
     dependencies:
+      '@types/prop-types': 15.7.15
       csstype: 3.1.3
 
   '@types/send@0.17.4':
@@ -8701,7 +8707,7 @@ snapshots:
       domhandler: 5.0.3
       htmlparser2: 10.0.0
 
-  html-react-parser@5.2.5(@types/react@19.1.8)(react@18.3.1):
+  html-react-parser@5.2.5(@types/react@18.3.23)(react@18.3.1):
     dependencies:
       domhandler: 5.0.3
       html-dom-parser: 5.1.1
@@ -8709,7 +8715,7 @@ snapshots:
       react-property: 2.0.2
       style-to-js: 1.1.16
     optionalDependencies:
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
 
   html-to-text@9.0.5:
     dependencies:
@@ -9800,9 +9806,9 @@ snapshots:
     dependencies:
       jsesc: 0.5.0
 
-  rehackt@0.0.6(@types/react@19.1.8)(react@18.3.1):
+  rehackt@0.0.6(@types/react@18.3.23)(react@18.3.1):
     optionalDependencies:
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
       react: 18.3.1
 
   relay-runtime@12.0.0:
