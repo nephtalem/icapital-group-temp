@@ -3,6 +3,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+const getStrapiMedia = (url: string) => {
+  if (!url) return "";
+  if (url.startsWith("http")) return url;
+  return `${process.env.NEXT_PUBLIC_DATA || "http://localhost:1337"}${url}`;
+};
+
 export default function OtherProjects({ projects }: { projects: any[] }) {
   const containerVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -53,7 +59,7 @@ export default function OtherProjects({ projects }: { projects: any[] }) {
       >
         {projects.map((project) => (
           <motion.div
-            key={project.id}
+            key={project.slug}
             variants={cardVariants}
             whileHover={{
               scale: 1.035,
@@ -66,7 +72,7 @@ export default function OtherProjects({ projects }: { projects: any[] }) {
             <Link href={`/portfolios/${project.slug}`} passHref>
               <div>
                 <Image
-                  src={project.cardImg}
+                  src={getStrapiMedia(project.cardImage?.url)}
                   alt={project.title}
                   width={400}
                   height={250}

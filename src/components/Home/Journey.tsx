@@ -9,45 +9,34 @@ import Step4 from "@/assets/step4.png";
 import Tag from "@/ui/Tag";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_JOURNEY_SECTION } from "@/graphql/home/home";
+import ModernLoader from "@/components/ui/ModernLoader";
 
-const milestones = [
-  {
-    year: "2011",
-    image: Step1,
-    text: "Lorem ipsum dolor sit amet consectetur. Pulvinar eu tellus.",
-    size: "h-5 w-5",
-    iconSize: 12,
-  },
-  {
-    year: "2016",
-    image: Step2,
-    text: "Lorem ipsum dolor sit amet consectetur. Pulvinar eu tellus viverra velit.",
-    size: "h-6 w-6",
-    iconSize: 16,
-  },
-  {
-    year: "2022",
-    image: Step3,
-    text: "Lorem ipsum dolor sit amet consectetur. Pulvinar eu tellus viverra velit.",
-    size: "h-7 w-7",
-    iconSize: 18,
-  },
-  {
-    year: "2025 & Counting",
-    image: Step4,
-    text: "Lorem ipsum dolor sit amet consectetur. Pulvinar eu tellus viverra velit.",
-    size: "h-8 w-8",
-    iconSize: 20,
-    highlight: true,
-  },
-];
+const staticIcons = [Step1, Step2, Step3, Step4];
 
 const Journey = () => {
   const controls = useAnimation();
+  const { data, loading, error } = useQuery(GET_JOURNEY_SECTION);
 
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
+
+  if (loading) return <ModernLoader />;
+  if (error) return <div>Error loading journey section.</div>;
+  if (!data?.home?.journeySection) return null;
+
+  const journey = data.home.journeySection;
+  const tagTitle = journey.tagTitle || "Our Journey";
+  const heading = journey.heading || "Moving Through Years with Success";
+  const image = journey.image?.url
+    ? journey.image.url.startsWith("http")
+      ? journey.image.url
+      : (process.env.NEXT_PUBLIC_DATA || "http://localhost:1337") +
+        journey.image.url
+    : JourneyImg;
+  const milestones = journey.milestones || [];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -124,7 +113,7 @@ const Journey = () => {
           transition={{ duration: 0.4 }}
         >
           <Tag
-            title="Our Journey"
+            title={tagTitle}
             titleColor="text-[#F78019]"
             bgColor="bg-[#F7801926]"
           />
@@ -136,7 +125,7 @@ const Journey = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mt-4 text-center text-3xl font-bold text-gray-900"
         >
-          Moving Through Years with Success
+          {heading}
         </motion.h2>
       </motion.div>
 
@@ -159,26 +148,26 @@ const Journey = () => {
             className="absolute left-[14px] top-0 h-full border-l-2 border-orange-300 md:left-[30px]"
             style={{ transformOrigin: "top" }}
           />
-          {milestones.map((milestone, index) => (
+          {milestones.map((milestone: any, index: number) => (
             <motion.div
               key={index}
               variants={itemVariants}
               className="relative flex items-start"
             >
-              {/* Circle with Icon */}
+              {/* Circle with Icon (static) */}
               <motion.div
                 whileHover={{
                   scale: 1.1,
                   transition: { duration: 0.2 },
                 }}
-                className={`absolute -left-5 flex items-center justify-center rounded-full bg-white ${milestone.size} border-4 border-orange-300`}
+                className={`absolute -left-5 flex h-7 w-7 items-center justify-center rounded-full border-4 border-orange-300 bg-white`}
                 style={{ marginLeft: index * -2 }}
               >
                 <Image
-                  src={milestone.image}
+                  src={staticIcons[index % staticIcons.length]}
                   alt={milestone.year}
-                  width={milestone.iconSize}
-                  height={milestone.iconSize}
+                  width={18}
+                  height={18}
                 />
               </motion.div>
 
@@ -188,7 +177,7 @@ const Journey = () => {
                   x: 5,
                   transition: { duration: 0.2 },
                 }}
-                className={`ml-14 text-gray-700 ${index === 3 ? "ml-16" : ""}`}
+                className={`ml-14 text-gray-700 ${index === milestones.length - 1 ? "ml-16" : ""}`}
               >
                 <motion.h3
                   className="text-xl font-bold text-[#191919]"
@@ -222,7 +211,7 @@ const Journey = () => {
             className="relative h-[375px] w-full overflow-hidden rounded-tl-[100px] md:h-[650px] md:w-[100%]"
           >
             <Image
-              src={JourneyImg}
+              src={image}
               alt="Team Working"
               layout="fill"
               objectFit="cover"

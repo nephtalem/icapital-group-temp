@@ -1,47 +1,47 @@
 "use client";
 
 import Image from "next/image";
-import Icon1 from "@/assets/feature-icon-1.png";
-import Icon2 from "@/assets/features-icon-2.png";
-import Icon3 from "@/assets/features-icon-3.png";
-import Icon4 from "@/assets/features-icon-4.png";
 import Tag from "@/ui/Tag";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_FEATURES_SECTION } from "@/graphql/home/home";
+import parse from "html-react-parser";
+import React from "react";
+import ModernLoader from "@/components/ui/ModernLoader";    
+
+function renderDescription(description: any) {
+  if (typeof description === "string") {
+    return parse(description);
+  }
+  if (Array.isArray(description)) {
+    // Strapi blocks: join all children text
+    return description.map((block: any, idx: number) =>
+      block && Array.isArray(block.children) ? (
+        <p key={idx}>
+          {block.children.map((child: any) => child.text).join("")}
+        </p>
+      ) : null,
+    );
+  }
+  return "";
+}
 
 const Features = () => {
   const controls = useAnimation();
+  const { data, loading, error } = useQuery(GET_FEATURES_SECTION);
 
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
 
-  const features = [
-    {
-      icon: <Image src={Icon1} alt="Feature 1 Icon" width={60} height={60} />,
-      title: "We Imagine",
-      description:
-        "Shaping the future with visionary ideas that redefine possibilities.",
-    },
-    {
-      icon: <Image src={Icon2} alt="Feature 2 Icon" width={60} height={60} />,
-      title: "We Develop",
-      description:
-        "Building innovative solutions that drive sustainable progress.",
-    },
-    {
-      icon: <Image src={Icon4} alt="Feature 3 Icon" width={60} height={60} />,
-      title: "We Deliver",
-      description:
-        "Executing with excellence to create meaningful, long-term impact.",
-    },
-    {
-      icon: <Image src={Icon3} alt="Feature 3 Icon" width={60} height={60} />,
-      title: "We Impact",
-      description:
-        "Empowering organizations to lead, adapt, and thrive in a dynamic world.",
-    },
-  ];
+  if (loading) return <ModernLoader />;
+  if (error) return <div>Error loading features section.</div>;
+
+  const featuresSection = data?.home?.features;
+  const tagTitle = featuresSection?.tagTitle || "Features";
+  const heading = featuresSection?.heading || "What Makes us Unique";
+  const features = featuresSection?.features || [];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -105,7 +105,7 @@ const Features = () => {
             transition={{ duration: 0.4 }}
           >
             <Tag
-              title="Features"
+              title={tagTitle}
               titleColor="text-[#F78019]"
               bgColor="bg-[#F7801926]"
             />
@@ -117,7 +117,7 @@ const Features = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-4 text-3xl font-bold leading-snug text-gray-900 md:text-4xl"
           >
-            What Makes us Unique
+            {heading}
           </motion.h2>
         </motion.div>
 
@@ -129,7 +129,7 @@ const Features = () => {
           viewport={{ once: false }}
           className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-10"
         >
-          {features.map((feature, index) => (
+          {features.map((feature: any, index: number) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -141,13 +141,26 @@ const Features = () => {
             >
               <motion.div
                 variants={iconVariants}
-                className="mb-6 flex"
+                className="mb-6 flex h-14 w-14 items-center"
                 whileHover={{
                   scale: 1.1,
                   transition: { duration: 0.2 },
                 }}
               >
-                {feature.icon}
+                {feature.icon?.url && (
+                  <Image
+                    src={
+                      feature.icon.url.startsWith("http")
+                        ? feature.icon.url
+                        : (process.env.NEXT_PUBLIC_DATA ||
+                            "http://localhost:1337") + feature.icon.url
+                    }
+                    alt={feature.title}
+                    width={56}
+                    height={56}
+                    className="h-14 w-14 object-contain"
+                  />
+                )}
               </motion.div>
               <motion.h3
                 className="mb-3 text-2xl font-bold text-[#061C3D] transition-colors duration-300 group-hover:text-[#F78019]"
@@ -156,13 +169,13 @@ const Features = () => {
               >
                 {feature.title}
               </motion.h3>
-              <motion.p
-                className="leading-relaxed text-gray-600"
+              <motion.div
+                className="mt-2 leading-relaxed text-gray-600"
                 whileHover={{ scale: 1.01 }}
                 transition={{ duration: 0.2 }}
               >
-                {feature.description}
-              </motion.p>
+                {renderDescription(feature.description)}
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>

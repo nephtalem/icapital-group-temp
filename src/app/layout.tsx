@@ -8,6 +8,8 @@ import { Theme } from "@/styles/theme";
 import { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
 import { ReactNode } from "react";
+import ApolloClientProvider from "@/components/providers/ApolloProvider";
+import { Toaster } from "react-hot-toast";
 
 export const dynamic = "force-dynamic";
 const mulish = Mulish({
@@ -47,7 +49,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       lang="en"
       className={`custom-scrollbar ${mulish.variable} ${nunito.variable} ${urbanist.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <Toaster position="top-right" />
+        <ApolloClientProvider>{children}</ApolloClientProvider>
+      </body>
     </html>
   );
 };

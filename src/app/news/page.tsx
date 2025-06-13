@@ -8,54 +8,17 @@ import News1 from "@/assets/news/news1.jpg";
 import News2 from "@/assets/news/news2.jpg";
 import News3 from "@/assets/news/news3.jpg";
 import News4 from "@/assets/news/news4.jpg";
+import { useQuery } from "@apollo/client";
+import { GET_ARTICLES } from "@/graphql/news/news";
+import ModernLoader from "@/components/ui/ModernLoader";
 
-const mockNews = [
-  {
-    id: 1,
-    title: "i-Capital Africa Institute Launches New Leadership Program",
-    summary:
-      "A new initiative to empower the next generation of African leaders was launched this week, featuring global experts and hands-on workshops.",
-    image: News1,
-    date: "2024-06-01",
-    category: "Announcements",
-    isFeatured: true,
-  },
-  {
-    id: 2,
-    title: "East Africa Finance Summit 2024: Key Takeaways",
-    summary:
-      "Highlights and insights from the 10th annual summit, including keynote speakers and emerging trends in African finance.",
-    image: News2,
-    date: "2024-05-20",
-    category: "Events",
-    isFeatured: false,
-  },
-  {
-    id: 3,
-    title: "Women in Business: Breaking Barriers in 2024",
-    summary:
-      "Celebrating the achievements of women leaders and entrepreneurs across Africa, and the institute's role in supporting them.",
-    image: News3,
-    date: "2024-05-10",
-    category: "Insights",
-    isFeatured: false,
-  },
-  {
-    id: 4,
-    title: "i-Capital Partners with Global Think Tanks",
-    summary:
-      "A new partnership will bring world-class research and policy expertise to the region, fostering innovation and growth.",
-    image: News4,
-    date: "2024-04-28",
-    category: "Announcements",
-    isFeatured: false,
-  },
-];
+const STRAPI_URL =
+  process.env.NEXT_PUBLIC_DATA ;
 
-const categories = [
-  "All",
-  ...Array.from(new Set(mockNews.map((n) => n.category))),
-];
+const getImageUrl = (url?: string) => {
+  if (!url) return "/fallback-image.png"; // Optional fallback
+  return url.startsWith("http") ? url : `${STRAPI_URL}${url}`;
+};
 
 const NewsHero = () => (
   <section className="relative flex h-[320px] w-full items-center justify-center overflow-hidden bg-gradient-to-r from-[#253E5E] to-[#F78019] text-white md:h-[400px]">
@@ -99,7 +62,7 @@ const NewsHero = () => (
   </section>
 );
 
-const FeaturedNews = ({ article }: { article: (typeof mockNews)[0] }) => (
+const FeaturedNews = ({ article }: { article: any }) => (
   <section className="mx-auto mt-8 max-w-5xl px-4">
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -109,28 +72,32 @@ const FeaturedNews = ({ article }: { article: (typeof mockNews)[0] }) => (
     >
       <div className="relative flex flex-col overflow-hidden rounded-2xl bg-white/80 shadow-2xl backdrop-blur-md md:flex-row">
         <div className="relative h-64 w-full md:h-auto md:w-2/5">
-          <Image
-            src={article.image}
-            alt={article.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 40vw"
-            priority
-          />
+          {article.featuredImage?.url && (
+            <Image
+              src={getImageUrl(article.featuredImage.url)}
+              alt={article.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 40vw"
+              priority
+            />
+          )}
         </div>
         <div className="flex flex-1 flex-col justify-center p-6">
           <span className="mb-2 inline-block rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-600">
-            {article.category}
+            {article.category?.name}
           </span>
           <h2 className="mb-2 text-2xl font-bold text-[#253E5E] md:text-3xl">
             {article.title}
           </h2>
           <p className="mb-4 text-gray-600">{article.summary}</p>
           <span className="mb-2 text-sm text-gray-400">
-            {new Date(article.date).toLocaleDateString()}
+            {article.publicationDate
+              ? new Date(article.publicationDate).toLocaleDateString()
+              : ""}
           </span>
           <Link
-            href={`/news/${article.id}`}
+            href={`/news/${article.slug}`}
             className="mt-4 w-fit rounded-full bg-gradient-to-r from-orange-500 to-orange-400 px-6 py-2 font-semibold text-white shadow-md transition hover:scale-105 hover:from-orange-600 hover:to-orange-500"
           >
             Read More
@@ -141,12 +108,12 @@ const FeaturedNews = ({ article }: { article: (typeof mockNews)[0] }) => (
   </section>
 );
 
-const NewsGrid = ({ articles }: { articles: typeof mockNews }) => (
+const NewsGrid = ({ articles }: { articles: any[] }) => (
   <section className="mx-auto mt-12 max-w-6xl px-4">
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {articles.map((article, idx) => (
+      {articles.map((article: any, idx: number) => (
         <div
-          key={article.id}
+          key={article.slug || idx}
           className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:scale-[1.025] hover:shadow-2xl"
         >
           <motion.div
@@ -157,29 +124,33 @@ const NewsGrid = ({ articles }: { articles: typeof mockNews }) => (
           >
             <div className="flex h-full flex-col">
               <div className="relative h-48 w-full">
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
+                {article.featuredImage?.url && (
+                  <Image
+                    src={getImageUrl(article.featuredImage.url)}
+                    alt={article.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                )}
               </div>
               <div className="flex flex-1 flex-col p-5">
                 <span className="mb-2 inline-block rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-600">
-                  {article.category}
+                  {article.category?.name}
                 </span>
                 <h3 className="mb-1 text-lg font-bold text-[#253E5E]">
                   {article.title}
                 </h3>
                 <span className="mb-2 text-xs text-gray-400">
-                  {new Date(article.date).toLocaleDateString()}
+                  {article.publicationDate
+                    ? new Date(article.publicationDate).toLocaleDateString()
+                    : ""}
                 </span>
                 <p className="mb-4 line-clamp-3 text-gray-600">
                   {article.summary}
                 </p>
                 <Link
-                  href={`/news/${article.id}`}
+                  href={`/news/${article.slug}`}
                   className="mt-auto w-fit rounded-full bg-gradient-to-r from-orange-500 to-orange-400 px-5 py-1.5 text-sm font-semibold text-white shadow transition hover:scale-105 hover:from-orange-600 hover:to-orange-500"
                 >
                   Read More
@@ -198,25 +169,45 @@ export default function NewsPage() {
   const [page, setPage] = useState(1);
   const perPage = 6;
 
-  const featured = mockNews.find((n) => n.isFeatured) || mockNews[0];
-  const rest = mockNews.filter((n) => n.id !== featured.id);
+  // Apollo Client: Fetch all articles from Strapi (flat structure)
+  const { data, loading, error } = useQuery(GET_ARTICLES);
 
-  // Filter and paginate
+  if (loading) return <ModernLoader />;
+  if (error) return <div>Error loading news articles.</div>;
+
+  // Extract articles from response (flat array)
+  const articles = data?.articles || [];
+
+  // Dynamically generate categories from articles
+  const categoriesSet = new Set<string>();
+  articles.forEach((article: any) => {
+    if (article.category && article.category.name) {
+      categoriesSet.add(article.category.name);
+    }
+  });
+  const categories = ["All", ...Array.from(categoriesSet)];
+
+  // Filter and paginate (frontend only)
   const filtered =
     selectedCategory === "All"
-      ? rest
-      : rest.filter((n) => n.category === selectedCategory);
+      ? articles
+      : articles.filter(
+          (n: any) => n.category && n.category.name === selectedCategory,
+        );
   const totalPages = Math.ceil(filtered.length / perPage);
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
+
+  // Featured article: first in the list or the first with isFeatured true
+  const featured = filtered.find((n: any) => n.isFeatured) || filtered[0];
 
   return (
     <main className="min-h-screen bg-gray-50">
       <NewsHero />
-      <FeaturedNews article={featured} />
+      <FeaturedNews article={featured || {}} />
       {/* Category Filters */}
       <section className="mx-auto mt-16 max-w-6xl px-4">
         <div className="mb-10 flex flex-wrap justify-center gap-3">
-          {categories.map((cat) => (
+          {categories.map((cat: string) => (
             <button
               key={cat}
               onClick={() => {

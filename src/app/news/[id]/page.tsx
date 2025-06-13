@@ -5,106 +5,29 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Footer from "@/components/Home/Footer";
-import News1 from "@/assets/news/news1.jpg";
-import News2 from "@/assets/news/news2.jpg";
-import News3 from "@/assets/news/news3.jpg";
-import News4 from "@/assets/news/news4.jpg";
+import { useQuery } from "@apollo/client";
+import { GET_ARTICLE_BY_SLUG } from "@/graphql/news/news";
+import ModernLoader from "@/components/ui/ModernLoader";
+import React from "react";
 
-const mockNews = [
-  {
-    id: 1,
-    title: "i-Capital Africa Institute Launches New Leadership Program",
-    summary:
-      "A new initiative to empower the next generation of African leaders was launched this week, featuring global experts and hands-on workshops.",
-    image: News1,
-    date: "2024-06-01",
-    category: "Announcements",
-    isFeatured: true,
-    content: `The i-Capital Africa Institute is proud to announce the launch of its groundbreaking Leadership Program, designed to cultivate the next generation of African leaders. This comprehensive initiative brings together global experts, industry leaders, and emerging talents in a collaborative environment focused on innovation and sustainable development.
-
-The program features:
-• Intensive workshops led by international leadership experts
-• One-on-one mentoring sessions with industry leaders
-• Networking opportunities with global business communities
-• Practical projects addressing real African challenges
-• Access to exclusive resources and research materials
-
-"Our goal is to create a platform where emerging leaders can develop the skills, knowledge, and networks needed to drive positive change across Africa," says Dr. Sarah Johnson, Program Director at i-Capital Africa Institute.
-
-The first cohort will begin in September 2024, with applications now open for qualified candidates. The program is open to professionals across various sectors, including business, technology, public policy, and social entrepreneurship.`,
-  },
-  {
-    id: 2,
-    title: "East Africa Finance Summit 2024: Key Takeaways",
-    summary:
-      "Highlights and insights from the 10th annual summit, including keynote speakers and emerging trends in African finance.",
-    image: News2,
-    date: "2024-05-20",
-    category: "Events",
-    isFeatured: false,
-    content: `The 10th Annual East Africa Finance Summit concluded with groundbreaking discussions and strategic partnerships that will shape the future of finance in the region. The three-day event brought together over 500 industry leaders, policymakers, and financial experts from across Africa and beyond.
-
-Key Highlights:
-• Digital transformation in African banking
-• Sustainable finance initiatives
-• Cross-border payment solutions
-• Fintech innovation and regulation
-• Investment opportunities in emerging markets
-
-Notable speakers included Dr. James Mwangi, CEO of Equity Group Holdings, and Dr. Ngozi Okonjo-Iweala, Director-General of the World Trade Organization. The summit also featured the launch of several new initiatives aimed at promoting financial inclusion and sustainable development in East Africa.
-
-The event concluded with the signing of multiple memoranda of understanding between major financial institutions, paving the way for increased collaboration and innovation in the region's financial sector.`,
-  },
-  {
-    id: 3,
-    title: "Women in Business: Breaking Barriers in 2024",
-    summary:
-      "Celebrating the achievements of women leaders and entrepreneurs across Africa, and the institute's role in supporting them.",
-    image: News3,
-    date: "2024-05-10",
-    category: "Insights",
-    isFeatured: false,
-    content: `The i-Capital Africa Institute's Women in Business initiative continues to make significant strides in supporting and empowering female entrepreneurs across the continent. This year's program has already impacted over 1,000 women-led businesses, providing them with essential resources, mentorship, and networking opportunities.
-
-Program Achievements:
-• 45% increase in women-led business growth
-• 60% improvement in access to funding
-• 75% of participants reporting increased market reach
-• 85% of businesses achieving sustainable growth
-
-The initiative includes specialized training programs, access to funding opportunities, and a robust mentorship network connecting emerging entrepreneurs with established business leaders. "We're seeing remarkable results from our participants," says Dr. Amina Hassan, Director of the Women in Business program.
-
-Success stories include tech startups, manufacturing enterprises, and service-based businesses, demonstrating the diverse impact of the program across various sectors.`,
-  },
-  {
-    id: 4,
-    title: "i-Capital Partners with Global Think Tanks",
-    summary:
-      "A new partnership will bring world-class research and policy expertise to the region, fostering innovation and growth.",
-    image: News4,
-    date: "2024-04-28",
-    category: "Announcements",
-    isFeatured: false,
-    content: `The i-Capital Africa Institute has announced strategic partnerships with leading global think tanks to enhance research capabilities and policy development in Africa. These collaborations will focus on key areas including economic development, technological innovation, and sustainable growth.
-
-Partnership Details:
-• Joint research initiatives
-• Policy development programs
-• Knowledge exchange platforms
-• Capacity building workshops
-• International networking opportunities
-
-The partnerships include renowned institutions such as the Brookings Institution, the World Economic Forum, and the African Development Bank. "These collaborations will significantly enhance our ability to drive meaningful change in Africa," says Dr. Michael Chen, Research Director at i-Capital.
-
-The initiative will launch with a series of research projects and policy forums, bringing together experts from across the globe to address critical challenges facing the continent.`,
-  },
-];
+const STRAPI_URL = process.env.NEXT_PUBLIC_DATA;
+const getImageUrl = (url?: string) => {
+  if (!url) return "/fallback-image.png";
+  return url.startsWith("http") ? url : `${STRAPI_URL}${url}`;
+};
 
 const NewsDetail = () => {
   const params = useParams();
-  const newsId = parseInt(params.id as string);
-  const article = mockNews.find((n) => n.id === newsId);
+  const slug = params.id as string;
 
+  const { data, loading, error } = useQuery(GET_ARTICLE_BY_SLUG, {
+    variables: { slug },
+  });
+
+  if (loading) return <ModernLoader />;
+  if (error) return <div>Error loading article.</div>;
+
+  const article = data?.articles?.[0];
   if (!article) {
     return (
       <main className="min-h-screen bg-gray-50">
@@ -127,13 +50,15 @@ const NewsDetail = () => {
     <main className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="relative h-[400px] w-full md:h-[500px]">
-        <Image
-          src={article.image}
-          alt={article.title}
-          fill
-          className="object-cover"
-          priority
-        />
+        {article.featuredImage?.url && (
+          <Image
+            src={getImageUrl(article.featuredImage.url)}
+            alt={article.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute left-0 top-0 z-20 p-4">
           <Link
@@ -164,13 +89,15 @@ const NewsDetail = () => {
               transition={{ duration: 0.5 }}
             >
               <span className="mb-4 inline-block rounded-full bg-orange-500 px-4 py-1 text-sm font-semibold">
-                {article.category}
+                {article.category?.name}
               </span>
               <h1 className="mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
                 {article.title}
               </h1>
               <p className="text-lg text-gray-200">
-                {new Date(article.date).toLocaleDateString()}
+                {article.publicationDate
+                  ? new Date(article.publicationDate).toLocaleDateString()
+                  : ""}
               </p>
             </motion.div>
           </div>
@@ -179,18 +106,58 @@ const NewsDetail = () => {
 
       {/* Content Section */}
       <section className="mx-auto max-w-4xl px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="prose prose-lg mx-auto"
-        >
-          {article.content.split("\n\n").map((paragraph, index) => (
-            <p key={index} className="mb-6 text-gray-700">
-              {paragraph}
-            </p>
-          ))}
-        </motion.div>
+        <div className="prose prose-lg mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            {Array.isArray(article.content) &&
+              article.content.map((block: any, idx: number) => {
+                if (block.type === "paragraph") {
+                  const text = block.children
+                    .map((child: any) => child.text)
+                    .join("");
+                  if (!text.trim()) return null;
+                  return <p key={idx}>{text}</p>;
+                }
+                if (block.type === "heading") {
+                  const text = block.children
+                    .map((child: any) => child.text)
+                    .join("");
+                  const level =
+                    block.level && block.level >= 1 && block.level <= 6
+                      ? block.level
+                      : 2;
+                  const Tag = `h${level}` as keyof React.JSX.IntrinsicElements;
+                  return React.createElement(Tag, { key: idx }, text);
+                }
+                if (block.type === "list") {
+                  const isOrdered = block.format === "numbered";
+                  const ListTag = isOrdered ? "ol" : "ul";
+                  return (
+                    <ListTag key={idx}>
+                      {block.children.map((item: any, i: number) => (
+                        <li key={i}>
+                          {item.children
+                            .map((child: any) => child.text)
+                            .join("")}
+                        </li>
+                      ))}
+                    </ListTag>
+                  );
+                }
+                if (block.type === "blockquote") {
+                  const text = block.children
+                    .map((child: any) => child.text)
+                    .join("");
+                  return <blockquote key={idx}>{text}</blockquote>;
+                }
+                // Add more types as needed
+                return null;
+              })}
+          </motion.div>
+        </div>
       </section>
 
       <Footer />
