@@ -6,41 +6,39 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
-import HeroImg from "@/assets/hero-img.png";
 import Header from "./Header";
 import { twMerge } from "tailwind-merge";
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
+import { useQuery } from "@apollo/client";
+import { GET_HOME } from "@/graphql/home/home";
+import ModernLoader from "@/components/ui/ModernLoader";
 
-const slides = [
-  {
-    title: "Register for the 10th East Africa Finance Summit",
-    description:
-      "Lorem ipsum dolor sit amet cons sed pretium lorem vel id ali aliquam tellus viverra velit elit in eg.",
-    buttonText: "Register Now",
-    buttonLink: "/#contact",
-  },
-  {
-    title: "Join the Global Economic Leaders Conference",
-    description:
-      "Gain insights from top financial experts and policymakers across the world.",
-    buttonText: "Learn More",
-    buttonLink: "/#about",
-  },
-];
-
-const MotionSpan = motion.span as React.ComponentType<HTMLMotionProps<"span">>;
-const MotionH1 = motion.h1 as React.ComponentType<HTMLMotionProps<"h1">>;
-const MotionP = motion.p as React.ComponentType<HTMLMotionProps<"p">>;
-const MotionDiv = motion.div as React.ComponentType<HTMLMotionProps<"div">>;
-const MotionA = motion.a as React.ComponentType<HTMLMotionProps<"a">>;
+const MotionSpan = motion.span as React.ComponentType<
+  React.ComponentPropsWithoutRef<"span"> & HTMLMotionProps<"span">
+>;
+const MotionH1 = motion.h1 as React.ComponentType<
+  React.ComponentPropsWithoutRef<"h1"> & HTMLMotionProps<"h1">
+>;
+const MotionP = motion.p as React.ComponentType<
+  React.ComponentPropsWithoutRef<"p"> & HTMLMotionProps<"p">
+>;
+const MotionDiv = motion.div as React.ComponentType<
+  React.ComponentPropsWithoutRef<"div"> & HTMLMotionProps<"div">
+>;
+const MotionA = motion.a as React.ComponentType<
+  React.ComponentPropsWithoutRef<"a"> & HTMLMotionProps<"a">
+>;
 const MotionButton = motion.button as React.ComponentType<
-  HTMLMotionProps<"button">
+  React.ComponentPropsWithoutRef<"button"> & HTMLMotionProps<"button">
 >;
 
 const Hero = () => {
   const [active, setActive] = useState(0);
+  const { data, loading, error } = useQuery(GET_HOME);
+
+  const strapiBaseUrl = process.env.NEXT_PUBLIC_DATA || "http://localhost:1337";
 
   const titleVariants = {
     hidden: {
@@ -120,6 +118,32 @@ const Hero = () => {
     },
   };
 
+  // Helper to extract plain text from Strapi rich text blocks
+  const getDescriptionText = (description: any) => {
+    if (Array.isArray(description)) {
+      return description
+        .map((block: any) =>
+          block.children?.map((child: any) => child.text).join(" "),
+        )
+        .join("\n");
+    }
+    return "";
+  };
+
+  if (loading) return <ModernLoader />;
+  if (error) {
+    return (
+      <div className="relative h-screen w-full overflow-hidden rounded-br-[70px] md:rounded-br-[100px]">
+        <Header />
+        <div className="flex h-full items-center justify-center">
+          <p className="text-red-500">Error loading hero content</p>
+        </div>
+      </div>
+    );
+  }
+
+  const slides = data?.home?.hero_slides || [];
+
   return (
     <div className="relative h-screen w-full overflow-hidden rounded-br-[70px] md:rounded-br-[100px]">
       {/* Fixed Header */}
@@ -129,17 +153,17 @@ const Hero = () => {
         modules={[Navigation, Pagination, Autoplay]}
         navigation
         autoplay={{ delay: 3000 }}
-        loop
+        loop={slides.length > 1}
         onSlideChange={(swiper) => setActive(swiper.realIndex)}
         className="h-full w-full"
       >
-        {slides.map((slide, index) => (
+        {slides.map((slide: any, index: number) => (
           <SwiperSlide key={index}>
             <div className="relative h-full w-full">
               {/* Background Image */}
               <Image
-                src={HeroImg}
-                alt="Hero Background"
+                src={`${strapiBaseUrl}${slide.backgroundImage.url}`}
+                alt={slide.title}
                 layout="fill"
                 objectFit="cover"
                 className="absolute inset-0 z-0"
@@ -159,15 +183,17 @@ const Hero = () => {
                 {/* Content Wrapper */}
                 <div className="w-full max-w-4xl space-y-6 md:space-y-8">
                   {/* Event Badge */}
-                  <motion.span
-                    variants={badgeVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="rounded-full bg-white bg-opacity-20 px-4 py-2 text-base tracking-wide text-white lg:text-base"
-                  >
-                    Upcoming Event
-                  </motion.span>
+                  {slide.bagde && (
+                    <MotionSpan
+                      variants={badgeVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: false, amount: 0.3 }}
+                      className="rounded-full bg-white bg-opacity-20 px-4 py-2 text-base tracking-wide text-white lg:text-base"
+                    >
+                      {slide.bagde}
+                    </MotionSpan>
+                  )}
 
                   {/* Title */}
                   <motion.h1
@@ -177,7 +203,7 @@ const Hero = () => {
                     viewport={{ once: false, amount: 0.3 }}
                     className="text-4xl font-bold leading-[50px] sm:text-5xl lg:text-6xl lg:leading-[80px]"
                   >
-                    {slide.title.split(" ").map((word, i) => (
+                    {slide.title.split(" ").map((word: string, i: number) => (
                       <motion.span
                         key={i}
                         custom={i}
@@ -197,35 +223,37 @@ const Hero = () => {
                     viewport={{ once: false, amount: 0.3 }}
                     className="max-w-2xl text-lg text-gray-200 lg:text-2xl"
                   >
-                    {slide.description}
+                    {getDescriptionText(slide.description)}
                   </motion.p>
 
                   {/* Buttons */}
-                  <motion.div
+                  <MotionDiv
                     variants={buttonVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false, amount: 0.3 }}
                     className="flex flex-col items-start space-y-4 md:flex-row md:space-x-4 md:space-y-0"
                   >
-                    <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={slide.buttonLink}
-                      className="w-fit rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-md transition duration-300 hover:bg-orange-600 lg:text-base"
-                    >
-                      {slide.buttonText} →
-                    </motion.a>
+                    {slide.buttonText && (
+                      <MotionA
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={slide.buttonLink}
+                        className="w-fit rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-md transition duration-300 hover:bg-orange-600 lg:text-base"
+                      >
+                        {slide.buttonText} →
+                      </MotionA>
+                    )}
                     <Link href="/news">
-                      <motion.button
+                      <MotionButton
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="w-fit rounded-full border border-white px-6 py-3 text-sm text-white transition duration-300 hover:bg-white hover:text-gray-900 lg:text-base"
                       >
                         More News →
-                      </motion.button>
+                      </MotionButton>
                     </Link>
-                  </motion.div>
+                  </MotionDiv>
                 </div>
               </div>
             </div>
@@ -235,7 +263,7 @@ const Hero = () => {
 
       {/* Fixed Dots Navigation */}
       <div className="absolute bottom-6 left-1/2 z-50 flex -translate-x-1/2 transform items-center gap-3">
-        {slides.map((_, index) => (
+        {slides.map((_: any, index: number) => (
           <Dot key={index} active={index === active} />
         ))}
       </div>

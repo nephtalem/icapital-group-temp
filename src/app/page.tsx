@@ -20,7 +20,7 @@ import ScrollSpyWrapper from "@/components/ScrollSpyWrapper";
 export const revalidate = 10;
 
 export const metadata: Metadata = {
-  title: "Home | The i-Capital Africa Institute",
+  title: "The i-Capital Africa Institute",
 };
 
 const sectionIds = [

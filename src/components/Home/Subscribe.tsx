@@ -1,8 +1,77 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_SUBSCRIBE_SECTION, CREATE_SUBSCRIBER } from "@/graphql/home/home";
+import { useState } from "react";
+import {
+  subscriberSchema,
+  type SubscriberFormData,
+} from "@/lib/validations/subscriber";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import ModernLoader from "../ui/ModernLoader";
 
 const Subscribe = () => {
+  const { data, loading, error } = useQuery(GET_SUBSCRIBE_SECTION);
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [message, setMessage] = useState("");
+
+  const [createSubscriber] = useMutation(CREATE_SUBSCRIBER);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<SubscriberFormData>({
+    resolver: zodResolver(subscriberSchema),
+    defaultValues: {
+      email: "",
+      consent: false,
+      source: "website",
+    },
+  });
+
+  if (loading) return <ModernLoader />;
+  if (error) return <div>Error loading subscribe section.</div>;
+  if (!data?.home?.subscribeSection) return null;
+
+  const section = data.home.subscribeSection;
+  const heading = section.heading || "with Our News & Announcements!";
+  const highlight = section.highlight || "Get Updated";
+  const description = section.description || "Subscribe to our newsletter!";
+  const emailPlaceholder = section.emailPlaceholder || "Your email";
+  const buttonText = section.buttonText || "Subscribe";
+
+  const onSubmit = async (formData: SubscriberFormData) => {
+    setStatus("loading");
+    try {
+      await createSubscriber({
+        variables: {
+          data: {
+            email: formData.email,
+            statusType: "active",
+            subscribedAt: new Date().toISOString(),
+            consent: formData.consent,
+            source: formData.source,
+          },
+        },
+      });
+      setStatus("success");
+      setMessage("Thank you for subscribing!");
+      toast.success("Thank you for subscribing!");
+      reset();
+    } catch (err: any) {
+      setStatus("error");
+      setMessage(err.message || "Something went wrong");
+      toast.error(err.message || "Something went wrong");
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -75,9 +144,9 @@ const Subscribe = () => {
             }}
             className="text-orange-400"
           >
-            Get Updated
+            {highlight}
           </motion.span>{" "}
-          with Our News & Announcements!
+          {heading}
         </motion.h2>
 
         {/* Right Content */}
@@ -89,27 +158,78 @@ const Subscribe = () => {
             variants={itemVariants}
             className="mb-2 text-sm text-gray-200 md:text-base"
           >
-            Subscribe to our newsletter!
+            {description}
           </motion.p>
-          <motion.div
-            variants={containerVariants}
-            className="flex overflow-hidden rounded-full bg-white shadow-md"
-          >
-            <motion.input
-              variants={inputVariants}
-              type="email"
-              placeholder="Your email"
-              className="w-full px-4 py-2 text-gray-700 focus:outline-none"
-            />
-            <motion.button
-              variants={buttonVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="rounded-full bg-orange-500 px-6 py-2 font-semibold text-white shadow-md transition hover:bg-orange-600"
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <motion.div
+              variants={containerVariants}
+              className="flex flex-col gap-4"
             >
-              Subscribe
-            </motion.button>
-          </motion.div>
+              <motion.div className="flex flex-col gap-2">
+                <motion.div className="flex overflow-hidden rounded-full bg-white shadow-md">
+                  <motion.input
+                    variants={inputVariants}
+                    type="email"
+                    {...register("email")}
+                    placeholder={emailPlaceholder}
+                    className="w-full px-4 py-2 text-gray-700 focus:outline-none"
+                  />
+                  <motion.button
+                    variants={buttonVariants}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="rounded-full bg-orange-500 px-6 py-2 font-semibold text-white shadow-md transition hover:bg-orange-600 disabled:opacity-50"
+                  >
+                    {status === "loading" ? "Subscribing..." : buttonText}
+                  </motion.button>
+                </motion.div>
+                {errors.email && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-sm text-red-400"
+                  >
+                    {errors.email.message}
+                  </motion.p>
+                )}
+              </motion.div>
+
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="consent"
+                  {...register("consent")}
+                  className="h-4 w-4"
+                />
+                <label htmlFor="consent" className="text-sm text-gray-200">
+                  I agree to receive marketing emails
+                </label>
+              </div>
+              {errors.consent && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-sm text-red-400"
+                >
+                  {errors.consent.message}
+                </motion.p>
+              )}
+
+              {message && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`text-sm ${
+                    status === "success" ? "text-green-400" : "text-red-400"
+                  }`}
+                >
+                  {message}
+                </motion.p>
+              )}
+            </motion.div>
+          </form>
         </motion.div>
       </motion.div>
     </section>
