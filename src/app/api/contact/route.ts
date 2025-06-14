@@ -2,9 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
-import ContactAutoReply from "@/emails/ContactAutoReply";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Zod schema for backend validation
 const contactSchema = z.object({
@@ -16,6 +13,7 @@ const contactSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
     const parsed = contactSchema.safeParse(body);
     if (!parsed.success) {
