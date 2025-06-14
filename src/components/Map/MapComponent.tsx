@@ -4,8 +4,19 @@ import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-// Replace with your Mapbox access token
-mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || "";
+// Get the Mapbox token from the environment
+const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+
+if (!mapboxToken) {
+  // This will help you debug if the token is missing
+  // You can also render a fallback UI if you want
+  // eslint-disable-next-line no-console
+  console.error(
+    "Mapbox token is missing! Please set NEXT_PUBLIC_MAPBOX_TOKEN in your environment variables.",
+  );
+}
+
+mapboxgl.accessToken = mapboxToken || "";
 
 interface MapComponentProps {
   className?: string;
@@ -16,6 +27,10 @@ const MapComponent = ({ className = "" }: MapComponentProps) => {
   const map = useRef<mapboxgl.Map | null>(null);
 
   useEffect(() => {
+    if (!mapboxToken) {
+      // Optionally, you can show a message in the UI here
+      return;
+    }
     if (!mapContainer.current) return;
 
     map.current = new mapboxgl.Map({

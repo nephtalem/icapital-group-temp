@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The i-Capital Africa Institute",
     description: "..in the business of transforming people...",
-    url: `https://${process.env.NEXT_PUBLIC_DOMAIN}`,
+
   },
 };
 
