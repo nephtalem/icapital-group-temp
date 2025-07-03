@@ -60,27 +60,29 @@ export default function OtherProjects({ projects }: { projects: any[] }) {
         {projects.map((project) => (
           <motion.div
             key={project.slug}
+            className="h-full"
             variants={cardVariants}
             whileHover={{
-              scale: 1.035,
-              y: -6,
-              boxShadow: "0 8px 32px 0 rgba(247, 128, 25, 0.10)",
-              transition: { duration: 0.25 },
+              scale: 1.03,
+              transition: { duration: 0.2 },
             }}
-            className="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-lg"
           >
             <Link href={`/portfolios/${project.slug}`} passHref>
-              <div>
-                <Image
-                  src={getStrapiMedia(project.cardImage?.url)}
-                  alt={project.title}
-                  width={400}
-                  height={250}
-                  className="h-64 w-full object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold">{project.title}</h3>
-                  <span className="mt-2 inline-block text-orange-500">
+              <div className="group mx-auto flex h-full max-w-[480px] cursor-pointer flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl">
+                <div className="flex h-[200px] items-center justify-center overflow-hidden bg-[rgba(247,128,25,0.1)] p-6">
+                  <Image
+                    src={getStrapiMedia(project.cardImage?.url)}
+                    alt={project.title}
+                    width={220}
+                    height={120}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
+                <div className="flex flex-col p-6">
+                  <h3 className="text-left text-lg font-semibold text-gray-900">
+                    {project.title}
+                  </h3>
+                  <span className="mt-6 inline-block self-end text-orange-500">
                     View Project →
                   </span>
                 </div>

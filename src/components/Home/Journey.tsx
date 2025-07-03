@@ -145,57 +145,81 @@ const Journey = () => {
         >
           <motion.div
             variants={lineVariants}
-            className="absolute left-[14px] top-0 h-full border-l-2 border-orange-300 md:left-[30px]"
+            className="absolute left-[25px] top-0 h-full border-l-2 border-orange-300 md:left-[40px]"
             style={{ transformOrigin: "top" }}
           />
-          {milestones.map((milestone: any, index: number) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="relative flex items-start"
-            >
-              {/* Circle with Icon (static) */}
+          {milestones.map((milestone: any, index: number) => {
+            // Calculate size (min 28px, max 48px, or adjust as you like)
+            const minSize = 28; // px
+            const maxSize = 48; // px
+            const size =
+              minSize +
+              ((maxSize - minSize) * index) / (milestones.length - 1 || 1);
+            return (
               <motion.div
-                whileHover={{
-                  scale: 1.1,
-                  transition: { duration: 0.2 },
-                }}
-                className={`absolute -left-5 flex h-7 w-7 items-center justify-center rounded-full border-4 border-orange-300 bg-white`}
-                style={{ marginLeft: index * -2 }}
+                key={index}
+                variants={itemVariants}
+                className="relative flex items-start"
               >
-                <Image
-                  src={staticIcons[index % staticIcons.length]}
-                  alt={milestone.year}
-                  width={18}
-                  height={18}
-                />
-              </motion.div>
+                {/* Circle with Icon (dynamic size) */}
+                <motion.div
+                  animate={{
+                    scale: [1, 1.12, 1],
+                  }}
+                  transition={{
+                    duration: 1.6,
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    ease: "easeInOut",
+                    delay: index * 0.15,
+                  }}
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.2 },
+                  }}
+                  className="absolute flex items-center justify-center rounded-full border-4 border-orange-300 bg-white"
+                  style={{
+                    marginLeft: index * -2,
+                    width: size,
+                    height: size,
+                    zIndex: 10 + index,
+                    left: "-14px",
+                  }}
+                >
+                  <Image
+                    src={staticIcons[index % staticIcons.length]}
+                    alt={milestone.year}
+                    width={size * 0.65}
+                    height={size * 0.65}
+                  />
+                </motion.div>
 
-              {/* Text */}
-              <motion.div
-                whileHover={{
-                  x: 5,
-                  transition: { duration: 0.2 },
-                }}
-                className={`ml-14 text-gray-700 ${index === milestones.length - 1 ? "ml-16" : ""}`}
-              >
-                <motion.h3
-                  className="text-xl font-bold text-[#191919]"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
+                {/* Text */}
+                <motion.div
+                  whileHover={{
+                    x: 5,
+                    transition: { duration: 0.2 },
+                  }}
+                  className={`ml-14 text-gray-700 ${index === milestones.length - 1 ? "ml-16" : ""}`}
                 >
-                  {milestone.year}
-                </motion.h3>
-                <motion.p
-                  className="mt-3 max-w-[320px] text-sm"
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {milestone.text}
-                </motion.p>
+                  <motion.h3
+                    className="text-xl font-bold text-[#191919]"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {milestone.year}
+                  </motion.h3>
+                  <motion.p
+                    className="mt-3 max-w-[320px] text-sm"
+                    whileHover={{ scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {milestone.text}
+                  </motion.p>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
 
         {/* Image */}

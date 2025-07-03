@@ -36,17 +36,32 @@ const Portfolio = () => {
   const section = data?.home?.PortfolioSection;
   const portfolios = section?.portfolios || [];
 
+  console.log(portfolios.length);
+
   return (
     <section className="bg-gray-50 px-6 py-16 text-center">
       <div>
-        <Tag
-          title={section?.sectionTitle || "Portfolio"}
-          titleColor="text-[#F78019]"
-          bgColor="bg-[#F7801926]"
-        />
-        <h2 className="mt-4 text-2xl font-bold text-gray-900 md:text-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Tag
+            title={section?.sectionTitle || "Portfolio"}
+            titleColor="text-[#F78019]"
+            bgColor="bg-[#F7801926]"
+          />
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-4 text-2xl font-bold text-gray-900 md:text-3xl"
+        >
           {section?.sectionHeading || "What We Have Achieved So Far"}
-        </h2>
+        </motion.h2>
 
         <motion.div
           variants={{
@@ -57,20 +72,22 @@ const Portfolio = () => {
             },
           }}
           initial="hidden"
-          animate="visible"
-          className="mx-auto mt-10 grid max-w-[1320px] grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 "
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          className="mx-auto mt-10 grid max-w-[1320px] grid-cols-1 items-stretch gap-12 md:grid-cols-2 lg:grid-cols-3"
         >
           {portfolios
             .slice(0, showAll ? portfolios.length : 3)
             .map((item: any) => (
               <motion.div
                 key={item.slug}
+                className="h-full"
                 variants={{
-                  hidden: { opacity: 0, y: 20 },
+                  hidden: { opacity: 0, y: 40 },
                   visible: {
                     opacity: 1,
                     y: 0,
-                    transition: { duration: 0.5 },
+                    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
                   },
                 }}
                 whileHover={{
@@ -79,17 +96,17 @@ const Portfolio = () => {
                 }}
               >
                 <Link href={`/portfolios/${item.slug}`} passHref>
-                  <div className="group mx-auto max-w-[480px] cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
-                    <div className="flex min-h-[260px] items-center justify-center bg-[rgba(247,128,25,0.1)] p-12">
+                  <div className="group mx-auto flex h-full max-w-[480px] cursor-pointer flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl">
+                    <div className="flex h-[200px] items-center justify-center overflow-hidden bg-[rgba(247,128,25,0.1)] p-6">
                       <Image
                         src={getStrapiMedia(item.cardImage?.url)}
                         alt={item.title}
-                        width={340}
+                        width={220}
                         height={120}
-                        className="object-contain"
+                        className="max-h-full max-w-full object-contain"
                       />
                     </div>
-                    <div className="flex flex-col p-8">
+                    <div className="flex flex-col p-6">
                       <h3 className="text-left text-lg font-semibold text-gray-900">
                         {item.title}
                       </h3>
@@ -103,26 +120,28 @@ const Portfolio = () => {
             ))}
         </motion.div>
 
-        <div className="mt-8 flex justify-center">
-          <motion.button
-            onClick={() => setShowAll(!showAll)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-orange-600"
-          >
-            {showAll ? (
-              <>
-                <span>See Less</span>
-                <FaChevronUp />
-              </>
-            ) : (
-              <>
-                <span>See More</span>
-                <FaChevronDown />
-              </>
-            )}
-          </motion.button>
-        </div>
+        {portfolios.length > 3 && (
+          <div className="mt-8 flex justify-center">
+            <motion.button
+              onClick={() => setShowAll(!showAll)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-orange-600"
+            >
+              {showAll ? (
+                <>
+                  <span>See Less</span>
+                  <FaChevronUp />
+                </>
+              ) : (
+                <>
+                  <span>See More</span>
+                  <FaChevronDown />
+                </>
+              )}
+            </motion.button>
+          </div>
+        )}
       </div>
     </section>
   );

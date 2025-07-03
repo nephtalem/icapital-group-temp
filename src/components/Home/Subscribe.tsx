@@ -13,6 +13,24 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ModernLoader from "../ui/ModernLoader";
 
+// Helper to highlight words in heading
+function highlightWords(text: string, highlight: string) {
+  if (!highlight) return text;
+  // Escape special regex characters in highlight
+  const escaped = highlight.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(`(${escaped})`, "gi");
+  const parts = text.split(regex);
+  return parts.map((part, i) =>
+    regex.test(part) ? (
+      <span key={i} className="text-orange-400">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
 const Subscribe = () => {
   const { data, loading, error } = useQuery(GET_SUBSCRIBE_SECTION);
   const [status, setStatus] = useState<
@@ -133,20 +151,7 @@ const Subscribe = () => {
           variants={itemVariants}
           className="max-w-lg text-2xl font-bold text-white md:text-3xl"
         >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
-            transition={{
-              type: "spring",
-              stiffness: 260,
-              damping: 20,
-            }}
-            className="text-orange-400"
-          >
-            {highlight}
-          </motion.span>{" "}
-          {heading}
+          {highlightWords(heading, highlight)}
         </motion.h2>
 
         {/* Right Content */}

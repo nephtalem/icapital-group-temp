@@ -12,27 +12,17 @@ import ModernLoader from "@/components/ui/ModernLoader";
 
 const AboutUs = () => {
   const [showMore, setShowMore] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
+  const [height, setHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
+  const restRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
   const { data, loading, error } = useQuery(GET_ABOUT_US_SECTION);
-
-  useEffect(() => {
-    controls.start("visible");
-    if (contentRef.current) {
-      setContentHeight(contentRef.current.scrollHeight);
-    }
-  }, [controls]);
-
-  if (loading) return <ModernLoader />;
-  if (error) return <div>Error loading About Us section.</div>;
 
   const aboutus = data?.home?.aboutus;
   const image = aboutus?.image?.url
     ? aboutus.image.url.startsWith("http")
       ? aboutus.image.url
-      : (process.env.NEXT_PUBLIC_DATA ) +
-        aboutus.image.url
+      : process.env.NEXT_PUBLIC_DATA + aboutus.image.url
     : AboutUsImg;
   const tagTitle = aboutus?.tagTitle || "About Group";
   const heading =
@@ -42,7 +32,6 @@ const AboutUs = () => {
 
   // Helper to split description into paragraphs
   const getParagraphs = (desc: string) => {
-    // If desc is an array (blocks), join as HTML
     if (Array.isArray(desc)) {
       return desc.map((block: any, idx: number) =>
         block.children
@@ -50,13 +39,22 @@ const AboutUs = () => {
           : "",
       );
     }
-    // If desc is HTML string
     return desc.split(/\n+/).map((p) => `<p class="mb-4">${p}</p>`);
   };
 
   const paragraphs = getParagraphs(description);
   const firstParagraph = paragraphs[0] || "";
   const restParagraphs = paragraphs.slice(1).join("");
+
+  useEffect(() => {
+    controls.start("visible");
+    if (restRef.current) {
+      setHeight(restRef.current.scrollHeight);
+    }
+  }, [controls, restParagraphs, showMore]);
+
+  if (loading) return <ModernLoader />;
+  if (error) return <div>Error loading About Us section.</div>;
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
@@ -208,7 +206,15 @@ const AboutUs = () => {
             className="mt-4 text-xs leading-loose text-gray-300 md:text-lg md:leading-relaxed"
           >
             {parse(firstParagraph)}
-            {showMore && parse(restParagraphs)}
+            {/* Animated expandable content */}
+            <motion.div
+              className="overflow-hidden"
+              animate={{ height: showMore ? height : 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              style={{ height: showMore ? height : 0 }}
+            >
+              <div ref={restRef}>{parse(restParagraphs)}</div>
+            </motion.div>
           </motion.div>
 
           {/* Learn More Button */}
