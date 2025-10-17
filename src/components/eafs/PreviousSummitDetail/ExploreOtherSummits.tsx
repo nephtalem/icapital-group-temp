@@ -2,29 +2,27 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { PreviousSummit, previousSummits } from "@/data/previousSummits";
+import { useQuery } from "@apollo/client";
+import { GET_PREVIOUS_SUMMIT_PAGE } from "@/graphql/eafs/previousSummit";
+import ModernLoader from "@/components/ui/ModernLoader";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 interface ExploreOtherSummitsProps {
-  currentSummitId: string;
+  currentSummitSlug: string;
 }
 
-const getOrdinalTitle = (title: string) => {
-  const match = title.match(/^(\d+)(st|nd|rd|th) (.+)$/);
-  if (match) {
-    return (
-      <>
-        <span className="font-bold">
-          The <sup>{match[1] + match[2]}</sup> {match[3]}
-        </span>
-      </>
-    );
-  }
-  return <span className="font-bold">{title}</span>;
-};
+const ExploreOtherSummits = ({
+  currentSummitSlug,
+}: ExploreOtherSummitsProps) => {
+  const { data, loading, error } = useQuery(GET_PREVIOUS_SUMMIT_PAGE);
 
-const ExploreOtherSummits = ({ currentSummitId }: ExploreOtherSummitsProps) => {
-  const otherSummits = Object.values(previousSummits).filter(
-    (s) => s.id !== currentSummitId,
+  if (loading) return <ModernLoader />;
+  if (error) return <div>Error loading summits.</div>;
+
+  const highlights =
+    data?.previousSummitPage?.eafs_previous_summit_highlights || [];
+  const otherSummits = highlights.filter(
+    (s: any) => s.slug !== currentSummitSlug,
   );
 
   return (
@@ -34,9 +32,9 @@ const ExploreOtherSummits = ({ currentSummitId }: ExploreOtherSummitsProps) => {
           Explore Other Summits
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {otherSummits.map((summit, i) => (
+          {otherSummits.map((summit: any, i: number) => (
             <motion.div
-              key={summit.id}
+              key={summit.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -47,14 +45,18 @@ const ExploreOtherSummits = ({ currentSummitId }: ExploreOtherSummitsProps) => {
               }}
               className="rounded-xl bg-white p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg"
             >
-              <div className="mb-3 text-xl text-[#253E5E]">
-                {getOrdinalTitle(summit.title)}
+              <div className="mb-3 text-xl font-bold text-[#253E5E]">
+                {summit.title}
               </div>
               <div className="mb-8 line-clamp-4 text-base text-gray-600 md:text-lg">
-                {summit.description}
+                {Array.isArray(summit.highlight) ? (
+                  <BlocksRenderer content={summit.highlight} />
+                ) : (
+                  summit.highlight
+                )}
               </div>
               <Link
-                href={`/eafs/previous-summit/${summit.id}`}
+                href={`/eafs/previous-summit/${summit.slug}`}
                 className="inline-flex items-center gap-2 rounded-full border border-[#F78019] px-6 py-2 font-semibold text-[#F78019] transition-all hover:bg-[#F78019]/10 hover:shadow-md"
               >
                 Summit details <span className="text-lg">→</span>

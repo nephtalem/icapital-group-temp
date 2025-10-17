@@ -1,59 +1,50 @@
 "use client";
 
 import Image from "next/image";
-import ICapitalLogo from "@/assets/eafs/organizer-&-partners/iCapital.png";
-import ThinkAheadLogo from "@/assets/eafs/organizer-&-partners/ThinkAhead.png";
-import JimmaUniversityLogo from "@/assets/eafs/organizer-&-partners/JimmaUniversity.png";
-import AEILogo from "@/assets/eafs/organizer-&-partners/AEI.png";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useQuery } from "@apollo/client";
+import { GET_EAFS_ORGANIZERS_PARTNERS } from "@/graphql/eafs/eafsHome";
+import { getStrapiImageUrl } from "@/utils/getStrapiImageUrl";
+import { motion } from "framer-motion";
 
 interface PartnerProps {
   name: string;
-  logo: any;
-  width: number;
+  logo: string;
+  width?: number;
   index: number;
 }
 
-const PartnerLogo = ({ name, logo, width, index }: PartnerProps) => {
-  const logoRef = useRef(null);
-  const isInView = useInView(logoRef, {
-    once: false,
-    amount: 0.3,
-    margin: "0px 0px -100px 0px",
-  });
+const logoVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.12,
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
 
-  const logoVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: index * 0.15,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-    hover: {
-      scale: 1.05,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
+const titleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
+const PartnerLogo = ({ name, logo, width = 200, index }: PartnerProps) => {
   return (
     <motion.div
-      ref={logoRef}
+      className="flex items-center justify-center"
       variants={logoVariants}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      whileHover="hover"
-      className="flex items-center justify-center"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
+      custom={index}
     >
       <Image
         src={logo}
@@ -67,91 +58,36 @@ const PartnerLogo = ({ name, logo, width, index }: PartnerProps) => {
 };
 
 const OrganizersPartners = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, {
-    once: false,
-    amount: 0.3,
-    margin: "0px 0px -100px 0px",
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const titleVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
-  const partners = [
-    {
-      name: "iCapital Institute",
-      logo: ICapitalLogo,
-      width: 200,
-    },
-    {
-      name: "ACCA Think Ahead",
-      logo: ThinkAheadLogo,
-      width: 220,
-    },
-    {
-      name: "Jimma University",
-      logo: JimmaUniversityLogo,
-      width: 200,
-    },
-    {
-      name: "Association of Ethiopian Insurers",
-      logo: AEILogo,
-      width: 220,
-    },
-  ];
+  const { data, loading, error } = useQuery(GET_EAFS_ORGANIZERS_PARTNERS);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading organizers & partners section.</div>;
+  const section = data?.eafsHome?.EAFSOrganizersPartners;
+  const partners = section?.logosCard || [];
 
   return (
     <section className="bg-gray-50 py-16 md:py-24">
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <motion.h2
+          className="mb-16 text-center text-3xl font-bold text-[#0A244E] md:text-4xl"
           variants={titleVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="mb-16 text-center text-3xl font-bold text-[#0A244E] md:text-4xl"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
         >
-          Organizers & Partners
+          {section?.heading}
         </motion.h2>
 
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="flex flex-wrap items-center justify-evenly gap-x-24 gap-y-16 px-4"
-        >
-          {partners.map((partner, index) => (
+        <div className="flex flex-wrap items-center justify-evenly gap-x-24 gap-y-16 px-4">
+          {partners.map((partner: any, index: number) => (
             <PartnerLogo
               key={index}
-              name={partner.name}
-              logo={partner.logo}
-              width={partner.width}
+              name={partner.companyName}
+              logo={getStrapiImageUrl(partner.companyLogo?.url)}
+              width={partner.companyLogo?.width || 200}
               index={index}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

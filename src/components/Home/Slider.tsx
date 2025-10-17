@@ -3,9 +3,6 @@
 import { motion, useAnimation, HTMLMotionProps } from "framer-motion";
 import Image from "next/image";
 import { useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_TRUSTED_COMPANIES_SLIDER } from "@/graphql/home/home";
-import ModernLoader from "@/components/ui/ModernLoader";
 
 interface Logo {
   logo: Array<{
@@ -35,23 +32,32 @@ const logoVariants = {
   },
 };
 
-const Slider: React.FC = () => {
+// Define the props interface for Slider component
+interface SliderProps {
+  sliderData: any;
+}
+
+const Slider: React.FC<SliderProps> = ({ sliderData }) => {
   const controls = useAnimation();
 
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
 
-  const { data, loading, error } = useQuery<{
-    home: { trustedCompaniesSlider: SliderData };
-  }>(GET_TRUSTED_COMPANIES_SLIDER);
+  // Handle case where sliderData is not available
+  if (!sliderData?.home?.trustedCompaniesSlider) {
+    return (
+      <section className="bg-white py-12">
+        <div className="text-center text-red-500">
+          Slider data not available
+        </div>
+      </section>
+    );
+  }
 
-  if (loading) return <ModernLoader />;
-  if (error) return <div>Error loading slider.</div>;
-
-  const sliderData = data?.home?.trustedCompaniesSlider;
-  const sectionTitle = sliderData?.sectionTitle || DEFAULT_SECTION_TITLE;
-  const logos = sliderData?.logos || [];
+  const data = sliderData.home.trustedCompaniesSlider;
+  const sectionTitle = data?.sectionTitle || DEFAULT_SECTION_TITLE;
+  const logos = data?.logos || [];
 
   // Duplicate logos for seamless loop
   const duplicatedLogos = [...logos, ...logos];

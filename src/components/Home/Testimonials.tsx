@@ -3,18 +3,25 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Tag from "@/ui/Tag";
-import { useQuery } from "@apollo/client";
-import { GET_TESTIMONIALS_SECTION } from "@/graphql/home/home";
-import ModernLoader from "@/components/ui/ModernLoader";
 
-const Testimonials = () => {
-  const { data, loading, error } = useQuery(GET_TESTIMONIALS_SECTION);
+// Define the props interface for Testimonials component
+interface TestimonialsProps {
+  testimonialsData: any;
+}
 
-  if (loading) return <ModernLoader />;
-  if (error) return <div>Error loading testimonials section.</div>;
-  if (!data?.home?.testimonialsSection) return null;
+const Testimonials = ({ testimonialsData }: TestimonialsProps) => {
+  // Handle case where testimonialsData is not available
+  if (!testimonialsData?.home?.testimonialsSection) {
+    return (
+      <section className="bg-gray-50 py-12">
+        <div className="text-center text-red-500">
+          Testimonials data not available
+        </div>
+      </section>
+    );
+  }
 
-  const section = data.home.testimonialsSection;
+  const section = testimonialsData.home.testimonialsSection;
   const tagTitle = section.tagTitle || "Testimonials";
   const heading = section.heading || "What Our Partners Say about Us";
   const testimonials = section.testimonials || [];

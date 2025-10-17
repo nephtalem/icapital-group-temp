@@ -15,13 +15,14 @@ import ClientCard from "./ClientCard";
 import OtherProjects from "./OtherProjects";
 import { useParams } from "next/navigation";
 import React from "react";
+import ModernLoader from "@/components/ui/ModernLoader";
 
 // Helper to get full Strapi media URL
 const getStrapiMedia = (url: string) => {
   console.log(url);
   if (!url) return "";
   if (url.startsWith("http")) return url;
-  return `${process.env.NEXT_PUBLIC_DATA }${url}`;
+  return `${process.env.NEXT_PUBLIC_DATA}${url}`;
 };
 
 const PortfolioDetail = () => {
@@ -36,9 +37,7 @@ const PortfolioDetail = () => {
   console.log(allData);
 
   if (loading) {
-    return (
-      <div className="container mx-auto px-6 py-24 lg:px-16">Loading...</div>
-    );
+    return <ModernLoader />;
   }
 
   if (error || !data?.portfolios?.length) {

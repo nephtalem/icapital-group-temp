@@ -1,12 +1,10 @@
 import "@/styles/globals.css";
-import "nprogress/nprogress.css";
 
 import { polyfill } from "interweave-ssr";
 import { Mulish, Nunito, Urbanist } from "next/font/google";
 
 import { Theme } from "@/styles/theme";
 import { Metadata } from "next";
-import NextTopLoader from "nextjs-toploader";
 import { ReactNode } from "react";
 import ApolloClientProvider from "@/components/providers/ApolloProvider";
 import { Toaster } from "react-hot-toast";
@@ -39,7 +37,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The i-Capital Africa Institute",
     description: "..in the business of transforming people...",
-
   },
 };
 

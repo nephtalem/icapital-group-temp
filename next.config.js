@@ -47,6 +47,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "icms.frontiertech.org",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
     ],
   },
   reactStrictMode: true,

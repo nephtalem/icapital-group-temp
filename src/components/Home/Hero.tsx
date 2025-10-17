@@ -11,9 +11,6 @@ import { twMerge } from "tailwind-merge";
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
-import { useQuery } from "@apollo/client";
-import { GET_HOME } from "@/graphql/home/home";
-import ModernLoader from "@/components/ui/ModernLoader";
 
 const MotionSpan = motion.span as React.ComponentType<
   React.ComponentPropsWithoutRef<"span"> & HTMLMotionProps<"span">
@@ -34,9 +31,13 @@ const MotionButton = motion.button as React.ComponentType<
   React.ComponentPropsWithoutRef<"button"> & HTMLMotionProps<"button">
 >;
 
-const Hero = () => {
+// Define the props interface for Hero component
+interface HeroProps {
+  heroData: any;
+}
+
+const Hero = ({ heroData }: HeroProps) => {
   const [active, setActive] = useState(0);
-  const { data, loading, error } = useQuery(GET_HOME);
 
   const strapiBaseUrl = process.env.NEXT_PUBLIC_DATA || "http://localhost:1337";
 
@@ -130,19 +131,19 @@ const Hero = () => {
     return "";
   };
 
-  if (loading) return <ModernLoader />;
-  if (error) {
+  // Handle case where heroData is not available
+  if (!heroData?.home?.hero_slides) {
     return (
       <div className="relative h-screen w-full overflow-hidden rounded-br-[70px] md:rounded-br-[100px]">
         <Header />
         <div className="flex h-full items-center justify-center">
-          <p className="text-red-500">Error loading hero content</p>
+          <p className="text-red-500">Hero content not available</p>
         </div>
       </div>
     );
   }
 
-  const slides = data?.home?.hero_slides || [];
+  const slides = heroData.home.hero_slides;
 
   return (
     <div className="relative h-screen w-full overflow-hidden rounded-br-[70px] md:rounded-br-[100px]">

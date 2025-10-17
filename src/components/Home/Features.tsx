@@ -4,11 +4,8 @@ import Image from "next/image";
 import Tag from "@/ui/Tag";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_FEATURES_SECTION } from "@/graphql/home/home";
 import parse from "html-react-parser";
 import React from "react";
-import ModernLoader from "@/components/ui/ModernLoader";    
 
 function renderDescription(description: any) {
   if (typeof description === "string") {
@@ -27,18 +24,30 @@ function renderDescription(description: any) {
   return "";
 }
 
-const Features = () => {
+// Define the props interface for Features component
+interface FeaturesProps {
+  featuresData: any;
+}
+
+const Features = ({ featuresData }: FeaturesProps) => {
   const controls = useAnimation();
-  const { data, loading, error } = useQuery(GET_FEATURES_SECTION);
 
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
 
-  if (loading) return <ModernLoader />;
-  if (error) return <div>Error loading features section.</div>;
+  // Handle case where featuresData is not available
+  if (!featuresData?.home?.features) {
+    return (
+      <section className="bg-gray-50 py-16">
+        <div className="text-center text-red-500">
+          Features data not available
+        </div>
+      </section>
+    );
+  }
 
-  const featuresSection = data?.home?.features;
+  const featuresSection = featuresData.home.features;
   const tagTitle = featuresSection?.tagTitle || "Features";
   const heading = featuresSection?.heading || "What Makes us Unique";
   const features = featuresSection?.features || [];
@@ -129,7 +138,7 @@ const Features = () => {
           viewport={{ once: false }}
           className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-10"
         >
-          {features.map((feature: any, index: number) => (
+          {(features || []).map((feature: any, index: number) => (
             <motion.div
               key={index}
               variants={itemVariants}

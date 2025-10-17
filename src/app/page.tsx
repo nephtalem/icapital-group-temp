@@ -13,9 +13,8 @@ import Testimonials from "@/components/Home/Testimonials";
 import GetInTouch from "@/components/Home/GetInTouch";
 import GetStarted from "@/components/Home/GetStarted";
 import Footer from "@/components/Home/Footer";
-import PortfolioDetail from "./portfolios/[slug]/page";
-import ProjectPage from "./portfolios/[slug]/page";
 import ScrollSpyWrapper from "@/components/ScrollSpyWrapper";
+import { getHomePageData } from "@/lib/getHomePageData";
 
 export const revalidate = 10;
 
@@ -32,34 +31,37 @@ const sectionIds = [
   "contact",
 ];
 
-const HomePage = () => {
+const HomePage = async () => {
+  // Fetch all data server-side
+  const data = await getHomePageData();
+
   return (
     <ScrollSpyWrapper sectionIds={sectionIds}>
       <div>
-        <Hero />
-        <Slider />
+        <Hero heroData={data.hero} />
+        <Slider sliderData={data.slider} />
         <div id="sectors">
-          <Sectors />
+          <Sectors sectorsData={data.sectors} />
         </div>
         <div id="about">
-          <AboutUs />
+          <AboutUs aboutUsData={data.aboutUs} />
         </div>
         <div id="features">
-          <Features />
+          <Features featuresData={data.features} />
         </div>
-        <UpcomingEvents />
+        <UpcomingEvents upcomingEventsData={data.upcomingEvents} />
         <div id="journey">
-          <Journey />
+          <Journey journeyData={data.journey} />
         </div>
         <div id="portfolio">
-          <Portfolio />
+          <Portfolio portfolioData={data.portfolio} />
         </div>
-        <Subscribe />
-        <Testimonials />
+        <Subscribe subscribeData={data.subscribe} />
+        <Testimonials testimonialsData={data.testimonials} />
         <div id="contact">
           <GetInTouch />
         </div>
-        <GetStarted />
+        <GetStarted getStartedData={data.getStarted} />
         <Footer />
       </div>
     </ScrollSpyWrapper>

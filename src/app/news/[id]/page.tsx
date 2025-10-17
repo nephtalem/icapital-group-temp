@@ -9,6 +9,7 @@ import { useQuery } from "@apollo/client";
 import { GET_ARTICLE_BY_SLUG } from "@/graphql/news/news";
 import ModernLoader from "@/components/ui/ModernLoader";
 import React from "react";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_DATA;
 const getImageUrl = (url?: string) => {
@@ -112,50 +113,9 @@ const NewsDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {Array.isArray(article.content) &&
-              article.content.map((block: any, idx: number) => {
-                if (block.type === "paragraph") {
-                  const text = block.children
-                    .map((child: any) => child.text)
-                    .join("");
-                  if (!text.trim()) return null;
-                  return <p key={idx}>{text}</p>;
-                }
-                if (block.type === "heading") {
-                  const text = block.children
-                    .map((child: any) => child.text)
-                    .join("");
-                  const level =
-                    block.level && block.level >= 1 && block.level <= 6
-                      ? block.level
-                      : 2;
-                  const Tag = `h${level}` as keyof React.JSX.IntrinsicElements;
-                  return React.createElement(Tag, { key: idx }, text);
-                }
-                if (block.type === "list") {
-                  const isOrdered = block.format === "numbered";
-                  const ListTag = isOrdered ? "ol" : "ul";
-                  return (
-                    <ListTag key={idx}>
-                      {block.children.map((item: any, i: number) => (
-                        <li key={i}>
-                          {item.children
-                            .map((child: any) => child.text)
-                            .join("")}
-                        </li>
-                      ))}
-                    </ListTag>
-                  );
-                }
-                if (block.type === "blockquote") {
-                  const text = block.children
-                    .map((child: any) => child.text)
-                    .join("");
-                  return <blockquote key={idx}>{text}</blockquote>;
-                }
-                // Add more types as needed
-                return null;
-              })}
+            {Array.isArray(article.content) && (
+              <BlocksRenderer content={article.content} />
+            )}
           </motion.div>
         </div>
       </section>

@@ -3,18 +3,23 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useQuery } from "@apollo/client";
-import { GET_GET_STARTED_SECTION } from "@/graphql/home/home";
-import ModernLoader from "@/components/ui/ModernLoader";
 
-const GetStarted = () => {
-  const { data, loading, error } = useQuery(GET_GET_STARTED_SECTION);
+// Define the props interface for GetStarted component
+interface GetStartedProps {
+  getStartedData: any;
+}
 
-  if (loading) return <ModernLoader />;
-  if (error) return <div>Error loading Get Started section.</div>;
-  if (!data?.home?.getStartedSection) return null;
+const GetStarted = ({ getStartedData }: GetStartedProps) => {
+  // Handle case where getStartedData is not available
+  if (!getStartedData?.home?.getStartedSection) {
+    return (
+      <section className="bg-white px-6 py-16 text-center">
+        <div className="text-red-500">Get Started data not available</div>
+      </section>
+    );
+  }
 
-  const section = data.home.getStartedSection;
+  const section = getStartedData.home.getStartedSection;
   const heading =
     section.heading ||
     "Empower Your Business—Transform, Innovate, and Lead Today!";

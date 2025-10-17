@@ -5,6 +5,10 @@ import Link from "next/link";
 import AboutBanner from "@/assets/eafs/about-banner.png";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useQuery } from "@apollo/client";
+import { GET_EAFS_ABOUT_SECTION } from "@/graphql/eafs/eafsHome";
+import { getStrapiImageUrl } from "@/utils/getStrapiImageUrl";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 const About = () => {
   const ref = useRef(null);
@@ -13,6 +17,17 @@ const About = () => {
     amount: 0.3,
     margin: "0px 0px -100px 0px",
   });
+
+  const { data, loading, error } = useQuery(GET_EAFS_ABOUT_SECTION);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error loading about section.</div>;
+  }
+
+  const about = data?.eafsHome?.EAFSAboutSection;
 
   const textVariants = {
     hidden: {
@@ -77,61 +92,43 @@ const About = () => {
           className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2"
         >
           {/* Text Content */}
-          <motion.div
-            className="order-2 lg:order-1"
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
+          <div className="order-2 lg:order-1">
             <motion.h2
-              custom={0}
-              variants={textVariants}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.6 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="mb-6 text-3xl font-bold text-[#253E5E] md:text-4xl"
             >
-              About EAFS
+              {about?.heading}
             </motion.h2>
             <div className="space-y-4 text-gray-700">
-              <motion.p custom={1} variants={textVariants}>
-                A multilateral dialogue shaping the future of finance by uniting
-                industry experts, policymakers, and government officials. The
-                summit features engaging panels, presentations, and case studies
-                packed with actionable insights, best practices, and industry
-                knowledge.
-              </motion.p>
-              <motion.p custom={2} variants={textVariants}>
-                With 400+ participants, it offers rich opportunities for
-                networking and collaboration with key stakeholders from East
-                Africa and beyond. EAFS also enables unparalleled business
-                matching, investment partnerships, and growth opportunities in
-                the finance sector.
-              </motion.p>
+              <div>
+                <BlocksRenderer content={about?.description} />
+              </div>
             </div>
-            <motion.div className="mt-8" variants={buttonVariants}>
+            <div className="mt-8">
               <Link
-                href="/eafs/previous-summit"
+                href={about?.buttonLink}
                 className="inline-block min-w-[200px] rounded-full bg-[#F78019] px-8 py-3 text-center text-sm font-semibold text-white shadow-md transition duration-300 hover:bg-orange-600 lg:text-base"
               >
-                Explore Previous Summits
+                {about?.buttonText}
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Image */}
-          <motion.div
-            className="order-1 lg:order-2"
-            variants={imageVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
+          <div className="order-1 lg:order-2">
             <div className="relative h-[400px] w-full overflow-hidden rounded-lg shadow-lg md:h-[500px]">
               <Image
-                src={AboutBanner}
+                src={getStrapiImageUrl(about?.image?.url)}
                 alt="East Africa Finance Summit"
                 fill
                 style={{ objectFit: "cover", objectPosition: "center" }}
                 className="transition-transform duration-700"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

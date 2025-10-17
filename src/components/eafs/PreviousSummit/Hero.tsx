@@ -4,8 +4,26 @@ import Link from "next/link";
 import { FaArrowDown } from "react-icons/fa";
 import eafsLogo from "@/assets/eafs/EAFS-black-Logo.png";
 import { motion } from "framer-motion";
+import { useQuery } from "@apollo/client";
+import { GET_PREVIOUS_SUMMIT_PAGE } from "@/graphql/eafs/previousSummit";
+import ModernLoader from "@/components/ui/ModernLoader";
+import Header from "../Header";
 
 const Hero = () => {
+  const { data, loading, error } = useQuery(GET_PREVIOUS_SUMMIT_PAGE);
+
+  if (loading) return <ModernLoader />;
+  if (error)
+    return (
+      <div className="py-12 text-center text-red-500">
+        Error loading hero section.
+      </div>
+    );
+
+  const heroTitle = data?.previousSummitPage?.heroTitle || "Previous Summits";
+  const heroSubTitle =
+    data?.previousSummitPage?.heroSubTitle || "Explore our past events";
+
   const scrollToContent = () => {
     // Scroll to the content section
     const contentSection = document.getElementById("content");
@@ -16,91 +34,52 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen w-full bg-[rgba(247,128,25,0.05)] font-[var(--font-urbanist)]">
-      {/* Navigation Bar */}
-      <div className="relative z-10 px-6 py-4 md:py-6">
-        <div className="container mx-auto flex items-center justify-between">
-          <Link href="/eafs">
-            <Image
-              src={eafsLogo}
-              alt="East African Finance Summit Logo"
-              width={120}
-              height={60}
-              className="h-auto w-auto"
-            />
-          </Link>
-
-          <div className="hidden space-x-6 md:flex">
-            <Link
-              href="/previous-summits"
-              className="text-sm font-medium text-[#F78019] hover:text-[#F78019]/80"
-            >
-              Previous Summits
-            </Link>
-            <Link
-              href="/upcoming-summits"
-              className="text-sm font-medium text-[#1A365D] hover:text-[#F78019]"
-            >
-              Upcoming Summits
-            </Link>
-            <Link
-              href="/summit-documents"
-              className="text-sm font-medium text-[#1A365D] hover:text-[#F78019]"
-            >
-              Summit Documents
-            </Link>
-          </div>
-
-          <Link
-            href="/contact"
-            className="rounded-full border border-[#F78019] bg-transparent px-4 py-2 text-sm font-medium text-[#F78019] transition-colors hover:bg-[#F78019] hover:text-white"
-          >
-            Contact Us
-          </Link>
-        </div>
+      {/* Shared Header */}
+      <div className="absolute left-0 top-0 z-50 w-full">
+        <Header
+          logo={eafsLogo}
+          linkColor="#1A365D"
+          linkActiveColor="#F78019"
+          buttonBorderColor="#F78019"
+          buttonTextColor="#F78019"
+        />
       </div>
 
       {/* Content Section */}
       <div className="relative z-10 flex min-h-[65vh] flex-col items-center justify-center px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-6xl"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-12"
+        <div className="flex w-full max-w-6xl flex-col items-center">
+          <Link
+            href="/eafs"
+            className="group mb-8 mt-24 inline-flex items-center gap-3 rounded-full border border-[#F78019] px-6 py-3 text-[#F78019] transition-all hover:bg-[#F78019] hover:text-white"
           >
-            <Link
-              href="/eafs"
-              className="group inline-flex items-center gap-3 rounded-full border border-[#F78019]/20 bg-white/50 px-6 py-3 text-[#F78019] backdrop-blur-sm transition-all hover:border-[#F78019] hover:bg-[#F78019]/10 hover:shadow-md"
-            >
-              <motion.span
-                initial={{ x: 0 }}
-                whileHover={{ x: -5 }}
-                transition={{ duration: 0.2 }}
-                className="text-xl font-medium"
-              >
-                ←
-              </motion.span>
-              <span className="text-sm font-semibold tracking-wide">
-                Go Back to Home
-              </span>
-            </Link>
-          </motion.div>
+            <span className="text-xl font-medium transition-transform group-hover:-translate-x-1">
+              ←
+            </span>
+            <span className="text-sm font-semibold tracking-wide">
+              Go Back to Home
+            </span>
+          </Link>
 
-          <h1 className="font-urbanist text-4xl font-bold leading-relaxed tracking-wide text-[#1A365D] md:text-5xl md:leading-relaxed md:tracking-wider lg:text-6xl lg:leading-snug">
-            A Legacy of Impactful Conversations and Strategic Growth
-          </h1>
+          <motion.h1
+            className="font-urbanist text-4xl font-bold leading-relaxed tracking-wide text-[#1A365D] md:text-5xl md:leading-relaxed md:tracking-wider lg:text-6xl lg:leading-snug"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {heroTitle}
+          </motion.h1>
 
-          <p className="mx-auto mt-8 max-w-4xl font-urbanist text-base font-light leading-loose tracking-wide text-[#2D3748] md:text-lg md:leading-loose md:tracking-wide">
-            Explore highlights from past East Africa Finance Summits—where
-            thought leaders, innovators, and changemakers came together to shape
-            the region&apos;s financial future.
-          </p>
-        </motion.div>
+          <motion.p
+            className="mx-auto mt-8 max-w-4xl font-urbanist text-base font-light leading-loose tracking-wide text-[#2D3748] md:text-lg md:leading-loose md:tracking-wide"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {heroSubTitle}
+          </motion.p>
+        </div>
       </div>
 
       {/* Arrow Section - Separated to position at bottom */}

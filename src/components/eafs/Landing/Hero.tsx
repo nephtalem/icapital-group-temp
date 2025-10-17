@@ -7,6 +7,8 @@ import Link from "next/link";
 import EAFSLogo from "@/assets/eafs/EAFS-Logo.png";
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useQuery } from "@apollo/client";
+import { GET_EAFS_HERO_SECTION } from "@/graphql/eafs/eafsHome";
 
 const Hero = () => {
   const ref = useRef(null);
@@ -16,46 +18,28 @@ const Hero = () => {
     margin: "0px 0px -100px 0px",
   });
 
-  const textVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-    },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.15,
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    }),
-  };
+  const { data, loading, error } = useQuery(GET_EAFS_HERO_SECTION);
 
-  const buttonVariants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.6,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-    hover: {
-      scale: 1.05,
-      transition: {
-        duration: 0.2,
-      },
-    },
-  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error loading hero section.</div>;
+  }
+
+  const hero = data?.eafsHome?.EAFSHeroSection;
+
+
 
   return (
-    <div id="hero-section" className="relative h-screen w-full overflow-hidden">
+    <motion.div
+      id="hero-section"
+      className="relative h-screen w-full overflow-hidden"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+    >
       {/* Header - only visible within Hero section */}
       <div className="absolute left-0 top-0 z-50 w-full">
         <Header
@@ -64,6 +48,7 @@ const Hero = () => {
           linkActiveColor="#F78019"
           buttonBorderColor="#FFFFFF"
           buttonTextColor="#FFFFFF"
+          mobileMenuBg="bg-[#253E5E]/90" // or bg-black/80, etc.
         />
       </div>
 
@@ -94,74 +79,89 @@ const Hero = () => {
           {/* Content Wrapper */}
           <div className="w-full max-w-4xl space-y-6 md:space-y-8">
             {/* Event Badge */}
-            <motion.span
-              custom={0}
-              variants={textVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="inline-block rounded-full bg-white bg-opacity-20 px-4 py-2 text-base tracking-wide text-white backdrop-blur-sm lg:text-base"
-            >
-              Upcoming Event
-            </motion.span>
+
+            {hero?.tagTitle && (
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.6 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block rounded-full bg-white bg-opacity-20 px-4 py-2 text-base tracking-wide text-white backdrop-blur-sm lg:text-base"
+              >
+                {hero?.tagTitle}
+              </motion.span>
+            )}
 
             {/* Title */}
             <motion.h1
-              custom={1}
-              variants={textVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.6 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="text-4xl font-bold leading-[50px] sm:text-5xl lg:text-6xl lg:leading-[80px]"
             >
-              Register for the 10th East Africa Finance Summit
+              {hero?.heading ||
+                "Register for the 10th East Africa Finance Summit"}
             </motion.h1>
 
             {/* Description */}
             <motion.p
-              custom={2}
-              variants={textVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.6 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.2,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="max-w-2xl text-lg leading-normal text-gray-200 md:text-xl lg:text-[24px] lg:leading-[48px]"
             >
-              Join industry leaders, innovators, and policymakers at the
-              region&apos;s premier summit to explore emerging trends, forge
-              strategic partnerships, and drive impactful financial
-              transformation.
+              {hero?.description ||
+                "Join industry leaders, innovators, and policymakers at the region's premier summit to explore emerging trends, forge strategic partnerships, and drive impactful financial transformation."}
             </motion.p>
 
             {/* Buttons */}
             <motion.div
-              variants={buttonVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "visible"}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.6 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="flex flex-col items-start space-y-4 md:flex-row md:space-x-6 md:space-y-0"
             >
               <motion.a
-                href="/register-now"
-                whileHover="hover"
+                href={hero?.buttonLink || "/register-now"}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
                 className="w-fit min-w-[180px] rounded-full bg-orange-500 px-8 py-3 text-center text-sm font-semibold text-white shadow-md transition duration-300 hover:bg-orange-600 lg:text-base"
               >
-                Register Now
+                {hero?.buttonText || "Register Now"}
               </motion.a>
-              <motion.div whileHover="hover">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
                 <Link href="/news-and-blogs">
                   <button className="w-fit min-w-[180px] rounded-full border border-white px-8 py-3 text-center text-sm text-white transition duration-300 hover:bg-white hover:text-gray-900 lg:text-base">
                     More News →
                   </button>
                 </Link>
               </motion.div>
-              <motion.div whileHover="hover">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
                 <Link href="/">
                   <button className="group relative w-fit min-w-[180px] overflow-hidden rounded-full border border-white/20 bg-gradient-to-r from-white/10 to-white/5 px-8 py-3 text-center text-sm text-white backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] lg:text-base">
                     <span className="relative z-10 flex items-center justify-center gap-2">
-                      <motion.span
-                        initial={{ x: 0 }}
-                        whileHover={{ x: -5 }}
-                        transition={{ duration: 0.2 }}
-                        className="text-lg"
-                      >
-                        ←
-                      </motion.span>
+                      <span className="text-lg">←</span>
                       <span className="font-medium tracking-wide">
                         Go Back to Group
                       </span>
@@ -174,7 +174,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

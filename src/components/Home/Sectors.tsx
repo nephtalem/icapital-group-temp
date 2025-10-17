@@ -3,16 +3,13 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useQuery } from "@apollo/client";
-import { GET_SECTORS_SECTION } from "@/graphql/home/home";
 import Tag from "@/ui/Tag";
-import ModernLoader from "@/components/ui/ModernLoader";
 
 // Helper to get full Strapi media URL
 const getStrapiMedia = (url: string) => {
   if (!url) return "";
   if (url.startsWith("http")) return url;
-  return `${process.env.NEXT_PUBLIC_DATA }${url}`;
+  return `${process.env.NEXT_PUBLIC_DATA}${url}`;
 };
 
 // Define types for our data
@@ -39,9 +36,13 @@ interface SectorsData {
   cards: Card[];
 }
 
-const Sectors = () => {
+// Define the props interface for Sectors component
+interface SectorsProps {
+  sectorsData: SectorsData | null;
+}
+
+const Sectors = ({ sectorsData }: SectorsProps) => {
   const pathname = usePathname();
-  const { data, loading, error } = useQuery(GET_SECTORS_SECTION);
 
   // Helper function to determine if a color is dark based on its hex value
   const isColorDark = (hexColor: string): boolean => {
@@ -100,31 +101,18 @@ const Sectors = () => {
     },
   };
 
-  if (loading) {
-    return <ModernLoader />;
-  }
-
-  if (error) {
+  // Handle case where sectorsData is not available
+  if (!sectorsData?.home?.SectorsSection) {
     return (
       <section className="bg-[#F8F8F8] px-6 py-16 md:px-12">
         <div className="text-center text-red-500">
-          Error loading sectors section
+          Sectors data not available
         </div>
       </section>
     );
   }
 
-  const sectorsData = data?.home?.SectorsSection as SectorsData;
-
-  if (!sectorsData) {
-    return (
-      <section className="bg-[#F8F8F8] px-6 py-16 md:px-12">
-        <div className="text-center text-red-500">
-          No sectors data available
-        </div>
-      </section>
-    );
-  }
+  const sectorsSection = sectorsData.home.SectorsSection;
 
   return (
     <section key={pathname} className="bg-[#F8F8F8] px-6 py-16 md:px-12">
@@ -143,7 +131,7 @@ const Sectors = () => {
           transition={{ duration: 0.4 }}
         >
           <Tag
-            title={sectorsData.tagTitle}
+            title={sectorsSection.tagTitle}
             titleColor="text-[#F78019]"
             bgColor="bg-[#F7801926]"
           />
@@ -155,7 +143,7 @@ const Sectors = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="my-4 text-xl font-bold text-gray-900 md:my-6 md:text-[40px]"
         >
-          {sectorsData.heading}
+          {sectorsSection.heading}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -164,7 +152,7 @@ const Sectors = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-xs text-gray-600 md:text-base"
         >
-          {sectorsData.description}
+          {sectorsSection.description}
         </motion.p>
       </motion.div>
 
@@ -176,7 +164,7 @@ const Sectors = () => {
         viewport={{ once: false }}
         className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3"
       >
-        {sectorsData.cards.map((card: Card, index: number) => (
+        {(sectorsSection.cards || []).map((card: Card, index: number) => (
           <motion.div
             key={`sector-card-${index}`}
             variants={cardVariants}

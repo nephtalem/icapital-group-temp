@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, HTMLMotionProps } from "framer-motion";
-import { useQuery, useMutation } from "@apollo/client";
-import { GET_SUBSCRIBE_SECTION, CREATE_SUBSCRIBER } from "@/graphql/home/home";
+import { useMutation } from "@apollo/client";
+import { CREATE_SUBSCRIBER } from "@/graphql/home/home";
 import { useState } from "react";
 import {
   subscriberSchema,
@@ -11,7 +11,6 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import ModernLoader from "../ui/ModernLoader";
 
 // Helper to highlight words in heading
 function highlightWords(text: string, highlight: string) {
@@ -31,8 +30,12 @@ function highlightWords(text: string, highlight: string) {
   );
 }
 
-const Subscribe = () => {
-  const { data, loading, error } = useQuery(GET_SUBSCRIBE_SECTION);
+// Define the props interface for Subscribe component
+interface SubscribeProps {
+  subscribeData: any;
+}
+
+const Subscribe = ({ subscribeData }: SubscribeProps) => {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -54,11 +57,18 @@ const Subscribe = () => {
     },
   });
 
-  if (loading) return <ModernLoader />;
-  if (error) return <div>Error loading subscribe section.</div>;
-  if (!data?.home?.subscribeSection) return null;
+  // Handle case where subscribeData is not available
+  if (!subscribeData?.home?.subscribeSection) {
+    return (
+      <section className="bg-[#253E5E] px-6 py-16 md:px-12">
+        <div className="text-center text-red-500">
+          Subscribe data not available
+        </div>
+      </section>
+    );
+  }
 
-  const section = data.home.subscribeSection;
+  const section = subscribeData.home.subscribeSection;
   const heading = section.heading || "with Our News & Announcements!";
   const highlight = section.highlight || "Get Updated";
   const description = section.description || "Subscribe to our newsletter!";

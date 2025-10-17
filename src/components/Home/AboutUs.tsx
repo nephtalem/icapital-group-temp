@@ -5,20 +5,21 @@ import { FaArrowDown } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import Tag from "@/ui/Tag";
 import { motion, useAnimation } from "framer-motion";
-import { useQuery } from "@apollo/client";
-import { GET_ABOUT_US_SECTION } from "@/graphql/home/home";
 import parse from "html-react-parser";
-import ModernLoader from "@/components/ui/ModernLoader";
 
-const AboutUs = () => {
+// Define the props interface for AboutUs component
+interface AboutUsProps {
+  aboutUsData: any;
+}
+
+const AboutUs = ({ aboutUsData }: AboutUsProps) => {
   const [showMore, setShowMore] = useState(false);
   const [height, setHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const restRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
-  const { data, loading, error } = useQuery(GET_ABOUT_US_SECTION);
 
-  const aboutus = data?.home?.aboutus;
+  const aboutus = aboutUsData?.home?.aboutus;
   const image = aboutus?.image?.url
     ? aboutus.image.url.startsWith("http")
       ? aboutus.image.url
@@ -53,8 +54,16 @@ const AboutUs = () => {
     }
   }, [controls, restParagraphs, showMore]);
 
-  if (loading) return <ModernLoader />;
-  if (error) return <div>Error loading About Us section.</div>;
+  // Handle case where aboutUsData is not available
+  if (!aboutUsData?.home?.aboutus) {
+    return (
+      <section className="bg-[#253E5E] px-6 py-16 md:px-12">
+        <div className="text-center text-red-500">
+          About Us data not available
+        </div>
+      </section>
+    );
+  }
 
   const toggleShowMore = () => {
     setShowMore(!showMore);

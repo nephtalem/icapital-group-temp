@@ -1,10 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useQuery } from "@apollo/client";
-import { GET_UPCOMING_EVENTS } from "@/graphql/home/home";
 import { motion } from "framer-motion";
-import ModernLoader from "@/components/ui/ModernLoader";
 interface Button {
   buttonText: string;
   buttonLink: string;
@@ -59,22 +56,24 @@ const buttonVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } },
 };
 
-const UpcomingEvents = () => {
-  const { data, loading, error } = useQuery(GET_UPCOMING_EVENTS);
+// Define the props interface for UpcomingEvents component
+interface UpcomingEventsProps {
+  upcomingEventsData: any;
+}
 
-  if (loading) {
-    return <ModernLoader />;
+const UpcomingEvents = ({ upcomingEventsData }: UpcomingEventsProps) => {
+  // Handle case where upcomingEventsData is not available
+  if (!upcomingEventsData?.home?.upcomingEvents) {
+    return (
+      <section className="w-full bg-orange-500 px-2 md:px-8">
+        <div className="text-center text-red-500">
+          Upcoming Events data not available
+        </div>
+      </section>
+    );
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  if (!data?.home?.upcomingEvents) {
-    return null;
-  }
-
-  const eventData = data.home.upcomingEvents;
+  const eventData = upcomingEventsData.home.upcomingEvents;
 
   return (
     <section className="w-full bg-orange-500 px-2 md:px-8">

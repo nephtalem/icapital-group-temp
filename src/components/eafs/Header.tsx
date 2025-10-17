@@ -12,6 +12,8 @@ interface HeaderProps {
   linkActiveColor?: string;
   buttonBorderColor?: string;
   buttonTextColor?: string;
+  mobileMenuBg?: string;
+  headerBg?: string;
 }
 
 const Header: FC<HeaderProps> = ({
@@ -20,6 +22,8 @@ const Header: FC<HeaderProps> = ({
   linkActiveColor = "#FFFFFF",
   buttonBorderColor = "#FFFFFF",
   buttonTextColor = "#FFFFFF",
+  mobileMenuBg = "bg-[#FCF7F1]",
+  headerBg = "bg-transparent",
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -120,7 +124,7 @@ const Header: FC<HeaderProps> = ({
       initial="hidden"
       animate="visible"
       variants={headerVariants}
-      className={`w-full bg-transparent py-4 transition-all duration-300`}
+      className={` w-full ${headerBg} py-4 transition-all duration-300`}
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex items-center justify-between">
@@ -169,13 +173,15 @@ const Header: FC<HeaderProps> = ({
                     }}
                   >
                     {link.name}
-                    <motion.span
-                      className={`absolute bottom-0 left-0 h-0.5 w-full transform transition-all duration-300 ${active ? "scale-x-100" : "scale-x-0"}`}
+                    <span
+                      className={`
+      pointer-events-none absolute bottom-0 left-0 h-0.5 w-full origin-center scale-x-0 
+      bg-[${linkActiveColor}] transition-transform duration-300 group-hover:scale-x-100
+      ${active ? "scale-x-100" : ""}
+    `}
                       style={{
                         backgroundColor: linkActiveColor,
-                        transformOrigin: "center",
                       }}
-                      whileHover={{ scaleX: 1 }}
                     />
                   </Link>
                 </motion.div>
@@ -270,7 +276,7 @@ const Header: FC<HeaderProps> = ({
                   opacity: { duration: 0.2 },
                 },
               }}
-              className="mt-4 overflow-hidden rounded-lg bg-blue-900 bg-opacity-90 py-4 md:hidden"
+              className={`mt-4 overflow-hidden rounded-lg ${mobileMenuBg} py-4 md:hidden`}
             >
               <nav className="flex flex-col space-y-4 px-4">
                 {navLinks.map((link, index) => {

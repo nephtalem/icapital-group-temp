@@ -11,15 +11,41 @@ import {
   FaUserTie,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useQuery } from "@apollo/client";
+import { GET_EAFS_NUMBERS } from "@/graphql/eafs/eafsHome";
+import { getStrapiImageUrl } from "@/utils/getStrapiImageUrl";
+import Image from "next/image";
 
 interface StatItemProps {
-  icon: React.ReactNode;
+  icon: { url?: string; width?: number; height?: number } | null;
   value: number;
   suffix?: string;
   label: string;
   duration?: number;
   index: number;
 }
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.12,
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 const StatItem = ({
   icon,
@@ -29,191 +55,75 @@ const StatItem = ({
   duration = 2,
   index,
 }: StatItemProps) => {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: index * 0.15,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-    hover: {
-      y: -8,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const iconVariants = {
-    hidden: {
-      scale: 0.9,
-      opacity: 0,
-    },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-    hover: {
-      scale: 1.1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
+  const iconObj = Array.isArray(icon) ? icon[0] : icon;
 
   return (
     <motion.div
-      ref={ref}
-      variants={itemVariants}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      whileHover="hover"
       className="flex items-center space-x-4 rounded-lg bg-white p-6 shadow-sm transition-all hover:shadow-md"
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
+      custom={index}
     >
-      <motion.div
-        variants={iconVariants}
-        whileHover="hover"
-        className="flex h-14 w-14 flex-shrink-0 items-center justify-center text-2xl text-[#0A244E]"
-      >
-        {icon}
-      </motion.div>
+      <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center">
+        {iconObj?.url && (
+          <Image
+            src={getStrapiImageUrl(iconObj.url)}
+            alt={label}
+            width={iconObj.width || 56}
+            height={iconObj.height || 56}
+            className="h-14 w-14 object-contain"
+          />
+        )}
+      </div>
       <div>
-        <motion.div
-          variants={itemVariants}
-          className="text-2xl font-bold text-[#0A244E]"
-        >
-          {inView ? (
-            <CountUp
-              start={0}
-              end={value}
-              duration={duration}
-              separator=","
-              suffix={suffix}
-            />
-          ) : (
-            "0"
-          )}
-        </motion.div>
-        <motion.div variants={itemVariants} className="text-sm text-gray-500">
-          {label}
-        </motion.div>
+        <div className="text-2xl font-bold text-[#0A244E]">
+          <CountUp
+            start={0}
+            end={value}
+            duration={duration}
+            separator=","
+            suffix={suffix}
+          />
+        </div>
+        <div className="text-sm text-gray-500">{label}</div>
       </div>
     </motion.div>
   );
 };
 
 const NumbersStats = () => {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const titleVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
-  const stats = [
-    {
-      icon: <FaMicrophone />,
-      value: 8,
-      label: "Summits",
-    },
-    {
-      icon: <FaBuilding />,
-      value: 20,
-      suffix: "+",
-      label: "Companies",
-    },
-    {
-      icon: <FaUsers />,
-      value: 500,
-      suffix: "+",
-      label: "Individuals",
-    },
-    {
-      icon: <FaGlobeAfrica />,
-      value: 8,
-      suffix: "+",
-      label: "Countries",
-    },
-    {
-      icon: <FaUserTie />,
-      value: 50,
-      suffix: "+",
-      label: "High Officials",
-    },
-  ];
+  const { data, loading, error } = useQuery(GET_EAFS_NUMBERS);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading numbers section.</div>;
+  const section = data?.eafsHome?.EAFSInNumbers;
+  const stats = section?.numbersCard || [];
 
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <motion.h2
-          ref={ref}
+          className="mb-16 text-center text-3xl font-bold text-[#0A244E] md:text-4xl"
           variants={titleVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="mb-16 text-center text-3xl font-bold text-[#0A244E] md:text-4xl"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
         >
-          EAFS in Numbers
+          {section?.heading}
         </motion.h2>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
-        >
-          {stats.map((stat, index) => (
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {stats.map((stat: any, index: number) => (
             <StatItem
               key={index}
-              icon={stat.icon}
-              value={stat.value}
-              suffix={stat.suffix}
-              label={stat.label}
+              icon={stat.icon || null}
+              value={stat.endNumber}
+              label={stat.Name}
               index={index}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

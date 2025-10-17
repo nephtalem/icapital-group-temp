@@ -9,25 +9,33 @@ import Step4 from "@/assets/step4.png";
 import Tag from "@/ui/Tag";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_JOURNEY_SECTION } from "@/graphql/home/home";
-import ModernLoader from "@/components/ui/ModernLoader";
 
 const staticIcons = [Step1, Step2, Step3, Step4];
 
-const Journey = () => {
+// Define the props interface for Journey component
+interface JourneyProps {
+  journeyData: any;
+}
+
+const Journey = ({ journeyData }: JourneyProps) => {
   const controls = useAnimation();
-  const { data, loading, error } = useQuery(GET_JOURNEY_SECTION);
 
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
 
-  if (loading) return <ModernLoader />;
-  if (error) return <div>Error loading journey section.</div>;
-  if (!data?.home?.journeySection) return null;
+  // Handle case where journeyData is not available
+  if (!journeyData?.home?.journeySection) {
+    return (
+      <section className="flex flex-col items-center px-6 py-16">
+        <div className="text-center text-red-500">
+          Journey data not available
+        </div>
+      </section>
+    );
+  }
 
-  const journey = data.home.journeySection;
+  const journey = journeyData.home.journeySection;
   const tagTitle = journey.tagTitle || "Our Journey";
   const heading = journey.heading || "Moving Through Years with Success";
   const image = journey.image?.url

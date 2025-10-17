@@ -5,23 +5,20 @@ import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import EAFSLogo from "@/assets/eafs/EAFS-black-Logo.png";
-import { previousSummits } from "@/data/previousSummits";
-import Header from "./Header";
+import Header from "../Header";
 import HeroImg from "@/assets/hero-img.png";
 
 interface HeroProps {
-  summitId: string;
+  summit: any;
 }
 
-const Hero = ({ summitId }: HeroProps) => {
+const Hero = ({ summit }: HeroProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: false,
     amount: 0.3,
     margin: "0px 0px -100px 0px",
   });
-
-  const summit = previousSummits[summitId];
 
   if (!summit) {
     return (
@@ -49,7 +46,17 @@ const Hero = ({ summitId }: HeroProps) => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      <Header />
+      <div className="absolute left-0 top-0 z-50 w-full">
+        <Header
+          logo={EAFSLogo}
+          linkColor="#FFFFFF"
+          linkActiveColor="#F78019"
+          buttonBorderColor="#FFFFFF"
+          buttonTextColor="#FFFFFF"
+          mobileMenuBg="bg-[#253E5E]/90"
+          headerBg="bg-[#253E5E]/90"
+        />
+      </div>
       {/* Background Image */}
       <Image
         src={HeroImg}
@@ -90,7 +97,7 @@ const Hero = ({ summitId }: HeroProps) => {
             variants={textVariants}
             className="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
           >
-            {summit.title}
+            {summit.summitTitle || summit.title}
           </motion.h1>
 
           {/* Subtitle/Quote */}
@@ -100,7 +107,7 @@ const Hero = ({ summitId }: HeroProps) => {
               variants={textVariants}
               className="mx-auto max-w-2xl text-lg font-medium text-white/90 md:text-xl lg:text-2xl"
             >
-              {summit.subtitle}
+              {summit.summitDescription}
             </motion.p>
           )}
 
@@ -128,7 +135,7 @@ const Hero = ({ summitId }: HeroProps) => {
               <div className="text-left">
                 <div className="text-sm text-white/80">Date</div>
                 <div className="text-base font-semibold text-white">
-                  {summit.dateLabel || summit.date}
+                  {summit.date}
                 </div>
               </div>
             </div>
@@ -156,33 +163,32 @@ const Hero = ({ summitId }: HeroProps) => {
               <div className="text-left">
                 <div className="text-sm text-white/80">Location</div>
                 <div className="text-base font-semibold text-white">
-                  {summit.locationLabel || summit.location}
+                  {summit.location}
                 </div>
               </div>
             </div>
           </motion.div>
-
-          {/* Scroll for more */}
-          <motion.div
-            custom={4}
-            variants={textVariants}
-            className="mt-12 flex flex-col items-center justify-center"
+        </motion.div>
+        {/* Scroll for more - moved to absolute bottom */}
+        <motion.div
+          custom={4}
+          variants={textVariants}
+          className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center"
+        >
+          <span className="text-base text-white/80">Scroll for more</span>
+          <svg
+            className="mt-2 h-6 w-6 animate-bounce text-white/80"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <span className="text-base text-white/80">Scroll for more</span>
-            <svg
-              className="mt-2 h-6 w-6 animate-bounce text-white/80"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </motion.div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
         </motion.div>
       </div>
     </section>

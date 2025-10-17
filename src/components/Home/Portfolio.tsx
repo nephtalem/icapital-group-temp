@@ -6,9 +6,6 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Tag from "@/ui/Tag";
-import { useQuery } from "@apollo/client";
-import { GET_HOME_PORTFOLIO_SECTION } from "@/graphql/home/home";
-import ModernLoader from "@/components/ui/ModernLoader";
 
 // Helper to get full Strapi media URL
 const getStrapiMedia = (url: string) => {
@@ -17,23 +14,24 @@ const getStrapiMedia = (url: string) => {
   return `${process.env.NEXT_PUBLIC_DATA || "http://localhost:1337"}${url}`;
 };
 
-const Portfolio = () => {
+// Define the props interface for Portfolio component
+interface PortfolioProps {
+  portfolioData: any;
+}
+
+const Portfolio = ({ portfolioData }: PortfolioProps) => {
   const [showAll, setShowAll] = useState(false);
-  const { data, loading, error } = useQuery(GET_HOME_PORTFOLIO_SECTION);
 
-  if (loading) {
-    return <ModernLoader />;
-  }
-
-  if (error) {
+  // Handle case where portfolioData is not available
+  if (!portfolioData?.home?.PortfolioSection) {
     return (
       <section className="bg-gray-50 px-6 py-16 text-center">
-        <div className="text-red-500">Error loading portfolio section</div>
+        <div className="text-red-500">Portfolio data not available</div>
       </section>
     );
   }
 
-  const section = data?.home?.PortfolioSection;
+  const section = portfolioData.home.PortfolioSection;
   const portfolios = section?.portfolios || [];
 
   console.log(portfolios.length);
@@ -76,8 +74,8 @@ const Portfolio = () => {
           viewport={{ once: false, amount: 0.2 }}
           className="mx-auto mt-10 grid max-w-[1320px] grid-cols-1 items-stretch gap-12 md:grid-cols-2 lg:grid-cols-3"
         >
-          {portfolios
-            .slice(0, showAll ? portfolios.length : 3)
+          {(portfolios || [])
+            .slice(0, showAll ? (portfolios || []).length : 3)
             .map((item: any) => (
               <motion.div
                 key={item.slug}
@@ -120,7 +118,7 @@ const Portfolio = () => {
             ))}
         </motion.div>
 
-        {portfolios.length > 3 && (
+        {(portfolios || []).length > 3 && (
           <div className="mt-8 flex justify-center">
             <motion.button
               onClick={() => setShowAll(!showAll)}
