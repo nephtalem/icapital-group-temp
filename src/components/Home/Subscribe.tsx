@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, HTMLMotionProps } from "framer-motion";
+import { motion, HTMLMotionProps, AnimatePresence } from "framer-motion";
 import { useMutation } from "@apollo/client";
 import { CREATE_SUBSCRIBER } from "@/graphql/home/home";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   subscriberSchema,
   type SubscriberFormData,
@@ -57,6 +57,19 @@ const Subscribe = ({ subscribeData }: SubscribeProps) => {
     },
   });
 
+  // Auto-clear messages after 5 seconds
+  useEffect(() => {
+    if (status === "success" || status === "error") {
+      const timer = setTimeout(() => {
+        setMessage("");
+        setStatus("idle");
+      }, 5000); // 5 seconds
+
+      // Cleanup timer on unmount or when status/message changes
+      return () => clearTimeout(timer);
+    }
+  }, [status, message]);
+
   // Handle case where subscribeData is not available
   if (!subscribeData?.home?.subscribeSection) {
     return (
@@ -94,9 +107,127 @@ const Subscribe = ({ subscribeData }: SubscribeProps) => {
       toast.success("Thank you for subscribing!");
       reset();
     } catch (err: any) {
+      console.error("Subscription error:", err);
       setStatus("error");
-      setMessage(err.message || "Something went wrong");
-      toast.error(err.message || "Something went wrong");
+
+      // Extract meaningful error message from Apollo Client error
+      let errorMessage = "Something went wrong. Please try again.";
+
+      // Check for timeout errors first
+      if (
+        err.name === "TimeoutError" ||
+        err.code === 23 ||
+        err.message?.toLowerCase().includes("timeout")
+      ) {
+        errorMessage =
+          "Request timed out. The server is taking too long to respond. Please try again later.";
+        setMessage(errorMessage);
+        toast.error(errorMessage);
+        return;
+      }
+
+      // Function to check if error is about duplicate email
+      const isDuplicateError = (text: string) => {
+        const lower = text.toLowerCase();
+        return (
+          lower.includes("unique") ||
+          lower.includes("duplicate") ||
+          lower.includes("already exists") ||
+          lower.includes("already subscribed") ||
+          lower.includes("constraint")
+        );
+      };
+
+      // Check for GraphQL errors
+      if (err.graphQLErrors && err.graphQLErrors.length > 0) {
+        const graphQLError = err.graphQLErrors[0];
+
+        // Check Strapi's error structure in extensions
+        if (graphQLError.extensions?.error) {
+          const strapiError = graphQLError.extensions.error;
+
+          // Check if it's a validation error about uniqueness
+          if (strapiError.message && isDuplicateError(strapiError.message)) {
+            errorMessage =
+              "This email is already subscribed to our newsletter.";
+          }
+          // Check validation details
+          else if (strapiError.details?.errors) {
+            const validationError = strapiError.details.errors.find(
+              (e: any) =>
+                e.path?.includes("email") && isDuplicateError(e.message || ""),
+            );
+            if (validationError) {
+              errorMessage =
+                "This email is already subscribed to our newsletter.";
+            } else if (
+              strapiError.message &&
+              strapiError.message !== "Internal Server Error"
+            ) {
+              errorMessage = strapiError.message;
+            }
+          }
+          // Use the strapi error message if not internal server error
+          else if (
+            strapiError.message &&
+            strapiError.message !== "Internal Server Error"
+          ) {
+            errorMessage = strapiError.message;
+          }
+        }
+
+        // Fallback to checking the main error message
+        const originalError = graphQLError.message || "";
+        if (
+          errorMessage === "Something went wrong. Please try again." &&
+          originalError &&
+          originalError !== "Internal Server Error"
+        ) {
+          if (isDuplicateError(originalError)) {
+            errorMessage =
+              "This email is already subscribed to our newsletter.";
+          } else {
+            errorMessage = originalError;
+          }
+        }
+      }
+
+      // Check for network errors
+      if (err.networkError) {
+        // Check if network error contains response data with errors
+        if (err.networkError.result?.errors) {
+          const networkError = err.networkError.result.errors[0];
+
+          if (networkError?.extensions?.error) {
+            const strapiError = networkError.extensions.error;
+            if (strapiError.message && isDuplicateError(strapiError.message)) {
+              errorMessage =
+                "This email is already subscribed to our newsletter.";
+            }
+          }
+        }
+
+        // If we still have generic message, set network error message
+        if (errorMessage === "Something went wrong. Please try again.") {
+          errorMessage =
+            "Network error. Please check your connection and try again.";
+        }
+      }
+
+      // Fallback to general error message
+      if (
+        err.message &&
+        errorMessage === "Something went wrong. Please try again."
+      ) {
+        if (isDuplicateError(err.message)) {
+          errorMessage = "This email is already subscribed to our newsletter.";
+        } else if (err.message !== "Internal Server Error") {
+          errorMessage = err.message;
+        }
+      }
+
+      setMessage(errorMessage);
+      toast.error(errorMessage);
     }
   };
 
@@ -232,17 +363,22 @@ const Subscribe = ({ subscribeData }: SubscribeProps) => {
                 </motion.p>
               )}
 
-              {message && (
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`text-sm ${
-                    status === "success" ? "text-green-400" : "text-red-400"
-                  }`}
-                >
-                  {message}
-                </motion.p>
-              )}
+              <AnimatePresence mode="wait">
+                {message && (
+                  <motion.p
+                    key="message"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className={`text-sm ${
+                      status === "success" ? "text-green-400" : "text-red-400"
+                    }`}
+                  >
+                    {message}
+                  </motion.p>
+                )}
+              </AnimatePresence>
             </motion.div>
           </form>
         </motion.div>

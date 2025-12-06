@@ -62,6 +62,7 @@ const Portfolio = ({ portfolioData }: PortfolioProps) => {
         </motion.h2>
 
         <motion.div
+          key={showAll ? "all" : "limited"}
           variants={{
             hidden: { opacity: 0 },
             visible: {
@@ -70,15 +71,15 @@ const Portfolio = ({ portfolioData }: PortfolioProps) => {
             },
           }}
           initial="hidden"
-          whileInView="visible"
+          animate="visible"
           viewport={{ once: false, amount: 0.2 }}
           className="mx-auto mt-10 grid max-w-[1320px] grid-cols-1 items-stretch gap-12 md:grid-cols-2 lg:grid-cols-3"
         >
           {(portfolios || [])
             .slice(0, showAll ? (portfolios || []).length : 3)
-            .map((item: any) => (
+            .map((item: any, index: number) => (
               <motion.div
-                key={item.slug}
+                key={`${item.slug}-${index}`}
                 className="h-full"
                 variants={{
                   hidden: { opacity: 0, y: 40 },

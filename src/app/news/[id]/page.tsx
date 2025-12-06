@@ -1,125 +1,101 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import Footer from "@/components/Home/Footer";
-import { useQuery } from "@apollo/client";
-import { GET_ARTICLE_BY_SLUG } from "@/graphql/news/news";
-import ModernLoader from "@/components/ui/ModernLoader";
+import Subscribe from "@/components/Home/Subscribe";
+import GetStarted from "@/components/Home/GetStarted";
+import { GET_ARTICLE_BY_SLUG, GET_ARTICLES } from "@/graphql/news/news";
+import {
+  GET_SUBSCRIBE_SECTION,
+  GET_GET_STARTED_SECTION,
+} from "@/graphql/home/home";
+import { executeServerQuery } from "@/lib/serverApolloClient";
 import React from "react";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import NewsDetailClient from "./NewsDetailClient";
 
-const STRAPI_URL = process.env.NEXT_PUBLIC_DATA;
+const STRAPI_URL = process.env.NEXT_PUBLIC_DATA || "http://localhost:1337";
 const getImageUrl = (url?: string) => {
   if (!url) return "/fallback-image.png";
   return url.startsWith("http") ? url : `${STRAPI_URL}${url}`;
 };
 
-const NewsDetail = () => {
-  const params = useParams();
-  const slug = params.id as string;
+interface NewsDetailProps {
+  params: {
+    id: string;
+  };
+}
 
-  const { data, loading, error } = useQuery(GET_ARTICLE_BY_SLUG, {
-    variables: { slug },
-  });
+// Generate static params for all articles at build time
+export async function generateStaticParams() {
+  try {
+    const data: any = await executeServerQuery(GET_ARTICLES);
+    const articles = data?.articles || [];
 
-  if (loading) return <ModernLoader />;
-  if (error) return <div>Error loading article.</div>;
-
-  const article = data?.articles?.[0];
-  if (!article) {
-    return (
-      <main className="min-h-screen bg-gray-50">
-        <div className="container mx-auto px-4 py-16 text-center">
-          <h1 className="text-2xl font-bold text-gray-800">
-            Article not found
-          </h1>
-          <Link
-            href="/news"
-            className="mt-4 inline-block rounded-full bg-orange-500 px-6 py-2 text-white hover:bg-orange-600"
-          >
-            Back to News
-          </Link>
-        </div>
-      </main>
-    );
+    return articles.map((article: any) => ({
+      id: article.slug,
+    }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return [];
   }
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({
+  params,
+}: NewsDetailProps): Promise<Metadata> {
+  const { id: slug } = params;
+
+  const data: any = await executeServerQuery(GET_ARTICLE_BY_SLUG, { slug });
+  const article = data?.articles?.[0];
+
+  if (!article) {
+    return {
+      title: "Article Not Found",
+    };
+  }
+
+  return {
+    title: article.metaTitle || `${article.title} | i-Capital Africa Institute`,
+    description: article.metaDescription || article.summary,
+    openGraph: {
+      title: article.title,
+      description: article.summary,
+      images: article.featuredImage?.url
+        ? [getImageUrl(article.featuredImage.url)]
+        : [],
+    },
+  };
+}
+
+const NewsDetail = async ({ params }: NewsDetailProps) => {
+  const { id: slug } = params;
+
+  // Fetch all data server-side in parallel
+  const [articleData, allArticlesData, subscribeData, getStartedData]: any[] =
+    await Promise.all([
+      executeServerQuery(GET_ARTICLE_BY_SLUG, { slug }),
+      executeServerQuery(GET_ARTICLES),
+      executeServerQuery(GET_SUBSCRIBE_SECTION),
+      executeServerQuery(GET_GET_STARTED_SECTION),
+    ]);
+
+  const article = articleData?.articles?.[0];
+
+  if (!article) {
+    notFound();
+  }
+
+  // Get latest 3 articles excluding the current one for sidebar
+  const allArticles = allArticlesData?.articles || [];
+  const relatedArticles = allArticles
+    .filter((a: any) => a.slug !== slug)
+    .slice(0, 3);
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="relative h-[400px] w-full md:h-[500px]">
-        {article.featuredImage?.url && (
-          <Image
-            src={getImageUrl(article.featuredImage.url)}
-            alt={article.title}
-            fill
-            className="object-cover"
-            priority
-          />
-        )}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute left-0 top-0 z-20 p-4">
-          <Link
-            href="/news"
-            className="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/40 hover:text-orange-500"
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Back to News
-          </Link>
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="max-w-4xl px-4 text-center text-white">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="mb-4 inline-block rounded-full bg-orange-500 px-4 py-1 text-sm font-semibold">
-                {article.category?.name}
-              </span>
-              <h1 className="mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
-                {article.title}
-              </h1>
-              <p className="text-lg text-gray-200">
-                {article.publicationDate
-                  ? new Date(article.publicationDate).toLocaleDateString()
-                  : ""}
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Content Section */}
-      <section className="mx-auto max-w-4xl px-4 py-12">
-        <div className="prose prose-lg mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {Array.isArray(article.content) && (
-              <BlocksRenderer content={article.content} />
-            )}
-          </motion.div>
-        </div>
-      </section>
-
+      <NewsDetailClient article={article} relatedArticles={relatedArticles} />
+      <Subscribe subscribeData={subscribeData} />
+      <GetStarted getStartedData={getStartedData} />
       <Footer />
     </main>
   );

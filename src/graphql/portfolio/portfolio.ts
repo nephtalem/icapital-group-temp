@@ -26,6 +26,16 @@ export const GET_PORTFOLIO_BY_SLUG = gql`
       solutionPoint {
         point
       }
+      testimonials {
+        media {
+          url
+          width
+          height
+        }
+        videioUrl
+        caption
+        isVideo
+      }
     }
   }
 `;

@@ -4,6 +4,9 @@ import { setContext } from "@apollo/client/link/context";
 // Create HTTP link for server-side requests
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_API || "http://localhost:1337/graphql",
+  fetchOptions: {
+    timeout: 30000, // 30 seconds timeout
+  },
 });
 
 // Add any necessary headers for server-side requests
@@ -51,9 +54,23 @@ export async function executeServerQuery<T>(
 
     console.log("Query result:", data);
     return data;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Server-side GraphQL query error:", error);
     console.error("Error details:", error);
+    
+    // Log GraphQL errors if they exist
+    if (error.graphQLErrors && error.graphQLErrors.length > 0) {
+      console.error("GraphQL Errors:", JSON.stringify(error.graphQLErrors, null, 2));
+    }
+    
+    // Log network error details if they exist
+    if (error.networkError) {
+      console.error("Network Error:", error.networkError);
+      if (error.networkError.result) {
+        console.error("Network Error Result:", JSON.stringify(error.networkError.result, null, 2));
+      }
+    }
+    
     // Return null instead of throwing to prevent crashes
     return null as T;
   }
